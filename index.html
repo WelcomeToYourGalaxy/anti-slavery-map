@@ -451,7 +451,8 @@ body.info-open.wire-up #indexPanel{top:122px !important;}
   <div class="proj-size"><span class="ps-lab">Severity &mdash; select any</span><span class="ps-pill on" data-ms="all">All</span><span class="ps-pill" data-ms="3">Documented <i>recorded in a named public source</i></span><span class="ps-pill" data-ms="4">Systemic <i>across a sector or region</i></span><span class="ps-pill" data-ms="5">Gravest <i>state-imposed, or a whole national industry</i></span></div><div class="proj-size proj-phase"><span class="ps-lab">Status &mdash; select any</span><span class="ps-pill on" data-ph="pre">Open <i>alleged, under investigation, unresolved</i></span><span class="ps-pill on" data-ph="post">Acted on <i>banned, prosecuted, sanctioned or remediated</i></span></div>
   <div class="proj-search"><input id="projQ" type="search" placeholder="Search cases by name, place or commodity&hellip;" autocomplete="off"><span id="projQn"></span></div>
   <div class="proj-time"><span class="ps-lab">Recency &mdash; dated sources</span><span class="pt-pill on" data-tw="0">All ages</span><span class="pt-pill" data-tw="30">&le;30d</span><span class="pt-pill" data-tw="90">&le;90d</span><span class="pt-pill" data-tw="180">&le;6mo</span><span class="pt-pill" data-tw="365">&le;1yr</span><label class="pt-und"><input type="checkbox" id="pjUndated" checked> Include undated</label></div><div class="lp-detail collapsed"><div class="lp-detail-head" onclick="this.parentNode.classList.toggle('collapsed')"><span class="lp-car">&#9662;</span> Where this data comes from &amp; what's not (yet) in it</div><div class="lp-detail-body">
-<b class="hl-sec">Read this before you trust a dot</b><br>
+<b class="hl-sec">Two kinds of dot, and where each comes from</b><br>
+The dots are two different things and should not be read as one. <b>Live incidents</b> are press reports — a raid, a rescue, a charge, a conviction, a death, an inspection finding — built in your browser this session from the news wire, filtered to reported events rather than analysis or a report launch, and placed at a country or region centroid because no feed in this field carries coordinates. Every one is a hollow ring for that reason, and a news report is not a finding by any authority: open the article before relying on it. <b>Determinations</b> are the separate, hand-entered set of published government findings — import bans, national employer blacklists, listed goods — which are citable as they stand.<br><br>The wire itself has two paths, and the count under the layer checkbox says which one is in use rather than leaving you to guess. If <code>wire.json</code> has been built by <code>harvest_wire.py</code> and deployed alongside this file, it is used: country and region are tagged once at harvest time against the full country list, over a 30-day window, in six languages. If it is absent, the browser pulls the same feeds live through a public RSS-to-JSON bridge instead — slower, dependent on a third party, country-level only, and a shorter window.<br><br>One thing to carry through all of it: <b>an absence of dots over a country means these feeds do not report there.</b> Coverage tracks journalism, inspectorates and courts, not the distribution of the harm. The blank areas are frequently the ones to worry about most.<br><br><b class="hl-sec">Read this before you trust a dot</b><br>
     <b>The case layer does not ship with this build.</b> The engine reads its dots from a <code>projects.json</code> file that is harvested separately, and that harvester has not been run for this subject yet. What you are looking at right now is a small hand-entered seed set, described below. Saying so plainly is the point: an empty layer is honest, a fabricated one is not.<br><br>
     <b class="hl-sec">What the seed set is</b><br>
     A short list of situations that are documented in named, public, official or long-established sources &mdash; the US Department of Labor's list of goods, the UFLPA Entity List, US Customs withhold release orders, Brazil's employer register, ILO supervisory-body findings. Almost all of them are plotted as <b>dashed rings</b>, because the underlying source names a country, a region or a commodity rather than a coordinate. Treat a ring as &ldquo;this is documented somewhere in here&rdquo; and open the source for what it actually says. Seed entries carry no headcount, because the sources they come from do not publish one.<br><br>
@@ -2982,6 +2983,113 @@ function applyIntent(v){ var hint=document.getElementById('intentHint');
     }catch(e){ try{console.warn('mergeIncidents',e);}catch(_e){} }
   };
 
+
+/* ============ LIVE FALLBACK (no wire.json) ==============================
+   Used only when the harvested wire.json is missing or empty. Pulls the same
+   WIRE_FEEDS through a public RSS->JSON bridge, applies the same subject gate
+   as harvest_wire.py, and tags a country by longest-name match.
+
+   Differences from the harvested file, stated because they matter:
+     - slower, and it depends on a third-party bridge that can rate-limit
+     - country only: no region tagging, so the subregion filter stays thin
+     - a smaller window, since the bridge returns only what each feed exposes
+   Run harvest_wire.py and commit wire.json to get the full version.
+======================================================================== */
+(function(){
+  var BRIDGE='https://api.rss2json.com/v1/api.json?rss_url=';
+  var MAXFEEDS=18, PERFEED=12;
+
+  var ON=['forced labour','forced labor','modern slavery','human trafficking',
+    'labour trafficking','labor trafficking','trafficked','child labour','child labor',
+    'children working','debt bondage','bonded labour','bonded labor','indentured',
+    'servitude','slave labour','slave labor','recruitment fee','labour broker',
+    'labor broker','gangmaster','passport confiscat','wage theft','unpaid wages',
+    'kafala','withhold release order','uflpa','domestic servitude','forced marriage',
+    'trabajo forzoso','trata de personas','trabajo infantil','trabalho for\u00e7ado',
+    'trabalho escravo','travail forc\u00e9','travail des enfants','zwangsarbeit',
+    'menschenhandel','kinderarbeit','lavoro forzato','caporalato'];
+  var OFF=['wage slave','slave to fashion','slave to the algorithm','a slave to',
+    'transatlantic slave','slave trade history','plantation museum','confederate',
+    'labour party','labour leader','labour mp','labour government','shadow cabinet',
+    'went into labour','labour ward','labour pains','labour and delivery',
+    'child benefit','childcare funding','child tax credit',
+    'horoscope','box office','recipe','match report','transfer window','webinar'];
+
+  function onTopic(s){ s=' '+String(s||'').toLowerCase()+' ';
+    for(var i=0;i<OFF.length;i++) if(s.indexOf(OFF[i])>=0) return false;
+    for(var j=0;j<ON.length;j++) if(s.indexOf(ON[j])>=0) return true;
+    return false; }
+
+  function strip(h){ return String(h||'').replace(/<[^>]+>/g,' ')
+      .replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>')
+      .replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&nbsp;/g,' ')
+      .replace(/\s+/g,' ').trim(); }
+
+  /* longest-name match, so 'South Africa' is not eaten by 'Africa' */
+  var _forms=null;
+  function forms(){
+    if(_forms) return _forms;
+    var f=[];
+    try{ for(var a2 in _wireISONAME){ var nm=_wireISONAME[a2];
+      if(nm) f.push([' '+nm.toLowerCase()+' ', _wireISO3(a2), nm.length]); } }catch(e){}
+    try{ Object.keys(trackerData).forEach(function(iso){
+      var nm=trackerData[iso]&&trackerData[iso].name;
+      if(nm) f.push([' '+nm.toLowerCase()+' ', iso, nm.length]); }); }catch(e){}
+    /* local-language forms, so a Portuguese or Italian headline is not left
+       untagged just because the browser only holds English country names */
+    var LOCAL={BRA:['brasil'],ITA:['italia'],ESP:['espana','españa'],
+      MEX:['mexico','méxico'],DEU:['deutschland'],FRA:['france'],
+      CIV:["cote d ivoire","côte d ivoire",'ivory coast'],
+      GBR:['britain','uk'],USA:['u s','united states of america'],
+      ARE:['uae'],KOR:['south korea'],PRK:['north korea'],
+      COD:['dr congo','drc'],NLD:['holland'],CHE:['schweiz','suisse']};
+    Object.keys(LOCAL).forEach(function(iso){
+      LOCAL[iso].forEach(function(nm){ f.push([' '+nm+' ', iso, nm.length]); }); });
+    f.sort(function(a,b){ return b[2]-a[2]; });
+    return _forms=f;
+  }
+  function tagISO(it){
+    var t=' '+((it.title||'')+' '+(it.snippet||'')).toLowerCase()
+            .replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ')+' ';
+    var f=forms();
+    for(var i=0;i<f.length;i++){ if(t.indexOf(f[i][0])>=0){ it.iso=f[i][1]; return it; } }
+    return it;
+  }
+
+  function pullFeed(pair){
+    var outlet=pair[0], url=pair[1];
+    return fetch(BRIDGE+encodeURIComponent(url))
+      .then(function(r){ return r.ok?r.json():null; })
+      .then(function(j){
+        if(!j||j.status!=='ok'||!j.items) return [];
+        return j.items.slice(0,PERFEED).map(function(x){
+          return { title:strip(x.title), link:x.link||'',
+                   snippet:strip(x.description||x.content||'').slice(0,400),
+                   date:x.pubDate||'', name:outlet, lang:'en' };
+        }).filter(function(x){ return x.title && onTopic(x.title+' '+x.snippet); })
+          .map(tagISO);
+      })
+      .catch(function(){ return []; });
+  }
+
+  window.wireLiveFallback = function(){
+    var feeds=[];
+    try{ feeds=WIRE_FEEDS.slice(0,MAXFEEDS); }catch(e){ return Promise.resolve([]); }
+    var note=document.getElementById('incCount');
+    if(note) note.textContent='No harvested wire.json \u2014 pulling feeds live in your browser\u2026';
+    return Promise.all(feeds.map(pullFeed)).then(function(batches){
+      var all=[], seen={};
+      batches.forEach(function(b){ b.forEach(function(x){
+        var k=(x.title||'').toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,70);
+        if(k && !seen[k]){ seen[k]=1; all.push(x); }
+      }); });
+      all.sort(function(a,b){ return new Date(b.date||0)-new Date(a.date||0); });
+      try{ console.log('[wire-fallback]', all.length, 'items pulled live from', feeds.length, 'feeds'); }catch(e){}
+      return all;
+    });
+  };
+})();
+
   /* the wire finishes asynchronously; poll briefly for its archive */
   var tries=0;
   var iv=setInterval(function(){
@@ -2992,10 +3100,27 @@ function applyIntent(v){ var hint=document.getElementById('intentHint');
     if(items && items.length){
       clearInterval(iv);
       try{ window.mergeIncidents(window.buildIncidents(items)); }catch(e){}
-    } else if(tries>40){
+    } else if(tries>16){
       clearInterval(iv);
-      var el=document.getElementById('incCount');
-      if(el) el.textContent='No live incidents \u2014 the wire is quiet, or wire.json is not deployed';
+      /* wire.json never arrived. Pull the feeds live instead, so the map is
+         not blank just because nobody has scheduled the harvester yet. */
+      try{
+        window.wireLiveFallback().then(function(list){
+          if(list && list.length){
+            try{ _sharedArchive=list; }catch(e){}
+            try{ if(typeof _wireRender==='function'){ _wireKept=list; _wireRender(); } }catch(e){}
+            window.mergeIncidents(window.buildIncidents(list));
+            var el=document.getElementById('incCount');
+            if(el) el.innerHTML=el.textContent+
+              ' <span style="opacity:.75">(pulled live in your browser \u2014 country-level only. '+
+              'Run harvest_wire.py and commit wire.json for region tagging and a longer window.)</span>';
+          } else {
+            var e2=document.getElementById('incCount');
+            if(e2) e2.textContent='No live incidents \u2014 no wire.json, and the live feed pull returned nothing. '+
+              'The determinations below are still shown.';
+          }
+        });
+      }catch(e){}
     }
   }, 750);
 
