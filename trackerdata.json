@@ -64,6 +64,791 @@
  },
  "BRA": {
   "name": "Brazil",
+  "sub": {
+   "Acre": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Acre, seated in Porto Velho (14\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 14\u00aa Regi\u00e3o (Acre)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt14.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Acre. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Acre",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Alagoas": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Alagoas, seated in Macei\u00f3 (19\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 19\u00aa Regi\u00e3o (Alagoas)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt19.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Alagoas. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Alagoas",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Amap\u00e1": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Amap\u00e1, seated in Bel\u00e9m (8\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 8\u00aa Regi\u00e3o (Amap\u00e1)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt8.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Amap\u00e1. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Amap\u00e1",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Amazonas": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Amazonas, seated in Manaus (11\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Riverine and forestry work, where distance from any inspection office is itself the mechanism.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 11\u00aa Regi\u00e3o (Amazonas)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt11.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Amazonas. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Amazonas",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Bahia": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Bahia, seated in Salvador (5\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Cocoa, sisal and cattle, with recurring cases in charcoal.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 5\u00aa Regi\u00e3o (Bahia)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt5.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Bahia. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Bahia",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Cear\u00e1": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Cear\u00e1, seated in Fortaleza (7\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 7\u00aa Regi\u00e3o (Cear\u00e1)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt7.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Cear\u00e1. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Cear\u00e1",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Distrito Federal": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Distrito Federal, seated in Bras\u00edlia (10\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 10\u00aa Regi\u00e3o (Distrito Federal)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt10.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Distrito Federal. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Distrito Federal",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Esp\u00edrito Santo": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Esp\u00edrito Santo, seated in Vit\u00f3ria (17\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 17\u00aa Regi\u00e3o (Esp\u00edrito Santo)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt17.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Esp\u00edrito Santo. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Esp\u00edrito Santo",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Goi\u00e1s": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Goi\u00e1s, seated in Goi\u00e2nia (18\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Sugarcane and cattle. Also a common destination for workers recruited out of the north-east.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 18\u00aa Regi\u00e3o (Goi\u00e1s)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt18.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Goi\u00e1s. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Goi\u00e1s",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Maranh\u00e3o": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Maranh\u00e3o, seated in S\u00e3o Lu\u00eds (16\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Historically the largest origin state for workers recruited into slave labour elsewhere in Brazil, which makes the origin-side recruitment cases as important here as the destination-side ones.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 16\u00aa Regi\u00e3o (Maranh\u00e3o)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt16.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Maranh\u00e3o. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Maranh\u00e3o",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Mato Grosso": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Mato Grosso, seated in Cuiab\u00e1 (23\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Cattle, soy and cotton; frontier expansion, and a recurring pattern of workers recruited from other states and left without pay or a way home.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 23\u00aa Regi\u00e3o (Mato Grosso)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt23.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Mato Grosso. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Mato Grosso",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Mato Grosso do Sul": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Mato Grosso do Sul, seated in Campo Grande (24\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Cattle, sugarcane and ethanol, with cases involving indigenous workers recruited onto plantations.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 24\u00aa Regi\u00e3o (Mato Grosso do Sul)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt24.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Mato Grosso do Sul. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Mato Grosso do Sul",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Minas Gerais": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Minas Gerais, seated in Belo Horizonte (3\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Coffee harvesting and charcoal for the pig-iron industry are the two sectors that recur here on the register.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 3\u00aa Regi\u00e3o (Minas Gerais)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt3.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Minas Gerais. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Minas Gerais",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Paran\u00e1": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Paran\u00e1, seated in Curitiba (9\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 9\u00aa Regi\u00e3o (Paran\u00e1)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt9.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Paran\u00e1. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Paran\u00e1",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Para\u00edba": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Para\u00edba, seated in Jo\u00e3o Pessoa (13\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 13\u00aa Regi\u00e3o (Para\u00edba)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt13.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Para\u00edba. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Para\u00edba",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Par\u00e1": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Par\u00e1, seated in Bel\u00e9m (8\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Par\u00e1 has appeared on the employer register more often than any other state, concentrated in cattle ranching and charcoal production along the agricultural frontier.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 8\u00aa Regi\u00e3o (Par\u00e1)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt8.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Par\u00e1. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Par\u00e1",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Pernambuco": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Pernambuco, seated in Recife (6\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 6\u00aa Regi\u00e3o (Pernambuco)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt6.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Pernambuco. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Pernambuco",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Piau\u00ed": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Piau\u00ed, seated in Teresina (22\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. An origin state for recruitment into agricultural work in the centre-west; carnauba wax harvesting has also produced cases.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 22\u00aa Regi\u00e3o (Piau\u00ed)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt22.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Piau\u00ed. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Piau\u00ed",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Rio Grande do Norte": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Rio Grande do Norte, seated in Natal (21\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 21\u00aa Regi\u00e3o (Rio Grande do Norte)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt21.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Rio Grande do Norte. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Rio Grande do Norte",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Rio Grande do Sul": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Rio Grande do Sul, seated in Porto Alegre (4\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Meatpacking and vineyard work; a 2023 winery case involving workers recruited from Bahia was among the largest single rescues in recent years.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 4\u00aa Regi\u00e3o (Rio Grande do Sul)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt4.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Rio Grande do Sul. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Rio Grande do Sul",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Rio de Janeiro": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Rio de Janeiro, seated in Rio de Janeiro (1\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Domestic servitude and construction, and the port through which much of the supply-chain question passes.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 1\u00aa Regi\u00e3o (Rio de Janeiro)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt1.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Rio de Janeiro. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Rio de Janeiro",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Rond\u00f4nia": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Rond\u00f4nia, seated in Porto Velho (14\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 14\u00aa Regi\u00e3o (Rond\u00f4nia)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt14.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Rond\u00f4nia. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Rond\u00f4nia",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Roraima": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Roraima, seated in Manaus (11\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 11\u00aa Regi\u00e3o (Roraima)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt11.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Roraima. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Roraima",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Santa Catarina": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Santa Catarina, seated in Florian\u00f3polis (12\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Meatpacking, textiles and construction, including migrant workers from Haiti and Venezuela.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 12\u00aa Regi\u00e3o (Santa Catarina)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt12.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Santa Catarina. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Santa Catarina",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Sergipe": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Sergipe, seated in Aracaju (20\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 20\u00aa Regi\u00e3o (Sergipe)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt20.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Sergipe. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Sergipe",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "S\u00e3o Paulo": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering S\u00e3o Paulo, seated in S\u00e3o Paulo (2\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Garment workshops in the capital, worked largely by Bolivian and Paraguayan migrants two or three tiers below a retail brand, and sugarcane in the interior. Note that the interior is covered by the 15th Region (prt15.mpt.mp.br), seated in Campinas, not by this office.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 2\u00aa Regi\u00e3o (S\u00e3o Paulo)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt2.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for S\u00e3o Paulo. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 S\u00e3o Paulo",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   },
+   "Tocantins": {
+    "trackers": [
+     {
+      "desc": "The Labour Prosecution Service office covering Tocantins, seated in Bras\u00edlia (10\u00aa Regi\u00e3o). This is where a complaint about work analogous to slavery or about child labour in this state is actually investigated: the MPT has its own investigative powers, brings public civil actions, and negotiates binding conduct adjustment agreements, and it does not depend on a criminal prosecution succeeding first. Anyone may file, including anonymously and including from outside Brazil. Cattle on the frontier, and a transit route for recruitment out of the north-east.",
+      "kind": "structured",
+      "name": "MPT \u2014 Procuradoria Regional do Trabalho, 10\u00aa Regi\u00e3o (Tocantins)",
+      "skind": "justicegov",
+      "tags": [
+       "courts:criminal",
+       "environment:inspect",
+       "conserve:hotline"
+      ],
+      "url": "https://www.prt10.mpt.mp.br/",
+      "voice": "official"
+     },
+     {
+      "desc": "The labour inspectorate's regional superintendence for Tocantins. Inspectors here are the ones who physically carry out the rescue operations and who make the finding that puts an employer on the national register. A report can be made through Disque 100 or directly to the superintendence; the inspectorate acts on conditions and unpaid wages without needing anyone to prove trafficking.",
+      "kind": "structured",
+      "name": "Superintend\u00eancia Regional do Trabalho \u2014 Tocantins",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:inspect",
+       "conserve:compensation"
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "voice": "official"
+     }
+    ]
+   }
+  },
   "trackers": [
    {
     "desc": "The register of employers found by labour inspectors to have subjected workers to conditions analogous to slavery, published by the Ministry of Labour and Employment every six months under Portaria Interministerial 18/2024. Names, states and sectors, with each employer listed for two years. The April 2026 update added 169 employers, bringing the register to 613 and reflecting some 2,200 workers removed from such conditions. Nothing else in the world is this specific or this public.",

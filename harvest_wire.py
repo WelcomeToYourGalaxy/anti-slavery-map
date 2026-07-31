@@ -40,6 +40,7 @@ import re
 import ssl
 import sys
 import time
+import unicodedata
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
@@ -249,11 +250,46 @@ def guess_lang(text):
     return "en"
 
 
+def fold(s):
+    """Lowercase, strip accents, reduce to letters and digits. Feeds spell the
+    same place 'Para', 'Pará' and 'PARA' in the same hour, and a matcher that
+    cares about the difference finds none of them."""
+    s = unicodedata.normalize("NFD", str(s or "").lower())
+    s = "".join(c for c in s if unicodedata.category(c) != "Mn")
+    return " " + re.sub(r"[^a-z0-9]+", " ", s).strip() + " "
+
+
+_REGION_INDEX = None
+
+
+def region_index(regions):
+    """Region name -> ISO3, keeping only names distinctive enough to imply a
+    country on their own. Drops anything short, and anything claimed by more
+    than one country, so 'Georgia' the US state never resolves a headline about
+    Georgia the country."""
+    global _REGION_INDEX
+    if _REGION_INDEX is not None:
+        return _REGION_INDEX
+    seen, dupes = {}, set()
+    for iso, names in regions.items():
+        for r in names:
+            k = fold(r).strip()
+            if len(k) < 6 or " " not in k and len(k) < 8:
+                continue
+            if k in seen and seen[k] != iso:
+                dupes.add(k)
+            seen[k] = iso
+    _REGION_INDEX = {k: v for k, v in seen.items() if k not in dupes}
+    return _REGION_INDEX
+
+
 def tag_geo(item, names, regions, alias=None):
     """Country first, then region within it. Longest name wins, so
-    'South Africa' is not eaten by 'Africa' and 'Guinea-Bissau' not by 'Guinea'."""
-    t = " " + re.sub(r"[^a-z0-9 ]+", " ",
-                     (item["title"] + " " + item["snippet"]).lower()) + " "
+    'South Africa' is not eaten by 'Africa' and 'Guinea-Bissau' not by 'Guinea'.
+    If no country matched but a distinctive region name did, the region implies
+    the country -- a headline about a rescue in Rio Grande do Sul rarely says
+    'Brazil' as well."""
+    t = fold(item["title"] + " " + item["snippet"])
     best, best_len = None, 0
     forms = {}
     for iso, nm in names.items():
@@ -262,15 +298,26 @@ def tag_geo(item, names, regions, alias=None):
         forms.setdefault(iso, []).extend(extra)
     for iso, nms in forms.items():
         for nm in nms:
-            key = " " + re.sub(r"[^a-z0-9 ]+", " ", nm.lower()).strip() + " "
+            key = fold(nm)
             if key.strip() and key in t and len(nm) > best_len:
                 best, best_len = iso, len(nm)
+
+    # region implies country, when the country itself was not named
+    if not best:
+        ridx = region_index(regions)
+        hit_len = 0
+        for k, iso in ridx.items():
+            if (" " + k + " ") in t and len(k) > hit_len:
+                best, hit_len = iso, len(k)
+
     if best:
         item["iso"] = best
+        best_r, best_rl = None, 0
         for r in regions.get(best, []):
-            if " " + r.lower() + " " in t:
-                item["region"] = r
-                break
+            if fold(r) in t and len(r) > best_rl:
+                best_r, best_rl = r, len(r)
+        if best_r:
+            item["region"] = best_r
     return item
 
 

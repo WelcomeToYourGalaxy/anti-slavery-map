@@ -384,3 +384,420 @@ where the live key is `environment:inspect`, `council` where it is
 `inspectorate`. The validator caught every one. Mistyped tags fail *silently* at
 runtime, which is why that check exists and why it should be re-run after any
 edit to the directory.
+
+---
+
+# Third pass — the wire actually runs
+
+The second pass built a live incident layer on top of the wire. The wire read
+`wire.json`, and `wire.json` was not shipped and had no harvester, so the live
+layer had nothing to be live from. That is now fixed twice over, because the
+two fixes fail differently.
+
+## `harvest_wire.py` — the proper path
+
+Reads `WIRE_FEEDS` **out of `index.html`**, so there is one canonical feed list
+rather than two that drift apart. Fetches all 40 feeds concurrently, parses RSS
+2.0 and Atom with the standard library (no dependency), strips HTML, applies the
+subject gate, de-duplicates on a normalised title, windows to `--days` (default
+30), tags geography, scores significance, and writes `wire.json`.
+
+**Geography is tagged here, not in the browser, and that is the point.** The
+sibling map tags client-side by matching region names against headline text
+after the feed loads — and its matcher only sees names for countries that
+already have entries in `trackerdata.json`, which is exactly where its
+all-zeros subregion filter came from. Doing it at harvest time means the
+geography is computed once, against the full country list, and shipped as data.
+
+Country matching is **longest-name-wins**, so "South Africa" is not eaten by
+"Africa" and "Guinea-Bissau" not by "Guinea" — verified in the test below. It
+also carries **local-language country forms**, pulled from the map's own
+`ENDONYM` table plus a short manual list, so a Portuguese headline about
+*Brasil* or an Italian one about *Italia* gets tagged instead of silently
+falling out.
+
+The subject gate runs in six languages. An English-only gate quietly drops the
+coverage nearest the event, which is usually the best coverage there is:
+*trabalho escravo*, *trata de personas*, *caporalato*, *Zwangsarbeit*, *travail
+forcé*, *kinderarbeit* all pass. The kill-list handles the traps this vocabulary
+has and the sibling's does not — metaphor (*wage slave*, *a slave to*),
+historical slavery and plantation museums, the **UK Labour Party**, **childbirth**
+(*went into labour*, *labour ward*), and **childcare policy** (*child benefit*,
+*childcare funding*).
+
+What it deliberately does not do: **geocode to a place.** A headline saying "raid
+on a farm outside Almería" could be resolved to a point and should not be. The
+workers are still there, the report is unverified, and the map's convention is
+that anything without coordinates in the source is drawn as a centroid ring.
+Country and region is as far as it goes.
+
+A GitHub Actions workflow that runs it every six hours and commits the result is
+in the file, commented out.
+
+Offline test against a synthetic feed: 5 items in, the brick-kiln rescue kept
+and tagged `IND`, the Labour Party item, the childbirth item and the slave-trade
+museum item all correctly dropped, HTML stripped from the description, and the
+Portuguese item kept and tagged `BRA` once local forms were added.
+
+## The browser fallback — because a map that needs a cron job is a blank map
+
+If `wire.json` is missing or empty, the incident layer stops waiting after
+about twelve seconds and pulls the same feed list live through a public
+RSS-to-JSON bridge, applying the same subject gate and the same
+longest-name-wins country matcher.
+
+It is worse than the harvested path in three specific ways, and the UI says all
+three rather than letting the difference pass unnoticed: **slower**, **dependent
+on a third-party bridge** that can rate-limit, and **country-level only**, so
+the subregion filter stays thin. The count under the layer checkbox reads
+"pulled live in your browser — country-level only. Run harvest_wire.py and
+commit wire.json for region tagging and a longer window."
+
+Headless test with a stubbed bridge: 6 items in, 3 kept, HTML stripped,
+`South Africa` correctly beating `Guinea` on longest match, and the Portuguese
+item tagged `BRA`.
+
+## The provenance panel now describes both
+
+A new section at the top of the panel separates the two kinds of dot —
+**live incidents** (press-reported, hollow rings, a news report is not a
+finding) and **determinations** (published government findings, citable as they
+stand) — and explains which of the two wire paths is in use and what the
+difference costs you.
+
+It repeats the point that matters most: **an absence of dots over a country
+means these feeds do not report there.** Coverage tracks journalism,
+inspectorates and courts, not the distribution of the harm.
+
+## Files now
+
+| File | What it is |
+|---|---|
+| `index.html` | The map. |
+| `trackerdata.json` | Country directory — deploy next to `index.html`. |
+| `harvest_wire.py` | Builds `wire.json`. Run on a schedule; workflow included. |
+| `verify_links.py` | Link checker. Run before deploying. |
+| `BUILD-NOTES.md` | This file. |
+
+`wire.json` is generated, not shipped. Without it the map still runs and still
+shows live incidents, via the browser fallback.
+
+## Re-validation
+
+Seven inline script blocks parse; static markup balances at 95/95; both live
+paths pass their behavioural tests; and the cross-validation is clean:
+
+```
+lenses 12   subs 62
+intl bodies 11   entries 79
+trackerdata countries 25   regions 2   entries 90
+intents 25   tour 12   wire threads 11
+VALIDATION CLEAN — 0 problems
+```
+
+One number in there is the honest weak spot: **regions 2**. Only the US has
+subnational entries, so `harvest_wire.py` prints "1 country with regions" on
+startup and region tagging will do almost nothing until `trackerdata.json`
+grows a subnational layer. Brazil (MPT regional units and state labour offices)
+and India (state labour departments, where bonded-labour enforcement actually
+sits) are the two highest-value additions, and both would immediately make the
+subregion filter mean something.
+
+---
+
+# Fourth pass — the subnational layer, and the wire tagger that can use it
+
+The last pass ended by naming `regions 2` as the honest weak spot: only the US
+had subnational entries, so region tagging had almost nothing to bind to. That
+is now `regions 29`, and the tagger that consumes it has been fixed twice over.
+
+## Brazil, state by state
+
+Brazil is the right country to give a subnational layer first. It is the only
+state that publishes the names of employers found to have used slave labour,
+and the institution that drives that enforcement — the Ministério Público do
+Trabalho — is organised regionally, one Procuradoria Regional per state.
+Complaints go to the regional office, not to Brasília, so **the state is the
+unit at which this is actually usable.**
+
+All **27 states and the Federal District** now carry two entries each:
+
+- the **MPT regional office**, which has its own investigative powers, brings
+  public civil actions and negotiates binding conduct adjustment agreements —
+  and does not depend on a criminal prosecution succeeding first. Anyone may
+  file, anonymously, including from outside Brazil.
+- the **regional labour inspectorate superintendence**, which is a different
+  door: inspectors carry out the rescue operations and make the finding that
+  puts an employer on the national register, and they act on conditions and
+  unpaid wages without anyone having to prove trafficking.
+
+Fourteen states also carry the documented sector pattern in their description
+rather than a generic line — Pará on cattle and charcoal along the frontier,
+Minas Gerais on coffee and charcoal for pig iron, São Paulo on garment
+workshops worked largely by Bolivian and Paraguayan migrants two or three tiers
+below a retail brand, Maranhão and Piauí as *origin* states for recruitment
+into work elsewhere, which makes the recruitment-side case as important there
+as the destination-side one. The São Paulo entry also flags that the interior is
+covered by the 15th Region in Campinas, not the office in the capital — the
+kind of thing that wastes a week if you find it out by filing wrongly.
+
+The 24 regions follow the labour-court division. Eight of the state-to-region
+assignments were confirmed against MPT's own sites this session (RJ, SP, RS, BA,
+PR, PI, MT, MS) and the URL pattern `www.prtN.mpt.mp.br` with them. **The
+remaining URLs are constructed from that verified pattern, which is not the
+same as each one having been opened** — run `verify_links.py` before deploying.
+
+Every one of the 27 region names joins exactly to the map's `SUBGEO` geometry:
+27 in the geometry, 27 in the directory, zero on either side without a
+counterpart. That join is what makes the region clickable and the subregion
+filter real.
+
+## Two bugs in the wire tagger, found by having data to test against
+
+The subnational layer immediately exposed that `harvest_wire.py` could not use
+it.
+
+**Accents.** The matcher compared feed text stripped of punctuation against
+region names carrying diacritics, so *Pará*, *São Paulo* and *Piauí* never
+matched — and those are the states this subject concerns most. Both sides now
+run through a fold that lowercases, strips diacritics via NFD, and reduces to
+letters and digits. Feeds spell the same place *Para*, *Pará* and *PARA* within
+the same hour, and a matcher that cares about the difference finds none of them.
+
+**Region never implied country.** Region matching only ran *after* a country
+matched, so "Fiscais resgatam trabalhadores em vinícola no Rio Grande do Sul"
+got neither: the headline never says Brazil. Region now implies country when the
+country was not named — with a guard, because that inference is where a naive
+version breaks. Region names shorter than six characters are excluded, and any
+name claimed by more than one country is dropped entirely, so **"Georgia court
+hears trafficking case" resolves to Georgia the country and not to a US state.**
+Region matching within a country is longest-wins, so "Mato Grosso do Sul" is not
+eaten by "Mato Grosso".
+
+Verified across seven cases: four Brazilian states from Portuguese headlines
+with no country named, a US state, the Georgia ambiguity, and the
+longest-match pair.
+
+## And the dots land in the right place
+
+Tested against the map's real embedded geometry: a Pará incident renders at
+-1.71, -51.48; Rio Grande do Sul at -30.22, -52.87; São Paulo at -22.84, -48.06;
+and an incident with no state named falls back to the national centroid at
+-10.42, -52.80. All hollow rings, because all are centroids.
+
+## India was considered and not done
+
+India is the other obvious candidate — 35 units in the geometry, and
+bonded-labour enforcement sits with state labour departments and district
+magistrates rather than with Delhi, so the state is the operative unit there
+too. It is not in this pass because I could not confirm the state labour
+department URLs to the standard the rest of this file is held to, and 35
+plausible-looking guesses would be worse than nothing. The national entries
+already say the thing that matters most for India: the District Magistrate holds
+the release-certificate power, and the certificate is the bottleneck, because
+without it the rehabilitation payment does not follow.
+
+## Counts now
+
+```
+trackerdata countries 25   regions 29   entries 144
+intl bodies 11   entries 79
+lenses 12   subs 62   intents 25   tour 12   wire threads 11
+VALIDATION CLEAN — 0 problems
+```
+
+---
+
+# Fifth pass — two fatal bugs, found by actually running the page
+
+You said the map background does not show. I stopped guessing and put the page
+under jsdom with stubbed Leaflet and topojson, so it executes for real and any
+uncaught error surfaces with a line number. That found two aborts. **One of them
+was mine.**
+
+## `facActive` had been deleted — my bug, and fatal
+
+The facility-layer line in the source ends:
+
+```js
+var FACCOL={...}, FACLAB={...}; var facActive={po:1,th:1,fs:1,go:1,mi:1,ch:1};
+```
+
+When I retuned `FACLAB` in the first pass — renaming "Ministry / dept HQ" to
+"Agency HQ" and dropping fire stations — the replacement truncated the line and
+took `facActive` with it. Every call into `buildFacFilter()` then threw
+`ReferenceError: facActive is not defined`, and the facility filter never
+rendered.
+
+This is precisely the class of failure I said the validator exists to catch, and
+the validator did not catch it, because it checks data against the taxonomy and
+this was code. Running the page is what caught it. `facActive` is restored, with
+the type list matching the new order (`po, ch, th, go, mi, dp` — fire stations
+out, embassies in).
+
+## `legActive` — inherited from the source map, and it aborts init
+
+```js
+document.getElementById('legActive').style.background=d.accent;
+```
+
+There is no element with that id anywhere in the markup. `applyAccent()` therefore
+throws on **every init and every lens change** — and because it is called from
+the middle of the init line:
+
+```js
+renderPills(); ... applyAccent(); updateStats();
+initIndex(); syncHistToggle();
+```
+
+`updateStats()`, `initIndex()` and `syncHistToggle()` never ran. The Index panel
+was being built by a function that was never reached.
+
+**This one is not mine.** I ran your original `index2.html` through the same
+harness and it throws the identical error at its own line 113. So it is in the
+sibling maps too, and worth fixing wherever else that line appears. Here, all
+three lookups are now guarded and the comment says why.
+
+After both fixes the page executes with **zero uncaught errors**; the original
+still reports one.
+
+## On the background itself — what I can and cannot tell you
+
+I could not reproduce a broken background from the file, and I want to be exact
+about why rather than claim I fixed something I did not find.
+
+- The embedded plate image decodes as a **valid 400,138-byte WEBP**, RIFF header
+  and declared size both intact.
+- A diff of the map-initialisation region against your original shows **one
+  changed line, and it is a colour**.
+- A diff of the CSS with all colours normalised shows **three added rules, all
+  mine, all for the worldwide block**.
+- Instrumenting Leaflet shows both builds constructing the same background:
+  `L.map`, `L.imageOverlay` (the plate), and two `L.tileLayer` calls (Esri
+  imagery and boundaries).
+
+So the background code is intact. The most likely remaining explanation is
+environmental, and the page previously handled it in the worst possible way: the
+plate fades out between zoom 3 and 5 and hands over to Esri satellite tiles, so
+**if those tiles never arrive, the plate has already been removed and you are
+left looking at the container's background colour.** Nothing on screen said
+which layer failed. Note also that I changed that container colour from the
+source's dark teal to near-black brown with the palette, which would make the
+same failure look considerably more like "nothing is there".
+
+Three changes so it fails visibly instead:
+
+1. **The plate is held up if the imagery fails.** Three tile errors, or twelve
+   seconds with nothing loaded at all, and the fade stops and the plate stays at
+   0.85 opacity. Half a background beats none, and the painted plate is a
+   readable map at zoom 9.
+2. **A line appears in the map key** saying satellite imagery is not loading and
+   that the plate is being held instead — and that the rest of the map is
+   unaffected.
+3. **`mapDiag()`** in the browser console prints zoom, how many plate layers are
+   attached, whether the plate is being held, the plate's byte length, satellite
+   and boundary status, tiles loaded, tile errors, the country layer state, the
+   directory size and the live incident count.
+
+If it is still blank after this, open the console, run `mapDiag()`, and send me
+the output — that will say which of the two layers is actually failing instead
+of us both guessing.
+
+## Your link report changed how the checker classifies
+
+The CSV you sent is from the sibling map's directory, and it is the best test
+data the checker has had. It showed the classification was wrong in two ways
+that would have had you deleting working links.
+
+**403 is not dead.** `cdc.gov`, `nrc.gov`, `phmsa.dot.gov`, `dec.ny.gov`,
+`muckrock.com`, `mass.gov`, `citizen.org` and `baykeeper.org` all came back
+`DEAD 403`. Every one opens fine in a browser: they refuse scripted requests.
+There is now a **`BLOCKED`** status for 401/403/405/406/429 that says "refused a
+scripted request; open it by hand".
+
+**Most redirects were normalisation.** `http`→`https`, adding or dropping `www`,
+a trailing slash, an `index.html` — none of which is a move. Those now compare
+canonically and report `OK`, leaving the redirect list to the ones that
+genuinely went somewhere else.
+
+Re-scoring your 1,013 rows under the new rules:
+
+```
+status      before    after
+OK             749       790
+REDIRECT       125        84
+BLOCKED          0        57
+TIMEOUT         24        24
+ERROR           20        20
+DEAD            95        38
+```
+
+**38 genuinely dead**, not 95. And a pattern in them worth acting on: every
+`epa.gov/aboutepa/epa-region-N` link is a 404 — that URL scheme has been retired,
+so all ten regional entries need re-pointing in one edit rather than ten
+investigations. `eplanning.blm.gov/eplanning-ui/home`,
+`lobbyingdisclosure.house.gov` and the EPA EIS filing-system page are likewise
+single fixes affecting several entries.
+
+---
+
+# Sixth pass — a test that would have caught it, and the repo
+
+## `smoke_test.js`
+
+The `facActive` bug shipped past every check I had, because all of them checked
+data against the taxonomy and that break was code. This runs the page.
+
+Leaflet and topojson are stubbed with a proxy that absorbs any call, and `fetch`
+resolves empty, so it does not test that the map *looks* right. It tests the
+thing that actually breaks: that every inline script parses, runs top to bottom,
+and reaches the end without throwing. It also asserts 17 required element IDs
+exist and 11 functions wired to inline `onclick`/`onchange` attributes are
+defined — a handler pointing at nothing is the other silent failure in a file
+this size.
+
+Verified both directions: **passes** on the current build, and on a copy with
+`var facActive={...}` deleted it prints
+
+```
+FAIL — uncaught runtime errors:
+  unhandled rejection: facActive is not defined
+SMOKE TEST FAILED
+```
+
+with exit 1. It catches the exact bug that shipped.
+
+## Repo files added
+
+`README.md` (layout, setup, Pages and Weebly embed, both workflows,
+`package.json`, and the standing rules), `package.json` (jsdom plus `npm test`,
+`npm run links`, `npm run wire`, `npm run serve`), and `.nojekyll`.
+
+Two workflows are in the README ready to paste: **wire.yml** harvests every six
+hours and commits `wire.json`; **check.yml** runs the smoke test on every push
+and the link checker as `continue-on-error`, uploading `report.csv` as an
+artifact. The link job is deliberately non-blocking — a third-party outage is
+not a reason to fail your build, but you still want the report.
+
+One deploy note that matters: **embed via iframe, do not paste `index.html`
+into Weebly.** At 2.3 MB the editor will mangle the inline scripts.
+
+## Where this stands
+
+Working: 12 lenses / 62 sub-filters, 25 goals, 12-slide tour, 11 international
+bodies with 79 entries, 25 countries and 29 regions with 144 directory entries,
+a live incident layer with two feed paths, the worldwide fallback block in every
+popup, and background failure that announces itself.
+
+Still open, in the order I would take them:
+
+1. **`verify_links.py` against everything**, including the 54 constructed
+   Brazilian `prtN` URLs. Never deployed unverified.
+2. **Directory coverage.** 90 national entries across 25 countries, with real
+   holes — attorneys in 4 countries, donation routes in 1. The State Department
+   hotline index and ILO NORMLEX country pages are one authoritative entry per
+   country each.
+3. **India's subnational layer**, once state labour department URLs can be
+   confirmed. 35 units are already in the geometry waiting.
+4. **`projects.json`**, starting with Brazil's employer register and the UFLPA
+   Entity List — the only two sources that yield locatable named entities.

@@ -18,9 +18,9 @@ Notes on interpreting the output:
   OK          2xx, or a redirect chain ending in 2xx
   REDIRECT    ends somewhere else -- check the final URL is still the thing
               you meant; government sites reorganise constantly
-  403 / 405   often a bot block rather than a dead page. Re-check by hand
-              before removing an entry; several national labour ministries
-              refuse HEAD and non-browser user agents.
+  BLOCKED     401/403/405/406/429 -- a live site refusing a scripted request.
+              NOT a dead link. Open it by hand before touching the entry;
+              government sites and Cloudflare-fronted NGOs do this constantly.
   TIMEOUT     common for .gov.in, .go.ke, .gov.pk -- retry before believing it
   DEAD        4xx/5xx that persisted on retry. Fix or drop the entry.
 """
@@ -107,12 +107,28 @@ def check(url, timeout):
             with urllib.request.urlopen(req, timeout=timeout, context=ctx) as r:
                 final = r.geturl()
                 code = r.getcode()
-                if final.rstrip("/") != url.rstrip("/"):
+                # http->https, adding or dropping www, adding a trailing slash
+                # and adding a default index are all normalisation, not a move.
+                # Reporting them as redirects buried the handful that matter:
+                # of 125 redirects in the sibling run, almost all were these.
+                def canon(u):
+                    u = re.sub(r"^https?://", "", u.lower())
+                    u = re.sub(r"^www\.", "", u)
+                    u = re.sub(r"/(index|default)\.(html?|php|aspx?)$", "/", u)
+                    return u.rstrip("/")
+                if canon(final) != canon(url):
                     return ("REDIRECT", code, final)
                 return ("OK", code, "")
         except urllib.error.HTTPError as e:
-            if method == "HEAD" and e.code in (403, 405, 501):
+            if method == "HEAD" and e.code in (403, 405, 406, 429, 501):
                 continue  # some servers only answer GET
+            # A live site refusing a script is not a dead link, and calling it
+            # one gets working entries deleted. Real-world evidence for this:
+            # a run over the sibling map's directory returned 403 for cdc.gov,
+            # nrc.gov, phmsa.dot.gov, dec.ny.gov, muckrock.com and mass.gov --
+            # every one of them a page that opens fine in a browser.
+            if e.code in (401, 403, 405, 406, 429):
+                return ("BLOCKED", e.code, "refused a scripted request; open it by hand")
             return ("DEAD" if e.code >= 400 else "OK", e.code, "")
         except (urllib.error.URLError, ssl.SSLError, OSError) as e:
             if method == "HEAD":
@@ -164,7 +180,7 @@ def main():
     from collections import Counter
     tally = Counter(r["status"] for r in rows)
     print("\n" + "-" * 60)
-    for k in ("OK", "REDIRECT", "TIMEOUT", "ERROR", "DEAD"):
+    for k in ("OK", "REDIRECT", "BLOCKED", "TIMEOUT", "ERROR", "DEAD"):
         if tally.get(k):
             print("%-9s %d" % (k, tally[k]))
 
