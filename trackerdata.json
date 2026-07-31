@@ -1,0 +1,1415 @@
+{
+ "AUS": {
+  "name": "Australia",
+  "trackers": [
+   {
+    "desc": "Statements filed under the Commonwealth Modern Slavery Act 2018, searchable and downloadable. Reporting is mandatory above the revenue threshold, so a missing statement means something here.",
+    "kind": "structured",
+    "name": "Modern Slavery Statements Register",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "corporate:statements"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://modernslaveryregister.gov.au/",
+    "voice": "official"
+   },
+   {
+    "desc": "Wage and conditions enforcement, including for visa holders \u2014 the Ombudsman states that it will not share information about immigration status where a worker comes forward about exploitation. Publishes litigation outcomes and recovered wages by employer.",
+    "kind": "structured",
+    "name": "Fair Work Ombudsman",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:wages",
+     "environment:inspect",
+     "conserve:compensation"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.fairwork.gov.au/",
+    "voice": "official"
+   },
+   {
+    "desc": "A specialist legal and research centre at UTS providing free legal help to people who have experienced trafficking, slavery and forced marriage, plus practical guides on visas and compensation.",
+    "kind": "institution",
+    "name": "Anti-Slavery Australia",
+    "scope": "own",
+    "skind": "helpline",
+    "tags": [
+     "organizing:legal",
+     "conserve:legalaid"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://antislavery.org.au/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "131 AFP (131 237). The reporting route for trafficking, forced labour and forced marriage. Referral into the Support for Trafficked People Program runs through the AFP, which means the support and the criminal process are linked \u2014 a point to weigh with a lawyer before reporting.",
+    "kind": "structured",
+    "name": "Australian Federal Police \u2014 report human trafficking and slavery",
+    "skind": "justicegov",
+    "tags": [
+     "conserve:hotline",
+     "projects:inspect",
+     "environment:inspect"
+    ],
+    "url": "https://www.afp.gov.au/crimes/human-trafficking",
+    "voice": "official"
+   }
+  ]
+ },
+ "BRA": {
+  "name": "Brazil",
+  "trackers": [
+   {
+    "desc": "The register of employers found by labour inspectors to have subjected workers to conditions analogous to slavery, published by the Ministry of Labour and Employment every six months under Portaria Interministerial 18/2024. Names, states and sectors, with each employer listed for two years. The April 2026 update added 169 employers, bringing the register to 613 and reflecting some 2,200 workers removed from such conditions. Nothing else in the world is this specific or this public.",
+    "kind": "structured",
+    "name": "Cadastro de Empregadores (\u2018Lista Suja\u2019)",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "projects:inspect",
+     "spending:debarred",
+     "environment:inspect"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+    "voice": "official"
+   },
+   {
+    "desc": "A joint MPT and ILO observatory turning the inspection data into open dashboards: rescues by year, state, sector, age and gender, going back to 1995. The analytical layer on top of the raw register.",
+    "kind": "structured",
+    "name": "SmartLab \u2014 Observatory on slave labour and trafficking",
+    "scope": "own",
+    "skind": "research",
+    "tags": [
+     "projects:trackers",
+     "records:stats"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://smartlabbr.org/trabalhoescravo",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The labour prosecution service that brings the civil and criminal actions following an inspection, and publishes its own case reporting. A complaint can be filed with the MPT directly.",
+    "kind": "structured",
+    "name": "Minist\u00e9rio P\u00fablico do Trabalho (MPT)",
+    "scope": "own",
+    "skind": "justicegov",
+    "tags": [
+     "courts:criminal",
+     "courts:civil",
+     "projects:inspect"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://mpt.mp.br/",
+    "voice": "official"
+   },
+   {
+    "desc": "The investigative organisation that has covered slave labour in Brazilian supply chains for two decades, with named-company reporting and its own monitoring tools. Much of what the world knows about Brazilian supply chains started here.",
+    "kind": "journalism",
+    "name": "Rep\u00f3rter Brasil",
+    "scope": "own",
+    "skind": "media",
+    "tags": [
+     "advocacy:journalism",
+     "corporate:supply"
+    ],
+    "trust": "record",
+    "type": "investigative-journalism",
+    "url": "https://reporterbrasil.org.br/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Dial 100. The national human-rights channel, which takes anonymous reports of work analogous to slavery and of child labour and routes them to the labour inspectorate and the Public Ministry. The route most third-party reports take in Brazil.",
+    "kind": "structured",
+    "name": "Disque 100 \u2014 human rights hotline",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline"
+    ],
+    "url": "https://www.gov.br/mdh/pt-br/ouvidoria",
+    "voice": "official"
+   },
+   {
+    "desc": "Receives complaints from rural workers across Brazil and has been the origin of a large share of inspection operations in agriculture and cattle. The point of contact when the worker is remote and has no other way to reach an authority.",
+    "kind": "institution",
+    "name": "Comiss\u00e3o Pastoral da Terra",
+    "skind": "ngo",
+    "tags": [
+     "organizing:help",
+     "conserve:hotline"
+    ],
+    "url": "https://www.cptnacional.org.br/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "CAN": {
+  "name": "Canada",
+  "trackers": [
+   {
+    "desc": "Reports filed under the Fighting Against Forced Labour and Child Labour in Supply Chains Act, plus the joint UK/Australia/Canada reporting template. Canadian reports must be approved by the governing body and signed by a director \u2014 a named person is accountable for the contents.",
+    "kind": "structured",
+    "name": "Forced and child labour in supply chains \u2014 reports",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "corporate:statements"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.publicsafety.gc.ca/cnt/cntrng-crm/frcd-lbr-cndn-spply-chns/index-en.aspx",
+    "voice": "official"
+   },
+   {
+    "desc": "1-833-900-1010, 24 hours, multilingual, confidential, with referral to services across the country.",
+    "kind": "institution",
+    "name": "Canadian Human Trafficking Hotline",
+    "scope": "own",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://www.canadianhumantraffickinghotline.ca/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The federal coordination point, national strategy and the temporary resident permit route for trafficking victims, which is what prevents removal while a case is assessed.",
+    "kind": "structured",
+    "name": "Public Safety Canada \u2014 human trafficking",
+    "skind": "oversight",
+    "tags": [
+     "conserve:legalaid"
+    ],
+    "url": "https://www.publicsafety.gc.ca/cnt/cntrng-crm/hmn-trffckng/index-en.aspx",
+    "voice": "official"
+   }
+  ]
+ },
+ "CHN": {
+  "name": "China",
+  "trackers": [
+   {
+    "desc": "Hong Kong-based, tracking worker actions, wage arrears and workplace accidents across mainland China from public and social-media sources. Because independent unions do not exist there, this is one of very few systematic public records of Chinese labour disputes.",
+    "kind": "institution",
+    "name": "China Labour Bulletin",
+    "scope": "own",
+    "skind": "ngo",
+    "tags": [
+     "environment:freedom",
+     "environment:wages",
+     "advocacy:data"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://clb.org.hk/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "CIV": {
+  "name": "C\u00f4te d'Ivoire",
+  "trackers": [
+   {
+    "desc": "Community child-labour monitoring and remediation in the world's largest cocoa-producing country, with published findings by cooperative and district. Cocoa from C\u00f4te d'Ivoire appears on the US Department of Labor list for both child labour and forced labour.",
+    "kind": "institution",
+    "name": "International Cocoa Initiative \u2014 C\u00f4te d'Ivoire",
+    "scope": "own",
+    "skind": "ngo",
+    "tags": [
+     "projects:trackers",
+     "conserve:child"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://www.cocoainitiative.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "DEU": {
+  "name": "Germany",
+  "trackers": [
+   {
+    "desc": "The federal office that enforces the Lieferkettensorgfaltspflichtengesetz. Anyone \u2014 including a worker or an NGO outside Germany \u2014 can file a complaint about a German company's human rights due diligence, and BAFA can investigate and fine. One of the few due-diligence regimes with a real regulator behind it.",
+    "kind": "structured",
+    "name": "BAFA \u2014 Supply Chain Act (LkSG) complaints",
+    "scope": "own",
+    "skind": "oversight",
+    "tags": [
+     "courts:grievance",
+     "corporate:statements"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.bafa.de/",
+    "voice": "official"
+   },
+   {
+    "desc": "Customs' undeclared-work unit, which conducts the workplace inspections that surface exploitation in construction, meat processing and logistics, and enforces the minimum wage.",
+    "kind": "structured",
+    "name": "Finanzkontrolle Schwarzarbeit (Zoll)",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect",
+     "environment:wages"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.zoll.de/",
+    "voice": "official"
+   }
+  ]
+ },
+ "FRA": {
+  "name": "France",
+  "trackers": [
+   {
+    "desc": "The 2017 statute requiring large French companies to publish a vigilance plan covering their subsidiaries, suppliers and subcontractors, and creating civil liability for failing to. The first law of its kind, and the source of the litigation the EU directive was modelled on.",
+    "kind": "structured",
+    "name": "Loi de vigilance \u2014 duty of vigilance",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "corporate:statements",
+     "courts:strategic"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.legifrance.gouv.fr/",
+    "voice": "official"
+   },
+   {
+    "desc": "The association that brings duty-of-vigilance cases against French multinationals. Its published case files set out the legal theory in detail.",
+    "kind": "institution",
+    "name": "Sherpa",
+    "scope": "own",
+    "skind": "helpline",
+    "tags": [
+     "courts:strategic",
+     "organizing:legal"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://www.asso-sherpa.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "GBR": {
+  "name": "United Kingdom",
+  "trackers": [
+   {
+    "desc": "0800 0121 700, 24 hours, confidential, independent of government and police \u2014 for potential victims, for the public, and for businesses. Unseen also publishes annual data on what the helpline receives, which is one of the few public pictures of the UK caseload.",
+    "kind": "institution",
+    "name": "Modern Slavery & Exploitation Helpline (Unseen)",
+    "scope": "own",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://www.unseenuk.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The UK's labour-market enforcement body: licenses labour providers in agriculture, horticulture, shellfish and food processing, and since the Immigration Act 2016 investigates labour exploitation across the whole economy with police-style powers. Report to 0800 432 0804 or via its online form. Supplying labour unlicensed in the regulated sector carries up to ten years.",
+    "kind": "structured",
+    "name": "Gangmasters and Labour Abuse Authority",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect",
+     "corporate:recruit",
+     "projects:inspect"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.gla.gov.uk/",
+    "voice": "official"
+   },
+   {
+    "desc": "The statutory office that scrutinises the UK response, publishes on identification, support and prosecution rates, and can require public bodies to cooperate.",
+    "kind": "institution",
+    "name": "Independent Anti-Slavery Commissioner",
+    "scope": "own",
+    "skind": "oversight",
+    "tags": [
+     "advocacy:watchdog",
+     "conserve:legalaid"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://www.antislaverycommissioner.co.uk/",
+    "voice": "official"
+   },
+   {
+    "desc": "Free company registry: officers, filings, accounts, persons with significant control. The first check on any UK entity named on a contract or a licence.",
+    "kind": "structured",
+    "name": "Companies House",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "corporate:ownership",
+     "people:professional"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://find-and-update.company-information.service.gov.uk/",
+    "voice": "official"
+   },
+   {
+    "desc": "Full-text searchable tribunal judgments. Search an employer for unlawful-deduction, minimum-wage and unfair-dismissal findings \u2014 the paper trail that precedes most exploitation cases.",
+    "kind": "structured",
+    "name": "Employment tribunal decisions",
+    "scope": "own",
+    "skind": "court",
+    "tags": [
+     "courts:civil",
+     "environment:wages"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.gov.uk/employment-tribunal-decisions",
+    "voice": "official"
+   },
+   {
+    "desc": "Files and publishes Freedom of Information requests to UK public bodies. Requests and responses are public, so someone may already have asked what you need.",
+    "kind": "structured",
+    "name": "WhatDoTheyKnow",
+    "scope": "own",
+    "skind": "foi",
+    "tags": [
+     "records:foia"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.whatdotheyknow.com/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Research and policy on labour exploitation in the UK, with detailed work on enforcement gaps, the seasonal worker visa and the interaction between immigration control and victim identification.",
+    "kind": "institution",
+    "name": "Focus on Labour Exploitation (FLEX)",
+    "scope": "own",
+    "skind": "ngo",
+    "tags": [
+     "advocacy:watchdog",
+     "organizing:help"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://labourexploitation.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Specialist legal representation for victims of trafficking and labour exploitation \u2014 compensation, immigration and public-law challenges \u2014 plus training and resources for other lawyers.",
+    "kind": "institution",
+    "name": "ATLEU \u2014 Anti-Trafficking and Labour Exploitation Unit",
+    "scope": "own",
+    "skind": "helpline",
+    "tags": [
+     "organizing:legal",
+     "conserve:legalaid",
+     "conserve:compensation"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://atleu.org.uk/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Who owns the property \u2014 including the house or hostel workers are accommodated in, and overseas-company ownership of UK land. In labour-exploitation cases the accommodation and the employer are frequently the same interest.",
+    "kind": "structured",
+    "name": "HM Land Registry",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "financial:property"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.gov.uk/government/organisations/land-registry",
+    "voice": "official"
+   },
+   {
+    "desc": "0800 0121 700, twenty-four hours. Independent of government and of police, takes reports from workers, from the public and from businesses, and can refer into support without an immigration referral being the first thing that happens. The most commonly recommended first call in the UK.",
+    "kind": "structured",
+    "name": "Modern Slavery & Exploitation Helpline (Unseen)",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter"
+    ],
+    "url": "https://www.unseenuk.org/modern-slavery-helpline/",
+    "voice": "official"
+   },
+   {
+    "desc": "0800 432 0804. Licenses labour providers in agriculture, shellfish and food processing, and investigates labour exploitation across the wider economy. Reporting an unlicensed or abusive gangmaster here can pull a licence in weeks, which is far faster than any prosecution, and the licensing register lets you check a provider before anyone signs anything.",
+    "kind": "structured",
+    "name": "Gangmasters and Labour Abuse Authority",
+    "skind": "inspectorate",
+    "tags": [
+     "projects:inspect",
+     "environment:inspect",
+     "environment:inspect"
+    ],
+    "url": "https://www.gla.gov.uk/report-issues/",
+    "voice": "official"
+   },
+   {
+    "desc": "The statutory route by which someone is formally identified as a victim of modern slavery, which is what unlocks support and a period of leave. Referral must be made by a designated first responder \u2014 not by any member of the public \u2014 so the practical step is contacting one of the first-responder organisations. Adults must consent; children are referred regardless.",
+    "kind": "structured",
+    "name": "National Referral Mechanism",
+    "skind": "oversight",
+    "tags": [
+     "conserve:legalaid"
+    ],
+    "url": "https://www.gov.uk/government/publications/human-trafficking-victims-referral-and-assessment-forms",
+    "voice": "official"
+   },
+   {
+    "desc": "Search what any UK-linked company has published under s.54 of the Modern Slavery Act. Submission is currently voluntary, which is itself the finding in many cases: check whether the company you are looking at has filed at all, and compare this year's statement with last year's.",
+    "kind": "institution",
+    "name": "Modern Slavery Statement Registry",
+    "skind": "database",
+    "tags": [
+     "corporate:statements"
+    ],
+    "url": "https://modern-slavery-statement-registry.service.gov.uk/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "GHA": {
+  "name": "Ghana",
+  "trackers": [
+   {
+    "desc": "The multi-stakeholder foundation running child-labour monitoring and remediation systems in cocoa-growing communities in Ghana and C\u00f4te d'Ivoire, and publishing what those systems find. The most detailed public evidence base on child labour in any single commodity.",
+    "kind": "institution",
+    "name": "International Cocoa Initiative \u2014 Ghana",
+    "scope": "own",
+    "skind": "ngo",
+    "tags": [
+     "projects:trackers",
+     "conserve:child"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://www.cocoainitiative.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "IDN": {
+  "name": "Indonesia",
+  "trackers": [
+   {
+    "desc": "Regulates and records the placement of Indonesian workers abroad, publishes placement data by destination and province, and handles complaints against recruitment companies.",
+    "kind": "structured",
+    "name": "BP2MI \u2014 Indonesian Migrant Workers Protection Agency",
+    "scope": "own",
+    "skind": "court",
+    "tags": [
+     "corporate:recruit",
+     "records:stats"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://bp2mi.go.id/",
+    "voice": "official"
+   }
+  ]
+ },
+ "IND": {
+  "name": "India",
+  "trackers": [
+   {
+    "desc": "The Ministry of Labour and Employment's online platform for reporting child labour and tracking the complaint. Complaints route to the district nodal officer; the portal also carries state-level enforcement data.",
+    "kind": "structured",
+    "name": "PENCiL portal \u2014 report child labour",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "conserve:child",
+     "projects:inspect"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://pencil.gov.in/",
+    "voice": "official"
+   },
+   {
+    "desc": "The Bonded Labour System (Abolition) Act 1976 and the Child and Adolescent Labour (Prohibition and Regulation) Act, the rehabilitation scheme for released bonded labourers, and the district vigilance committees that are supposed to run it.",
+    "kind": "structured",
+    "name": "Ministry of Labour and Employment",
+    "scope": "own",
+    "skind": "court",
+    "tags": [
+     "environment:inspect",
+     "conserve:compensation"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://labour.gov.in/",
+    "voice": "official"
+   },
+   {
+    "desc": "Takes complaints about bonded labour and child labour directly, including by post and online, and has its own investigation powers. In practice one of the more responsive national routes.",
+    "kind": "structured",
+    "name": "National Human Rights Commission",
+    "scope": "own",
+    "skind": "oversight",
+    "tags": [
+     "courts:grievance",
+     "conserve:legalaid"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://nhrc.nic.in/",
+    "voice": "official"
+   },
+   {
+    "desc": "Case status and orders across district and high courts. Search a company, a contractor or a case number.",
+    "kind": "structured",
+    "name": "eCourts services",
+    "scope": "own",
+    "skind": "court",
+    "tags": [
+     "courts:criminal",
+     "courts:civil"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://ecourts.gov.in/",
+    "voice": "official"
+   },
+   {
+    "desc": "File a Right to Information request to central government bodies. Thirty-day statutory deadline, small fee, and a first-appeal route when refused.",
+    "kind": "structured",
+    "name": "RTI Online",
+    "scope": "own",
+    "skind": "foi",
+    "tags": [
+     "records:foia"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://rtionline.gov.in/",
+    "voice": "official"
+   },
+   {
+    "desc": "The Ministry of Corporate Affairs registry: directors, registered offices and filings for Indian companies.",
+    "kind": "structured",
+    "name": "MCA \u2014 company master data",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "corporate:ownership"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.mca.gov.in/",
+    "voice": "official"
+   },
+   {
+    "desc": "The national child helpline, 1098, free and twenty-four hours. Takes calls about a child in danger from anyone, including from children themselves, and connects to district child-protection machinery. The standard first call for a child found working.",
+    "kind": "structured",
+    "name": "Childline 1098",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:child"
+    ],
+    "url": "https://www.childlineindia.org/",
+    "voice": "official"
+   },
+   {
+    "desc": "Takes complaints directly, including about official inaction, and has taken up bonded-labour cases where district authorities did not act. Filing is free and can be done online by anyone on behalf of anyone.",
+    "kind": "structured",
+    "name": "National Human Rights Commission",
+    "skind": "oversight",
+    "tags": [
+     "courts:grievance"
+    ],
+    "url": "https://nhrc.nic.in/complaints/lodge-complaint",
+    "voice": "official"
+   },
+   {
+    "desc": "Works with district authorities on bonded-labour rescue operations and on the aftercare and prosecution that follow, in several states. Relevant as the operational partner when a case needs a rescue rather than a complaint.",
+    "kind": "institution",
+    "name": "International Justice Mission \u2014 India",
+    "skind": "ngo",
+    "tags": [
+     "conserve:shelter",
+     "organizing:help"
+    ],
+    "url": "https://www.ijm.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Long-running child-rights organisation that conducts rescues from child labour and trafficking and pursues the prosecutions afterwards. Takes information about a specific child or workplace.",
+    "kind": "institution",
+    "name": "Bachpan Bachao Andolan",
+    "skind": "ngo",
+    "tags": [
+     "conserve:child",
+     "organizing:help"
+    ],
+    "url": "https://www.bba.org.in/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "KEN": {
+  "name": "Kenya",
+  "trackers": [
+   {
+    "desc": "Labour inspection, the National Employment Authority which regulates private recruitment agencies placing Kenyans in the Gulf, and the child-labour unit.",
+    "kind": "structured",
+    "name": "Ministry of Labour and Social Protection",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect",
+     "corporate:recruit"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.labour.go.ke/",
+    "voice": "official"
+   }
+  ]
+ },
+ "MEX": {
+  "name": "Mexico",
+  "trackers": [
+   {
+    "desc": "Federal labour inspection and the PROFEDET labour-defence service, which represents workers free of charge in wage and reinstatement claims.",
+    "kind": "structured",
+    "name": "Secretar\u00eda del Trabajo y Previsi\u00f3n Social",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect",
+     "conserve:legalaid"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.gob.mx/stps",
+    "voice": "official"
+   },
+   {
+    "desc": "Federal portal covering the labour inspectorate and the reporting routes for trafficking. Mexico appears on the US list of goods for child labour in sugarcane and forced labour in tomato production, so agricultural labour is where most documented cases sit.",
+    "kind": "structured",
+    "name": "Gobierno de M\u00e9xico \u2014 labour and trafficking reporting",
+    "skind": "court",
+    "tags": [
+     "projects:inspect",
+     "environment:inspect",
+     "environment:inspect"
+    ],
+    "url": "https://www.gob.mx/",
+    "voice": "official"
+   }
+  ]
+ },
+ "MYS": {
+  "name": "Malaysia",
+  "trackers": [
+   {
+    "desc": "The peninsular labour department, which handles wage claims and inspects workplaces including plantations and manufacturing. Migrant workers can file claims, though the employer-tied permit makes it risky in practice.",
+    "kind": "structured",
+    "name": "Jabatan Tenaga Kerja (Labour Department)",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:wages",
+     "environment:inspect"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://jtksm.mohr.gov.my/",
+    "voice": "official"
+   },
+   {
+    "desc": "A long-standing Malaysian organisation working directly with migrant workers, refugees and trafficking survivors, with casework, shelter and documentation of conditions in plantations and factories.",
+    "kind": "institution",
+    "name": "Tenaganita",
+    "scope": "own",
+    "skind": "ngo",
+    "tags": [
+     "organizing:help",
+     "conserve:shelter"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://tenaganita.net/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "NGA": {
+  "name": "Nigeria",
+  "trackers": [
+   {
+    "desc": "The National Agency for the Prohibition of Trafficking in Persons, created in 2003 and operating nationwide under the Trafficking in Persons (Prohibition) Enforcement and Administration Act as amended in 2015. Its mandate expressly covers forced labour, child labour and bonded labour as well as sexual exploitation, and it runs shelters and a reporting line.",
+    "kind": "structured",
+    "name": "NAPTIP",
+    "scope": "own",
+    "skind": "justicegov",
+    "tags": [
+     "projects:inspect",
+     "conserve:hotline",
+     "conserve:shelter",
+     "courts:criminal"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://naptip.gov.ng/",
+    "voice": "official"
+   },
+   {
+    "desc": "The umbrella body for Nigerian NGOs working on trafficking, child labour and abuse \u2014 the route to a member organisation in a specific state rather than the federal agency.",
+    "kind": "institution",
+    "name": "NACTAL \u2014 network of anti-trafficking organisations",
+    "scope": "own",
+    "skind": "ngo",
+    "tags": [
+     "organizing:help",
+     "conserve:shelter"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://nactal.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The National Agency for the Prohibition of Trafficking in Persons, established 2003, with a mandate expressly covering forced labour and child labour as well as trafficking. It investigates, prosecutes and runs shelters, and takes reports from the public through its offices and hotline.",
+    "kind": "structured",
+    "name": "NAPTIP \u2014 report trafficking",
+    "skind": "oversight",
+    "tags": [
+     "conserve:hotline",
+     "projects:inspect",
+     "environment:inspect",
+     "conserve:shelter"
+    ],
+    "url": "https://www.naptip.gov.ng/",
+    "voice": "official"
+   }
+  ]
+ },
+ "NLD": {
+  "name": "Netherlands",
+  "trackers": [
+   {
+    "desc": "The Dutch labour inspectorate, which investigates labour exploitation as well as ordinary employment breaches and publishes inspection results. Reports can be made anonymously.",
+    "kind": "structured",
+    "name": "Nederlandse Arbeidsinspectie",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect",
+     "projects:inspect"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.nlarbeidsinspectie.nl/",
+    "voice": "official"
+   },
+   {
+    "desc": "The national coordination centre on human trafficking: registers victims, arranges shelter and care, and publishes national figures.",
+    "kind": "institution",
+    "name": "CoMensha",
+    "scope": "own",
+    "skind": "shelter",
+    "tags": [
+     "conserve:shelter",
+     "conserve:hotline"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://www.comensha.nl/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "NOR": {
+  "name": "Norway",
+  "trackers": [
+   {
+    "desc": "The consumer authority enforces the \u00c5penhetsloven. Its distinctive feature is the right to information: any person may ask any covered company how it handles human rights risks in its chain, and the company must answer within three weeks. No standing, no fee, no lawyer.",
+    "kind": "structured",
+    "name": "Forbrukertilsynet \u2014 Transparency Act",
+    "scope": "own",
+    "skind": "oversight",
+    "tags": [
+     "records:access",
+     "corporate:statements",
+     "courts:grievance"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.forbrukertilsynet.no/",
+    "voice": "official"
+   }
+  ]
+ },
+ "PAK": {
+  "name": "Pakistan",
+  "trackers": [
+   {
+    "desc": "The federal ministry with the bonded-labour and child-labour brief, including the 1043 human rights helpline. Enforcement of the Bonded Labour System (Abolition) Act is largely devolved to the provinces, so provincial labour departments are the operative level.",
+    "kind": "structured",
+    "name": "Ministry of Human Rights",
+    "scope": "own",
+    "skind": "court",
+    "tags": [
+     "conserve:hotline",
+     "environment:inspect"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://mohr.gov.pk/",
+    "voice": "official"
+   }
+  ]
+ },
+ "PHL": {
+  "name": "Philippines",
+  "trackers": [
+   {
+    "desc": "Licenses and regulates recruitment agencies deploying Filipino workers abroad, publishes the list of licensed agencies and those suspended or cancelled, and handles complaints against them. The single most useful register for a Filipino worker's recruitment chain.",
+    "kind": "structured",
+    "name": "Department of Migrant Workers",
+    "scope": "own",
+    "skind": "court",
+    "tags": [
+     "corporate:recruit",
+     "conserve:legalaid"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://dmw.gov.ph/",
+    "voice": "official"
+   },
+   {
+    "desc": "The national anti-trafficking body, with the 1343 Actionline reporting number and coordination across law enforcement, social welfare and foreign affairs.",
+    "kind": "structured",
+    "name": "IACAT \u2014 Inter-Agency Council Against Trafficking",
+    "scope": "own",
+    "skind": "justicegov",
+    "tags": [
+     "conserve:hotline",
+     "courts:criminal"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://iacat.gov.ph/",
+    "voice": "official"
+   }
+  ]
+ },
+ "QAT": {
+  "name": "Qatar",
+  "trackers": [
+   {
+    "desc": "Labour complaints, the Workers' Support and Insurance Fund, and the post-2020 rules allowing a job change without employer consent and setting a minimum wage. Read the rules alongside independent reporting on how often they are actually applied.",
+    "kind": "structured",
+    "name": "Ministry of Labour",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:wages",
+     "conserve:compensation"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.mol.gov.qa/",
+    "voice": "official"
+   },
+   {
+    "desc": "Files a wage or contract complaint, which routes to the labour dispute resolution committees. Since the 2020 reforms a worker may change employer without the sponsor's consent and a non-discriminatory minimum wage applies. Enforcement is the contested part: monitoring organisations continue to document blocked transfers and withheld wages, so treat the rule and the practice as separate questions.",
+    "kind": "structured",
+    "name": "Ministry of Labour \u2014 complaints and dispute committees",
+    "skind": "inspectorate",
+    "tags": [
+     "conserve:compensation",
+     "environment:inspect"
+    ],
+    "url": "https://www.mol.gov.qa/en/",
+    "voice": "official"
+   },
+   {
+    "desc": "Independent reporting and data on migrant workers across the Gulf: what each country's sponsorship rules actually say now, wage theft, worker deaths, and what changed when a reform was announced. The reference point when a government statement needs checking.",
+    "kind": "institution",
+    "name": "Migrant-Rights.org",
+    "skind": "ngo",
+    "tags": [
+     "advocacy:watchdog"
+    ],
+    "url": "https://www.migrant-rights.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "THA": {
+  "name": "Thailand",
+  "trackers": [
+   {
+    "desc": "Worker-voice channels in Thai and regional supply chains: multilingual hotlines and apps that let workers report conditions directly, with the aggregated data fed back to buyers. Built specifically because audits do not detect this.",
+    "kind": "institution",
+    "name": "Issara Institute",
+    "scope": "own",
+    "skind": "ngo",
+    "tags": [
+     "osint:worker",
+     "organizing:help"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://www.issarainstitute.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Thai labour inspection and wage-claim machinery, including the fishing-sector inspection regime introduced after the EU carding of Thai fisheries.",
+    "kind": "structured",
+    "name": "Department of Labour Protection and Welfare",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect",
+     "environment:wages"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.labour.go.th/",
+    "voice": "official"
+   },
+   {
+    "desc": "Investigations combining crew testimony with vessel and ownership records. Its reports name vessels, flags and beneficial owners, which is the level of detail a port authority needs before it will act.",
+    "kind": "institution",
+    "name": "Environmental Justice Foundation \u2014 fisheries",
+    "skind": "ngo",
+    "tags": [
+     "advocacy:data",
+     "osint:vessels"
+    ],
+    "url": "https://ejfoundation.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "TKM": {
+  "name": "Turkmenistan",
+  "trackers": [
+   {
+    "desc": "Documentation of the state-organised cotton harvest, in which public-sector workers are mobilised under threat of dismissal, and the ongoing pledge campaign against Turkmen cotton.",
+    "kind": "advocacy",
+    "name": "Cotton Campaign \u2014 Turkmenistan",
+    "scope": "own",
+    "skind": "ngo",
+    "tags": [
+     "advocacy:watchdog",
+     "projects:trackers"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://www.cottoncampaign.org/",
+    "voice": "commentary"
+   }
+  ]
+ },
+ "USA": {
+  "name": "United States",
+  "sub": {
+   "California": {
+    "trackers": [
+     {
+      "desc": "Where an unpaid-wage claim is actually filed in California, regardless of immigration status. Also publishes judgments against employers.",
+      "kind": "structured",
+      "name": "California Labor Commissioner \u2014 wage claims",
+      "scope": "own",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:wages",
+       "conserve:compensation"
+      ],
+      "trust": "record",
+      "type": "records-data",
+      "url": "https://www.dir.ca.gov/dlse/",
+      "voice": "official"
+     }
+    ]
+   },
+   "New York": {
+    "trackers": [
+     {
+      "desc": "State wage-and-hour enforcement, including the Division of Immigrant Policies and Affairs and the farm-labour and nail-salon enforcement programmes.",
+      "kind": "structured",
+      "name": "New York State Department of Labor",
+      "scope": "own",
+      "skind": "inspectorate",
+      "tags": [
+       "environment:wages",
+       "environment:inspect"
+      ],
+      "trust": "record",
+      "type": "records-data",
+      "url": "https://dol.ny.gov/",
+      "voice": "official"
+     }
+    ]
+   }
+  },
+  "trackers": [
+   {
+    "desc": "1-888-373-7888, text 233733, or web chat \u2014 24 hours, more than 200 languages. Operated by Polaris, not by law enforcement and not by immigration, which is why people call it. Handles labour trafficking as well as sex trafficking, and will make a referral rather than a report if that is what the person wants.",
+    "kind": "institution",
+    "name": "National Human Trafficking Hotline",
+    "scope": "own",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://humantraffickinghotline.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The federal body that certifies trafficking victims for benefits and runs the National Human Trafficking Referral Directory. Certification is what unlocks federal assistance for a non-citizen survivor, so this is a step, not a leaflet.",
+    "kind": "structured",
+    "name": "Office on Trafficking in Persons (HHS)",
+    "scope": "own",
+    "skind": "court",
+    "tags": [
+     "conserve:legalaid",
+     "conserve:longterm"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.acf.hhs.gov/otip",
+    "voice": "official"
+   },
+   {
+    "desc": "The federal rules on what work minors may do and the division that enforces them. Includes how to file a complaint \u2014 which can be made by anyone, not only the worker, and does not require the worker's immigration status to be raised.",
+    "kind": "structured",
+    "name": "DOL Wage and Hour Division \u2014 child labour enforcement",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect",
+     "projects:inspect"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.dol.gov/agencies/whd/child-labor",
+    "voice": "official"
+   },
+   {
+    "desc": "Every Wage and Hour, OSHA, MSHA and OFCCP enforcement case, downloadable, with employer name, address, violation type, back wages assessed and penalties. Search an employer here before you believe its statement about itself.",
+    "kind": "structured",
+    "name": "DOL enforcement database",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "environment:wages",
+     "environment:inspect",
+     "projects:inspect"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://enforcedata.dol.gov/",
+    "voice": "official"
+   },
+   {
+    "desc": "Inspection history by employer and site: what was found, what was cited, what was contested. Safety citations frequently document the conditions that a forced-labour case later relies on.",
+    "kind": "structured",
+    "name": "OSHA establishment search",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "environment:osh"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.osha.gov/ords/imis/establishment.html",
+    "voice": "official"
+   },
+   {
+    "desc": "Every filing by every US-listed company, full-text searchable. Search a supplier's name across all filings to find which listed companies have disclosed a relationship with it.",
+    "kind": "structured",
+    "name": "SEC EDGAR full-text search",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "corporate:statements",
+     "corporate:supply"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://efts.sec.gov/LATEST/search-index?q=",
+    "voice": "official"
+   },
+   {
+    "desc": "Every federal contract, grant and payment, by recipient. If a supplier you are investigating holds federal contracts, there is an inspector general and a contracting officer already attached to it.",
+    "kind": "structured",
+    "name": "USAspending.gov",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "spending:contracts"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.usaspending.gov/",
+    "voice": "official"
+   },
+   {
+    "desc": "The register of entities barred from federal contracts and assistance, with the reason and the term. Check a company here alongside the customs and UFLPA lists.",
+    "kind": "structured",
+    "name": "SAM.gov \u2014 exclusions",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "spending:debarred"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://sam.gov/",
+    "voice": "official"
+   },
+   {
+    "desc": "Which federal agency holds what, and how to file. Response deadlines are statutory; agencies miss them routinely, and the appeal process is part of the tool.",
+    "kind": "structured",
+    "name": "FOIA.gov",
+    "scope": "own",
+    "skind": "foi",
+    "tags": [
+     "records:foia"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.foia.gov/",
+    "voice": "official"
+   },
+   {
+    "desc": "Free access to federal and many state dockets and opinions, including documents bought out of PACER by other users. Search the employer, the recruiter and the statute.",
+    "kind": "structured",
+    "name": "CourtListener / RECAP",
+    "scope": "own",
+    "skind": "database",
+    "tags": [
+     "courts:criminal",
+     "courts:civil"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.courtlistener.com/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The 2010 statute that required large retailers and manufacturers doing business in California to disclose their efforts against slavery and trafficking in their supply chains \u2014 the predecessor of the UK, Australian and Canadian regimes, and still in force.",
+    "kind": "structured",
+    "name": "California Transparency in Supply Chains Act",
+    "scope": "own",
+    "skind": "court",
+    "tags": [
+     "corporate:statements"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://oag.ca.gov/SB657",
+    "voice": "official"
+   },
+   {
+    "desc": "Worker-driven social responsibility: binding agreements between growers and buyers, a worker-staffed complaint line, and independent auditing with real consequences. Cited repeatedly as the model that works where social auditing does not.",
+    "kind": "institution",
+    "name": "Coalition of Immokalee Workers \u2014 Fair Food Program",
+    "scope": "own",
+    "skind": "union",
+    "tags": [
+     "organizing:help",
+     "environment:freedom",
+     "corporate:audit"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://fairfoodprogram.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Legal and policy work on US agricultural labour, including the H-2A guestworker programme where employer-tied visas and recruitment debt produce the classic pattern.",
+    "kind": "institution",
+    "name": "Farmworker Justice",
+    "scope": "own",
+    "skind": "helpline",
+    "tags": [
+     "organizing:legal",
+     "corporate:recruit"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://www.farmworkerjustice.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The financial-intelligence unit's red-flag guidance on human trafficking and forced labour: the transaction patterns banks are told to look for \u2014 wages paid to a single account for many workers, recruitment-fee flows, funds moving to a labour broker. Useful in reverse, as a checklist of what to look for in the financial record you already have.",
+    "kind": "structured",
+    "name": "FinCEN \u2014 human trafficking financial advisories",
+    "scope": "own",
+    "skind": "oversight",
+    "tags": [
+     "financial:aml",
+     "financial:remit"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.fincen.gov/resources/advisories",
+    "voice": "official"
+   },
+   {
+    "desc": "Annual analysis of every federal human trafficking prosecution in the United States, including the small but growing number of forced-labour cases, with defendants, sectors and outcomes.",
+    "kind": "institution",
+    "name": "Human Trafficking Institute \u2014 federal case data",
+    "scope": "own",
+    "skind": "research",
+    "tags": [
+     "courts:criminal",
+     "advocacy:data"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://traffickinginstitute.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "1-888-373-7888, or text 233733. Twenty-four hours, over 200 languages, and it takes reports about someone else as well as calls from people in the situation. It is run by an NGO and is not law enforcement: it will not send police unless you ask it to or someone is in immediate danger, which is the reason many callers use it rather than 911. You do not need to be certain, and you can stay anonymous.",
+    "kind": "structured",
+    "name": "National Human Trafficking Hotline \u2014 report or get help",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter"
+    ],
+    "url": "https://humantraffickinghotline.org/en/report-trafficking",
+    "voice": "official"
+   },
+   {
+    "desc": "Files a wage complaint for unpaid or underpaid work. Two things make this the most-used route in practice: it does not ask about immigration status, and it does not require proving coercion \u2014 only that the work was done and not paid. Complaints can be filed by a third party. There is a two-year limit, three if the violation was wilful.",
+    "kind": "structured",
+    "name": "Department of Labor \u2014 Wage and Hour Division complaint",
+    "skind": "inspectorate",
+    "tags": [
+     "conserve:compensation",
+     "environment:inspect"
+    ],
+    "url": "https://www.dol.gov/agencies/whd/contact/complaints",
+    "voice": "official"
+   },
+   {
+    "desc": "Triggers an inspection of a workplace. Worth knowing because an injury or unsafe-conditions complaint reaches a site that no anti-trafficking authority is watching, and the resulting inspection report becomes an official document about a workplace that had none.",
+    "kind": "structured",
+    "name": "OSHA \u2014 workplace safety complaint",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect"
+    ],
+    "url": "https://www.osha.gov/workers/file-complaint",
+    "voice": "official"
+   },
+   {
+    "desc": "The visa categories for trafficking victims (T) and victims of certain crimes who assist an investigation (U). This is the mechanism that stops removal while a case proceeds, and it is the reason status advice has to come before any report is made rather than after. Both are capped and slow; apply through a legal-aid provider rather than alone.",
+    "kind": "structured",
+    "name": "USCIS \u2014 T and U nonimmigrant status",
+    "skind": "helpline",
+    "tags": [
+     "conserve:legalaid"
+    ],
+    "url": "https://www.uscis.gov/humanitarian/victims-of-human-trafficking-and-other-crimes",
+    "voice": "official"
+   },
+   {
+    "desc": "Operates the national hotline and publishes the data that comes out of it \u2014 typologies of trafficking by industry, and analysis of what callers actually report. Also takes donations that fund the hotline directly.",
+    "kind": "institution",
+    "name": "Polaris",
+    "skind": "ngo",
+    "tags": [
+     "organizing:fund",
+     "organizing:help"
+    ],
+    "url": "https://polarisproject.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The national alliance of anti-trafficking legal and service providers. Its member directory is the fastest route to a lawyer or case manager in a specific state who already does this work.",
+    "kind": "institution",
+    "name": "Freedom Network USA",
+    "skind": "ngo",
+    "tags": [
+     "conserve:legalaid",
+     "organizing:legal",
+     "organizing:help"
+    ],
+    "url": "https://freedomnetworkusa.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "UZB": {
+  "name": "Uzbekistan",
+  "trackers": [
+   {
+    "desc": "The coalition that ran the Uzbek cotton boycott for more than a decade and lifted it in 2022 after systemic state-imposed forced labour in the harvest was found to have ended. Its archive is the fullest case study anywhere of a sustained commodity campaign that worked \u2014 and it now runs the same pressure on Turkmenistan.",
+    "kind": "advocacy",
+    "name": "Cotton Campaign",
+    "scope": "own",
+    "skind": "ngo",
+    "tags": [
+     "advocacy:watchdog",
+     "projects:trackers"
+    ],
+    "trust": "record",
+    "type": "institutional",
+    "url": "https://www.cottoncampaign.org/",
+    "voice": "commentary"
+   }
+  ]
+ },
+ "ZAF": {
+  "name": "South Africa",
+  "trackers": [
+   {
+    "desc": "Inspection and enforcement services, and the CCMA route for unfair-labour-practice and unpaid-wage disputes.",
+    "kind": "structured",
+    "name": "Department of Employment and Labour",
+    "scope": "own",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect",
+     "environment:wages"
+    ],
+    "trust": "record",
+    "type": "records-data",
+    "url": "https://www.labour.gov.za/",
+    "voice": "official"
+   }
+  ]
+ }
+}
