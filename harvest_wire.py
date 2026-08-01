@@ -293,6 +293,51 @@ def region_index(regions):
     return _REGION_INDEX
 
 
+# Demonyms and adjectival forms. A third of the harvest carried no country
+# because headlines say "Indian workers", "Brazilian prosecutors" or "Chinese
+# supplier" far more often than they say the country's name -- and an untagged
+# item cannot become a dot, so this directly limits what the map can show.
+DEMONYM = {
+    "indian": "IND", "pakistani": "PAK", "bangladeshi": "BGD", "nepali": "NPL",
+    "nepalese": "NPL", "sri lankan": "LKA", "afghan": "AFG", "burmese": "MMR",
+    "myanmar": "MMR", "cambodian": "KHM", "vietnamese": "VNM", "thai": "THA",
+    "lao": "LAO", "laotian": "LAO", "filipino": "PHL", "filipina": "PHL",
+    "indonesian": "IDN", "malaysian": "MYS", "singaporean": "SGP",
+    "chinese": "CHN", "uyghur": "CHN", "uighur": "CHN", "taiwanese": "TWN",
+    "japanese": "JPN", "korean": "KOR", "mongolian": "MNG",
+    "brazilian": "BRA", "mexican": "MEX", "argentine": "ARG",
+    "argentinian": "ARG", "chilean": "CHL", "peruvian": "PER",
+    "colombian": "COL", "bolivian": "BOL", "venezuelan": "VEN",
+    "ecuadorian": "ECU", "paraguayan": "PRY", "haitian": "HTI",
+    "guatemalan": "GTM", "honduran": "HND", "salvadoran": "SLV",
+    "nigerian": "NGA", "ghanaian": "GHA", "ivorian": "CIV", "kenyan": "KEN",
+    "ethiopian": "ETH", "ugandan": "UGA", "tanzanian": "TZA",
+    "zimbabwean": "ZWE", "zambian": "ZMB", "malawian": "MWI",
+    "mozambican": "MOZ", "senegalese": "SEN", "malian": "MLI",
+    "sudanese": "SDN", "eritrean": "ERI", "somali": "SOM",
+    "south african": "ZAF", "congolese": "COD", "moroccan": "MAR",
+    "egyptian": "EGY", "tunisian": "TUN", "libyan": "LBY",
+    "mauritanian": "MRT", "cameroonian": "CMR",
+    "qatari": "QAT", "emirati": "ARE", "saudi": "SAU", "kuwaiti": "KWT",
+    "bahraini": "BHR", "omani": "OMN", "jordanian": "JOR",
+    "lebanese": "LBN", "syrian": "SYR", "iraqi": "IRQ", "iranian": "IRN",
+    "yemeni": "YEM", "israeli": "ISR", "turkish": "TUR",
+    "british": "GBR", "english": "GBR", "scottish": "GBR", "welsh": "GBR",
+    "irish": "IRL", "french": "FRA", "german": "DEU", "italian": "ITA",
+    "spanish": "ESP", "portuguese": "PRT", "dutch": "NLD", "belgian": "BEL",
+    "polish": "POL", "romanian": "ROU", "bulgarian": "BGR",
+    "hungarian": "HUN", "czech": "CZE", "slovak": "SVK", "greek": "GRC",
+    "swedish": "SWE", "norwegian": "NOR", "danish": "DNK", "finnish": "FIN",
+    "austrian": "AUT", "swiss": "CHE", "ukrainian": "UKR", "russian": "RUS",
+    "belarusian": "BLR", "moldovan": "MDA", "albanian": "ALB",
+    "serbian": "SRB", "croatian": "HRV", "lithuanian": "LTU",
+    "latvian": "LVA", "estonian": "EST", "uzbek": "UZB", "turkmen": "TKM",
+    "kazakh": "KAZ", "kyrgyz": "KGZ", "tajik": "TJK",
+    "american": "USA", "canadian": "CAN", "australian": "AUS",
+    "new zealand": "NZL",
+}
+
+
 def tag_geo(item, names, regions, alias=None):
     """Country first, then region within it. Longest name wins, so
     'South Africa' is not eaten by 'Africa' and 'Guinea-Bissau' not by 'Guinea'.
@@ -300,6 +345,16 @@ def tag_geo(item, names, regions, alias=None):
     the country -- a headline about a rescue in Rio Grande do Sul rarely says
     'Brazil' as well."""
     t = fold(item["title"] + " " + item["snippet"])
+    # Geographic features carry country names and demonyms without being about
+    # the country: "Indian Ocean fishing fleet" is not an Indian story and
+    # "South China Sea" is not a Chinese one. Mistagging puts a dot in the wrong
+    # place, which is worse than no dot, so these are removed before any match.
+    for _ph in ("indian ocean", "south china sea", "east china sea",
+                "persian gulf", "arabian sea", "korean peninsula",
+                "english channel", "irish sea", "north american",
+                "south american", "latin american", "african union",
+                "european union", "asian development bank"):
+        t = t.replace(" " + _ph + " ", " ")
     best, best_len = None, 0
     forms = {}
     for iso, nm in names.items():
@@ -312,7 +367,17 @@ def tag_geo(item, names, regions, alias=None):
             if key.strip() and key in t and len(nm) > best_len:
                 best, best_len = iso, len(nm)
 
-    # region implies country, when the country itself was not named
+    # demonym, when the country name itself was not used.
+    # Geographic features carry demonyms without being about the country:
+    # "Indian Ocean fishing fleet" is not an Indian story, and mistagging it
+    # would put a dot in the wrong place, which is worse than no dot.
+    if not best:
+        hit_len = 0
+        for word, iso in DEMONYM.items():
+            if (" " + word + " ") in t and len(word) > hit_len:
+                best, hit_len = iso, len(word)
+
+    # region implies country, when neither the name nor a demonym appeared
     if not best:
         ridx = region_index(regions)
         hit_len = 0
