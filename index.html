@@ -1660,6 +1660,7 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
       });
       if(ba>0) window.ISO_CENTROID[a3]=[by/ba,bx/ba];
     });
+    try{ if(window._pjFlushPending) window._pjFlushPending(); }catch(e){}
   }catch(e){ try{console.warn('centroid build failed',e);}catch(_e){} }
   function baseStyle(f){ const a3=NUM2A3[f.id]||''; const L=countryAny(a3),A=countryActive(a3),acc=DMAP[domain].accent;
     return {fillColor:'#ffd24a',weight:L?1.6:0.5,opacity:L?0.85:0.22,color:L?'#ffd24a':'rgba(210,215,200,0.28)',fillOpacity:0}; }
@@ -3205,6 +3206,24 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
      placed this way is flagged imprecise and therefore drawn as a hollow ring.
      A record whose country has no geometry is dropped rather than parked at
      0,0 in the Gulf of Guinea. */
+  /* Called once ISO_CENTROID exists. Places everything that arrived early and
+     redraws. Safe to call more than once; anything still unplaceable stays
+     parked rather than being thrown away. */
+  window._pjFlushPending = function(){
+    try{
+      var pend=window._pjPending||[];
+      if(!pend.length || !window.ISO_CENTROID) return;
+      window._pjPending=[];
+      var placed=_pjPlaceByISO({projects:pend}).projects||[];
+      if(placed.length && typeof pjData!=='undefined' && pjData){
+        pjData.projects=(pjData.projects||[]).concat(placed);
+        if(typeof pjRender==='function') pjRender();
+        try{ console.log('[determinations]',placed.length,
+          'record(s) placed once boundaries loaded'); }catch(e){}
+      }
+    }catch(e){ try{console.warn('_pjFlushPending',e);}catch(_e){} }
+  };
+
   function _pjPlaceByISO(data){
     try{
       var list=(data&&data.projects)||[];
@@ -3212,7 +3231,16 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
       list.forEach(function(p){
         if(typeof p.lat==='number' && typeof p.lng==='number'){ out.push(p); return; }
         var c=p.iso && C[p.iso];
-        if(!c){ dropped++; return; }
+        if(!c){
+          /* Not "no such country" \u2014 usually "the boundary geometry has not
+             finished downloading yet". Park it and place it when it has.
+             Dropping here was a real bug: 216 of 234 records need a centroid,
+             so if pjLoad won the race against the atlas fetch the map showed 18
+             dots and looked almost empty. */
+          if(p.iso){ (window._pjPending=window._pjPending||[]).push(p); }
+          else { dropped++; }
+          return;
+        }
         var k=(used[p.iso]=(used[p.iso]||0)); used[p.iso]++;
         var ang=k*2.399963, rad=0.30*Math.sqrt(k);
         p.lat=c[0]+rad*Math.sin(ang);
@@ -3222,7 +3250,10 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
         out.push(p);
       });
       if(dropped){ try{ console.warn('[determinations]',dropped,
-        'record(s) dropped: no boundary geometry for the country code given'); }catch(e){} }
+        'record(s) dropped: no country code at all'); }catch(e){} }
+      var pend=(window._pjPending||[]).length;
+      if(pend){ try{ console.log('[determinations]',pend,
+        'record(s) waiting for country boundaries to finish loading'); }catch(e){} }
       data.projects=out;
     }catch(e){ try{console.warn('_pjPlaceByISO',e);}catch(_e){} }
     return data;
