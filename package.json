@@ -7,7 +7,13 @@
     "links": "python3 verify_links.py --csv report.csv",
     "wire": "python3 harvest_wire.py --days 30",
     "determinations": "python3 harvest_determinations.py",
-    "serve": "python3 -m http.server 8080"
+    "serve": "python3 -m http.server 8080",
+    "cases": "python3 harvest_cases.py",
+    "scale": "python3 harvest_scale.py --all",
+    "points": "python3 harvest_points.py --all",
+    "bulk": "python3 harvest_bulk.py --all"
   },
-  "devDependencies": { "jsdom": "^24.0.0" }
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  }
 }

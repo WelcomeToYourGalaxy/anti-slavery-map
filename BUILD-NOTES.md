@@ -1116,3 +1116,736 @@ six-hourly workflow alongside the wire harvest.
 Still open: `verify_links.py` over all 195 URLs; country-level giving routes at
 4/38; India's subnational layer, blocked on confirming state labour department
 URLs; and confirming that OpenSanctions path.
+
+---
+
+# Eleventh pass — lime out, and two harvester bugs your run exposed
+
+## The green was lime, not olive
+
+78 degrees at full saturation reads acid. Real olive sits nearer **67 degrees**
+with the saturation pulled well down, and it has to stay dull as it gets lighter
+or it goes fluorescent again.
+
+```
+--accent     #5f7a3c  →  #6b7042     hue 67, sat 0.26
+--accent-hi  #a8c072  →  #a7ab80     hue 67, sat 0.20
+```
+
+Every colour in the 58–110 degree band was pulled to 67 degrees with saturation
+cut to 62% and then capped — hard, and harder the lighter the colour, because a
+bright colour at this hue is exactly what reads as lime. Nothing in the band now
+sits above 0.42 saturation and most is at 0.10–0.20.
+
+**That first cut went too far and dimmed the body text**, which was in the same
+band at 0.89 lightness and got capped to 0.72. Caught by checking the resulting
+`body` rule rather than trusting the sweep. Twelve text colours across 49
+occurrences were restored to their original lightness at the new muted hue, so
+the accents are dull and the copy is not. Contrast against the page background:
+body text 9.4:1, accent-hi 7.1:1, accent 4.5:1.
+
+## Your harvest run found two bugs
+
+It worked — 61 entities, 10 records — and the output showed exactly what was
+wrong with it.
+
+**`Inner Mongolia Hengzheng Group` was placed in Mongolia.** The country matcher
+scanned for substrings, and *Mongolia* is inside *Inner Mongolia*. It is a
+Chinese producer, and the WRO against it was CBP's first Finding in 24 years, so
+it is not an obscure record to get wrong. There is now an override list checked
+before the country scan — Inner Mongolia, Xinjiang, XUAR, Hotan, Kashgar, Aksu,
+Urumqi, Tianjin, Xuzhou, Yunnan, Qinghai, Tibet, Hong Kong, Macau, and the two
+Koreas — and the remaining scan matches on word boundaries.
+
+**51 of 61 entities were silently dropped.** The resolver only read the free
+text and ignored the `country` property, which OpenSanctions usually supplies as
+an ISO2 code. It now reads that property first, understanding ISO2, ISO3 and
+full names, and falls back to the text scan. Expect that 10 to rise sharply on
+your next run.
+
+It also now **prints what it dropped and why**, rather than losing it silently —
+the count, and the names, with `-v` for the full list. A record with no
+resolvable country is still dropped rather than guessed.
+
+**And it warns when it cannot find `index.html` beside it**, which is what
+`hand-entered seed: 0 records` meant in your run: you were in your home
+directory, not the repo. The seed is the floor that keeps the layer populated
+when a harvest fails, so losing it silently was the wrong behaviour.
+
+---
+
+# Twelfth pass — findings that span countries, and one more turn down
+
+## "India & Madagascar — mica" was one dot, in India
+
+You caught a real modelling error, not a display quirk. Five of the seed records
+name more than one country and each drew a single dot, so **a person opening
+Madagascar, Ghana, Pakistan, Nepal, Bangladesh, the UAE, Saudi Arabia, Kuwait,
+Bahrain, Oman, Cambodia or Laos was being told nothing was documented there** —
+when the same listing covers them.
+
+Records can now carry several countries and draw one dot in each. **25 → 37
+records**, from five multi-country findings:
+
+| Finding | Now draws in |
+|---|---|
+| Cocoa | Côte d'Ivoire, Ghana |
+| Mica | India, Madagascar |
+| Brick kilns | India, Pakistan, Nepal, Bangladesh |
+| Kafala | Qatar, UAE, Saudi Arabia, Kuwait, Bahrain, Oman |
+| Scam compounds | Myanmar, Cambodia, Laos |
+
+The dots are not copies. Each carries an **"In this country"** note with what is
+specific to that jurisdiction: that Bahrain's flexible work permit lets some
+workers stay without a sponsor, which is the closest thing in the region to a
+route out; that Nepal's kilns draw seasonal migrant families including children;
+that Madagascar's mica runs through exporters rather than mine operators, so the
+point of contact is different from India's; that Cambodia's compound rescues
+have mostly followed embassy intervention rather than domestic enforcement.
+
+De-duplication now keys on **name plus country**, so a multi-country finding
+keeps one dot per country instead of collapsing back to the first. The harvester
+understands the same shape, so a future source that spans countries needs no
+schema change — and its own records stay single-country by construction, since a
+customs order names one producer.
+
+## Saturation down again
+
+Everything cut to 62% of its previous saturation and capped: **0.30 in the
+darkest tones, 0.20 in mid-tones, 0.12 in anything light**. Nothing in the file
+now exceeds 0.30, and 191 of 283 coloured values sit at 0.10 or below.
+
+```
+--accent     #6b7042  →  #616542
+--accent-hi  #a7ab80  →  #9ea28a
+```
+
+Two surfaces were re-asserted afterwards rather than left to the sweep: the map
+ground at `#0a1416` and the page at `#070d0e`, both keeping a little blue-green.
+Fully neutralising them would make a satellite-tile failure read as a dead grey
+rectangle instead of as sea.
+
+---
+
+# Thirteenth pass — country boxes group by intention
+
+A lens is a kind of record. An intention is a thing someone is trying to do.
+Opening a country and reading *Corporate & Ownership / Courts & Legal / Public
+Records* asked you to translate your situation into the map's filing system
+before you could use it. The headings now read **"Report someone you believe is
+a victim"**, **"Find lawyers who take these cases"**, **"Get a survivor their
+status, wages and compensation"** — the same 24 goals as the selector, in the
+same order, under the same seven phase headings, so the two halves of the
+interface agree.
+
+**Entries appear under every goal they serve**, deliberately. A legal-aid
+organisation genuinely belongs under both getting a survivor their status and
+finding a lawyer. A directory is more useful when it repeats than when it makes
+you guess which single drawer something was filed in. The counts overlap by
+design and a line at the foot of each box says so.
+
+## Nothing falls through
+
+The goals do not between them claim every sub-filter — 24 goals against 62
+sub-filters was always going to leave gaps, and gaps in a scheme like this all
+drain into an "Other" bucket, which is where a directory goes to die.
+
+So there is an explicit orphan map: `conserve:longterm` to getting a survivor
+their rights, `environment:osh` and `environment:housing` to the inspection
+record, `financial:assets` and `financial:banking` to the money trail,
+`people:brokers` to identifying recruiters, `records:archive` to FOI,
+`spending:lobbying` to public-money contracts, and so on.
+
+Checked mechanically: **all 62 sub-filters land in at least one goal. Zero
+orphans.** The "Other" group is still built, because a future tag could miss,
+but no current entry reaches it.
+
+## Rendered against real data
+
+```
+USA  25 entries -> 19 goal groups across 7 phases   none unplaced
+GBR  16 entries -> 17 goal groups across 7 phases   none unplaced
+IND  12 entries -> 14 goal groups across 6 phases   none unplaced
+NPL   3 entries ->  7 goal groups across 3 phases   none unplaced
+ITA   3 entries ->  5 goal groups across 2 phases   none unplaced
+```
+
+Thin countries collapse to two or three phases rather than showing seven mostly
+empty headings, which is the behaviour you want: Italy's three entries sit under
+*If someone needs help now* and *Go public, and get help*, and nothing else is
+claimed.
+
+`lensGroupsHTML` is left defined and unused rather than deleted, so anything
+else that reaches for it still works. The help panel sentence describing the old
+grouping was rewritten to match — copy that describes an interface that no
+longer exists is worse than no copy.
+
+---
+
+# Fourteenth pass — Europe
+
+Europe was the largest hole left, and the wrong one to leave. It is a
+**destination** region — most people identified as trafficked in the EU were
+exploited there rather than passing through — and the directory carried six
+European countries against fourteen elsewhere.
+
+Eleven added: **Austria, Belgium, Bulgaria, Poland, Romania, Ukraine, Portugal,
+Denmark, Sweden, Greece, Switzerland.** Norway gained a service route it did not
+have. **49 countries, 216 entries.**
+
+```
+report/hotline   34/49        child            19/49
+shelter          30/49        inspection       19/49
+local allies     29/49        wages            15/49
+legal aid        22/49        recruiters       10/49
+attorneys        21/49        donate            5/49
+```
+
+Every European country in the directory now has a hotline route. Zero-slot
+countries are down to three — China, Turkmenistan, Uzbekistan — where there is
+no independent service to point at, and the worldwide block is the working
+answer.
+
+## Numbers, not just links
+
+Each of these carries the phone number and its operating hours, because that is
+what someone needs at the moment they open the box: LEFÖ-IBF on +43 1 796 92 98,
+Belgium on +32 78 055 800, A21 Bulgaria on 0800 20 100, La Strada Ukraine on
+0 800 500 335, APAV on 116 006, CMM on +45 70 20 25 50, ROSA on
++47 22 33 11 60, Greece on 1109, Sweden's NSPM on 020-390 000.
+
+## The distinction each entry makes
+
+**Who runs the line**, because for a worker without status that decides whether
+asking for help starts with protection or with an immigration check. Austria has
+both routes and they are listed separately and described differently: LEFÖ-IBF
+is an NGO a woman without papers can walk into; the Criminal Police line is
+faster to an investigation and riskier if your status is irregular. Belgium's
+model is noted as unusual — recognition and the residence permit run through the
+three specialist centres rather than through police.
+
+**A second door that does not require proving coercion.** Bulgaria's General
+Labour Inspectorate line and Poland's PIP act on pay and conditions without
+anyone having to establish trafficking, which is the usable route when a
+situation is exploitative but not yet provably more than that. Sweden's Work
+Environment Authority inspects employer-provided accommodation, which is where
+the berry-picking and construction cases surface.
+
+**Who the country is in this system.** Romania and Bulgaria are among the
+largest origin countries for people identified elsewhere in the EU, so ANITP's
+reintegration role for returning citizens matters as much as its domestic
+casework. Portugal's observatory publishes the labour/sexual exploitation split,
+and Portuguese agriculture has a documented record involving workers recruited
+from South and Southeast Asia. Sweden's line advises **professionals** as well as
+victims, which makes it usable when you are a colleague or a nurse who has seen
+something and does not know what to do next.
+
+One fix on the way in: four entries used `skind: conduct`, which is not in the
+live vocabulary. The validator caught all four. That check has now caught a
+taxonomy mismatch on three separate directory expansions, which is the argument
+for running it every time.
+
+---
+
+# Fifteenth pass — markers you can see, and a wire that reads more than English
+
+## The palette sweeps had crushed the markers
+
+This was a real failure, not a preference. Successive desaturation passes hit
+every colour in the file, including the ones that are not interface chrome. The
+project-dot ramp had ended up at `#1c2f31 #292026 #182526 #1b2526 #192525` —
+five near-identical near-blacks — and the nine facility hues at the same. On an
+Esri satellite basemap those are invisible.
+
+**Chrome should recede. Markers must not.** There is now an explicitly separate
+marker palette, commented as exempt from the interface scheme so a future sweep
+does not eat it again:
+
+```
+scale 5  #ff6b4a   red        largest findings
+scale 4  #ffa53d   amber
+scale 3  #ffd24a   gold
+scale 2  #a8e06a   green
+scale 1  #6fd8d0   teal       smallest
+```
+
+Facility dots get nine distinct hues instead of nine near-blacks — police blue,
+courthouse violet, town-hall gold, government-office green, agency orange,
+embassy pink — and the help panel now shows the swatches so the key matches the
+map. International markers went from olive to gold. Highlighted country outlines
+went from a muted olive at 0.5 opacity to gold at 0.85, with the stroke weight
+raised.
+
+## Measured, because "brighter" is not an argument
+
+Contrast ratio of each marker against six representative satellite ground tones
+— forest, cropland, arid, ocean, urban, snow:
+
+```
+          forest cropland  arid  ocean  urban  snow
+scale 5      4.3      2.1   1.1    4.9    1.9   2.4
+scale 4      6.2      3.0   1.3    7.0    2.7   1.7
+scale 3      8.4      4.0   1.7    9.5    3.7   1.2
+scale 2      7.8      3.7   1.6    8.9    3.4   1.3
+scale 1      7.2      3.4   1.5    8.1    3.2   1.4
+```
+
+Strong over forest and ocean, and **weak over arid ground and snow** — where a
+bright warm dot on bright pale terrain is close to invisible whatever hue you
+pick. No colour choice solves that, so the fix is structural: **every dot is now
+drawn with a dark halo first**, at 0.55 alpha and 1.6px wider than the dot, plus
+a heavier outline and a small white centre. The halo measures **16.8:1 against
+snow**, which is what actually carries the marker over the two grounds the hue
+cannot. Facility dots and the approximate rings get the same treatment.
+
+## The wire was Anglophone
+
+A live map of a worldwide subject that reads only English-language outlets is a
+live map of what English-language outlets cover — and that is a poor proxy,
+since coverage nearest the event is usually best and usually local.
+
+**40 → 57 feeds.** Added: Repórter Brasil and Agência Brasil direct, plus
+language-targeted queries in **Portuguese** (*trabalho escravo*), **Spanish**
+(*trabajo forzoso*, *trata de personas*), **French** (*travail forcé*),
+**Italian** (*caporalato*, *sfruttamento lavorativo*) and **German**
+(*Zwangsarbeit*, *Menschenhandel*), each pinned to that country's news edition
+rather than the US one. Regional English queries for India, the Gulf, Africa and
+the Southeast Asian scam compounds. Al Jazeera, The Diplomat and Thomson Reuters
+Foundation's Context for non-Western desks. And three labour-movement sources —
+Equal Times, IndustriALL and the ITUC — which report workplace cases that never
+reach a general newsroom.
+
+The harvester's subject gate already ran in six languages, so these were
+arriving filtered correctly and simply were not being fetched. Verified: the
+harvester parses all 57, no duplicates, all https.
+
+---
+
+# Sixteenth pass — reading the first real harvest
+
+Your run: **3,757 raw items → 617 on-topic, 208 with a country (34%), 8 with a
+region**, five feeds failed, `wire.json` at 433 KB. Two numbers in that are
+problems.
+
+## 34% is the ceiling on what the map can show
+
+An item with no country cannot become a dot. Two thirds of a working harvest was
+being thrown away at the map stage, and the reason turned out to be simple:
+**headlines say "Indian workers", "Brazilian prosecutors", "Chinese supplier"
+far more often than they say the country's name.** The matcher only read names.
+
+Added a demonym table — roughly 120 adjectival forms across every region — tried
+after the country name and the `country` property, before the region inference.
+On a sample of nine realistic headlines carrying no country name, tagging went
+from 1/9 to 8/9.
+
+**With a guard, because this is where a naive version does damage.** Geographic
+features carry country names and demonyms without being about the country:
+*Indian Ocean fishing fleet* is not an Indian story, *South China Sea vessel
+detained* is not a Chinese one, *European Union adopts forced labour rules* is
+not about any single state. A mistagged item puts a dot in the wrong country,
+which is worse than no dot. Fourteen such phrases are stripped before any
+matching runs, and applied to the name scan as well as the demonym scan.
+Verified: those three now tag as nothing, while *Chinese supplier named in
+import ban* and *EU ban hits Chinese producer* still tag CHN.
+
+Expect the country share to rise substantially on your next run.
+
+## 8 regions is expected, not a bug
+
+Region tagging can only match regions the directory knows, and only Brazil and
+the US have subnational layers. Until India, Nigeria, Pakistan or Indonesia get
+one, this number stays near zero. Nothing to fix in the code.
+
+## Five feeds failed
+
+Two 404s (Guardian rights-and-freedom, Outlaw Ocean), one dead path (Context),
+two hard blocks (BHRRC, ITUC). Four removed and replaced with five Google News
+queries on the same beats — every query-based feed in your run succeeded, so
+that is the reliable shape. **59 feeds.** The Outlaw Ocean Project stays in the
+directory as an organisation; it was only its RSS path that had gone.
+
+BHRRC's block is a bot refusal rather than a dead site, the same pattern the
+link checker now reports as `BLOCKED` — worth revisiting with a different
+approach rather than treating as gone.
+
+---
+
+# Seventeenth pass — trafficking in the title, 234 dots, and the vessel that had a gold icon
+
+## Title
+
+**Live Global Slavery, Trafficking & Child Labour Map.** Changed in the
+`<title>`, the header, and everywhere else the old string appeared.
+
+## Da Wang's gold icon
+
+Not a bug in the vessel record — a **collision**. The international body *The
+Ocean — fleets, seafarers & work beyond any jurisdiction* sits at −5, −150, and
+I had placed Da Wang at exactly −5, −150. Two markers, same pixel, and the gold
+INT icon draws on top.
+
+Both vessels now sit at their **flag state** instead: Da Wang at Taiwan, Zhen Fa
+7 at China. That is also the better placement on the merits — a boat can only be
+acted against through the registry it flies under and the port it enters, so the
+flag state is the jurisdiction worth knowing. Each description says so. Checked:
+no seed record now sits within 3° of the Ocean marker.
+
+## About twenty dots was the real problem
+
+The determinations layer held 37 records, most at region or sector level, so the
+map looked empty. It now holds **234 records across 85 countries**.
+
+The addition is the **listed-goods layer** — US Department of Labor
+country-and-commodity determinations, 197 records across 64 countries. Cocoa in
+Côte d'Ivoire and Ghana, bricks across eight countries, gold across seventeen,
+cotton across nine, garments across seven, cobalt and tin and tantalum in the
+DRC, mica in India and Madagascar, tobacco in Malawi and Mozambique, fish in
+Ghana and Taiwan and Thailand.
+
+Twenty-six carry a per-country note where the mechanism is specific enough to be
+worth stating: Lake Volta fishing, where children are placed with crews through
+family arrangement; Indian cane-cutting, where the advance is taken by a
+married couple; Malawian tobacco tenancy, which indebts a household to the
+estate; Indonesian palm oil quotas that pull family members onto the plantation
+unpaid; Peru's Madre de Dios gold camps, sited far from any inspection.
+
+**Every one says, in its own description, that this is a research finding and
+not a prohibition** — nothing is banned because it appears on the list — and
+that the determination is at country-and-commodity level with no site or company
+attached. The value is that it shifts the burden: you point at a government's
+published finding rather than making an allegation.
+
+### On how these were entered
+
+Each is a country-and-good pair I am confident appears on the list. **Where I
+was not confident, the pair is not here** — the list runs to 204 goods and I am
+not reproducing it from memory wholesale. Every record links the DOL page as the
+authoritative version, and `harvest_determinations.py` exists precisely to
+replace this hand-entered set with the real one.
+
+## The sector filter would have broken quietly
+
+197 new records carrying plain commodity words — *fish*, *rice*, *jade*,
+*tanzanite*, *hazelnuts*, *surgical instruments* — hit a classifier written for
+sector language, and **47 of them fell into "other"**. The filter would still
+have worked; it would just have been useless on the records there are most of.
+
+Eight new branches added, and two type keys (`logging`, `forced_sex`) that the
+classifier could return but which were **missing from `PJ_TYPES`** — meaning
+those records would have been unreachable through the filter UI entirely.
+Unclassified is now **2 of 234**, and both are genuine multi-sector records.
+
+Sector spread: gold 32, other farming 28, bricks 18, cotton 15, sugarcane 15,
+coffee and tea 14, seafood 12, garments 11, palm 9, tobacco 9.
+
+---
+
+# Eighteenth pass — the scale question, answered properly
+
+You asked why a map of something affecting roughly the population of Spain shows
+a few dozen dots. The honest answer is not "the map is incomplete." It is that
+**49.6 million is a modelled prevalence estimate, not a list**, and the gap
+between that number and what exists as records is the most important thing this
+map can teach.
+
+```
+49,600,000   ILO / Walk Free / IOM estimate, extrapolated from national surveys
+   230,000   CTDC individual case records, 199 countries, accumulated since 2002
+    ~50,000  UNODC detected victims reported globally per year
+       234   determinations and cases on this map before this pass
+```
+
+Nobody has 49.6 million names. No dataset on earth has 49.6 million locations.
+What exists is **detection** — people some authority or NGO actually identified
+and assisted — and detection is a fraction of a percent of the estimate.
+
+## What I found that is actually pullable
+
+**The Counter-Trafficking Data Collaborative.** The largest open
+individual-level dataset in the field: roughly 230,000 case records across 199
+countries and territories, 2002–2024, contributed by IOM, Polaris, A21,
+RecollectiV and the Portuguese observatory. Published as a differentially
+private synthetic dataset (ε=12) and a k-anonymised global dataset, both
+downloadable as CSV.
+
+`harvest_cases.py` pulls it, aggregates by **country of exploitation**, and
+writes one record per country carrying a real count of identified people — with
+the labour/sexual/child breakdown where the columns support it. That is roughly
+**200 more country-level dots, each backed by case records rather than an
+estimate.**
+
+It finds the CSV by following the dataset pages rather than hard-coding a Drupal
+node id, since those change between releases. CTDC blocks some automated
+requests, so `--file` takes a CSV you downloaded by hand. Tested against a
+synthetic CTDC-shaped file: it correctly prefers country of exploitation over
+citizenship, drops the `-99` nulls, and aggregates.
+
+**Why country level and not finer.** CTDC's public datasets are k-anonymised or
+differentially private *by design*, because they describe living people who were
+trafficked and many of whom are still at risk. Country of exploitation is the
+geography they carry. Anything finer is both impossible from this data and
+wrong. Every record is marked imprecise and draws as a hollow ring.
+
+**And every one says: read this as detection, not prevalence.** A low count can
+mean little trafficking or no identification system, and the data cannot tell
+you which — countries with strong referral systems and active NGOs look *worse*
+here than countries with neither. That inversion is the single easiest way to
+misread this map.
+
+## The two directories: linked, not copied
+
+You asked whether the 2,600 organisations in the Global Modern Slavery Directory
+and the State Department hotline index could be pulled in wholesale. I have not
+done that, and I think copying would be the wrong call rather than merely the
+hard one.
+
+**Every country popup now carries a named block linking both**, with the
+country's own name in it — "open it and choose **Kenya** in the country
+selector" — so every country on earth has a route to those 2,600 organisations
+from its own box.
+
+Not mirrored, for two reasons. The weaker one is maintenance: both are actively
+curated and this file is not. **The stronger one is that GMSD organisations
+update and remove their entries continually, and a stale mirror in a
+life-safety context can send someone to a shelter that closed a year ago.**
+Polaris runs a yearly vetting process precisely because service organisations
+open, close, move and lose funding. A snapshot in a single HTML file would decay
+silently, and the failure mode is somebody in trouble ringing a dead number. The
+block says this in the interface, not just here.
+
+## Also in this pass
+
+Two new source families in the legend, `Identified cases (CTDC)` and
+`Listed goods (US DOL)`, so both new layers can be filtered on and off and both
+carry their own caveat where the user meets them. `cases.json` loads
+independently of `projects.json`, so a failure in one cannot take down the
+other.
+
+---
+
+# Nineteenth pass — four corrections you were right about
+
+## "Regions where slavery is known to occur even if no case was reported"
+
+This was the real hole, and it was mine. A map built only on detection shows
+**the response, not the problem**, and it inverts: countries with inspectorates,
+referral systems and working NGOs produce case records and look worse, while
+countries with none of those look clean.
+
+`harvest_scale.py --prevalence` adds **Walk Free's Global Slavery Index** as its
+own layer — 160 countries, modelled from national surveys plus a vulnerability
+model against the ILO/Walk Free/IOM regional estimates. It covers places with no
+case data at all, which is exactly the gap.
+
+**Never merged with the case counts.** Separate source family, separate colour
+in the filter, and every record says it is a modelled estimate with wide
+confidence intervals that leans hardest on the model precisely where survey work
+is impossible — active conflict, closed states.
+
+## Why CTDC gave 200 dots and not 230,000
+
+Because the public dataset carries **no sub-national geography at all**. Every
+one of those 230,000 records has a country of exploitation and nothing finer, by
+design — they describe living people who were trafficked and many still at risk.
+230,000 individual dots would be 230,000 markers stacked on 199 coordinates: the
+same information, rendered a thousand times heavier.
+
+But you were right that one dot per country was the floor and not the ceiling.
+The records also carry **exploitation type and year of registration**, and those
+are two more real dimensions. `harvest_cases.py` now emits one record per
+**country × exploitation type × period** — labour, sexual, both, or not
+recorded, across *before 2010 / 2010–14 / 2015–19 / 2020–24* — plus the country
+total. That is several times as many dots, each a genuine subset count you can
+filter, rather than duplicates.
+
+And your point about pre-2002 stands: CTDC's window starts in 2002 and the
+"before 2010" bucket holds what predates the main collection period. Records
+older than the dataset are not lost so much as never systematically gathered —
+which is the same detection problem one generation back.
+
+## The manual download
+
+**It is not a one-time file** — CTDC has published successive releases (2021,
+2022, 2024, and a 2025 codebook), so a scheduled harvest is worth having.
+
+The `--file` fallback is exactly that, a fallback. The script tries the
+automated route first and only tells you to download by hand if the site refuses
+it. I could not test which happens from here: this sandbox has no general
+egress, so *everything* fails, and that tells me nothing about what your machine
+will see. Run it and find out — if the automated path works, `--file` never
+comes up.
+
+## The 2,600 organisations
+
+Your call, and a defensible one. Done.
+
+`harvest_scale.py --directory` pulls the GMSD and writes `directory.json`;
+country popups then list the providers for that country inline, above the link
+to the live directory. Since copying carries a real cost, the cost is handled
+rather than argued about:
+
+- every entry is **stamped with its sync date**, shown in the block
+- the map shows an **amber warning when the sync is over 90 days old**, telling
+  the reader to check the live directory
+- every entry links its live record, and says inclusion is not an endorsement by
+  Polaris nor republication one by anyone else
+- services are tagged from their own descriptions — hotline, shelter, legal aid,
+  case management, repatriation — so they land in the right goal groups
+
+One honest caveat: **the GMSD front-end is a JS app and its data path is not
+documented.** The script tries four likely endpoints and, if all miss, tells you
+exactly how to find the real one — open the directory, watch the network tab for
+the request returning the provider list, add that URL to `GMSD_ENDPOINTS`. Send
+me what you see and I will wire it.
+
+Tested offline against a synthetic export: providers parsed, countries grouped,
+services tagged, the stale banner fires, sync date stamped.
+
+---
+
+# Twentieth pass — point data, and an honest no
+
+## The State Department hotlines: no, I had not integrated them
+
+I linked that page; I did not parse it. That was worth saying plainly rather
+than letting the link imply more than it did. `harvest_points.py --hotlines`
+now parses the country-by-country table into `hotlines.json`, one entry per
+country, ready to fold into `trackerdata.json`. It 403s from this sandbox, like
+everything else here, so run it on your machine and send me what it prints.
+
+## Point-level data: three sources that actually exist
+
+This is the answer to the question you have been circling, and it is better than
+I expected.
+
+**IPIS — eastern DRC artisanal mining sites.** Roughly **2,800 sites with
+GPS coordinates**, field-visited repeatedly since 2009, each carrying a
+**direct child-labour observation** plus armed-group interference, worker
+numbers and minerals. Published as open data on their GeoServer in GeoJSON.
+This is the strongest dataset in the entire field: not modelled, not inferred,
+not aggregated — someone went to the pit and wrote down what they saw. The
+WFS layer name changes between releases and 403s from here, so the script tells
+you how to read the GetCapabilities document and update one constant.
+
+**SentinelKilnDB — 62,671 brick kilns.** Hand-validated, detected from
+Sentinel-2 imagery across the Indo-Gangetic Plain: India, Pakistan, Bangladesh,
+Afghanistan. Brick kilns are the most consistently documented bonded-labour
+sector in South Asia, and this is the first open comprehensive map of where
+they physically are. Published as parquet on HuggingFace, so it needs one
+extraction step, which the script prints verbatim. **Licence is CC-BY-NC-4.0
+— check it against your use before publishing.**
+
+**Open Supply Hub.** Millions of production facilities with coordinates,
+contributed by brands, unions and NGOs, free API key. Its particular value here
+is the link from a site to a **named buyer**, which is the leverage a
+country-level determination on its own does not give you.
+
+### The line these layers must not cross
+
+Every one of these is **sector infrastructure, not confirmed exploitation.** A
+brick kiln is not proof of bonded labour. A mining pit is not proof of child
+labour. This is the first layer on the map where a dot is genuinely precise, and
+that is exactly why the wording carries weight: every record says it is where to
+look and not a finding, and adds *do not approach a site on the strength of a
+dot on a map*. Their own source family in the legend, so they can never be read
+as cases or determinations.
+
+The IPIS records are the exception in one direction: where the child-labour flag
+is set, that is a recorded field observation and the record says so without the
+hedge.
+
+### Volume
+
+62,671 kilns would destroy an in-browser map. `--decimate` keeps one point per
+grid cell and **reports how many it dropped** — tested on 5,000 synthetic
+points: 4,158 kept at 0.05°, 561 at 0.25°. It is a display decision,
+stated as one, and `--decimate 0` gives the full set.
+
+## Other bulk datasets worth knowing about
+
+Not built yet, in rough order of value: **UNODC GLOTIP** (detected victims and
+convictions by country, downloadable); **Brazil's SmartLab / Radar SIT**, which
+publishes rescue operations at *municipality* level and is the best sub-national
+enforcement data anywhere in this field; **Global Fishing Watch** vessel tracks
+with published forced-labour risk modelling; the **combined IUU vessel lists**;
+and **Delve** for artisanal mining beyond the DRC.
+
+Brazil is the one I would do next — it is genuine sub-national enforcement
+data, thousands of operations, and the 27-state layer to hang it on is already
+built.
+
+---
+
+# Twenty-first pass — the remaining bulk datasets
+
+`harvest_bulk.py`, covering the four sources named at the end of the last pass.
+The map now merges six optional side files, each loaded independently so no one
+of them can take the others down: `projects.json`, `cases.json`,
+`prevalence.json`, `points.json`, `bulk.json`, `directory.json`.
+
+## Brazil, by municipality — the best sub-national data in this field
+
+The Observatório Digital do Trabalho Escravo, run by the Labour Prosecution
+Service with the ILO, publishes rescue operations at **municipality** level:
+**60,251 people found in conditions analogous to slavery between 1995 and 2022**,
+located to the town.
+
+Nothing else in this field is comparable. It is not modelled, not estimated and
+not aggregated to the country. It is a state saying: we went here, and we found
+this many people. It is also the **only layer on this map that records a rescue
+rather than a risk.**
+
+Municipality names resolve to coordinates through **IBGE's public localidades
+and malha APIs**, so no gazetteer is invented or maintained here. Matching folds
+accents, because the source spells *Varjão*, *São Félix* and *Marabá* the way
+Portuguese does and a matcher that cares finds none of them. A row that cannot
+be matched to a real IBGE municipality is **dropped rather than placed
+approximately** — an approximate rescue location is worse than none.
+
+Tested with IBGE stubbed: four rows, four matches including all three accented
+names, correct impact banding, all marked imprecise since a municipality centre
+is not where the farm was.
+
+The Observatório is a Shiny dashboard rather than an API, so the realistic input
+is its own export; `--file` takes it and the script prints the expected columns.
+
+One line in every record worth keeping: **that Brazil dominates this layer says
+less about Brazil than about what a country looks like when it actually counts.**
+
+## UNODC GLOTIP — detection, labelled as such
+
+Victims detected and reported by each state. Every record says it **counts the
+response, not the phenomenon** — few detections can mean little trafficking or
+no identification system, and UNODC says itself the data cannot distinguish
+them. It is explicitly told to be read against the prevalence layer, which is
+modelled independently of whether anyone was looking. Those two layers
+disagreeing about a country *is* the finding.
+
+## IUU vessels — included with the caveat stated first
+
+Vessels listed for illegal, unreported or unregulated fishing. **Not a
+forced-labour finding**, and the description leads with that. They are here
+because IUU operation and forced labour at sea are strongly correlated in the
+documented cases — a vessel already outside the rules on catch is the kind that
+stays at sea for months without a port call — and because an IMO number is a
+named, flagged, actionable entity in a domain where almost nothing else is.
+
+## Global Fishing Watch
+
+Wired for a free API token, pulling vessels whose AIS behaviour matches the
+documented indicators: long voyages without port calls, repeated transhipment at
+sea, transponder gaps. Indicators, not findings, and labelled that way.
+
+## A collision worth recording
+
+Adding these produced **24 source families with four duplicate keys** — `dol`,
+`brazil`, `ctdc` and `gsi` each defined twice, once in the original list and
+once by me. Duplicate keys in the source filter mean two checkboxes for one
+thing and ambiguous filtering, and nothing would have thrown. Deduplicated to
+**19 families, keeping the versions that carry the caveats**, and verified that
+every source key any harvester emits has exactly one family.
+
+That is the third time a silent-failure class has been caught by checking rather
+than by the thing breaking. The pattern holds: in a file this size, the bugs
+that matter do not throw.

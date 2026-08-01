@@ -17,6 +17,10 @@ legal case, and where money goes.
 ├── projects.json         determinations layer         → not built yet
 ├── harvest_wire.py       builds wire.json from the feed list in index.html
 ├── harvest_determinations.py  builds projects.json from published customs orders
+├── harvest_cases.py      builds cases.json from CTDC identified-case records
+├── harvest_scale.py      builds prevalence.json (Walk Free) and directory.json (GMSD)
+├── harvest_points.py     builds points.json (IPIS mines, brick kilns, OSH) + hotlines.json
+├── harvest_bulk.py       builds bulk.json (Brazil municipalities, UNODC, IUU, GFW)
 ├── verify_links.py       link checker for every URL that ships
 ├── smoke_test.js         runs the page and fails on any uncaught error
 ├── package.json          jsdom, for smoke_test.js only
@@ -56,7 +60,12 @@ editor will mangle the inline scripts.
 | `index.html` | — |
 | `trackerdata.json` | map runs; every country popup reports nothing mapped |
 | `wire.json` | wire and incidents fall back to a live in-browser feed pull |
-| `projects.json` | layer falls back to the 25 hand-entered records in index.html |
+| `projects.json` | layer falls back to the 234 records baked into index.html |
+| `cases.json` | no CTDC case counts; everything else unaffected |
+| `prevalence.json` | no Walk Free estimates; everything else unaffected |
+| `directory.json` | country popups link the live GMSD instead of listing providers |
+| `points.json` | no site-level dots; everything else unaffected |
+| `bulk.json` | no Brazil rescues, UNODC or IUU records; everything else unaffected |
 
 ## Local run
 
@@ -88,6 +97,10 @@ would otherwise blank the live layer silently. `--force` overrides.
 
 ```bash
 python3 harvest_determinations.py      # writes projects.json
+python3 harvest_cases.py               # writes cases.json
+python3 harvest_scale.py --all         # writes prevalence.json, directory.json
+python3 harvest_points.py --all        # writes points.json, hotlines.json
+python3 harvest_bulk.py --all          # writes bulk.json
 python3 harvest_wire.py --days 30      # writes wire.json
 python3 harvest_wire.py --dry-run -v   # show what would ship
 ```
@@ -113,10 +126,14 @@ jobs:
         with: {python-version: "3.12"}
       - run: python3 harvest_wire.py --days 30
       - run: python3 harvest_determinations.py
+      - run: python3 harvest_cases.py || true
+      - run: python3 harvest_scale.py --all || true
+      - run: python3 harvest_points.py --ipis --hotlines || true
+      - run: python3 harvest_bulk.py --glotip --iuu || true
       - run: |
           git config user.name  "wire-bot"
           git config user.email "wire-bot@users.noreply.github.com"
-          git add wire.json projects.json
+          git add wire.json projects.json cases.json prevalence.json directory.json points.json hotlines.json bulk.json
           git diff --staged --quiet || git commit -m "wire: $(date -u +%F\ %H:%M)"
           git push
 ```
