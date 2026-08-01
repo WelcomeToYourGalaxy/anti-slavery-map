@@ -8,6 +8,11 @@ on:
   workflow_dispatch:
 permissions: {contents: write}
 
+# Two harvest runs overlapping would push over each other. Queue them instead.
+concurrency:
+  group: harvest
+  cancel-in-progress: false
+
 jobs:
   harvest:
     runs-on: ubuntu-latest
@@ -16,8 +21,8 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
 
-      # Each step is allowed to fail without failing the run: one publisher
-      # being down should not stop the other seven layers from refreshing.
+      # Each step may fail without failing the run: one publisher being down
+      # should not stop the other seven layers from refreshing.
       - name: wire (news incidents)
         run: python3 harvest_wire.py --days 30 || true
       - name: determinations (customs orders)
@@ -31,11 +36,27 @@ jobs:
       - name: bulk (Brazil, UNODC, IUU vessels)
         run: python3 harvest_bulk.py --all || true
 
+      # The first version of this step pushed straight at main and lost a whole
+      # harvest when someone committed through the web UI while it was running:
+      #   ! [rejected] main -> main (fetch first)
+      # Rebase onto whatever landed, and retry, because losing an hour of
+      # harvesting to a race with a file upload is a silly way to lose data.
       - name: commit whatever refreshed
         run: |
+          set -e
           git config user.name  "harvest-bot"
           git config user.email "harvest-bot@users.noreply.github.com"
-          git add -A wire.json projects.json cases.json prevalence.json \
-                     directory.json points.json bulk.json hotlines.json 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "data refresh: $(date -u +%F\ %H:%M)"
-          git push
+          git add -A -- wire.json projects.json cases.json prevalence.json \
+                        directory.json points.json bulk.json hotlines.json || true
+          if git diff --staged --quiet; then
+            echo "nothing changed; not committing"
+            exit 0
+          fi
+          git commit -m "data refresh: $(date -u +%F\ %H:%M)"
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash origin main && git push origin HEAD:main && exit 0
+            echo "push attempt $i lost a race; retrying in $((i*5))s"
+            sleep $((i*5))
+          done
+          echo "::error::could not push after 5 attempts"
+          exit 1
