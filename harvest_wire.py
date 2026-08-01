@@ -352,6 +352,8 @@ def main():
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--max", type=int, default=1200)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--force", action="store_true",
+                    help="write even when nothing was harvested")
     ap.add_argument("-v", "--verbose", action="store_true")
     args = ap.parse_args()
 
@@ -415,6 +417,31 @@ def main():
         for x in kept[:15]:
             print("  [%s|%s] %s" % (x.get("iso", "--"), x.get("region", ""), x["title"][:88]))
         return 0
+
+    # An empty harvest is almost always an outage, a firewall or a proxy -- not
+    # a quiet news month. Writing [] over a good file would blank the live layer
+    # until the next successful run, and on a six-hourly schedule that is a
+    # silent regression nobody notices. Refuse, unless told otherwise.
+    if not kept:
+        have = 0
+        if os.path.exists(OUT):
+            try:
+                with open(OUT, encoding="utf-8") as f:
+                    have = len(json.load(f) or [])
+            except Exception:
+                have = 0
+        if have and not args.force:
+            print("\nNOT WRITING: 0 items harvested, and %s already holds %d. "
+                  "Every feed failed, which means the network refused them, not "
+                  "that nothing happened. The existing file is left in place. "
+                  "Use --force to overwrite it anyway." % (os.path.basename(OUT), have))
+            return 1
+        if not have:
+            print("\n0 items harvested and no existing file to preserve. Writing "
+                  "nothing rather than an empty file: the map falls back to "
+                  "pulling feeds live in the browser, which is better than a "
+                  "wire.json that says the world is quiet.")
+            return 1
 
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(kept, f, ensure_ascii=False, indent=1)

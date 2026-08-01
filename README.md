@@ -82,6 +82,10 @@ a live site refusing a script — open it by hand before touching the entry.
 
 ## Harvesters
 
+Both exit non-zero and write nothing if every source failed, rather than
+overwriting good data with an empty file — a scheduled run during an outage
+would otherwise blank the live layer silently. `--force` overrides.
+
 ```bash
 python3 harvest_determinations.py      # writes projects.json
 python3 harvest_wire.py --days 30      # writes wire.json
