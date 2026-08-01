@@ -59,6 +59,47 @@
     ],
     "url": "https://www.afp.gov.au/crimes/human-trafficking",
     "voice": "official"
+   },
+   {
+    "desc": "Delivers the federally funded support programme for trafficked people: accommodation, living expenses, health care and casework. Entry is via police referral, which is the constraint to understand before anyone reports.",
+    "kind": "institution",
+    "name": "Australian Red Cross \u2014 Support for Trafficked People Program",
+    "skind": "ngo",
+    "tags": [
+     "conserve:shelter",
+     "organizing:help"
+    ],
+    "url": "https://www.redcross.org.au/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "BGD": {
+  "name": "Bangladesh",
+  "trackers": [
+   {
+    "desc": "Free legal aid across Bangladesh, including labour and migration cases, and public-interest litigation. One of the few routes to representation for a garment or brick-kiln worker.",
+    "kind": "institution",
+    "name": "Bangladesh Legal Aid and Services Trust (BLAST)",
+    "skind": "legalaid",
+    "tags": [
+     "organizing:legal",
+     "conserve:legalaid"
+    ],
+    "url": "https://www.blast.org.bd/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Runs migration information and support services at district level, including help for returning workers who were defrauded by a recruiter or came home unpaid.",
+    "kind": "institution",
+    "name": "BRAC \u2014 migration programme",
+    "skind": "ngo",
+    "tags": [
+     "corporate:recruit",
+     "organizing:help"
+    ],
+    "url": "https://www.brac.net/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -934,6 +975,19 @@
     ],
     "url": "https://www.cptnacional.org.br/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "The federal public defender, free to anyone who cannot afford a lawyer, and the body that represents rescued workers in claims for unpaid wages and damages after an operation. The MPT prosecutes; the DPU represents the worker.",
+    "kind": "structured",
+    "name": "Defensoria P\u00fablica da Uni\u00e3o",
+    "skind": "legalaid",
+    "tags": [
+     "organizing:legal",
+     "conserve:legalaid",
+     "conserve:compensation"
+    ],
+    "url": "https://www.dpu.def.br/",
+    "voice": "official"
    }
   ]
  },
@@ -1057,6 +1111,25 @@
    }
   ]
  },
+ "ESP": {
+  "name": "Spain",
+  "trackers": [
+   {
+    "desc": "Specialist support for trafficked women in Spain, including labour exploitation as well as sexual exploitation: shelter, legal representation and help with the residence and recovery periods.",
+    "kind": "institution",
+    "name": "Proyecto ESPERANZA",
+    "skind": "ngo",
+    "tags": [
+     "conserve:shelter",
+     "organizing:legal",
+     "conserve:legalaid",
+     "organizing:help"
+    ],
+    "url": "https://www.proyectoesperanza.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
  "FRA": {
   "name": "France",
   "trackers": [
@@ -1088,6 +1161,20 @@
     "trust": "record",
     "type": "institutional",
     "url": "https://www.asso-sherpa.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The French organisation specialising in domestic servitude: identification, shelter, and civil actions for unpaid wages and damages against employers, including diplomatic households.",
+    "kind": "institution",
+    "name": "Comit\u00e9 contre l'esclavage moderne (CCEM)",
+    "skind": "ngo",
+    "tags": [
+     "conserve:shelter",
+     "organizing:legal",
+     "conserve:legalaid",
+     "conserve:compensation"
+    ],
+    "url": "https://www.esclavagemoderne.org/",
     "voice": "interpretive"
    }
   ]
@@ -1276,6 +1363,31 @@
     ],
     "url": "https://modern-slavery-statement-registry.service.gov.uk/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "Advice and casework for migrant domestic workers in the UK \u2014 the group that has documented what the tied overseas domestic worker visa does in practice, which is that leaving an abusive employer means losing the right to be in the country.",
+    "kind": "institution",
+    "name": "Kalayaan",
+    "skind": "ngo",
+    "tags": [
+     "organizing:legal",
+     "conserve:legalaid",
+     "organizing:help",
+     "conserve:shelter"
+    ],
+    "url": "https://www.kalayaan.org.uk/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Runs the UK Modern Slavery & Exploitation Helpline and safe houses. Unrestricted giving here funds the line itself, which is the hardest thing in this sector to fund and the first thing to be cut.",
+    "kind": "institution",
+    "name": "Unseen \u2014 donate",
+    "skind": "ngo",
+    "tags": [
+     "organizing:fund"
+    ],
+    "url": "https://www.unseenuk.org/donate/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1299,6 +1411,37 @@
    }
   ]
  },
+ "HKG": {
+  "name": "Hong Kong",
+  "trackers": [
+   {
+    "desc": "Files forced-labour petitions with customs authorities, works on financial-sector detection of trafficking proceeds, and produces the supply-chain research behind several import bans \u2014 including the petition that led to the Sime Darby palm oil order.",
+    "kind": "institution",
+    "name": "Liberty Shared",
+    "skind": "ngo",
+    "tags": [
+     "advocacy:data",
+     "corporate:supply",
+     "courts:grievance"
+    ],
+    "url": "https://libertyshared.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Direct casework, shelter and wage claims for foreign domestic workers in Hong Kong, where the live-in requirement and the two-week rule are the two structural pressures that keep people in abusive placements.",
+    "kind": "institution",
+    "name": "Mission for Migrant Workers",
+    "skind": "ngo",
+    "tags": [
+     "conserve:shelter",
+     "organizing:help",
+     "conserve:compensation"
+    ],
+    "url": "https://www.migrants.net/",
+    "voice": "interpretive"
+   }
+  ]
+ },
  "IDN": {
   "name": "Indonesia",
   "trackers": [
@@ -1316,6 +1459,20 @@
     "type": "records-data",
     "url": "https://bp2mi.go.id/",
     "voice": "official"
+   },
+   {
+    "desc": "Advocacy and casework for Indonesian migrant workers, including cases of workers detained abroad and of recruitment debt incurred before departure.",
+    "kind": "institution",
+    "name": "Migrant CARE",
+    "skind": "ngo",
+    "tags": [
+     "corporate:recruit",
+     "organizing:help",
+     "organizing:legal",
+     "conserve:legalaid"
+    ],
+    "url": "https://migrantcare.net/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1456,6 +1613,67 @@
     ],
     "url": "https://www.bba.org.in/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "A national network of lawyers taking public-interest cases including bonded labour, with offices in most states. Files public interest litigation, which in India has been the route that forced district administrations to act where individual complaints did not.",
+    "kind": "institution",
+    "name": "Human Rights Law Network",
+    "skind": "legalaid",
+    "tags": [
+     "organizing:legal",
+     "conserve:legalaid",
+     "courts:strategic"
+    ],
+    "url": "https://hrln.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "IRL": {
+  "name": "Ireland",
+  "trackers": [
+   {
+    "desc": "Casework and organising with migrant workers in Ireland, with a long record on forced labour in fishing, agriculture and domestic work, and on the permit system that ties workers to one employer.",
+    "kind": "institution",
+    "name": "Migrant Rights Centre Ireland",
+    "skind": "ngo",
+    "tags": [
+     "organizing:help",
+     "organizing:legal",
+     "conserve:legalaid",
+     "organizing:help"
+    ],
+    "url": "https://www.mrci.ie/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "ITA": {
+  "name": "Italy",
+  "trackers": [
+   {
+    "desc": "Italy's national anti-trafficking freephone line, twenty-four hours and multilingual, run under the Department for Equal Opportunities. Takes anonymous reports and routes to the regional anti-trafficking projects that provide shelter and status support.",
+    "kind": "structured",
+    "name": "Numero Verde Anti-Tratta \u2014 800 290 290",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter"
+    ],
+    "url": "https://www.pariopportunita.gov.it/",
+    "voice": "official"
+   },
+   {
+    "desc": "The union observatory that documents caporalato \u2014 illicit labour brokering in Italian agriculture \u2014 and publishes the periodic report that names the sectors and provinces where it concentrates.",
+    "kind": "institution",
+    "name": "Osservatorio Placido Rizzotto (FLAI-CGIL)",
+    "skind": "union",
+    "tags": [
+     "organizing:help",
+     "advocacy:data"
+    ],
+    "url": "https://www.flai.it/osservatoriopr/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1476,6 +1694,39 @@
     "type": "records-data",
     "url": "https://www.labour.go.ke/",
     "voice": "official"
+   },
+   {
+    "desc": "Kenya's principal anti-trafficking NGO: rescue, shelter, reintegration and legal support, plus research on the Gulf recruitment corridor that most Kenyan cases run through.",
+    "kind": "institution",
+    "name": "HAART Kenya",
+    "skind": "ngo",
+    "tags": [
+     "organizing:help",
+     "conserve:shelter",
+     "organizing:legal",
+     "conserve:legalaid"
+    ],
+    "url": "https://haartkenya.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "LBN": {
+  "name": "Lebanon",
+  "trackers": [
+   {
+    "desc": "Works with migrant domestic workers in Lebanon, where the sponsorship system leaves workers outside labour law entirely. Provides a helpline, shelter referral and legal support, and has documented the pattern of confiscated passports and unpaid wages.",
+    "kind": "institution",
+    "name": "KAFA",
+    "skind": "ngo",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "organizing:legal",
+     "conserve:legalaid"
+    ],
+    "url": "https://kafa.org.lb/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1509,6 +1760,18 @@
     ],
     "url": "https://www.gob.mx/",
     "voice": "official"
+   },
+   {
+    "desc": "Civil-society helpline taking trafficking reports in Mexico, including anonymous third-party reports, with referral to legal and psychological support.",
+    "kind": "institution",
+    "name": "Consejo Ciudadano \u2014 anti-trafficking line",
+    "skind": "ngo",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter"
+    ],
+    "url": "https://consejociudadanomx.org/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1595,6 +1858,18 @@
     ],
     "url": "https://www.naptip.gov.ng/",
     "voice": "official"
+   },
+   {
+    "desc": "Nigerian anti-trafficking organisation running community reporting, training and survivor support, and one of the groups NAPTIP works with on referral.",
+    "kind": "institution",
+    "name": "Devatop Centre for Africa Development",
+    "skind": "ngo",
+    "tags": [
+     "organizing:help",
+     "organizing:fund"
+    ],
+    "url": "https://devatop.org/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1630,6 +1905,18 @@
     "type": "institutional",
     "url": "https://www.comensha.nl/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "Dutch organisation working on labour exploitation and trafficking: outreach to workers in agriculture, meat processing and cleaning, and support through the reporting and referral process.",
+    "kind": "institution",
+    "name": "FairWork",
+    "skind": "ngo",
+    "tags": [
+     "organizing:help",
+     "conserve:shelter"
+    ],
+    "url": "https://www.fairwork.nu/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1650,6 +1937,38 @@
     "trust": "record",
     "type": "records-data",
     "url": "https://www.forbrukertilsynet.no/",
+    "voice": "official"
+   }
+  ]
+ },
+ "NPL": {
+  "name": "Nepal",
+  "trackers": [
+   {
+    "desc": "The best-known anti-trafficking organisation in Nepal: interception at border points, shelters, legal aid and reintegration. Nepal is overwhelmingly an origin country, so most of the work is at the border and in the recruitment stage rather than at a workplace.",
+    "kind": "institution",
+    "name": "Maiti Nepal",
+    "skind": "ngo",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "organizing:help",
+     "organizing:legal",
+     "conserve:legalaid"
+    ],
+    "url": "https://maitinepal.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The state body handling Nepali migrant workers going abroad, including the welfare fund that pays compensation to families when a worker dies or is injured overseas. Check a recruiter's licence here before anyone pays a fee.",
+    "kind": "structured",
+    "name": "Foreign Employment Board",
+    "skind": "inspectorate",
+    "tags": [
+     "corporate:recruit",
+     "conserve:compensation"
+    ],
+    "url": "https://fepb.gov.np/",
     "voice": "official"
    }
   ]
@@ -1706,6 +2025,20 @@
     "type": "records-data",
     "url": "https://iacat.gov.ph/",
     "voice": "official"
+   },
+   {
+    "desc": "Casework and policy work for Filipino migrant workers, including repatriation and claims against recruitment agencies. Complements the government route, which is often slower for a worker already abroad.",
+    "kind": "institution",
+    "name": "Center for Migrant Advocacy",
+    "skind": "ngo",
+    "tags": [
+     "corporate:recruit",
+     "organizing:help",
+     "organizing:legal",
+     "conserve:legalaid"
+    ],
+    "url": "https://centerformigrantadvocacy.com/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1748,6 +2081,37 @@
      "advocacy:watchdog"
     ],
     "url": "https://www.migrant-rights.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The ILO's regional office for the Arab States, which runs the technical cooperation programme in Qatar and publishes what the labour dispute committees are actually delivering. The place to check a claim about reform against the monitoring.",
+    "kind": "structured",
+    "name": "Migrant Workers' Rights \u2014 legal support",
+    "skind": "igo",
+    "tags": [
+     "environment:inspect",
+     "advocacy:watchdog"
+    ],
+    "url": "https://www.ilo.org/beirut",
+    "voice": "official"
+   }
+  ]
+ },
+ "SGP": {
+  "name": "Singapore",
+  "trackers": [
+   {
+    "desc": "Shelter, casework and a helpline for migrant workers and domestic workers in Singapore, and the organisation that documents what salary non-payment and repatriation look like in practice there.",
+    "kind": "institution",
+    "name": "HOME \u2014 Humanitarian Organization for Migration Economics",
+    "skind": "ngo",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "organizing:help",
+     "conserve:compensation"
+    ],
+    "url": "https://www.home.org.sg/",
     "voice": "interpretive"
    }
   ]
@@ -2154,6 +2518,42 @@
     ],
     "url": "https://freedomnetworkusa.org/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "Trains and supports pro bono lawyers taking trafficking cases, and maintains a public database of federal civil trafficking cases. Two uses: finding counsel, and checking what has already been argued and what damages courts have actually awarded.",
+    "kind": "institution",
+    "name": "Human Trafficking Legal Center",
+    "skind": "legalaid",
+    "tags": [
+     "organizing:legal",
+     "conserve:legalaid",
+     "courts:civil"
+    ],
+    "url": "https://htlegalcenter.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Free and low-cost immigration representation, including T and U visa work for trafficking and crime victims. Relevant because in most US cases the immigration question has to be handled before, not after, anyone talks to law enforcement.",
+    "kind": "institution",
+    "name": "National Immigrant Justice Center",
+    "skind": "legalaid",
+    "tags": [
+     "organizing:legal",
+     "conserve:legalaid"
+    ],
+    "url": "https://immigrantjustice.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Funds the national hotline directly, which is the single piece of US infrastructure that a person in this situation can reach without going through police.",
+    "kind": "institution",
+    "name": "Polaris \u2014 donate",
+    "skind": "ngo",
+    "tags": [
+     "organizing:fund"
+    ],
+    "url": "https://polarisproject.org/donate/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -2177,6 +2577,25 @@
    }
   ]
  },
+ "VNM": {
+  "name": "Vietnam",
+  "trackers": [
+   {
+    "desc": "Carries out rescues of trafficked children and adults from within Vietnam and from across the Chinese border, then handles the aftercare, schooling and prosecutions. Takes information about a specific person.",
+    "kind": "institution",
+    "name": "Blue Dragon Children's Foundation",
+    "skind": "ngo",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "organizing:help",
+     "organizing:fund"
+    ],
+    "url": "https://www.bluedragon.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
  "ZAF": {
   "name": "South Africa",
   "trackers": [
@@ -2193,6 +2612,18 @@
     "trust": "record",
     "type": "records-data",
     "url": "https://www.labour.gov.za/",
+    "voice": "official"
+   },
+   {
+    "desc": "0800 222 777, twenty-four hours, free from any phone. Takes reports about another person, connects to shelter and legal support, and is run with civil-society partners rather than by police alone.",
+    "kind": "structured",
+    "name": "National Human Trafficking Hotline (South Africa)",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter"
+    ],
+    "url": "https://www.0800222777.org.za/",
     "voice": "official"
    }
   ]
