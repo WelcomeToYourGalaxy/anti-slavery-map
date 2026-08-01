@@ -235,11 +235,21 @@ def parse_feed(raw, outlet):
 
 
 # --------------------------------------------------------------- tagging
-def on_topic(text):
+def on_topic(text, title=None):
+    """A subject phrase in the TITLE, or two different ones anywhere.
+
+    A single subject phrase buried in a body paragraph is how a story about
+    something else ends up in the feed: wire services drop 'human trafficking'
+    into the last line of a crime round-up, and a one-hit gate takes it. The
+    map's own gate now works the same way, so the two agree."""
     t = " " + text.lower() + " "
     if any(x in t for x in OFF):
         return False
-    return any(x in t for x in ON)
+    if title:
+        h = " " + title.lower() + " "
+        if any(x in h for x in ON):
+            return True
+    return len({x for x in ON if x in t}) >= 2
 
 
 def guess_lang(text):
@@ -372,7 +382,7 @@ def main():
     kept, seen = [], set()
     for it in raw_items:
         blob = it["title"] + " " + it["snippet"]
-        if not on_topic(blob):
+        if not on_topic(blob, it["title"]):
             continue
         key = re.sub(r"[^a-z0-9]", "", it["title"].lower())[:70]
         if key in seen:
