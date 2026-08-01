@@ -1,21 +1,30 @@
+# .github/workflows/check.yml
 name: checks
 on: [push, workflow_dispatch]
+
 jobs:
   smoke:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: {node-version: "20"}
+        # Pinned to the version this is verified against. The previous run
+        # failed on Node 20 and passed on 22, on an empty jsdom error object
+        # that had nothing to do with the page.
+        with: {node-version: "22"}
       - run: npm install --no-audit --no-fund
       - run: node smoke_test.js
+
   links:
     runs-on: ubuntu-latest
-    continue-on-error: true          # third-party outages are not our failures
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
+      # Not --strict: a check over ~400 third-party URLs will always find
+      # something down somewhere, and a permanently red tick trains you to
+      # ignore the one run that matters. The dead list is printed in the log
+      # and the full report is attached below.
       - run: python3 verify_links.py --csv report.csv
       - uses: actions/upload-artifact@v4
         if: always()
