@@ -1849,3 +1849,165 @@ every source key any harvester emits has exactly one family.
 That is the third time a silent-failure class has been caught by checking rather
 than by the thing breaking. The pattern holds: in a file this size, the bugs
 that matter do not throw.
+
+---
+
+# Twenty-second pass — three failures from the first real run
+
+## The traceback
+
+`FileNotFoundError` with a raw stack trace. That is a bad way to tell somebody a
+file is missing, and it was in four scripts. There is now a shared `read_file`
+helper: it names the file, prints **which directory you are actually in**, says
+what to do about it, and lists any data files it can see there — or says there
+are none at all, which is the tell that you are not in the repo folder.
+
+```
+  File not found: resgates.csv
+  You are in: /Users/commanderutra
+  Export the municipality table from observatorioescravo.mpt.mp.br (its
+  download control), save it into your repo folder, cd there, and re-run.
+  No .csv/.json/.xlsx files in this directory at all — you are probably not
+  in the repo folder, or the export has not been made yet.
+```
+
+To be clear about that run: **`resgates.csv` was the name I used in an example,
+not a file that exists.** Brazil's Observatório is a Shiny dashboard, so the
+export has to be made from its download control first.
+
+## IUU: "0 found" was hiding the reason
+
+Both pages returned zero, and the old code could not distinguish *the list is
+empty* from *the data is not in this response*. It was the second: both are
+client-rendered apps with no vessel table in the served HTML.
+
+Three changes:
+
+**Better sources.** The RFMO lists are the actual records of origin, and they
+are plain server-rendered tables. ICCAT, IOTC, WCPFC, both CCAMLR lists, NAFO,
+SEAFO and NPFC now come first, with the combined list last as a convenience
+wrapper.
+
+**Three extraction patterns**, because every RFMO formats differently —
+labelled `IMO`, labelled Lloyd's, or a bare number in its own table cell.
+
+**IMO check-digit validation.** A 7-digit regex picks up years, phone
+fragments and reference numbers. IMO numbers carry a check digit — the first six
+digits weighted 7 down to 2, summed, last digit equals the seventh. Plus a
+plausibility guard, because the check digit alone still passes `1234567` and
+`0000000`: assigned numbers start at 5 or above, and a single repeated digit or
+a strictly sequential run is a page artefact, not a hull. Verified against both.
+
+**And it now says why it found nothing** — whether the page renders client-side,
+or simply had no IMO-shaped numbers in N bytes of HTML — reports how many
+7-digit strings the check digit rejected, and warns when it rejected more than
+it kept, which is the signature of a list using a different numbering scheme.
+`--dump` saves the HTML so it can be looked at rather than guessed about.
+
+Tested end to end on a synthetic RFMO table: valid IMO kept, invalid rejected
+with the count reported, JS shell correctly identified, real page not
+false-flagged.
+
+## What still needs an export
+
+Two, and both for the same reason — the publisher has no stable file URL:
+
+- **Brazil**: export the municipality table from the Observatório's download
+  control.
+- **UNODC GLOTIP**: export the country table from dataunodc.un.org.
+
+Everything else is automated. And every one of these commands has to be run
+**from inside the repo folder** — `cd` there first, then run.
+
+---
+
+# Twenty-third pass — reading the IUU run
+
+Your run produced **18 real vessels from CCAMLR's non-contracting-party list**,
+which is the first live confirmation that the parser and the IMO check digit
+work against a real RFMO page. The other results are diagnostic rather than
+failure, which was the point of making it report why.
+
+```
+ICCAT       0 — no IMO-shaped numbers in 54,719 bytes of HTML
+IOTC        0 — page renders client-side
+WCPFC       404
+CCAMLR NCP  18 IMO numbers                      <- worked
+CCAMLR CP   0 — page renders client-side
+NAFO        0 — no IMO-shaped numbers in 49,296 bytes
+SEAFO       timed out
+NPFC        404
+TMT         0 — no IMO-shaped numbers in 12,663 bytes
+```
+
+## "50,000 bytes and no IMO numbers" means the list is a linked document
+
+That is the ICCAT and NAFO pattern: a page *about* the list, with the list
+itself in an attached PDF. So when a page yields nothing, the harvester now
+follows its document links — anything ending `.pdf`, `.xlsx`, `.csv` or `.doc`
+whose URL also mentions iuu, vessel, list, annex, cmm or record, capped at six
+per page so it cannot wander.
+
+**PDF text extraction with no dependencies.** RFMO lists are FlateDecode PDFs,
+so zlib plus a regex over the text-showing operators gets the numbers out.
+`pypdf` is used when it happens to be installed because it handles awkward
+encodings better, but it is not required — needing a pip install to read a
+public vessel list would be its own kind of failure.
+
+Tested end to end: a page with 300 sentences and no numbers, linking a
+compressed PDF holding three vessels — the fallback fired, extracted all three,
+kept the two with valid check digits, rejected the third, and reported the
+rejection. Link discovery correctly picked the IUU list and the annex while
+skipping `/about.pdf`.
+
+## The rest
+
+- **404s**: WCPFC and NPFC paths corrected.
+- **Timeout**: SEAFO now gets the configurable `--timeout`, default raised to 90s.
+- **Four RFMOs added**: IATTC, GFCM, SPRFMO, and the FAO Global Record.
+- **Client-rendered pages** (IOTC, CCAMLR contracting parties, TMT) still need
+  their JSON endpoint identified. That is what the `--dump` files are for —
+  send them, or open the page's network tab and send the request that returns
+  the vessel table.
+
+## One practical thing
+
+`bulk.json` was written to `/Users/commanderutra/` — your home directory, not
+the repo. Every harvester writes next to itself, so **run them from inside the
+repo folder** or the map will never see the output. `cd` there first.
+
+---
+
+# Twenty-fourth pass — repo-only operation
+
+Clarified: **nothing runs on your computer.** Everything executes in GitHub
+Actions, writes into the repo and commits itself.
+
+## The manual-export problem, solved without a laptop
+
+Four sources publish through a dashboard rather than a stable file URL — Brazil's
+Observatório, UNODC's data portal, CTDC, and Walk Free. Previously that meant
+"download it and pass `--file`", which is a local step.
+
+Now every harvester looks in **`data/`** in the repo when `--file` is not given,
+matching on a keyword in the filename: `resgat`, `glotip`, `ctdc`, `gsi`,
+`kiln`. Download the export once in a browser, commit it to `data/`, and every
+scheduled run from then on uses it. `--file` still wins when given.
+
+Tested: dropping `resgates_brazil.csv` into `data/` and running with no
+arguments finds it and reports which file it picked.
+
+## One workflow instead of three
+
+`harvest-all.yml` runs all seven harvesters on one schedule — wire every six
+hours, everything else weekly — with each step allowed to fail on its own.
+One publisher being down should not stop the other seven layers from refreshing,
+and a red run that blocks the commit means stale data everywhere rather than in
+one layer.
+
+## Worth knowing about Actions runners
+
+GitHub's runners come from cloud IP ranges and some publishers block those. If a
+source works in your browser but 403s in Actions, that is the reason — and the
+export-to-`data/` route is the fix for that case as well as for the dashboard
+case.

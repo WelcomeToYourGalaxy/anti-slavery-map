@@ -71,10 +71,67 @@ GLOTIP_PAGES = [
     "https://www.unodc.org/unodc/en/data-and-analysis/glotip.html",
 ]
 
+# The RFMO lists are the actual sources of record; the combined list is a
+# convenience wrapper over them. Both of the pages tried first turned out to be
+# JS shells with no vessel data in the served HTML, so the RFMO pages -- which
+# are plain server-rendered tables -- come first now.
 IUU_SOURCES = [
+    ("ICCAT IUU list", "https://www.iccat.int/en/IUUlist.html"),
+    ("IOTC IUU list", "https://iotc.org/vessels/iuu"),
+    ("WCPFC IUU list", "https://www.wcpfc.int/wcpfc-iuu-vessel-list"),
+    ("IATTC IUU list", "https://www.iattc.org/en-US/Fisheries/IUU-vessel-list"),
+    ("GFCM IUU list", "https://www.fao.org/gfcm/data/iuu-vessel-list/en/"),
+    ("SPRFMO IUU list", "https://www.sprfmo.int/measures/vessels/iuu-vessel-list/"),
+    ("FAO Global Record", "https://www.fao.org/global-record/en/"),
+    ("CCAMLR IUU list (non-contracting parties)",
+     "https://www.ccamlr.org/en/compliance/non-contracting-party-iuu-vessel-list"),
+    ("CCAMLR IUU list (contracting parties)",
+     "https://www.ccamlr.org/en/compliance/contracting-party-iuu-vessel-list"),
+    ("NAFO IUU list", "https://www.nafo.int/Fisheries/IUU"),
+    ("SEAFO IUU list", "https://www.seafo.org/Management/IUU-Vessels"),
+    ("NPFC IUU list", "https://www.npfc.int/iuu-vessel-list"),
     ("Combined IUU Vessel List (TMT)", "https://iuu-vessels.org/"),
-    ("CCAMLR IUU list", "https://www.ccamlr.org/en/compliance/non-contracting-party-iuu-vessel-list"),
 ]
+
+
+
+DATA_DIR = os.path.join(HERE, "data")
+
+
+def find_export(path, *patterns):
+    """Repo-only workflow: an export committed to data/ is found automatically,
+    so a GitHub Action can use it without anyone passing a path. --file still
+    wins when given."""
+    if path:
+        return path
+    if not os.path.isdir(DATA_DIR):
+        return None
+    for f in sorted(os.listdir(DATA_DIR)):
+        low = f.lower()
+        if low.endswith((".csv", ".xlsx", ".json")) and any(p in low for p in patterns):
+            found = os.path.join(DATA_DIR, f)
+            print("  found export in data/: %s" % f)
+            return found
+    return None
+
+
+def read_file(path, what):
+    """A missing input should say what to do, not throw a stack trace at you."""
+    if not path:
+        return None
+    if not os.path.exists(path):
+        here = os.path.abspath(os.getcwd())
+        print("\n  File not found: %s" % path)
+        print("  You are in: %s" % here)
+        print("  %s" % what)
+        near = [f for f in os.listdir(here) if f.lower().endswith((".csv", ".json", ".xlsx"))]
+        if near:
+            print("  Data files in this directory: %s" % ", ".join(sorted(near)[:12]))
+        else:
+            print("  No .csv/.json/.xlsx files in this directory at all \u2014 you are "
+                  "probably not in the repo folder, or the export has not been made yet.")
+        return None
+    return path
 
 
 def fetch(url, timeout=90, headers=None):
@@ -162,9 +219,12 @@ def harvest_brazil(a):
     is a Shiny dashboard rather than an API, so its export is the realistic
     input; --file takes it."""
     rows = []
-    if a.file:
-        rows = list(csv.DictReader(open(a.file, encoding="utf-8")))
-        print("  using local export: %s (%d rows)" % (a.file, len(rows)))
+    fp = read_file(find_export(a.file, "resgat", "escrav", "brazil", "municip"), "Export the municipality table from "
+                           "observatorioescravo.mpt.mp.br (its download control), save it "
+                           "into your repo folder, cd there, and re-run.")
+    if fp:
+        rows = list(csv.DictReader(open(fp, encoding="utf-8")))
+        print("  using local export: %s (%d rows)" % (fp, len(rows)))
     else:
         print("  The Observatorio Digital do Trabalho Escravo "
               "(observatorioescravo.mpt.mp.br) is a Shiny dashboard, not an API. "
@@ -235,8 +295,11 @@ def harvest_brazil(a):
 
 # ==================================================================== GLOTIP
 def harvest_glotip(a):
-    if a.file:
-        raw = open(a.file, "rb").read()
+    fp = read_file(find_export(a.file, "glotip", "unodc", "traffick"), "Export the country table from dataunodc.un.org "
+                           "(Trafficking in Persons), save it into your repo folder, "
+                           "cd there, and re-run.")
+    if fp:
+        raw = open(fp, "rb").read()
     else:
         raw = None
         for page in GLOTIP_PAGES:
@@ -299,24 +362,167 @@ def harvest_glotip(a):
 
 
 # ======================================================================= IUU
+
+def pdf_text(raw):
+    """Extract text from a PDF without a third-party dependency.
+
+    Most RFMO IUU lists are PDFs with FlateDecode content streams, so zlib plus
+    a regex over the text-showing operators gets the vessel numbers out. pypdf
+    is used instead when it happens to be installed, because it handles the
+    awkward encodings better \u2014 but it is not required, and requiring an
+    install to read a public vessel list would be its own kind of failure."""
+    try:
+        import pypdf
+        import io as _io
+        return "\n".join((pg.extract_text() or "")
+                          for pg in pypdf.PdfReader(_io.BytesIO(raw)).pages)
+    except Exception:
+        pass
+    import zlib
+    out = []
+    for m in re.finditer(rb"stream\r?\n(.*?)endstream", raw, re.S):
+        chunk = m.group(1)
+        try:
+            chunk = zlib.decompress(chunk)
+        except Exception:
+            pass
+        # text-showing operators: (literal) Tj and [(a)-1(b)] TJ
+        for t in re.findall(rb"\((?:\\.|[^\\)])*\)", chunk):
+            try:
+                out.append(t[1:-1].decode("latin-1"))
+            except Exception:
+                continue
+    return " ".join(out)
+
+
+DOC_EXT = (".pdf", ".xlsx", ".xls", ".csv", ".doc", ".docx")
+
+
+def linked_docs(html, base):
+    """Pages that describe an IUU list but do not contain it almost always link
+    it. Follow anything that looks like the list itself."""
+    urls = []
+    for href in re.findall(r'href="([^"]+)"', html, re.I):
+        low = href.lower()
+        if not low.endswith(DOC_EXT):
+            continue
+        if not any(w in low for w in ("iuu", "vessel", "list", "annex", "cmm", "record")):
+            continue
+        urls.append(urllib.parse.urljoin(base, href))
+    seen, out = set(), []
+    for u in urls:
+        if u not in seen:
+            seen.add(u)
+            out.append(u)
+    return out[:6]
+
+
+def _imo_check(s):
+    """IMO numbers carry a check digit: the first six digits weighted 7..2 sum
+    to a value whose last digit is the seventh. Cheap, and it removes almost
+    every false positive a 7-digit regex picks up."""
+    if len(s) != 7 or not s.isdigit():
+        return False
+    if sum(int(s[i]) * (7 - i) for i in range(6)) % 10 != int(s[6]):
+        return False
+    # The check digit alone still passes 1234567 and 0000000. Assigned IMO
+    # numbers start at 5 or above, and a strictly sequential or single-repeated
+    # run is a placeholder or a page artefact, not a hull.
+    if s[0] < "5":
+        return False
+    if len(set(s)) == 1:
+        return False
+    if all(int(s[i + 1]) - int(s[i]) == 1 for i in range(6)):
+        return False
+    return True
+
+
+def _looks_like_js_shell(html):
+    """A near-empty document with script tags and no table is an app that
+    renders client-side. Worth saying so, because 'found 0' otherwise reads as
+    'the list is empty' when it means 'the data is not in this response'."""
+    txt = re.sub(r"<script.*?</script>", " ", html, flags=re.S)
+    txt = re.sub(r"<[^>]+>", " ", txt)
+    return len(txt.split()) < 400 and "<script" in html
+
+
 def harvest_iuu(a):
     out = []
+    seen_imo = set()
     for name, url in IUU_SOURCES:
         try:
-            html = fetch(url).decode("utf-8", "replace")
+            html = fetch(url, timeout=a.timeout).decode("utf-8", "replace")
         except Exception as ex:
-            print("  %-38s %s" % (name, str(ex)[:50]))
+            print("  %-42s %s" % (name, str(ex)[:46]))
             continue
-        vessels = re.findall(r"IMO[:\s]*([0-9]{7})", html)
-        print("  %-38s %d IMO numbers found" % (name, len(set(vessels))))
-        for imo in sorted(set(vessels))[: a.max or 500]:
+
+        # Several patterns, because every RFMO formats its list differently:
+        # labelled, in a table cell on its own, or as "IMO/Lloyd's number".
+        pats = [r"IMO[^0-9]{0,12}([0-9]{7})",
+                r"Lloyd'?s?[^0-9]{0,14}([0-9]{7})",
+                r"<td[^>]*>\s*([0-9]{7})\s*</td>"]
+        found = set()
+        for p in pats:
+            found |= set(re.findall(p, html, re.I))
+
+        # Nothing in the page itself? The list is probably a linked document.
+        # That is what "54,719 bytes and no IMO numbers" means in practice.
+        if not found:
+            docs = linked_docs(html, url)
+            for du in docs:
+                try:
+                    raw = fetch(du, timeout=90)
+                except Exception as ex:
+                    print("       linked doc failed: %s (%s)"
+                          % (du.rsplit("/", 1)[-1][:40], str(ex)[:34]))
+                    continue
+                text = pdf_text(raw) if raw[:4] == b"%PDF" else raw.decode("utf-8", "replace")
+                hits = set()
+                for p in [r"IMO[^0-9]{0,12}([0-9]{7})", r"\b([0-9]{7})\b"]:
+                    hits |= set(re.findall(p, text, re.I))
+                if hits:
+                    print("       from linked document %s: %d candidate numbers"
+                          % (du.rsplit("/", 1)[-1][:40], len(hits)))
+                    found |= hits
+            if docs and not found:
+                print("       followed %d linked document(s), none carried IMO numbers"
+                      % len(docs))
+        # 7-digit IMO numbers have a check digit; use it to throw out years,
+        # phone fragments and reference numbers that happen to be 7 digits.
+        valid = {i for i in found if _imo_check(i)}
+
+        if not valid:
+            why = ("page renders client-side, so the vessel table is not in the HTML"
+                   if _looks_like_js_shell(html)
+                   else "no IMO-shaped numbers in %d bytes of HTML" % len(html))
+            print("  %-42s 0 \u2014 %s" % (name, why))
+            if a.dump:
+                fn = os.path.join(HERE, "iuu_%s.html" % re.sub(r"\W+", "_", name.lower())[:30])
+                open(fn, "w", encoding="utf-8").write(html)
+                print("       dumped to %s" % os.path.basename(fn))
+            continue
+
+        new_here = valid - seen_imo
+        rejected = len(found) - len(valid)
+        print("  %-42s %d IMO numbers (%d new%s)"
+              % (name, len(valid), len(new_here),
+                 (", %d 7-digit strings rejected by the check digit" % rejected)
+                 if rejected else ""))
+        if rejected and rejected > len(valid):
+            print("       more rejected than kept \u2014 if this list is known to be "
+                  "larger, the page may use Lloyd's numbers or have typos; re-run "
+                  "with --dump and send me the file")
+        seen_imo |= valid
+        for imo in sorted(new_here)[: a.max or 500]:
             out.append({
                 "name": "Vessel IMO %s \u2014 IUU listed" % imo,
                 "source": "iuu", "type": "IUU-listed vessel",
                 "iso": "", "state": "At sea", "precise": False,
                 "impact": 3, "status": "Listed",
                 "url": url,
-                "desc": ("Listed for illegal, unreported or unregulated fishing by a regional "
+                "list": name,
+                "desc": ("Listed by %s. " % name.replace(" IUU list", "")
+                         + "Listed for illegal, unreported or unregulated fishing by a regional "
                          "fisheries management organisation. <b>Not a forced-labour finding.</b> "
                          "It is here because IUU operation and forced labour at sea are "
                          "strongly correlated in the documented cases \u2014 a vessel already "
@@ -357,6 +563,9 @@ def main():
     ap.add_argument("--file")
     ap.add_argument("--token")
     ap.add_argument("--max", type=int, default=500)
+    ap.add_argument("--timeout", type=int, default=90)
+    ap.add_argument("--dump", action="store_true",
+                    help="save the fetched HTML when a source yields nothing")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("-v", "--verbose", action="store_true")
     a = ap.parse_args()

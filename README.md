@@ -31,6 +31,30 @@ legal case, and where money goes.
     └── check.yml         smoke test + link check on push
 ```
 
+## Everything runs on GitHub. Nothing runs on your computer.
+
+All harvesters execute in GitHub Actions, write their output into the repo, and
+commit it. You never run Python locally. The only manual step is for the four
+sources whose publisher has no stable file URL — for those, download the export
+once in a browser and **commit it to `data/`**; the harvesters find it there
+automatically by filename and use it on every scheduled run.
+
+```
+data/
+├── resgates_brazil.csv     Observatório export (municipality rescues)
+├── glotip_unodc.csv        dataunodc.un.org country table
+├── ctdc_synthetic.csv      CTDC Global Synthetic Dataset
+├── gsi_prevalence.xlsx     Walk Free country data
+└── kilns.csv               SentinelKilnDB coordinates (optional)
+```
+
+Name them with any filename containing the keyword above — `resgat`, `glotip`,
+`ctdc`, `gsi`, `kiln` — and they are picked up without editing anything.
+
+One caveat worth knowing: GitHub's runners come from cloud IP ranges, and a few
+publishers block those. If a source works in your browser but 403s in Actions,
+that is why, and the export-to-`data/` route is the fix for it too.
+
 ## Setup
 
 ```bash
