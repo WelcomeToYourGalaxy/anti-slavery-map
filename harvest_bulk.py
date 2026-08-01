@@ -78,10 +78,7 @@ GLOTIP_PAGES = [
 IUU_SOURCES = [
     ("ICCAT IUU list", "https://www.iccat.int/en/IUUlist.html"),
     ("IOTC IUU list", "https://iotc.org/vessels/iuu"),
-    ("WCPFC IUU list", "https://www.wcpfc.int/wcpfc-iuu-vessel-list"),
-    ("IATTC IUU list", "https://www.iattc.org/en-US/Fisheries/IUU-vessel-list"),
     ("GFCM IUU list", "https://www.fao.org/gfcm/data/iuu-vessel-list/en/"),
-    ("SPRFMO IUU list", "https://www.sprfmo.int/measures/vessels/iuu-vessel-list/"),
     ("FAO Global Record", "https://www.fao.org/global-record/en/"),
     ("CCAMLR IUU list (non-contracting parties)",
      "https://www.ccamlr.org/en/compliance/non-contracting-party-iuu-vessel-list"),
@@ -89,7 +86,12 @@ IUU_SOURCES = [
      "https://www.ccamlr.org/en/compliance/contracting-party-iuu-vessel-list"),
     ("NAFO IUU list", "https://www.nafo.int/Fisheries/IUU"),
     ("SEAFO IUU list", "https://www.seafo.org/Management/IUU-Vessels"),
-    ("NPFC IUU list", "https://www.npfc.int/iuu-vessel-list"),
+    # These four 404'd on the live run, so they point at each body's landing
+    # page instead; the document-following step finds the list from there.
+    ("IATTC", "https://www.iattc.org/en-US/Fisheries/IUU"),
+    ("SPRFMO", "https://www.sprfmo.int/measures/"),
+    ("NPFC", "https://www.npfc.int/"),
+    ("WCPFC", "https://www.wcpfc.int/"),
     ("Combined IUU Vessel List (TMT)", "https://iuu-vessels.org/"),
 ]
 

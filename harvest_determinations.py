@@ -111,6 +111,12 @@ OVERRIDE = [
     ("tibet", "CHN"), ("qinghai", "CHN"), ("gansu", "CHN"), ("tianjin", "CHN"),
     ("xuzhou", "CHN"), ("yunnan", "CHN"), ("shandong", "CHN"),
     ("hong kong", "HKG"), ("macau", "MAC"),
+    # Vessels named in CBP actions carry no country in the entity record. Their
+    # flag state is what matters and what the map places them at; these came
+    # back unresolved in the first live run.
+    ("dalian ocean fishing", "CHN"), ("zhen fa", "CHN"), ("hangton", "CHN"),
+    ("lien yi hsing", "TWN"), ("da wang", "TWN"), ("yu long", "TWN"),
+    ("asli maydi", "SOM"),
     ("north korea", "PRK"), ("democratic people's republic of korea", "PRK"),
     ("south korea", "KOR"), ("republic of korea", "KOR"),
 ]

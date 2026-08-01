@@ -76,8 +76,6 @@ def from_index(path):
             b = re.search(r'\{"name":"([^"]+)","(?:guide|lat)"', line)
             if b:
                 cur = b.group(1)
-            for u, n in re.findall(r'"url":"(https?://[^"]+)"', line), []:
-                pass
             for u in re.findall(r'"url":"(https?://[^"]+)"', line):
                 nm = re.search(r'"name":"([^"]+)","url"', line)
                 out.append((u, nm.group(1) if nm else "", cur))

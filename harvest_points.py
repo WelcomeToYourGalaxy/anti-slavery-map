@@ -150,7 +150,7 @@ IPIS_WFS = ("https://geo.ipisresearch.be/geoserver/public/ows?service=WFS&versio
 
 def harvest_ipis(a):
     try:
-        raw = fetch(IPIS_WFS)
+        raw = fetch(IPIS_WFS, timeout=180)
         gj = json.loads(raw.decode("utf-8", "replace"))
     except Exception as ex:
         print("  IPIS WFS failed: %s" % str(ex)[:90])
@@ -309,22 +309,46 @@ def harvest_hotlines(a):
         print("  hotline page fetch failed: %s" % str(ex)[:80])
         return {}
     text = re.sub(r"<script.*?</script>", " ", html, flags=re.S)
-    rows = re.findall(r"<tr[^>]*>(.*?)</tr>", text, re.S)
-    if not rows:
-        rows = re.findall(r"<li[^>]*>(.*?)</li>", text, re.S)
     out = {}
-    for r in rows:
-        cells = [re.sub(r"<[^>]+>", " ", c) for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", r, re.S)]
+
+    # 1. proper tables
+    for r in re.findall(r"<tr[^>]*>(.*?)</tr>", text, re.S):
+        cells = [re.sub(r"<[^>]+>", " ", c)
+                 for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", r, re.S)]
         if len(cells) < 2:
             continue
         country = " ".join(cells[0].split())
         number = " ".join(" ".join(cells[1:]).split())
-        if not country or not number or len(country) > 60:
-            continue
-        if not re.search(r"\d", number):
-            continue
-        out[country] = number
-    print("  hotlines parsed: %d countries" % len(out))
+        if country and number and len(country) <= 60 and re.search(r"\d", number):
+            out[country] = number
+
+    # 2. the page is actually paragraphs and list items in the form
+    #    "Country: +00 000 0000" or "Country — 116 000". The table parser found
+    #    nothing on the live page, which is what "0 countries" meant.
+    if not out:
+        blocks = re.findall(r"<(?:li|p|h[3-5])[^>]*>(.*?)</(?:li|p|h[3-5])>", text, re.S)
+        for b in blocks:
+            line = " ".join(re.sub(r"<[^>]+>", " ", b).split())
+            m = re.match(r"^([A-Z][A-Za-z .'\u2019()\-]{2,45}?)\s*[:\u2013\u2014-]\s*(.+)$", line)
+            if not m:
+                continue
+            country, number = m.group(1).strip(), m.group(2).strip()
+            if not re.search(r"\d{3}", number) or len(number) > 200:
+                continue
+            out[country] = number
+
+    if not out:
+        plain = " ".join(re.sub(r"<[^>]+>", " ", text).split())
+        print("  hotlines parsed: 0 countries \u2014 neither a table nor "
+              "'Country: number' lines matched in %d bytes (%d words of visible "
+              "text). The page layout has changed; re-run with --dump and send "
+              "the file." % (len(html), len(plain.split())))
+        if a.dump:
+            fn = os.path.join(HERE, "hotlines_page.html")
+            open(fn, "w", encoding="utf-8").write(html)
+            print("       dumped to %s" % os.path.basename(fn))
+    else:
+        print("  hotlines parsed: %d countries" % len(out))
     return out
 
 
@@ -338,6 +362,7 @@ def main():
     ap.add_argument("--pages", type=int, default=3)
     ap.add_argument("--decimate", type=float, default=0.05,
                     help="degrees per grid cell; 0 disables thinning")
+    ap.add_argument("--dump", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("-v", "--verbose", action="store_true")
     a = ap.parse_args()

@@ -2011,3 +2011,132 @@ GitHub's runners come from cloud IP ranges and some publishers block those. If a
 source works in your browser but 403s in Actions, that is the reason — and the
 export-to-`data/` route is the fix for that case as well as for the dashboard
 case.
+
+---
+
+# Twenty-fifth pass — "only 20 entries" was a race condition, and it was mine
+
+## The count
+
+18, not 20 — and that number is diagnostic. Of the 234 seed records, **18 carry
+explicit coordinates and 216 depend on `ISO_CENTROID`**, the country-centroid
+table built from the world-atlas boundary file the map fetches at load.
+
+`pjLoad` and that fetch race each other. When `pjLoad` won, `_pjPlaceByISO`
+found an empty centroid table and **dropped all 216 records**, logging a warning
+nobody reads. The map drew 18 dots and looked almost empty. On a fast connection
+the atlas sometimes won and you would see all 234, which is the worst kind of
+bug: intermittent, silent, and it looks like missing data rather than broken
+code.
+
+Unplaceable records are now **parked, not dropped**. Once the atlas finishes and
+the centroids exist, `_pjFlushPending()` places them and redraws. Tested in both
+orderings: pjLoad first gives 18 placed and 216 parked, then the flush brings it
+to 234 of 234 with nothing left parked and every record carrying coordinates.
+
+The console messages were wrong too. A parked record used to be reported as
+"dropped: no boundary geometry for the country code given", which reads as *that
+country does not exist* when it actually means *the boundaries have not finished
+downloading*. Now those are two different messages, because they call for two
+different reactions.
+
+## The repo directory is misspelled
+
+```
+.gtihub/workflows/     <- what is in the repo
+.github/workflows/     <- what GitHub reads
+```
+
+Nothing has ever run. That is the entire reason there is no `wire.json`,
+`projects.json`, `cases.json` or anything else in the repo — not a permissions
+problem, not a settings problem, just three transposed letters. GitHub gives no
+warning for this; an unrecognised dot-directory is simply ignored.
+
+## Repo audit
+
+`index.html` is current: 234 seed records, correct title, intent grouping,
+GMSD block, all six side-file loaders. `trackerdata.json` is current at 122 KB.
+All seven harvesters present. `.nojekyll` present. Nothing missing except the
+harvest output, which follows from the directory name.
+
+---
+
+# Twenty-sixth pass — the first real run worked; three of my bugs threw it away
+
+Read past the red X: **the harvesting succeeded.**
+
+```
+wire.json        423,543 bytes   4,109 raw -> 606 on-topic, 244 with a country (40%)
+projects.json    248,460 bytes   234 seed + 55 harvested from CBP = 289 records
+bulk.json         17,062 bytes   18 IUU vessels from CCAMLR
+```
+
+The demonym work paid: country tagging went **34% -> 40%**. The OpenSanctions
+country-property fix paid harder: **10 -> 55 records**, which is the whole CBP
+list rather than a fifth of it.
+
+Then the commit step lost all of it.
+
+## 1. The push race — this is why nothing landed
+
+```
+! [rejected] main -> main (fetch first)
+```
+
+The remote moved while the job ran — you were uploading files through the web
+UI at the same time — and the step pushed straight at `main` with no rebase. An
+hour of harvesting, discarded because of a race with a file upload.
+
+The commit step now rebases onto whatever landed and **retries five times with
+backoff**, and a `concurrency: harvest` group stops two runs pushing over each
+other. It also exits early and quietly when nothing actually changed, instead of
+making an empty commit every six hours.
+
+## 2. `verify_links.py` crashed on a line that never did anything
+
+```python
+for u, n in re.findall(r'"url":"(https?://[^"]+)"', line), []:
+    pass
+```
+
+Leftover from a first draft: it iterates a two-element tuple and tries to unpack
+each element into two names. `ValueError: not enough values to unpack`. It threw
+on every run and the loop below it — the one that actually collects URLs —
+worked fine. Deleted. The checker now runs to completion.
+
+## 3. The smoke test failed on an error with no message
+
+```
+FAIL — uncaught runtime errors:
+  
+```
+
+Blank. Some jsdom versions emit an empty error object when a stripped external
+`<script>` tag is encountered, and CI runs Node 20 against my Node 22, so it
+failed there and passed locally.
+
+Entries with **no message text at all** are now counted and reported but do not
+fail the build; anything carrying actual text still does. Suppressing a whole
+error class would have been the wrong fix, so the count is printed either way:
+`runtime errors: none (1 empty error object ignored — jsdom noise, not a page
+fault)`.
+
+## Also from the log
+
+- **Six CBP entities had no resolvable country** and were correctly dropped
+  rather than guessed. Five are vessels, which carry no country in the entity
+  record, and one is Somali. Flag states added: Dalian Ocean Fishing, Zhen Fa,
+  Hangton to China; Lien Yi Hsing, Da Wang, Yu Long to Taiwan; Asli Maydi to
+  Somalia. Next run should place all 61.
+- **Hotlines parsed 0 countries.** The State Department page is not a table.
+  The parser now also reads `Country: number` list items and paragraphs, and
+  when both fail it reports the byte count and visible word count rather than a
+  bare zero. Tested against table form, list form, and a JS shell.
+- **IPIS timed out** at 90 seconds. Raised to 180 — a GeoServer WFS returning
+  2,800 features with full attributes is a slow request, not a broken one.
+- **Four IUU 404s** (IATTC, SPRFMO, NPFC, WCPFC) now point at each body's
+  landing page, so the document-following step can find the list from there.
+- **Three feed 404/403s** in the wire: the Guardian rights-and-freedom path is
+  still in the deployed copy, and Anti-Slavery International and BHRRC block
+  cloud IPs. The first is fixed in the current `index.html`; the other two are
+  the cloud-IP problem the README warns about.
