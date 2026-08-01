@@ -20,7 +20,9 @@ const fs = require("fs");
 const path = require("path");
 const { JSDOM, VirtualConsole } = require("jsdom");
 
+const VERSION = "smoke_test 2026-08-02";   // bump when this file changes
 const FILE = process.argv[2] || path.join(__dirname, "index.html");
+console.log(VERSION + "  |  node " + process.version);
 const WAIT = 3000;
 
 let html = fs.readFileSync(FILE, "utf8");
@@ -100,6 +102,17 @@ setTimeout(() => {
   let fail = false;
   console.log("file:", path.basename(FILE));
   console.log("title:", w.document.title);
+
+  if (blanks) {
+    // Do not just swallow these: print enough to identify them, so a real
+    // fault hiding behind an empty message is still visible in the log.
+    console.log("note: " + blanks + " error object(s) with no message text \u2014 "
+      + "not treated as failures. Raw form:");
+    raw.filter((e) => String(e).replace(/@line.*$/, "").trim().length === 0)
+       .slice(0, 3)
+       .forEach((e) => console.log("      " + JSON.stringify(String(e)) +
+         "  (type " + typeof e + ")"));
+  }
 
   if (errs.length) {
     fail = true;

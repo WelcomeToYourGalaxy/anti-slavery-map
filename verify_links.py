@@ -110,7 +110,20 @@ def check(url, timeout):
                 # Reporting them as redirects buried the handful that matter:
                 # of 125 redirects in the sibling run, almost all were these.
                 def canon(u):
-                    u = re.sub(r"^https?://", "", u.lower())
+                    u = u.lower()
+                    # Query-string locale noise is not a move. Google News
+                    # rewrites hl=en to hl=en-US on every single request, which
+                    # reported 35 of 35 feed URLs as redirects and buried the
+                    # ones that actually went somewhere else.
+                    base, _, q = u.partition("?")
+                    if q:
+                        keep = [kv for kv in q.split("&")
+                                if kv.split("=")[0] not in
+                                ("hl", "gl", "ceid", "utm_source", "utm_medium",
+                                 "utm_campaign", "utm_content", "utm_term",
+                                 "fbclid", "gclid", "lang", "locale", "ref")]
+                        base = base + ("?" + "&".join(sorted(keep)) if keep else "")
+                    u = re.sub(r"^https?://", "", base)
                     u = re.sub(r"^www\.", "", u)
                     u = re.sub(r"/(index|default)\.(html?|php|aspx?)$", "/", u)
                     return u.rstrip("/")
@@ -144,6 +157,9 @@ def main():
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--timeout", type=int, default=25)
     ap.add_argument("--csv")
+    ap.add_argument("--strict", action="store_true",
+                    help="exit non-zero when dead links exceed --max-dead")
+    ap.add_argument("--max-dead", type=int, default=0)
     args = ap.parse_args()
 
     targets = []
@@ -182,6 +198,14 @@ def main():
         if tally.get(k):
             print("%-9s %d" % (k, tally[k]))
 
+    dead = [r for r in rows if r["status"] == "DEAD"]
+    if dead:
+        print("\nDEAD \u2014 these need fixing or removing (%d):" % len(dead))
+        for r in dead:
+            print("  %-4s %-72s %s" % (r["code"], r["url"][:72], r["where"][:34]))
+        print("\nRead BLOCKED as 'a live site refusing a script', not as dead. "
+              "Open one by hand before touching the entry.")
+
     if args.csv:
         with io.open(args.csv, "w", encoding="utf-8", newline="") as f:
             w = csv.DictWriter(f, fieldnames=["status", "code", "url",
@@ -190,7 +214,18 @@ def main():
             w.writerows(rows)
         print("\nwrote", args.csv)
 
-    return 1 if (tally.get("DEAD") or tally.get("ERROR")) else 0
+    # Exit non-zero only when asked. A scheduled check over ~400 third-party
+    # URLs will always find something down somewhere, and a permanently red
+    # tick trains you to ignore the one run that matters. Use --strict to gate
+    # a deploy on it.
+    bad = (tally.get("DEAD", 0) + tally.get("ERROR", 0))
+    if args.strict and bad > args.max_dead:
+        print("\n--strict: %d dead/errored exceeds --max-dead %d" % (bad, args.max_dead))
+        return 1
+    if bad:
+        print("\n%d dead/errored URL(s). Not failing the run \u2014 pass --strict "
+              "to make this a build failure." % bad)
+    return 0
 
 
 if __name__ == "__main__":

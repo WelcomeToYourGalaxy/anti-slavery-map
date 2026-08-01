@@ -2140,3 +2140,51 @@ fault)`.
   still in the deployed copy, and Anti-Slavery International and BHRRC block
   cloud IPs. The first is fixed in the current `index.html`; the other two are
   the cloud-IP problem the README warns about.
+
+---
+
+# Twenty-seventh pass — making the checks tell the truth
+
+## The smoke test was passing all along
+
+The fixed `smoke_test.js` runs clean against **your repo's exact `index.html`**,
+tested here. So that run used the old copy: the fix had not been uploaded when
+it fired.
+
+I could not tell that from the log, which is the actual defect. Two changes so
+the next one answers it immediately:
+
+- **A version stamp.** The first line is now `smoke_test 2026-08-02 | node
+  v22.22.2`. If that line is absent or dated, the file in the repo is stale, and
+  you know it before reading anything else.
+- **Blank errors are described, not swallowed.** It prints the count, the raw
+  form and the type of each one. Suppressing an error class silently would have
+  been the wrong fix — a real fault hiding behind an empty message stays visible.
+
+The workflow now **pins Node to 22**, the version this is verified against. The
+failure was Node 20-specific: an empty jsdom error object with nothing to do
+with the page.
+
+## Links: 35 of 35 "redirects" were Google rewriting its own URL
+
+Google News rewrites `hl=en` to `hl=en-US` on every request. That is not a move,
+and reporting it as one buried the redirects that went somewhere else. The
+canonical comparison now strips locale and tracking parameters — `hl`, `gl`,
+`ceid`, the `utm_*` set, `fbclid`, `gclid` — before comparing, and sorts what
+remains. Unit-tested against the real cases plus http→https, `www`,
+`index.html`, a genuine path move and a genuine query change.
+
+## Links: the job going red taught you to ignore it
+
+45 dead out of ~290 checked, and the step exited 1. Over that many third-party
+URLs something is always down, and a permanently red tick is worse than no tick
+— you stop reading it.
+
+`verify_links.py` now **exits 0 by default** and prints the dead list *in the
+log*, so you can see what needs fixing without downloading the artifact.
+`--strict` restores the old behaviour for gating a deploy, with `--max-dead N`
+for a tolerance.
+
+**Those 45 are still real and still worth fixing.** They are in the run's
+`report.csv` artifact; send it and I will work through them. From the earlier
+report, expect a cluster: retired URL schemes where one edit fixes ten entries.
