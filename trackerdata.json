@@ -71,6 +71,18 @@
     ],
     "url": "https://www.redcross.org.au/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "1800 55 1800, free and twenty-four hours for anyone aged 5 to 25, by phone, web chat or email. The web-chat route is the usable one when a child cannot speak aloud where they are.",
+    "kind": "institution",
+    "name": "Kids Helpline",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://kidshelpline.com.au/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -100,6 +112,17 @@
     ],
     "url": "https://www.brac.net/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "Licenses recruiting agencies for overseas employment and holds the clearance record for departing workers. Bangladeshi cases very often begin with a fee several times the legal ceiling, and the licence file is where that is documented.",
+    "kind": "structured",
+    "name": "BMET \u2014 Bureau of Manpower, Employment and Training",
+    "skind": "inspectorate",
+    "tags": [
+     "corporate:recruit"
+    ],
+    "url": "https://bmet.gov.bd/",
+    "voice": "official"
    }
   ]
  },
@@ -1032,6 +1055,18 @@
     ],
     "url": "https://www.publicsafety.gc.ca/cnt/cntrng-crm/hmn-trffckng/index-en.aspx",
     "voice": "official"
+   },
+   {
+    "desc": "1-800-668-6868, or text CONNECT to 686868. Reaches children directly in English and French, which matters where a young person cannot safely have an adult make the call for them.",
+    "kind": "institution",
+    "name": "Kids Help Phone",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://kidshelpphone.ca/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1108,6 +1143,18 @@
     "type": "records-data",
     "url": "https://www.zoll.de/",
     "voice": "official"
+   },
+   {
+    "desc": "116 111 for children and young people, and a separate parents' line. Anonymous and free, and the German entry point into child protection that does not begin with the police.",
+    "kind": "institution",
+    "name": "Nummer gegen Kummer",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://www.nummergegenkummer.de/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1127,6 +1174,35 @@
     ],
     "url": "https://www.proyectoesperanza.org/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "116 111 for children and 600 50 51 52 for adults with a concern. Free, confidential, and it does not appear on a phone bill \u2014 a detail that matters where the household is the problem.",
+    "kind": "institution",
+    "name": "Fundaci\u00f3n ANAR",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://www.anar.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "ETH": {
+  "name": "Ethiopia",
+  "trackers": [
+   {
+    "desc": "Regulates overseas employment agencies for a corridor \u2014 Ethiopia to the Gulf, largely domestic work \u2014 that has produced sustained documentation of confiscated passports, unpaid wages and deaths. The licensing register is the practical leverage point.",
+    "kind": "structured",
+    "name": "Ministry of Labour and Skills",
+    "skind": "inspectorate",
+    "tags": [
+     "corporate:recruit",
+     "environment:inspect"
+    ],
+    "url": "https://mols.gov.et/",
+    "voice": "official"
    }
   ]
  },
@@ -1176,6 +1252,18 @@
     ],
     "url": "https://www.esclavagemoderne.org/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "119, free and twenty-four hours, the French national number for a child in danger. Takes calls from children and from any adult with a concern, and routes to the departmental child-protection service.",
+    "kind": "structured",
+    "name": "119 \u2014 Allo Enfance en Danger",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://www.allo119.gouv.fr/",
+    "voice": "official"
    }
   ]
  },
@@ -1387,6 +1475,18 @@
      "organizing:fund"
     ],
     "url": "https://www.unseenuk.org/donate/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "0808 800 5000, for adults worried about a child. Takes a call from anyone, including anonymously, and can refer to children's services or police. Use it when what you have is a concern rather than evidence \u2014 that is what it is for, and waiting for certainty is how cases are missed.",
+    "kind": "institution",
+    "name": "NSPCC helpline",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://www.nspcc.org.uk/keeping-children-safe/reporting-abuse/",
     "voice": "interpretive"
    }
   ]
@@ -1626,6 +1726,17 @@
     ],
     "url": "https://hrln.org/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "The Ministry of External Affairs system for emigration clearance, carrying the register of licensed recruiting agents. Check the agent here before anyone pays a fee: an unlicensed agent is itself an offence and a far faster case than proving exploitation after the fact.",
+    "kind": "structured",
+    "name": "eMigrate \u2014 check a recruiting agent",
+    "skind": "inspectorate",
+    "tags": [
+     "corporate:recruit"
+    ],
+    "url": "https://emigrate.gov.in/",
+    "voice": "official"
    }
   ]
  },
@@ -1644,6 +1755,18 @@
      "organizing:help"
     ],
     "url": "https://www.mrci.ie/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "1800 66 66 66, free and twenty-four hours, plus text and live chat. Ireland's national listening service for children.",
+    "kind": "institution",
+    "name": "ISPCC Childline",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://www.ispcc.ie/childline/",
     "voice": "interpretive"
    }
   ]
@@ -1673,6 +1796,18 @@
      "advocacy:data"
     ],
     "url": "https://www.flai.it/osservatoriopr/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "19696, free and twenty-four hours, for children and for adults reporting concern about one. Italy's oldest child-protection line, and it also handles online exploitation reports.",
+    "kind": "institution",
+    "name": "Telefono Azzurro",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://azzurro.it/",
     "voice": "interpretive"
    }
   ]
@@ -1708,6 +1843,36 @@
     ],
     "url": "https://haartkenya.org/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "116, free from any network, twenty-four hours, run with the Department of Children's Services. The national route for reporting a child in labour or at risk.",
+    "kind": "institution",
+    "name": "Childline Kenya",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://childlinekenya.co.ke/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "KHM": {
+  "name": "Cambodia",
+  "trackers": [
+   {
+    "desc": "Cambodian labour-rights organisation providing legal support and documentation for garment, construction and migrant workers, including workers recruited into Thailand and Malaysia.",
+    "kind": "institution",
+    "name": "Central \u2014 Cambodian Alliance of Trade Unions support",
+    "skind": "ngo",
+    "tags": [
+     "organizing:legal",
+     "organizing:help",
+     "conserve:compensation"
+    ],
+    "url": "https://www.central-cambodia.org/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1727,6 +1892,22 @@
     ],
     "url": "https://kafa.org.lb/",
     "voice": "interpretive"
+   }
+  ]
+ },
+ "LKA": {
+  "name": "Sri Lanka",
+  "trackers": [
+   {
+    "desc": "Registers migrant workers and licenses recruitment agencies, and runs a welfare fund that pays compensation in death and injury cases abroad. Registration before departure is what makes a worker eligible for that fund \u2014 unregistered departure is common and forfeits it.",
+    "kind": "structured",
+    "name": "Sri Lanka Bureau of Foreign Employment",
+    "skind": "inspectorate",
+    "tags": [
+     "corporate:recruit"
+    ],
+    "url": "https://www.slbfe.lk/",
+    "voice": "official"
    }
   ]
  },
@@ -1771,6 +1952,23 @@
      "conserve:shelter"
     ],
     "url": "https://consejociudadanomx.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "MMR": {
+  "name": "Myanmar",
+  "trackers": [
+   {
+    "desc": "Works with Burmese migrant workers, most of them in Thailand, on labour rights, documentation and access to compensation. Operates cross-border, which is what the situation requires.",
+    "kind": "institution",
+    "name": "Migrant Assistance Programme (MAP) Foundation",
+    "skind": "ngo",
+    "tags": [
+     "organizing:help",
+     "conserve:compensation"
+    ],
+    "url": "https://www.mapfoundationcm.org/",
     "voice": "interpretive"
    }
   ]
@@ -1870,6 +2068,18 @@
     ],
     "url": "https://devatop.org/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "0800 800 8001, a child-focused helpline in Nigeria providing counselling, medical and legal support, and case follow-through rather than only referral.",
+    "kind": "institution",
+    "name": "Cece Yara Foundation",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://www.ceceyara.org/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -1916,6 +2126,18 @@
      "conserve:shelter"
     ],
     "url": "https://www.fairwork.nu/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "0800 0432, free and not shown on the bill, for children who want to talk to someone outside the household. Chat as well as phone.",
+    "kind": "institution",
+    "name": "De Kindertelefoon",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://www.kindertelefoon.nl/",
     "voice": "interpretive"
    }
   ]
@@ -1970,6 +2192,18 @@
     ],
     "url": "https://fepb.gov.np/",
     "voice": "official"
+   },
+   {
+    "desc": "1098, run by CWIN, Nepal's longest-running child-rights organisation. Handles rescue and rehabilitation of children in labour, including children trafficked into work in India.",
+    "kind": "institution",
+    "name": "CWIN Child Helpline 1098",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://cwin.org.np/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -2038,6 +2272,18 @@
      "conserve:legalaid"
     ],
     "url": "https://centerformigrantadvocacy.com/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "163, a national child-welfare helpline taking reports of abuse, neglect and child labour, with rescue and case management behind it.",
+    "kind": "institution",
+    "name": "Bantay Bata 163",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://www.bantaybata163.com/",
     "voice": "interpretive"
    }
   ]
@@ -2554,6 +2800,18 @@
     ],
     "url": "https://polarisproject.org/donate/",
     "voice": "interpretive"
+   },
+   {
+    "desc": "1-800-422-4453, twenty-four hours, in over 170 languages. Staffed by counsellors rather than call handlers, takes anonymous reports about a child, and can tell you what the mandatory-reporting rules are in your specific state before you decide what to do.",
+    "kind": "institution",
+    "name": "Childhelp National Child Abuse Hotline",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://childhelphotline.org/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -2625,6 +2883,18 @@
     ],
     "url": "https://www.0800222777.org.za/",
     "voice": "official"
+   },
+   {
+    "desc": "116, free and twenty-four hours. Takes calls from children and from adults reporting a child at risk, with counselling and legal support behind it.",
+    "kind": "institution",
+    "name": "Childline South Africa",
+    "skind": "helpline",
+    "tags": [
+     "conserve:child",
+     "conserve:hotline"
+    ],
+    "url": "https://www.childlinesa.org.za/",
+    "voice": "interpretive"
    }
   ]
  }
