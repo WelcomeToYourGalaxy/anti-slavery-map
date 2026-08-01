@@ -2775,6 +2775,34 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
       t=setTimeout(function(){ pjQ=v; pjRender(); }, 220);
     });
   })();
+  /* Records harvested from a customs list carry an ISO3 code and no
+     coordinates, because a customs order names a company and not a place. The
+     country centroid is computed from the boundary geometry this map already
+     loads, so no coordinate table has to be shipped or maintained. Anything
+     placed this way is flagged imprecise and therefore drawn as a hollow ring.
+     A record whose country has no geometry is dropped rather than parked at
+     0,0 in the Gulf of Guinea. */
+  function _pjPlaceByISO(data){
+    try{
+      var list=(data&&data.projects)||[];
+      var C=window.ISO_CENTROID||{}, used={}, out=[], dropped=0;
+      list.forEach(function(p){
+        if(typeof p.lat==='number' && typeof p.lng==='number'){ out.push(p); return; }
+        var c=p.iso && C[p.iso];
+        if(!c){ dropped++; return; }
+        var k=(used[p.iso]=(used[p.iso]||0)); used[p.iso]++;
+        var ang=k*2.399963, rad=0.30*Math.sqrt(k);
+        p.lat=c[0]+rad*Math.sin(ang);
+        p.lng=c[1]+rad*Math.cos(ang)/Math.max(0.35,Math.cos(c[0]*Math.PI/180));
+        p.precise=false;
+        out.push(p);
+      });
+      if(dropped){ try{ console.warn('[determinations]',dropped,
+        'record(s) dropped: no boundary geometry for the country code given'); }catch(e){} }
+      data.projects=out;
+    }catch(e){ try{console.warn('_pjPlaceByISO',e);}catch(_e){} }
+    return data;
+  }
   function pjLoad(){
     var bust='?_='+Date.now();
     // Data is committed gzipped (projects.json.gz) because the raw JSON exceeds
@@ -2809,7 +2837,7 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
     }
     fromGz()
       .catch(function(err){ if(window&&window.console)console.warn('projects.json.gz load failed, trying plain:',err); return fromPlain(); })
-      .then(function(d){ pjData=d; pjRender(); })
+      .then(function(d){ pjData=_pjPlaceByISO(d); pjRender(); })
       .catch(function(err){ if(window&&window.console)console.error('projects data load failed; using seed set:',err); pjData=PJ_SEED; pjRender(); });
   }
   function pjShow(){ pjOn=true; if(!pjData){pjLoad();} else { if(!_projLayer){_projLayer=new ProjectLayer();} if(!map.hasLayer(_projLayer))_projLayer.addTo(map); _projLayer.redraw(); } var b=document.getElementById('projChk'); if(b)b.checked=true; }

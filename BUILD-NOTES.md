@@ -801,3 +801,318 @@ Still open, in the order I would take them:
    confirmed. 35 units are already in the geometry waiting.
 4. **`projects.json`**, starting with Brazil's employer register and the UFLPA
    Entity List — the only two sources that yield locatable named entities.
+
+---
+
+# Seventh pass — panel side, palette, and a wire that stopped padding itself
+
+## The country box now flies in from the right
+
+`#infoPanel` slid in from `translateX(-380px)` and was positioned by measuring
+the **left** help panel. Both are reversed: it enters from `+380px` and is
+positioned against the right-hand control column.
+
+It does **not** stack under the controls, which is what a naive fix would do —
+the controls run to `calc(100vh - 88px)`, so anything beneath them starts below
+the fold. It sits as a **second column immediately to their left**, top-aligned
+at 70px and running to 18px from the bottom. The map's fit padding was flipped
+with it, so opening a country now pans the map clear on the right instead of the
+left. Checked at four viewport widths: 380px wide down to 1024, narrowing to
+300px at 820, never off-screen.
+
+## Deep olive green and blue
+
+```
+--accent       #9a6a2e  →  #5f7a3c     deep olive
+--accent-hi    #e0ad6d  →  #a8c072     lifted olive
+body           #0d0906  →  #060c0e     near-black blue-green
+map            #17110b  →  #0b1518
+popups/panels  #1a1209  →  #0d1a1c
+```
+
+Twelve named anchors mapped by hand, then every remaining hex in the amber band
+(10°–62°) rotated to **78° olive**, except the darkest tones — anything below
+0.16 lightness goes to **185° blue-green**, which is what gives the panels and
+map ground their blue cast while the accents stay olive. Lightness is preserved
+throughout, so every contrast ratio in the sheet survives unchanged, and greys
+below 0.05 saturation are left alone rather than tinted.
+
+Result across the whole file: **241 colours at olive, 52 at blue/blue-green, one
+stray in the amber band.** The map container is a deep blue-green, so a tile
+failure now reads as sea rather than as void.
+
+## The wire was padding itself out with near-misses
+
+You were right, and the cause was specific. When fewer than eight items passed
+the strict gate, the code fell back to a "floor" list containing **bare nouns**:
+`worker`, `workers`, `migrant`, `mining`, `fishing`, `factory`, `recruitment`.
+Any story with the word *workers* in it cleared that floor. On a quiet day the
+strict gate would pass three items and the floor would pass ninety, so what you
+mostly saw was the floor.
+
+Replaced with a two-tier gate, applied identically in the map and in
+`harvest_wire.py` so the two agree:
+
+- **Pass** if a subject phrase is in the **title**, or if **two different**
+  subject phrases appear anywhere. One subject phrase buried in a body paragraph
+  is exactly how a crime round-up with "human trafficking" in its last line ends
+  up in the feed.
+- **Title matches rank first** — a +6 significance bonus, so headline relevance
+  sorts above body relevance.
+- **Thin-archive fallback uses compound phrases only** — every one at least two
+  words and specific to exploitation: *migrant workers*, *conditions analogous
+  to slavery*, *illegal recruitment*, *workers rescued*, *held against their
+  will*. Never a bare noun. If that still yields nothing the wire says it is
+  quiet rather than filling up.
+
+The kill list also grew by three families that share this vocabulary without
+being this subject: **historical and commemorative** (slavery museum,
+reparations, abolitionist, Juneteenth, emancipation day, slavery memorial),
+**labour economics** (labour market, labour force, labour costs, labour
+shortage, labour productivity, Labour Day), and **entertainment** (TV series,
+album, novel about, video game, travel guide).
+
+Tested against fifteen realistic headlines. Kept: the brick-kiln rescue, the
+seafood-plant inspection, the gangmaster jailing, the cocoa lawsuit, the
+migrant unpaid-wages story. Dropped: *UK labour market cools*, *Labour shortage
+hits fruit farms*, *Juneteenth events*, *Mining company reports record quarter*,
+*Fishing fleet expands*, *Factory fire kills six*, *Report finds workers in the
+supply chain*. The transatlantic-slave-trade museum piece and the childcare
+funding piece are killed outright by the OFF list. Server-side, a crime round-up
+mentioning trafficking once is dropped while one carrying two distinct subject
+phrases is kept.
+
+---
+
+# Eighth pass — the two thinnest slots
+
+Attorneys stood at 4 countries and somewhere to give money at 1. Both were the
+worst numbers in the directory and both were things you had asked for
+specifically. They are now 14 and 4, with nine new countries.
+
+**34 countries, 29 regions, 174 entries** (from 25 / 29 / 144), plus four more
+international entries.
+
+## Coverage by slot, all 34 countries
+
+```
+local allies       20/34        attorneys          14/34
+shelter            18/34        wages              10/34
+report/hotline     17/34        recruiters          7/34
+legal aid          16/34        donate              4/34
+inspection         15/34        child               3/34
+```
+
+## Attorneys, which was the point
+
+The gap was not that lawyers do not exist, it was that generic legal-aid links
+are useless here — trafficking, unpaid wages and immigration status are three
+different specialisms and a survivor needs all three at once. The additions are
+organisations that do this specific work:
+
+- **Human Trafficking Legal Center** (US) — trains pro bono counsel and keeps a
+  public database of federal civil trafficking cases, so you can check what has
+  been argued and what damages courts actually awarded before filing.
+- **National Immigrant Justice Center** (US) — T and U visa work, because in
+  most US cases the immigration question has to be settled *before* anyone
+  approaches law enforcement, not after.
+- **Kalayaan** (UK) — migrant domestic workers, and the group that documented
+  what the tied visa does in practice: leaving an abusive employer means losing
+  the right to be in the country.
+- **Human Rights Law Network** (India) — offices in most states, and public
+  interest litigation, which is the route that has actually forced district
+  administrations to act on bonded labour where individual complaints did not.
+- **Defensoria Pública da União** (Brazil) — the division of labour worth
+  knowing there: the MPT prosecutes, the DPU represents the worker in the claim
+  for wages and damages afterwards.
+- **CCEM** (France) on domestic servitude including diplomatic households,
+  **Proyecto ESPERANZA** (Spain), **MRCI** (Ireland), **HAART** (Kenya),
+  **BLAST** (Bangladesh), **KAFA** (Lebanon).
+
+## Nine new countries
+
+Nepal, Bangladesh, Vietnam, Singapore, Lebanon, Hong Kong, Italy, Spain and
+Ireland — chosen as origin countries, destination countries and the two
+jurisdictions with the most specific documented patterns (Italian *caporalato*,
+Gulf domestic work via Lebanon).
+
+Two are worth calling out. **Hong Kong** carries Liberty Shared, which files the
+forced-labour petitions that produce customs import bans — including the one
+behind the Sime Darby palm oil order — so it belongs on the enforcement side as
+much as the services side. **Nepal** carries the Foreign Employment Board,
+because Nepal is overwhelmingly an origin country and the leverage is at the
+recruiter and the licence, not at a workplace inside Nepal.
+
+## Money
+
+Four global additions, all regranting or survivor-led rather than
+intermediaries: **Global Fund to End Modern Slavery** (publishes its
+evaluations, including the ones that did not work), **Survivor Alliance** (run
+by survivors, pays survivors for consultancy rather than asking them to tell
+their story for free — the organisation to hire from as well as fund),
+**Global Fund for Children** (small unrestricted grants to locally led groups),
+and the ILO's **IPEC+** programme as the reference for what a child-labour
+intervention is supposed to look like.
+
+## Four countries still have no service slot at all
+
+China, Turkmenistan, Uzbekistan and Norway. For the first three that is not an
+omission — there is no independent service to point at, and inventing one would
+be worse than the blank. Norway's entry is a due-diligence supervisor, which is
+a different kind of thing. In all four the worldwide block at the foot of every
+popup is the working route, which is exactly the case it was built for.
+
+## Standing caveat
+
+None of the 30 new URLs have been opened from here — this sandbox has no general
+egress. Run `verify_links.py` before deploying, and read `BLOCKED` as "a live
+site refusing a script", not as dead.
+
+---
+
+# Ninth pass — child routes, recruiters, and named producers on the map
+
+## Child protection: 3 → 18 countries
+
+The worst gap on a map whose title carries the words *child labour*.
+
+Sixteen national child helplines added: NSPCC and ISPCC, Childhelp, Kids Help
+Phone, Kids Helpline, 119 Allo Enfance en Danger, Nummer gegen Kummer, Telefono
+Azzurro, ANAR, De Kindertelefoon, Childline South Africa, Childline Kenya, Cece
+Yara, Bantay Bata 163, CWIN 1098.
+
+**Helplines rather than child-protection ministries, deliberately.** A helpline
+takes a call from a member of the public about a child they do not know; a
+ministry does not. Each description carries the detail that decides whether
+someone actually calls — that ANAR's number does not appear on a phone bill,
+which matters when the household is the problem; that Kids Helpline has web chat,
+which is the usable route when a child cannot speak aloud where they are; that
+Childhelp will tell you what the mandatory-reporting rules are in your specific
+state before you decide what to do.
+
+## Recruiters: 7 → 10 countries
+
+The fee and the licence are where the debt is created, upstream of every
+workplace on this map, and the licence can only be pulled in the origin country.
+Added **eMigrate** (India), **BMET** (Bangladesh), the **Sri Lanka Bureau of
+Foreign Employment**, and **Ethiopia's Ministry of Labour and Skills** for the
+Gulf domestic-work corridor. Sri Lanka's entry carries the detail that matters
+there: registration before departure is what makes a worker eligible for the
+welfare fund, and unregistered departure — which is common — forfeits it.
+
+Four new countries with it: Sri Lanka, Ethiopia, Myanmar, Cambodia.
+
+**38 countries, 29 regions, 195 entries.**
+
+```
+report/hotline   22/38      inspection       16/38
+local allies     22/38      attorneys        15/38
+shelter          18/38      wages            12/38
+child            18/38      recruiters       10/38
+legal aid        16/38      donate            4/38
+```
+
+## The determinations layer now names companies
+
+14 → **25 records**, and the eleven added are the category the layer was missing:
+**named producers and named vessels**, not regions and commodities.
+
+Top Glove, FGV Holdings, Sime Darby Plantation, Taepyung Salt Farm, Linglong
+International Europe, Giant Manufacturing, the vessels Zhen Fa 7 and Da Wang,
+the Marange diamond fields, eastern DRC artisanal gold, and Turkmenistan's
+country-wide cotton order. Every one is a published customs order confirmed
+against CBP's own enforcement page this session.
+
+This is the only category on the map where a dot can honestly carry a company
+name, because the naming was done by a government and published — not inferred
+here. They are still hollow rings: an order names a company, not a site.
+
+Three are on the map for what they show about how this works rather than only
+for who they name. **Top Glove** reimbursed recruitment fees and had its order
+modified — the clearest documented instance anywhere of an import ban putting
+money back in workers' hands. **Sime Darby** began with an NGO petition rather
+than a government investigation. **Giant Manufacturing** is a well-known
+consumer brand, not an anonymous subcontractor, which is worth sitting with.
+
+Checked mechanically: all 25 records carry every required field, all classify
+(the single `other` is Brazil's multi-sector register, which correctly has no
+single type), phases split 14 determined / 11 open, no out-of-range coordinates,
+and every record is a ring.
+
+## Still open
+
+1. `verify_links.py` over everything — now 195 directory URLs plus the
+   international set, none opened from this sandbox.
+2. `donate` is 4/38. Global funders cover it via the worldwide block, but
+   country-level giving routes are still thin.
+3. India's subnational layer — 35 units in the geometry, blocked on confirming
+   state labour department URLs.
+4. A real `projects.json` harvester, starting with Brazil's register and the
+   UFLPA Entity List.
+
+---
+
+# Tenth pass — the determinations layer gets a harvester
+
+`projects.json` was the last thing on the map with no way to build it. It has
+one now.
+
+## `harvest_determinations.py`
+
+**What goes in:** only findings a government has published. Not allegations, not
+prevalence estimates, not press reports — those are the wire's job and are drawn
+differently.
+
+**Where from:** US CBP Withhold Release Orders and Findings, via
+**OpenSanctions**, which republishes the CBP list as structured data and
+refreshes it daily. CBP itself publishes an HTML table with no API, so the real
+choice is between a documented third-party mirror and a brittle scraper. The
+mirror wins — and **every entry names CBP as the source of record**, so nobody
+mistakes the mirror for the authority. The description says outright: check the
+CBP page before citing it.
+
+**No coordinates are invented.** Records carry an ISO3 code and no lat/lng,
+because a customs order names a company and not a place. The map fills the
+position at load from the country centroid it already computes off the boundary
+geometry — so no coordinate table is shipped or maintained anywhere — flags the
+record imprecise, and draws a hollow ring. Co-located records spread on the same
+golden-angle spiral the incidents use. **A record whose country has no geometry
+is dropped rather than parked at 0,0**, which is otherwise how a map ends up with
+a cluster of forced-labour dots in the Gulf of Guinea.
+
+**A failed harvest does not empty the map.** The 25 hand-entered records in
+`index.html` are read back out and used as the floor, so if OpenSanctions is
+unreachable the layer is unchanged rather than blank. The run prints which of
+the two happened.
+
+Tested offline with a synthetic payload: Top Glove → `MYS`, XPCC → `CHN`, Da
+Wang → `TWN` (longest-name match, so Taiwan is not swallowed by China), a record
+with an unresolvable country dropped rather than guessed. Commodity mapping puts
+each on the right sector filter. Runtime placement tested separately: seven
+records in, five out, the two unplaceable ones dropped with a console warning,
+two Malaysian records jittered apart, hand-entered coordinates untouched, and no
+0,0 placements.
+
+**One thing to confirm on first run.** The OpenSanctions dataset path is
+constructed from their documented layout, and this sandbox has no egress, so it
+has not been fetched. Run `python3 harvest_determinations.py --dry-run -v` — it
+prints the row count per candidate file and falls through three filenames before
+giving up. If all three miss, the path needs correcting; the seed floor means
+nothing breaks meanwhile.
+
+Wired into `README.md`, `package.json` (`npm run determinations`) and the
+six-hourly workflow alongside the wire harvest.
+
+## Where the whole thing stands
+
+| Layer | Source | State |
+|---|---|---|
+| Directory | hand-written, verified | 38 countries, 29 regions, 195 entries |
+| International | hand-written, verified | 11 bodies, 83 entries |
+| Determinations | `harvest_determinations.py` + 25-record seed | harvester untested against the live feed |
+| Live incidents | wire, two paths | working; harvested path preferred |
+| Wire | `harvest_wire.py` or in-browser fallback | working |
+
+Still open: `verify_links.py` over all 195 URLs; country-level giving routes at
+4/38; India's subnational layer, blocked on confirming state labour department
+URLs; and confirming that OpenSanctions path.

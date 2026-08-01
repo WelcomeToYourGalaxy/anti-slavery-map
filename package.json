@@ -6,6 +6,7 @@
     "test": "node smoke_test.js",
     "links": "python3 verify_links.py --csv report.csv",
     "wire": "python3 harvest_wire.py --days 30",
+    "determinations": "python3 harvest_determinations.py",
     "serve": "python3 -m http.server 8080"
   },
   "devDependencies": { "jsdom": "^24.0.0" }
