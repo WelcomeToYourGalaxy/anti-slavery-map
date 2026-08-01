@@ -101,8 +101,55 @@ def fetch(url, timeout=45):
         return r.read()
 
 
-def iso_of(text):
-    t = " " + (text or "").lower() + " "
+# Matched BEFORE the country list, because each of these contains a country
+# name that means something else. "Inner Mongolia" is in China; a run without
+# this put a Xinjiang-adjacent producer in Mongolia.
+OVERRIDE = [
+    ("inner mongolia", "CHN"), ("nei mongol", "CHN"), ("xinjiang", "CHN"),
+    ("xuar", "CHN"), ("uyghur", "CHN"), ("uighur", "CHN"), ("hotan", "CHN"),
+    ("kashgar", "CHN"), ("aksu", "CHN"), ("urumqi", "CHN"), ("xizang", "CHN"),
+    ("tibet", "CHN"), ("qinghai", "CHN"), ("gansu", "CHN"), ("tianjin", "CHN"),
+    ("xuzhou", "CHN"), ("yunnan", "CHN"), ("shandong", "CHN"),
+    ("hong kong", "HKG"), ("macau", "MAC"),
+    ("north korea", "PRK"), ("democratic people's republic of korea", "PRK"),
+    ("south korea", "KOR"), ("republic of korea", "KOR"),
+]
+
+# OpenSanctions gives ISO2 in its country property more often than a name.
+A2 = {
+    "cn": "CHN", "my": "MYS", "tw": "TWN", "th": "THA", "vn": "VNM",
+    "tm": "TKM", "uz": "UZB", "zw": "ZWE", "cd": "COD", "br": "BRA",
+    "in": "IND", "pk": "PAK", "bd": "BGD", "jp": "JPN", "kr": "KOR",
+    "rs": "SRB", "ru": "RUS", "mm": "MMR", "id": "IDN", "ph": "PHL",
+    "mx": "MEX", "pe": "PER", "bo": "BOL", "gh": "GHA", "ci": "CIV",
+    "np": "NPL", "lk": "LKA", "kh": "KHM", "la": "LAO", "tr": "TUR",
+    "et": "ETH", "ke": "KEN", "ng": "NGA", "eg": "EGY", "ar": "ARG",
+    "mn": "MNG", "mu": "MUS", "nl": "NLD", "by": "BLR", "us": "USA",
+    "mw": "MWI", "kp": "PRK", "hk": "HKG", "sg": "SGP", "ae": "ARE",
+    "sa": "SAU", "qa": "QAT", "lb": "LBN", "jo": "JOR", "za": "ZAF",
+    "it": "ITA", "es": "ESP", "ie": "IRL", "fr": "FRA", "de": "DEU",
+    "gb": "GBR", "uk": "GBR", "ca": "CAN", "au": "AUS", "no": "NOR",
+}
+
+
+def iso_of(text, country_prop=""):
+    """Overrides first, then the country property (ISO2, ISO3 or a name), then
+    a longest-name scan of the free text. Names are matched on word boundaries
+    so 'Guinea' cannot claim 'Papua New Guinea' and 'Mongolia' cannot claim
+    'Inner Mongolia'."""
+    t = " " + re.sub(r"[^a-z0-9' ]+", " ", (text or "").lower()) + " "
+    for phrase, iso in OVERRIDE:
+        if " " + phrase + " " in t:
+            return iso
+
+    c = (country_prop or "").strip().lower()
+    if len(c) == 2 and c in A2:
+        return A2[c]
+    if len(c) == 3 and c.isalpha():
+        return c.upper()
+    if c in ISO3:
+        return ISO3[c]
+
     best, n = None, 0
     for name, iso in ISO3.items():
         if " " + name + " " in t and len(name) > n:
@@ -139,6 +186,9 @@ def parse_opensanctions(raw):
     return rows
 
 
+_UNRESOLVED = []
+
+
 def first(props, *keys):
     for k in keys:
         v = props.get(k)
@@ -160,8 +210,9 @@ def record_from_entity(e):
     listed = first(props, "listingDate", "createdAt", "modifiedAt")
     blob = " ".join([name, country, program, note])
 
-    iso = iso_of(blob) or (country.upper() if len(country) == 3 else None)
+    iso = iso_of(blob, country)
     if not iso:
+        _UNRESOLVED.append(name.strip()[:70] + ("  [country=" + country + "]" if country else ""))
         return None
 
     finding = "finding" in blob.lower()
@@ -199,12 +250,40 @@ def harvest_cbp(verbose=False):
         if fn.endswith(".csv"):
             continue  # only used as a reachability probe
         rows = parse_opensanctions(raw)
+        del _UNRESOLVED[:]
         recs = [r for r in (record_from_entity(e) for e in rows) if r]
-        if verbose:
-            print("  %-24s %d entities -> %d records" % (fn, len(rows), len(recs)))
+        print("  %-24s %d entities -> %d records" % (fn, len(rows), len(recs)))
+        if _UNRESOLVED:
+            print("  %d entity(ies) had no resolvable country and were dropped "
+                  "rather than guessed:" % len(_UNRESOLVED))
+            for u in (_UNRESOLVED if verbose else _UNRESOLVED[:8]):
+                print("      " + u)
+            if not verbose and len(_UNRESOLVED) > 8:
+                print("      ... run with -v for the rest")
         if recs:
             return recs
     return []
+
+
+# A finding can name more than one country. Where it does, the map draws a dot
+# in each -- otherwise a person opening Madagascar is told nothing is documented
+# there when the same listing covers it. Harvested records are single-country by
+# construction (a customs order names one producer), but keep the shape general
+# so a future source that spans countries does not need a schema change.
+def expand_multi(rec):
+    isos = rec.pop("isos", None)
+    if not isos:
+        return [rec]
+    out = []
+    for iso in isos:
+        c = dict(rec)
+        c["iso"] = iso
+        c.pop("lat", None)
+        c.pop("lng", None)
+        c["precise"] = False
+        c["_group"] = rec.get("name", "")
+        out.append(c)
+    return out
 
 
 def seed_from_index():
@@ -233,6 +312,10 @@ def main():
 
     seed = seed_from_index()
     print("hand-entered seed: %d records" % len(seed))
+    if not seed:
+        print("  index.html was not found next to this script \u2014 you are probably "
+              "running from the wrong directory. cd into the repo folder first, or "
+              "the seed floor is lost and only harvested records will ship.")
 
     harvested = [] if args.keep_seed_only else harvest_cbp(args.verbose)
     print("harvested from customs list: %d records" % len(harvested))
@@ -241,11 +324,15 @@ def main():
               "unchanged rather than emptied)")
 
     seen, merged = set(), []
-    for r in seed + harvested:
-        k = re.sub(r"[^a-z0-9]", "", str(r.get("name", "")).lower())[:60]
-        if k and k not in seen:
-            seen.add(k)
-            merged.append(r)
+    for r0 in seed + harvested:
+        for r in expand_multi(dict(r0)):
+            # de-duplicate on name AND country, so a multi-country finding keeps
+            # one dot per country instead of collapsing to the first
+            k = (re.sub(r"[^a-z0-9]", "", str(r.get("name", "")).lower())[:60]
+                 + "|" + str(r.get("iso") or r.get("lat") or ""))
+            if k and k not in seen:
+                seen.add(k)
+                merged.append(r)
 
     withiso = sum(1 for r in merged if r.get("iso") and "lat" not in r)
     print("merged: %d records (%d placed by ISO at runtime, %d with explicit "
