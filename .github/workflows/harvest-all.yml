@@ -1,0 +1,41 @@
+# .github/workflows/harvest-all.yml
+# Everything runs here. Nothing runs on your computer.
+name: harvest all
+on:
+  schedule:
+    - cron: "0 */6 * * *"     # wire, every six hours
+    - cron: "0 3 * * 1"       # everything else, weekly
+  workflow_dispatch:
+permissions: {contents: write}
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+
+      # Each step is allowed to fail without failing the run: one publisher
+      # being down should not stop the other seven layers from refreshing.
+      - name: wire (news incidents)
+        run: python3 harvest_wire.py --days 30 || true
+      - name: determinations (customs orders)
+        run: python3 harvest_determinations.py || true
+      - name: identified cases (CTDC)
+        run: python3 harvest_cases.py || true
+      - name: prevalence + service directory
+        run: python3 harvest_scale.py --all || true
+      - name: point data (mines, kilns, facilities) + hotlines
+        run: python3 harvest_points.py --ipis --hotlines || true
+      - name: bulk (Brazil, UNODC, IUU vessels)
+        run: python3 harvest_bulk.py --all || true
+
+      - name: commit whatever refreshed
+        run: |
+          git config user.name  "harvest-bot"
+          git config user.email "harvest-bot@users.noreply.github.com"
+          git add -A wire.json projects.json cases.json prevalence.json \
+                     directory.json points.json bulk.json hotlines.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "data refresh: $(date -u +%F\ %H:%M)"
+          git push
