@@ -21,6 +21,7 @@ legal case, and where money goes.
 ├── harvest_scale.py      builds prevalence.json (Walk Free) and directory.json (GMSD)
 ├── harvest_points.py     builds points.json (IPIS mines, brick kilns, OSH) + hotlines.json
 ├── harvest_bulk.py       builds bulk.json (Brazil municipalities, UNODC, IUU, GFW)
+├── bundle.py             folds every layer into one self-contained index.bundle.html
 ├── verify_links.py       link checker for every URL that ships
 ├── smoke_test.js         runs the page and fails on any uncaught error
 ├── package.json          jsdom, for smoke_test.js only
@@ -30,6 +31,18 @@ legal case, and where money goes.
     ├── wire.yml          harvest every 6h, commit wire.json
     └── check.yml         smoke test + link check on push
 ```
+
+## One file, if you want one
+
+`python3 bundle.py` writes **index.bundle.html** with every data layer embedded
+— a single self-contained file you can upload, email or drop into any host with
+nothing beside it. The workflow rebuilds it after every harvest, so there is
+always a current one in the repo.
+
+The runtime is unchanged: the map still prefers a real JSON file on disk and
+only falls back to the embedded copy. So the bundle works alone *and* picks up
+fresh harvest output when deployed next to it. Bundling adds a floor; it does
+not freeze anything.
 
 ## Everything runs on GitHub. Nothing runs on your computer.
 
