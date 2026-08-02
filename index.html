@@ -3340,7 +3340,21 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
           })
           .catch(function(){ /* absent by default; the panel explains */ });
       })
-      .catch(function(err){ if(window&&window.console)console.error('projects data load failed; using seed set:',err); pjData=PJ_SEED; pjRender(); });
+      .catch(function(err){
+        /* THE SEED MUST GO THROUGH THE PLACER TOO.
+           This line used to read `pjData=PJ_SEED`, raw. 216 of the 234 seed
+           records carry an ISO code and no coordinates — they are placed at a
+           country centroid at load — so assigning the seed without running it
+           through _pjPlaceByISO left every one of them un-renderable. The map
+           drew the 18 records that happen to have explicit lat/lng and looked
+           almost empty, which is exactly the "only about 20 dots" symptom, and
+           it only showed up when projects.json was absent. */
+        if(window&&window.console)console.warn('projects.json not found; using the '+
+          ((PJ_SEED&&PJ_SEED.projects&&PJ_SEED.projects.length)||0)+
+          '-record seed set baked into this file. Run the harvesters for the full layer.',err);
+        pjData=_pjPlaceByISO({projects:((PJ_SEED&&PJ_SEED.projects)||[]).slice()});
+        pjRender();
+      });
   }
   function pjShow(){ pjOn=true; if(!pjData){pjLoad();} else { if(!_projLayer){_projLayer=new ProjectLayer();} if(!map.hasLayer(_projLayer))_projLayer.addTo(map); _projLayer.redraw(); } var b=document.getElementById('projChk'); if(b)b.checked=true; }
   function pjHide(){ pjOn=false; if(_projLayer)map.removeLayer(_projLayer); if(_pjPopup)map.closePopup(_pjPopup); var b=document.getElementById('projChk'); if(b)b.checked=false; }

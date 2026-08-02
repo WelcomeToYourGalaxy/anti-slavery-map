@@ -57,6 +57,7 @@ import argparse
 import json
 import math
 import os
+import re
 import ssl
 import sys
 import urllib.parse
@@ -143,20 +144,62 @@ def decimate(points, cell_deg):
 
 
 # ======================================================================= IPIS
-IPIS_WFS = ("https://geo.ipisresearch.be/geoserver/public/ows?service=WFS&version=1.0.0"
-            "&request=GetFeature&typeName=public:cod_mines_curated_all_opendata_p_ipis"
+IPIS_BASE = "https://geo.ipisresearch.be/geoserver/public/ows"
+IPIS_CAPS = IPIS_BASE + "?service=WFS&version=1.1.0&request=GetCapabilities"
+# Tried in order if capability discovery fails. Layer names change between
+# releases, which is why discovery comes first.
+IPIS_FALLBACK_LAYERS = [
+    "public:cod_mines_curated_all_opendata_p_ipis",
+    "public:cod_mines_curated_all_opendata_ipis",
+    "public:caf_mines_curated_all_opendata_p_ipis",
+]
+
+
+def ipis_layers():
+    """Ask GeoServer what it actually has, instead of hard-coding a name that
+    changes every release. Returns candidate mine layers, DRC first."""
+    try:
+        caps = fetch(IPIS_CAPS, timeout=120).decode("utf-8", "replace")
+    except Exception as ex:
+        print("  GetCapabilities failed (%s); trying known layer names" % str(ex)[:44])
+        return list(IPIS_FALLBACK_LAYERS)
+    names = re.findall(r"<Name>([^<]+)</Name>", caps)
+    mines = [n for n in names if "mine" in n.lower()]
+    # DRC (cod) first, then CAR (caf), then anything else with mines in the name
+    mines.sort(key=lambda n: (0 if "cod" in n.lower() else 1 if "caf" in n.lower() else 2,
+                              0 if "curated" in n.lower() else 1, len(n)))
+    if mines:
+        print("  GeoServer advertises %d layer(s); %d mention mines. Trying: %s"
+              % (len(names), len(mines), ", ".join(mines[:3])))
+    else:
+        print("  GetCapabilities returned %d layers, none mentioning mines \u2014 "
+              "the dataset may have moved" % len(names))
+    return mines[:4] + [n for n in IPIS_FALLBACK_LAYERS if n not in mines]
+
+
+def ipis_url(layer):
+    return (IPIS_BASE + "?service=WFS&version=1.0.0&request=GetFeature"
+            "&typeName=" + urllib.parse.quote(layer) +
             "&outputFormat=application%2Fjson&maxFeatures=6000")
 
 
 def harvest_ipis(a):
-    try:
-        raw = fetch(IPIS_WFS, timeout=180)
-        gj = json.loads(raw.decode("utf-8", "replace"))
-    except Exception as ex:
-        print("  IPIS WFS failed: %s" % str(ex)[:90])
-        print("  The layer name changes between releases. Open "
-              "https://geo.ipisresearch.be/geoserver/public/ows?service=WFS&request=GetCapabilities "
-              "and look for the DRC mines layer, then update IPIS_WFS.")
+    gj = None
+    for layer in ipis_layers():
+        try:
+            raw = fetch(ipis_url(layer), timeout=240)
+            gj = json.loads(raw.decode("utf-8", "replace"))
+            if gj.get("features"):
+                print("  layer %s: %d features" % (layer, len(gj["features"])))
+                break
+            gj = None
+        except Exception as ex:
+            print("  %-52s %s" % (layer, str(ex)[:40]))
+            gj = None
+    if not gj:
+        print("  No IPIS layer returned features. The service is slow \u2014 a WFS "
+              "request for ~2,800 sites with full attributes can take minutes \u2014 "
+              "so a timeout here is worth retrying before assuming it has moved.")
         return []
     feats = gj.get("features", [])
     print("  IPIS features: %d" % len(feats))
@@ -302,7 +345,6 @@ def harvest_osh(a):
 def harvest_hotlines(a):
     """The State Department's country-by-country helpline index, parsed into
     per-country entries for trackerdata.json rather than left as a single link."""
-    import re
     try:
         html = fetch("https://www.state.gov/human-trafficking-hotlines/").decode("utf-8", "replace")
     except Exception as ex:
