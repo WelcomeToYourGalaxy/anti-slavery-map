@@ -368,13 +368,52 @@ def harvest_kilns(a):
 
 # ========================================================== OPEN SUPPLY HUB
 def harvest_osh(a):
+    # A committed Data Download is a first-class input, not a fallback: it is
+    # now the only route that does not require a subscription.
+    fp = find_export(None, "osh", "supply", "facilit")
+    if fp and fp.lower().endswith(".csv"):
+        import csv as _csv
+        out = []
+        with open(fp, encoding="utf-8-sig") as fh:
+            for r in _csv.DictReader(fh):
+                try:
+                    lat = float(r.get("lat") or r.get("latitude"))
+                    lng = float(r.get("lng") or r.get("lon") or r.get("longitude"))
+                except (TypeError, ValueError):
+                    continue
+                out.append({
+                    "name": str(r.get("name") or "Production facility")[:120],
+                    "source": "osh", "type": "Production facility",
+                    "lat": lat, "lng": lng, "precise": True,
+                    "impact": 2, "status": "Facility",
+                    "state": r.get("country_name") or r.get("country") or "",
+                    "url": ("https://opensupplyhub.org/facilities/"
+                            + str(r.get("os_id") or r.get("id") or "")),
+                    "desc": ("Production facility listed on Open Supply Hub. Open the "
+                             "record for who disclosed it and which buyers are connected "
+                             "to it \u2014 that link from a site to a buyer is the leverage "
+                             "a country-level determination does not give you." + CAVEAT),
+                })
+        print("  %s: %d facilities" % (os.path.basename(fp), len(out)))
+        return out
+
     if not a.token:
-        print("  Open Supply Hub needs a free API token: register at "
-              "opensupplyhub.org, then pass --token. Millions of production "
-              "facilities with GPS, contributed by brands, unions and NGOs.")
+        print("  Open Supply Hub API access is no longer free on signup. As of 2026 it "
+              "is a paid subscription with a 14-day trial, and the old "
+              "My Account > Settings > API > Generate token path is gone.")
+        print("  Two routes that do not cost money:")
+        print("    1. Free/discounted access policy for non-profits, civil society "
+              "organisations and research institutions \u2014 application form, "
+              "reviewed within two weeks. See info.opensupplyhub.org/api.")
+        print("    2. Data Downloads: the same data as CSV or Excel, no API needed. "
+              "Commit the file to data/ with 'osh' or 'supply' in the filename.")
+        print("  Worth weighing before either: this layer maps FACILITIES, not "
+              "exploitation. It is the weakest of the point layers on its own, and "
+              "its real value is the link from a site to a named buyer.")
         return []
     out, page = [], 1
     countries = (a.countries or "BD,IN,PK,KH,MM,VN,CN,ET,TR").split(",")
+    _ = countries
     for cc in countries:
         page = 1
         while page <= (a.pages or 3):
