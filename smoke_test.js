@@ -20,7 +20,7 @@ const fs = require("fs");
 const path = require("path");
 const { JSDOM, VirtualConsole } = require("jsdom");
 
-const VERSION = "smoke_test 2026-08-02";   // bump when this file changes
+const VERSION = "smoke_test 2026-08-02b";   // bump when this file changes
 const FILE = process.argv[2] || path.join(__dirname, "index.html");
 console.log(VERSION + "  |  node " + process.version);
 const WAIT = 3000;
@@ -51,12 +51,39 @@ const STUB = `<script>
     arrayBuffer: () => Promise.resolve(new ArrayBuffer(0))
   });
   window.DecompressionStream = undefined;
-  window.onerror = function(m,f,l,c){ window.__errs.push(m + ' @line ' + l + ':' + c); };
+  function describe(m, f, l, c, err) {
+    var parts = [];
+    if (m) parts.push(String(m));
+    if (err && err.name) parts.push('name=' + err.name);
+    if (err && err.message && err.message !== m) parts.push('message=' + err.message);
+    if (err && err.stack) parts.push('stack=' + String(err.stack).split(String.fromCharCode(10)).slice(0,3).join(' | '));
+    if (f) parts.push('src=' + String(f).slice(-60));
+    if (l !== undefined) parts.push('at ' + l + ':' + c);
+    if (!parts.length) {
+      try { parts.push('opaque:' + JSON.stringify(err)); } catch (e) { parts.push('opaque:unserialisable'); }
+    }
+    return parts.join('  ');
+  }
+  window.onerror = function(m,f,l,c,err){ window.__errs.push(describe(m,f,l,c,err)); };
   window.addEventListener('error', function(ev){
-    window.__errs.push((ev.message||'') + ' @line ' + (ev.lineno||'?') + ':' + (ev.colno||'?'));
+    window.__errs.push(describe(ev.message, ev.filename, ev.lineno, ev.colno, ev.error));
+  });
+  window.addEventListener('unhandledrejection', function(ev){
+    window.__errs.push('unhandledrejection  ' + describe('', '', undefined, undefined, ev.reason));
   });
 })();
 </script>`;
+// Check the stub before injecting it. A syntax error in the harness surfaces as
+// "uncaught runtime error" against the page under test, which sent me hunting
+// through 2.5 MB of index.html for a fault that was in these forty lines.
+try {
+  const stubBody = /<script>([\s\S]*)<\/script>/.exec(STUB)[1];
+  new (require("vm").Script)(stubBody);
+} catch (e) {
+  console.error("HARNESS BUG: the injected stub does not parse \u2014 " + e.message);
+  console.error("This is smoke_test.js's own fault, not index.html's.");
+  process.exit(2);
+}
 html = html.replace("</head>", STUB + "</head>");
 
 const jsdomErrs = [];
@@ -67,8 +94,16 @@ process.on("uncaughtException", (e) =>
 process.on("unhandledRejection", (e) =>
   jsdomErrs.push("unhandled rejection: " + ((e && (e.message || String(e))) || "unknown")));
 const vc = new VirtualConsole();
-vc.on("jsdomError", (e) =>
-  jsdomErrs.push((e.detail && (e.detail.message || e.detail)) || e.message));
+vc.on("jsdomError", (e) => {
+  const d0 = e && e.detail;
+  jsdomErrs.push([
+    e && e.type ? "type=" + e.type : "",
+    e && e.message ? "message=" + e.message : "",
+    d0 && d0.name ? "detailName=" + d0.name : "",
+    d0 && d0.message ? "detailMessage=" + d0.message : "",
+    d0 && d0.stack ? "detailStack=" + String(d0.stack).split("\n").slice(0, 3).join(" | ") : "",
+  ].filter(Boolean).join("  ") || ("opaque jsdomError: " + Object.keys(e || {}).join(",")));
+});
 
 const dom = new JSDOM(html, {
   runScripts: "dangerously",
@@ -100,7 +135,10 @@ setTimeout(() => {
   const undef = FNS.filter((f) => typeof w[f] !== "function");
 
   let fail = false;
-  console.log("file:", path.basename(FILE));
+  const crypto = require("crypto");
+  const bytes = fs.statSync(FILE).size;
+  const sha = crypto.createHash("sha256").update(fs.readFileSync(FILE)).digest("hex").slice(0, 12);
+  console.log("file: " + path.basename(FILE) + "  " + bytes + " bytes  sha256:" + sha);
   console.log("title:", w.document.title);
 
   if (blanks) {
@@ -117,7 +155,8 @@ setTimeout(() => {
   if (errs.length) {
     fail = true;
     console.log("\nFAIL \u2014 uncaught runtime errors:");
-    [...new Set(errs)].slice(0, 15).forEach((e) => console.log("  " + String(e).split("\n")[0]));
+    [...new Set(errs)].slice(0, 15).forEach((e) =>
+      console.log("  " + JSON.stringify(String(e)).slice(0, 500)));
   } else {
     console.log("runtime errors: none"
       + (blanks ? "  (" + blanks + " empty error object(s) ignored \u2014 jsdom noise, "
