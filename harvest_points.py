@@ -318,19 +318,94 @@ KILN_SOURCES = [
 ]
 
 
+HF_ROWS = ("https://datasets-server.huggingface.co/rows"
+           "?dataset=SustainabilityLabIITGN%%2FSentinelKilnDB&config=default&split=%s"
+           "&offset=%d&length=100")
+
+
+def kilns_from_hf(a):
+    """Pull coordinates through HuggingFace's datasets-server instead of
+    downloading parquet.
+
+    The parquet splits are 2.2 GB, 747 MB and 580 MB because they carry the
+    satellite imagery. We need three columns. The rows endpoint serves decoded
+    rows 100 at a time with image fields as URLs rather than bytes, so 62,671
+    kilns come down as a few megabytes of JSON and the whole thing runs inside
+    the workflow with nothing downloaded by hand."""
+    out, seen = [], set()
+    for split in ("train", "validation", "test"):
+        offset, empty = 0, 0
+        while offset < getattr(a, 'max', 0) or 80000:
+            try:
+                j = json.loads(fetch(HF_ROWS % (split, offset), timeout=60)
+                               .decode("utf-8", "replace"))
+            except Exception as ex:
+                if offset == 0:
+                    print("  split %-11s %s" % (split, str(ex)[:52]))
+                break
+            rows = j.get("rows") or []
+            if not rows:
+                empty += 1
+                if empty > 1:
+                    break
+            for wrapper in rows:
+                r = wrapper.get("row") or {}
+                lat = r.get("lat", r.get("latitude"))
+                lng = r.get("lon", r.get("lng", r.get("longitude")))
+                try:
+                    lat, lng = float(lat), float(lng)
+                except (TypeError, ValueError):
+                    continue
+                k = (round(lat, 5), round(lng, 5))
+                if k in seen:
+                    continue
+                seen.add(k)
+                out.append({"lat": lat, "lng": lng,
+                            "kiln_type": r.get("kiln_type") or r.get("type") or ""})
+            offset += 100
+            if offset and offset % 5000 == 0:
+                print("    %s: %d rows so far" % (split, len(out)))
+        print("  split %-11s cumulative unique kilns: %d" % (split, len(out)))
+    return out
+
+
 def harvest_kilns(a):
-    """SentinelKilnDB ships as parquet on HuggingFace. The label files carry the
-    geometry; --file takes a CSV/GeoJSON you have already extracted, which is the
-    realistic path until they publish a flat coordinate export."""
-    if not a.file:
-        print("  SentinelKilnDB (62,671 kilns) is published as parquet tiles on "
-              "HuggingFace rather than a flat coordinate file, so it needs one "
-              "extraction step:\n"
-              "      pip3 install datasets pandas\n"
-              "      python3 -c \"from datasets import load_dataset; "
-              "d=load_dataset('SustainabilityLabIITGN/SentinelKilnDB',split='train'); "
-              "d.to_pandas()[['lat','lon','kiln_type']].to_csv('kilns.csv',index=False)\"\n"
-              "      python3 harvest_points.py --kilns --file kilns.csv\n"
+    """SentinelKilnDB. Coordinates come from HuggingFace's rows API by default,
+    so nothing has to be downloaded; --file still takes a CSV if you have one."""
+    if not a.file and not find_export(None, "kiln"):
+        rows = kilns_from_hf(a)
+        if rows:
+            out = [{
+                "name": "Brick kiln" + ((" (%s)" % r["kiln_type"]) if r["kiln_type"] else ""),
+                "source": "kilns", "type": "Brick kiln",
+                "lat": r["lat"], "lng": r["lng"], "precise": True,
+                "impact": 3, "status": "Site detected",
+                "state": "Indo-Gangetic Plain",
+                "url": "https://huggingface.co/datasets/SustainabilityLabIITGN/SentinelKilnDB",
+                "desc": ("Brick kiln detected from Sentinel-2 satellite imagery and "
+                         "hand-validated, from SentinelKilnDB \u2014 62,671 kilns across the "
+                         "Indo-Gangetic Plain covering India, Pakistan, Bangladesh and "
+                         "Afghanistan. Brick kilns are the most consistently documented "
+                         "bonded-labour sector in South Asia: the mechanism is the peshgi "
+                         "advance, worked off across a whole family at a rate that never "
+                         "clears." + CAVEAT),
+            } for r in rows]
+            print("  kilns from HuggingFace: %d" % len(out))
+            return out
+        print("  HuggingFace rows API returned nothing; falling back to --file.")
+    if not a.file and not find_export(None, "kiln"):
+        print("  The rows API is the intended route and downloads nothing. If it "
+              "stays unavailable, the parquet splits are the fallback \u2014 but note "
+              "they are 2.2 GB, 747 MB and 580 MB because they carry the satellite "
+              "imagery, and load_dataset() will exhaust memory trying to hold it. "
+              "Read only the columns:\n"
+              "      python3 -m venv ~/kenv && source ~/kenv/bin/activate\n"
+              "      pip install pyarrow\n"
+              "      python3 -c \"import pyarrow.parquet as pq; "
+              "pq.read_table('train.parquet', columns=['lat','lon','kiln_type'])"
+              ".to_pandas().to_csv('kilns.csv', index=False)\"\n"
+              "  Column-pruned, so it reads a few megabytes rather than 2.2 GB. "
+              "Then commit kilns.csv to data/.\n"
               "  Licence is CC-BY-NC-4.0 \u2014 check it against your use before publishing.")
         return []
     import csv as _csv
@@ -514,6 +589,8 @@ def main():
     ap.add_argument("--token")
     ap.add_argument("--countries")
     ap.add_argument("--pages", type=int, default=3)
+    ap.add_argument("--max", type=int, default=80000,
+                    help="row ceiling for the HuggingFace kiln pull")
     ap.add_argument("--decimate", type=float, default=0.05,
                     help="degrees per grid cell; 0 disables thinning")
     ap.add_argument("--dump", action="store_true")
