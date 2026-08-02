@@ -14,6 +14,6 @@
     "bulk": "python3 harvest_bulk.py --all"
   },
   "devDependencies": {
-    "jsdom": "^24.0.0"
+    "jsdom": "^30.0.0"
   }
 }

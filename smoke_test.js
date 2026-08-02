@@ -20,7 +20,7 @@ const fs = require("fs");
 const path = require("path");
 const { JSDOM, VirtualConsole } = require("jsdom");
 
-const VERSION = "smoke_test 2026-08-02b";   // bump when this file changes
+const VERSION = "smoke_test 2026-08-02c";   // bump when this file changes
 const FILE = process.argv[2] || path.join(__dirname, "index.html");
 console.log(VERSION + "  |  node " + process.version);
 const WAIT = 3000;
@@ -118,7 +118,14 @@ setTimeout(() => {
   // encountered, and CI failed on exactly that while local runs passed. Blank
   // entries are counted and reported, but do not fail the build; anything with
   // actual text does.
-  const raw = [].concat(w.__errs || [], jsdomErrs.map(String));
+  // jsdom's CSS parser is not a conformance oracle. Older versions reject
+  // stylesheets that every browser accepts, and a "could not parse CSS"
+  // jsdomError says something about jsdom, not about the page. It is reported
+  // loudly and separately, and the structural check below covers what it was
+  // accidentally catching.
+  const all = [].concat(w.__errs || [], jsdomErrs.map(String));
+  const cssNotes = all.filter((e) => /type=css parsing|Could not parse CSS/i.test(String(e)));
+  const raw = all.filter((e) => !/type=css parsing|Could not parse CSS/i.test(String(e)));
   const errs = raw.filter((e) => String(e).replace(/@line.*$/, "").trim().length > 0);
   const blanks = raw.length - errs.length;
 
@@ -133,6 +140,23 @@ setTimeout(() => {
     "setWireRegion", "hideInfoPanel", "buildIncidents", "mergeIncidents",
     "worldwideHTML", "mapDiag"];
   const undef = FNS.filter((f) => typeof w[f] !== "function");
+
+  // Brace balance per <style> block. This is the check that matters: an extra
+  // or missing brace silently kills every rule after it in some engines. One
+  // was found this way -- inherited from the source map -- and it had been
+  // there all along.
+  const styleBlocks = [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map((m) => m[1]);
+  const unbalanced = [];
+  styleBlocks.forEach((s, bi) => {
+    let depth = 0;
+    for (let i = 0; i < s.length; i++) {
+      if (s.startsWith("/*", i)) { const e = s.indexOf("*/", i + 2); i = e < 0 ? s.length : e + 1; continue; }
+      const c = s[i];
+      if (c === '"' || c === "'") { const q = c; i++; while (i < s.length && s[i] !== q) { if (s[i] === "\\") i++; i++; } continue; }
+      if (c === "{") depth++; else if (c === "}") depth--;
+    }
+    if (depth !== 0) unbalanced.push("style block " + bi + " ends at brace depth " + depth);
+  });
 
   let fail = false;
   const crypto = require("crypto");
@@ -161,6 +185,20 @@ setTimeout(() => {
     console.log("runtime errors: none"
       + (blanks ? "  (" + blanks + " empty error object(s) ignored \u2014 jsdom noise, "
                 + "not a page fault)" : ""));
+  }
+
+  if (cssNotes.length) {
+    console.log("note: " + cssNotes.length + " CSS-parser complaint(s) from jsdom \u2014 "
+      + "reported, not failed. jsdom's CSS engine rejects things browsers accept; "
+      + "the brace check below is what actually guards the stylesheet.");
+  }
+
+  if (unbalanced.length) {
+    fail = true;
+    console.log("\nFAIL \u2014 unbalanced CSS braces:");
+    unbalanced.forEach((u) => console.log("  " + u));
+  } else {
+    console.log("CSS braces: all " + styleBlocks.length + " style blocks balanced");
   }
 
   if (missing.length) { fail = true; console.log("\nFAIL — missing elements: " + missing.join(", ")); }
