@@ -61,9 +61,11 @@ UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
 
 IBGE_MUN = "https://servicodados.ibge.gov.br/api/v1/localidades/municipios"
 
+# The MPT-hosted address stopped resolving; the Observatorio now lives on the
+# SmartLab platform, which is where its download controls are.
 BR_PAGES = [
-    "https://observatorioescravo.mpt.mp.br/",
     "https://smartlabbr.org/trabalhoescravo",
+    "https://observatorioescravo.mpt.mp.br/",
 ]
 
 GLOTIP_PAGES = [
@@ -222,14 +224,14 @@ def harvest_brazil(a):
     input; --file takes it."""
     rows = []
     fp = read_file(find_export(a.file, "resgat", "escrav", "brazil", "municip"), "Export the municipality table from "
-                           "observatorioescravo.mpt.mp.br (its download control), save it "
-                           "into your repo folder, cd there, and re-run.")
+                           "smartlabbr.org/trabalhoescravo (its download control), commit it "
+                           "to data/ with 'resgat' in the filename.")
     if fp:
         rows = list(csv.DictReader(open(fp, encoding="utf-8")))
         print("  using local export: %s (%d rows)" % (fp, len(rows)))
     else:
         print("  The Observatorio Digital do Trabalho Escravo "
-              "(observatorioescravo.mpt.mp.br) is a Shiny dashboard, not an API. "
+              "(smartlabbr.org/trabalhoescravo) is a Shiny dashboard, not an API. "
               "Use its download control to export the municipality table, then:\n"
               "      python3 harvest_bulk.py --brazil --file resgates.csv\n"
               "  Expected columns: municipality name, UF, number rescued, period.")

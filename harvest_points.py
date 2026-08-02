@@ -129,17 +129,29 @@ def fetch(url, timeout=90, headers=None):
 
 
 def decimate(points, cell_deg):
-    """One point per grid cell. Keeps the shape of the distribution, loses the
-    density. Reports what it dropped rather than quietly thinning."""
+    """One point per grid cell -- except that a site where forced labour or child
+    labour was actually observed is never thinned away.
+
+    Thinning by geography alone would delete exactly the records that matter:
+    of ~8,000 IPIS sites, roughly a thousand carry a direct observation, and a
+    grid that keeps one point per cell would discard most of them in favour of
+    whichever unremarkable pit happened to be first. So flagged sites are all
+    kept, and the grid is applied only to the rest."""
     if not cell_deg:
         return points, 0
-    seen, out = set(), []
-    for p in points:
+    keep_all = [p for p in points if (p.get("impact") or 0) >= 4]
+    rest = [p for p in points if (p.get("impact") or 0) < 4]
+    seen = {(round(p["lat"] / cell_deg), round(p["lng"] / cell_deg)) for p in keep_all}
+    out = list(keep_all)
+    for p in rest:
         k = (round(p["lat"] / cell_deg), round(p["lng"] / cell_deg))
         if k in seen:
             continue
         seen.add(k)
         out.append(p)
+    if keep_all:
+        print("  kept all %d site(s) with an observation of forced or child labour, "
+              "regardless of the grid" % len(keep_all))
     return out, len(points) - len(out)
 
 
@@ -190,15 +202,42 @@ def harvest_ipis(a):
     # timed out on every attempt including GetCapabilities, which is the
     # cloud-IP block, not a slow query. So the same data/ escape hatch the other
     # sources use applies here: download the GeoJSON once and commit it.
-    fp = find_export(a.file, "ipis", "mines", "cod_mines")
-    if fp:
-        try:
-            gj = json.loads(open(fp, encoding="utf-8").read())
-            print("  using committed export: %s (%d features)"
-                  % (os.path.basename(fp), len(gj.get("features", []))))
-        except Exception as ex:
-            print("  could not read %s: %s" % (fp, str(ex)[:60]))
-            gj = None
+    # IPIS publishes CSV as well as GeoJSON, and the CSV is what their download
+    # page actually offers. Both are accepted; more than one file is read, so
+    # DRC and CAR can be committed side by side.
+    exports = []
+    if a.file:
+        exports = [a.file]
+    elif os.path.isdir(DATA_DIR):
+        exports = [os.path.join(DATA_DIR, f) for f in sorted(os.listdir(DATA_DIR))
+                   if any(k in f.lower() for k in ("ipis", "mines"))
+                   and f.lower().endswith((".csv", ".json", ".geojson"))]
+    if exports:
+        feats = []
+        for fp in exports:
+            try:
+                if fp.lower().endswith(".csv"):
+                    import csv as _csv
+                    n0 = len(feats)
+                    with open(fp, encoding="utf-8-sig") as fh:
+                        for r in _csv.DictReader(fh):
+                            try:
+                                lat = float(r.get("latitude") or r.get("lat"))
+                                lng = float(r.get("longitude") or r.get("lon") or r.get("lng"))
+                            except (TypeError, ValueError):
+                                continue
+                            feats.append({"geometry": {"coordinates": [lng, lat]},
+                                          "properties": r})
+                    print("  %s: %d sites" % (os.path.basename(fp), len(feats) - n0))
+                else:
+                    j = json.loads(open(fp, encoding="utf-8").read())
+                    feats.extend(j.get("features", []))
+                    print("  %s: %d features" % (os.path.basename(fp),
+                                                 len(j.get("features", []))))
+            except Exception as ex:
+                print("  could not read %s: %s" % (os.path.basename(fp), str(ex)[:60]))
+        if feats:
+            gj = {"features": feats}
 
     if gj is None:
         for layer in ipis_layers():
@@ -230,32 +269,45 @@ def harvest_ipis(a):
         p = f.get("properties") or {}
         if not g or len(g) < 2:
             continue
-        child = str(p.get("child_labor") or p.get("child_labour") or p.get("presence_enfants") or "")
+        child = str(p.get("childunder15") or p.get("child_labor")
+                    or p.get("child_labour") or p.get("presence_enfants") or "")
+        childwork = str(p.get("childunder15work") or "").strip()
+        forced = any(str(p.get("forced_labour_armed_group%d" % i) or "").strip() == "1"
+                     for i in (1, 2, 3))
         armed = str(p.get("armed_group1") or p.get("interference") or "")
         workers = p.get("workers_numb") or p.get("workers") or ""
         mineral = p.get("mineral1") or p.get("mineral") or ""
         name = p.get("name") or p.get("mine") or "Artisanal mining site"
-        flagged = child.lower() in ("1", "true", "yes", "oui")
+        # "1" is a yes/no flag in the DRC file; the CAR file records a count.
+        try:
+            flagged = float(child) > 0
+        except ValueError:
+            flagged = child.strip().lower() in ("true", "yes", "oui")
         out.append({
             "name": str(name)[:120],
             "source": "ipis",
-            "type": "Artisanal mining site" + (" \u2014 child labour observed" if flagged else ""),
+            "type": ("Artisanal mining site"
+                     + (" \u2014 forced labour observed" if forced else
+                        " \u2014 child labour observed" if flagged else "")),
             "lat": float(g[1]), "lng": float(g[0]),
             "precise": True,
-            "impact": 4 if flagged else 3,
-            "status": "Child labour observed" if flagged else "Site visited",
+            "impact": 5 if forced else 4 if flagged else 3,
+            "status": ("Forced labour observed" if forced else
+                       "Child labour observed" if flagged else "Site visited"),
             "state": "eastern DR Congo",
             "url": "https://ipisresearch.be/home/maps-data/maps-of-drc/",
-            "desc": ("Artisanal mining site field-visited by IPIS."
+            "desc": ("Field-visited by IPIS."
                      + (" Mineral: %s." % mineral if mineral else "")
                      + (" Reported workers: %s." % workers if workers else "")
-                     + (" <b>Child labour observed at this site.</b>" if flagged else "")
+                     + (" <b>Forced labour by an armed group recorded at this site.</b>" if forced else "")
+                     + (" <b>Children under 15 observed working at this site.</b>" if flagged else "")
+                     + ((" Tasks recorded for them: %s." % childwork) if childwork else "")
                      + (" Armed interference recorded: %s." % armed if armed and armed.lower() not in ("none", "0") else "")
                      + " IPIS has mapped roughly 2,800 sites in eastern DRC since 2009 through "
                        "repeat field visits, recording child labour, armed-group interference, "
                        "worker numbers and minerals per site. Unusually for this field, the "
                        "child-labour flag is a direct field observation rather than an inference."
-                     + ("" if flagged else CAVEAT)),
+                     + ("" if (flagged or forced) else CAVEAT)),
         })
     return out
 
