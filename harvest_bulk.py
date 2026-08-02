@@ -408,7 +408,10 @@ def linked_docs(html, base):
         low = href.lower()
         if not low.endswith(DOC_EXT):
             continue
-        if not any(w in low for w in ("iuu", "vessel", "list", "annex", "cmm", "record")):
+        # "cmm" matched every conservation measure the body has ever published:
+        # the last run followed six of them and found paragraph numbers. Require
+        # a genuine list signal instead.
+        if not (("iuu" in low) or ("vessel" in low and "list" in low)):
             continue
         urls.append(urllib.parse.urljoin(base, href))
     seen, out = set(), []
@@ -482,10 +485,14 @@ def harvest_iuu(a):
                 hits = set()
                 for p in [r"IMO[^0-9]{0,12}([0-9]{7})", r"\b([0-9]{7})\b"]:
                     hits |= set(re.findall(p, text, re.I))
-                if hits:
-                    print("       from linked document %s: %d candidate numbers"
-                          % (du.rsplit("/", 1)[-1][:40], len(hits)))
-                    found |= hits
+                kept_here = {h for h in hits if _imo_check(h)}
+                print("       %s: %d chars extracted, %d candidate 7-digit numbers, "
+                      "%d valid IMO" % (du.rsplit("/", 1)[-1][:38], len(text),
+                                        len(hits), len(kept_here)))
+                if len(text) < 500:
+                    print("            (almost no text \u2014 the PDF is probably scanned "
+                          "images or uses an encoding this extractor cannot read)")
+                found |= hits
             if docs and not found:
                 print("       followed %d linked document(s), none carried IMO numbers"
                       % len(docs))

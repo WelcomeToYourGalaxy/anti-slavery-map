@@ -90,7 +90,7 @@ def find_export(path, *patterns):
         return None
     for f in sorted(os.listdir(DATA_DIR)):
         low = f.lower()
-        if low.endswith((".csv", ".xlsx", ".json")) and any(p in low for p in patterns):
+        if low.endswith((".csv", ".xlsx", ".json", ".geojson")) and any(p in low for p in patterns):
             found = os.path.join(DATA_DIR, f)
             print("  found export in data/: %s" % f)
             return found
@@ -185,21 +185,42 @@ def ipis_url(layer):
 
 def harvest_ipis(a):
     gj = None
-    for layer in ipis_layers():
+
+    # GitHub runners could not reach geo.ipisresearch.be at all -- connection
+    # timed out on every attempt including GetCapabilities, which is the
+    # cloud-IP block, not a slow query. So the same data/ escape hatch the other
+    # sources use applies here: download the GeoJSON once and commit it.
+    fp = find_export(a.file, "ipis", "mines", "cod_mines")
+    if fp:
         try:
-            raw = fetch(ipis_url(layer), timeout=240)
-            gj = json.loads(raw.decode("utf-8", "replace"))
-            if gj.get("features"):
-                print("  layer %s: %d features" % (layer, len(gj["features"])))
-                break
-            gj = None
+            gj = json.loads(open(fp, encoding="utf-8").read())
+            print("  using committed export: %s (%d features)"
+                  % (os.path.basename(fp), len(gj.get("features", []))))
         except Exception as ex:
-            print("  %-52s %s" % (layer, str(ex)[:40]))
+            print("  could not read %s: %s" % (fp, str(ex)[:60]))
             gj = None
+
+    if gj is None:
+        for layer in ipis_layers():
+            try:
+                raw = fetch(ipis_url(layer), timeout=240)
+                gj = json.loads(raw.decode("utf-8", "replace"))
+                if gj.get("features"):
+                    print("  layer %s: %d features" % (layer, len(gj["features"])))
+                    break
+                gj = None
+            except Exception as ex:
+                print("  %-52s %s" % (layer, str(ex)[:40]))
+                gj = None
     if not gj:
-        print("  No IPIS layer returned features. The service is slow \u2014 a WFS "
-              "request for ~2,800 sites with full attributes can take minutes \u2014 "
-              "so a timeout here is worth retrying before assuming it has moved.")
+        print("  IPIS unreachable. A connection timeout on every attempt, including "
+              "GetCapabilities, is the host refusing cloud IP ranges rather than a "
+              "slow query \u2014 GitHub runners come from those ranges.")
+        print("  Fix it once, by hand:")
+        print("    1. open https://ipisresearch.be/home/maps-data/open-data/")
+        print("    2. download the DRC mining sites layer as GeoJSON")
+        print("    3. commit it to data/ipis_mines.geojson")
+        print("  It is then used on every run without any network call.")
         return []
     feats = gj.get("features", [])
     print("  IPIS features: %d" % len(feats))
