@@ -35,19 +35,27 @@ jobs:
         run: python3 harvest_points.py --ipis --hotlines || true
       - name: bulk (Brazil, UNODC, IUU vessels)
         run: python3 harvest_bulk.py --all || true
+      - name: infrastructure (ports, recruiters, zones)
+        run: python3 harvest_infra.py --all || true
 
       # The first version of this step pushed straight at main and lost a whole
       # harvest when someone committed through the web UI while it was running:
       #   ! [rejected] main -> main (fetch first)
       # Rebase onto whatever landed, and retry, because losing an hour of
       # harvesting to a race with a file upload is a silly way to lose data.
+      # Fold every layer into one self-contained file, so there is always a
+      # single current artefact to hand to anyone — no eight-file upload.
+      - name: bundle everything into index.bundle.html
+        run: python3 bundle.py || true
+
       - name: commit whatever refreshed
         run: |
           set -e
           git config user.name  "harvest-bot"
           git config user.email "harvest-bot@users.noreply.github.com"
           git add -A -- wire.json projects.json cases.json prevalence.json \
-                        directory.json points.json bulk.json hotlines.json || true
+                        directory.json points.json bulk.json hotlines.json \\
+                        infra.json routes.json index.bundle.html || true
           if git diff --staged --quiet; then
             echo "nothing changed; not committing"
             exit 0
