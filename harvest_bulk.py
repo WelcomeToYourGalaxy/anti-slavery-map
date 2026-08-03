@@ -275,6 +275,9 @@ def harvest_brazil(a):
             "source": "brazil",
             "type": "Rescue operations \u2014 workers removed",
             "lat": c[0], "lng": c[1], "precise": False,
+            # located to a municipality, not to the farm: not precise, but not a
+            # whole-country record either, so it belongs on the map
+            "local": True,
             "impact": 5 if n >= 200 else 4 if n >= 50 else 3 if n >= 10 else 2,
             "status": "Rescued",
             "state": "%s, %s" % (hit["name"], hit["uf"]),

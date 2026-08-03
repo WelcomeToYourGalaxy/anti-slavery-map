@@ -50,6 +50,13 @@
   .ds-fix { margin:1px 0 5px 12px; font-size:9.5px; color:#7f8177; line-height:1.4; }
   .ds-fix code { font-size:9.5px; color:var(--accent-hi); }
   .ds-note { font-size:9.5px; color:#7f8177; font-style:italic; line-height:1.45; margin-top:6px; }
+  #cHover { position:fixed; display:none; z-index:1150; max-width:330px; max-height:60vh; overflow-y:auto; background:rgba(10,20,21,0.97); border:1px solid var(--accent-soft); border-radius:9px; padding:9px 11px; font-size:11px; box-shadow:0 6px 26px rgba(0,0,0,0.55); backdrop-filter:blur(10px); pointer-events:auto; }
+  .chv-head { font-weight:700; font-size:12.5px; color:var(--accent-hi); margin-bottom:5px; }
+  .chv-grp { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8f9187; margin:7px 0 3px; }
+  .chv-item { padding:2px 0 2px 8px; cursor:pointer; color:#c6c8ba; line-height:1.35; border-left:2px solid var(--accent-soft); margin:1px 0; }
+  .chv-item:hover { color:var(--accent-hi); border-left-color:var(--accent-hi); }
+  .chv-more { font-size:9.5px; color:#7f8177; padding-left:8px; }
+  .chv-foot { font-size:9.5px; color:#7f8177; font-style:italic; line-height:1.4; margin-top:7px; border-top:1px solid var(--accent-soft); padding-top:5px; }
   .no-data { color:#717782; font-style:italic; font-size:12.5px; padding:4px 0; }
   #controls { position:fixed; top:70px; right:16px; z-index:1001; background:rgba(16,24,25,0.95); border:1px solid var(--accent-soft); border-radius:10px; padding:11px 12px 12px; backdrop-filter:blur(12px); box-shadow:0 4px 22px rgba(0,0,0,0.45); width:252px; max-height:calc(100vh - 88px); overflow-y:auto; scrollbar-width:auto; }
   #controls::-webkit-scrollbar{width:5px;} #controls::-webkit-scrollbar-thumb{background:var(--accent-soft);border-radius:3px;}
@@ -382,6 +389,7 @@ body.info-open.wire-up #indexPanel{top:122px !important;}
 <div id="header"><h1 id="title">Live Global Slavery, Trafficking &amp; Child Labour Map</h1><div class="subtitle" id="subtitle"></div></div>
 <div id="map"></div>
 <div id="vign" aria-hidden="true"></div>
+<div id="cHover" onmouseenter="clearTimeout(_chvTimer)" onmouseleave="clevelHide()"></div>
 <div id="gbLoad">Loading…</div>
 <div id="infoPanel"><div id="infoDrag" title="Drag to move"></div><div id="infoClose" onclick="hideInfoPanel()">×</div><div id="infoBody"></div></div>
 <div id="guidePanel" aria-hidden="true"><div id="guideHead"><span id="guideTitle"></span><button id="guideClose" onclick="_closeGuide()" title="Close">×</button></div><div id="guideBody"></div></div>
@@ -463,7 +471,8 @@ body.info-open.wire-up #indexPanel{top:122px !important;}
   <div class="proj-size">  <div class="facf-hint" style="margin:2px 0 7px;">Marker colours run <b style="color:#6fd8d0">teal</b> (smallest) → <b style="color:#a8e06a">green</b> → <b style="color:#ffd24a">gold</b> → <b style="color:#ffa53d">amber</b> → <b style="color:#ff6b4a">red</b> (largest). They are deliberately brighter than the rest of the interface so they read against satellite imagery.</div><span class="ps-lab">Severity &mdash; select any</span><span class="ps-pill on" data-ms="all">All</span><span class="ps-pill" data-ms="3">Documented <i>recorded in a named public source</i></span><span class="ps-pill" data-ms="4">Systemic <i>across a sector or region</i></span><span class="ps-pill" data-ms="5">Gravest <i>state-imposed, or a whole national industry</i></span></div><div class="proj-size proj-phase"><span class="ps-lab">Status &mdash; select any</span><span class="ps-pill on" data-ph="pre">Open <i>alleged, under investigation, unresolved</i></span><span class="ps-pill on" data-ph="post">Acted on <i>banned, prosecuted, sanctioned or remediated</i></span></div>
   <div class="proj-search"><input id="projQ" type="search" placeholder="Search cases by name, place or commodity&hellip;" autocomplete="off"><span id="projQn"></span></div>
   <div class="proj-time"><span class="ps-lab">Recency &mdash; dated sources</span><span class="pt-pill on" data-tw="0">All ages</span><span class="pt-pill" data-tw="30">&le;30d</span><span class="pt-pill" data-tw="90">&le;90d</span><span class="pt-pill" data-tw="180">&le;6mo</span><span class="pt-pill" data-tw="365">&le;1yr</span><label class="pt-und"><input type="checkbox" id="pjUndated" checked> Include undated</label></div><div class="lp-detail collapsed"><div class="lp-detail-head" onclick="this.parentNode.classList.toggle('collapsed')"><span class="lp-car">&#9662;</span> Where this data comes from &amp; what's not (yet) in it</div><div class="lp-detail-body">
-<b class="hl-sec">If the map looks thin, check the data-layer list in the key</b><br>
+<b class="hl-sec">Hover a country for what is on record; click it for help there</b><br>
+<b>Every dot on this map is somewhere.</b> Country-level findings — listed goods, prevalence estimates, national determinations — are no longer drawn as pins, because a pin at a country’s centre asserts a place the source never identified, and two hundred of them buried the layer that does have coordinates. <b>Hover</b> a country and they appear in a list beside it, grouped by what kind of claim each one is; click any line for the source and what it does and does not establish. <b>Click</b> the country instead and you get the services and legal routes there. Two questions, two gestures.<br><br>What stays on the map is what has a location: field-visited sites with coordinates, municipality-level rescue operations, and incidents matched to a region. Nothing on the map is placed at a country centroid any more.<br><br><b class="hl-sec">If the map looks thin, check the data-layer list in the key</b><br>
 Every layer here lives in a separate file that a harvester writes. A layer that is not present is <b>a file that has not been harvested yet, not an absence of data in the world</b> — and the list under the map key says which is which, with the command that produces each one. Three of them cannot run entirely unattended, and it is worth knowing which before waiting on them: <b>brick kilns</b> (62,671 GPS points) need a one-off extraction from HuggingFace; <b>Brazil’s municipality rescues</b> need the Observatório’s own export, because it is a dashboard rather than an API; and <b>Open Supply Hub</b> needs a free API token. The rest run on their own.<br><br><b class="hl-sec">Two kinds of dot, and where each comes from</b><br>
 The dots are two different things and should not be read as one. <b>Live incidents</b> are press reports — a raid, a rescue, a charge, a conviction, a death, an inspection finding — built in your browser this session from the news wire, filtered to reported events rather than analysis or a report launch, and placed at a country or region centroid because no feed in this field carries coordinates. Every one is a hollow ring for that reason, and a news report is not a finding by any authority: open the article before relying on it. <b>Determinations</b> are the separate, hand-entered set of published government findings — import bans, national employer blacklists, listed goods — which are citable as they stand.<br><br>The wire itself has two paths, and the count under the layer checkbox says which one is in use rather than leaving you to guess. If <code>wire.json</code> has been built by <code>harvest_wire.py</code> and deployed alongside this file, it is used: country and region are tagged once at harvest time against the full country list, over a 30-day window, in six languages. If it is absent, the browser pulls the same feeds live through a public RSS-to-JSON bridge instead — slower, dependent on a third party, country-level only, and a shorter window.<br><br>One thing to carry through all of it: <b>an absence of dots over a country means these feeds do not report there.</b> Coverage tracks journalism, inspectorates and courts, not the distribution of the harm. The blank areas are frequently the ones to worry about most.<br><br><b class="hl-sec">Read this before you trust a dot</b><br>
     <b>The case layer does not ship with this build.</b> The engine reads its dots from a <code>projects.json</code> file that is harvested separately, and that harvester has not been run for this subject yet. What you are looking at right now is a small hand-entered seed set, described below. Saying so plainly is the point: an empty layer is honest, a fabricated one is not.<br><br>
@@ -1218,6 +1227,93 @@ window.clickCheck = function(){
   return {reachable: mapHits, total: total, blockers: blockers};
 };
 
+
+/* ---- country-level records ---------------------------------------------
+   Records with no real location never become dots. A listed good is a finding
+   about a country and a commodity; a centroid pin asserts a place the source
+   never identified, and 200 of them bury the 3,128 sites that do have
+   coordinates. They live here instead, keyed by ISO, and surface on hover. */
+window.CLEVEL = {};
+function clevelAdd(list){
+  (list||[]).forEach(function(r){
+    /* Two things stay on the map: an exact site (precise), and anything located
+       below the country — a municipality rescue, a region-matched incident.
+       Only whole-country records move off, because those have no place at all. */
+    if(r.precise || r.local) return;
+    var iso = r.iso || r._iso;
+    if(!iso) return;
+    (window.CLEVEL[iso] = window.CLEVEL[iso] || []).push(r);
+  });
+}
+function clevelSplit(list){
+  var dots = [], held = [];
+  (list||[]).forEach(function(r){ ((r.precise||r.local) ? dots : held).push(r); });
+  clevelAdd(held);
+  return dots;
+}
+
+var _chvTimer = null;
+function clevelHide(){
+  var b = document.getElementById('cHover');
+  if(b){ b.style.display='none'; }
+}
+function clevelShow(iso, name, pt){
+  var recs = window.CLEVEL[iso];
+  var b = document.getElementById('cHover');
+  if(!b) return;
+  if(!recs || !recs.length){ b.style.display='none'; return; }
+
+  /* group by what kind of finding it is, because a country can carry a listed
+     good, an import ban and a prevalence estimate at once and they are not the
+     same kind of claim */
+  var groups = {};
+  recs.forEach(function(r){
+    var g = (r.source==='dol'||/listed good/i.test(r.type||'')) ? 'Goods listed as produced with forced or child labour'
+          : (r.source==='ctdc') ? 'Identified cases'
+          : (r.source==='gsi')  ? 'Prevalence estimate'
+          : (r.source==='glotip') ? 'Detected victims'
+          : (r.source==='brazil') ? 'Rescue operations'
+          : 'Determinations and enforcement actions';
+    (groups[g] = groups[g] || []).push(r);
+  });
+
+  var h = '<div class="chv-head">'+_esc(name||iso)+'</div>';
+  Object.keys(groups).forEach(function(g){
+    h += '<div class="chv-grp">'+_esc(g)+'</div>';
+    groups[g].slice(0,40).forEach(function(r){
+      var i = window.__CLEVEL_IDX.push(r) - 1;
+      var label = String(r.name||r.type||'').replace(/\s*\(listed good\)\s*$/,'');
+      h += '<div class="chv-item" onclick="clevelOpen('+i+')">'+_esc(label)+'</div>';
+    });
+    if(groups[g].length>40) h += '<div class="chv-more">+'+(groups[g].length-40)+' more</div>';
+  });
+  h += '<div class="chv-foot">Click any line for the source and what it does and does not '
+     + 'establish. Click the country itself for services and legal routes there.</div>';
+  b.innerHTML = h;
+  b.style.display = 'block';
+
+  /* keep it on screen and away from the cursor */
+  var w = b.offsetWidth || 300, ht = b.offsetHeight || 200;
+  var x = pt.x + 18, y = pt.y - 10;
+  if(x + w > window.innerWidth - 12) x = pt.x - w - 18;
+  if(y + ht > window.innerHeight - 12) y = window.innerHeight - ht - 12;
+  if(y < 8) y = 8;
+  b.style.left = Math.round(x)+'px';
+  b.style.top  = Math.round(y)+'px';
+}
+window.__CLEVEL_IDX = [];
+window.clevelOpen = function(i){
+  var r = window.__CLEVEL_IDX[i];
+  if(!r) return;
+  try{
+    var h = '<div class="popup-country">'+_esc(String(r.name||r.type||''))+'</div>'
+          + (r.state?('<div class="tracker-desc" style="opacity:.8">'+_esc(String(r.state))+'</div>'):'')
+          + '<div class="tracker-desc">'+String(r.desc||'')+'</div>'
+          + (r.url?('<div style="margin-top:8px"><a href="'+_esc(r.url)+'" target="_blank" rel="noopener">Open the source</a></div>'):'');
+    showInfoPanel ? showInfoPanel(h) : L.popup().setLatLng(map.getCenter()).setContent(h).openOn(map);
+  }catch(e){ try{console.warn('clevelOpen',e);}catch(_e){} }
+};
+
 window.dataDiag = function(){
   var out = {};
   DATA_LAYERS.forEach(function(L){
@@ -1807,8 +1903,26 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
       const nm=(f.properties&&f.properties.name)||'This territory';
       showInfoPanel('<div class="popup-country">'+nm+'</div><div class="no-data">This area isn\'t identified as a country here, so it can\'t be opened.</div>'); return; }
     gbEnterCountry(a3,f,latlng); }
-  function baseOnEach(f,layer){ layer.on({ mouseover:e=>{ const a3=NUM2A3[f.id]||''; if(countryAny(a3)||trackerData[a3]||SUBGEO[a3]){e.target.setStyle({weight:2.6,fillOpacity:0.38,fillColor:'#ffd24a',color:'#ffe08a'});} },
-      mouseout:e=>geojsonLayer.resetStyle(e.target), click:e=>baseClick(f,e.latlng) }); }
+  function baseOnEach(f,layer){ layer.on({
+      mouseover:e=>{ const a3=NUM2A3[f.id]||'';
+        if(countryAny(a3)||trackerData[a3]||SUBGEO[a3]||window.CLEVEL[a3]){
+          e.target.setStyle({weight:2.6,fillOpacity:0.38,fillColor:'#ffd24a',color:'#ffe08a'});
+        }
+        /* hover lists what is on record for the country; click still opens
+           services. Two different questions, two different gestures. */
+        try{ clevelShow(a3, (trackerData[a3]&&trackerData[a3].name)||f.properties&&f.properties.name||a3,
+                        e.originalEvent?{x:e.originalEvent.clientX,y:e.originalEvent.clientY}
+                                       :map.latLngToContainerPoint(e.latlng)); }catch(_e){}
+      },
+      mousemove:e=>{ try{ var b=document.getElementById('cHover');
+        if(b&&b.style.display==='block'&&e.originalEvent){
+          var w=b.offsetWidth||300, x=e.originalEvent.clientX+18;
+          if(x+w>window.innerWidth-12) x=e.originalEvent.clientX-w-18;
+          b.style.left=Math.round(x)+'px';
+        } }catch(_e){} },
+      mouseout:e=>{ geojsonLayer.resetStyle(e.target);
+        clearTimeout(_chvTimer); _chvTimer=setTimeout(clevelHide,220); },
+      click:e=>{ clevelHide(); baseClick(f,e.latlng); } }); }
     countries.features.forEach(f=>{ if(!f.geometry)return;
     if(f.geometry.type==='Polygon'){ const p=nrPoly(f.geometry.coordinates);
       if(p.length>1) f.geometry={type:'MultiPolygon',coordinates:p}; else f.geometry.coordinates=p[0];
@@ -3404,6 +3518,7 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
            filter works on it, and loaded independently so a missing or failed
            cases.json cannot take the determinations down with it. */
         pjData=_pjPlaceByISO(d);
+        pjData.projects=clevelSplit(pjData.projects);
         pjRender();
         noteData('projects.json',true,((pjData&&pjData.projects)||[]).length,'');
         /* Three optional side files, each loaded independently so one failing
@@ -3419,7 +3534,9 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
             .then(function(cd){
               if(!cd||!cd.projects||!cd.projects.length){ noteData(fn,false,0,'absent or empty'); return; }
               var mg=_pjPlaceByISO({projects:cd.projects});
+              var kept=clevelSplit(mg.projects);
               noteData(fn,true,(mg.projects||[]).length,'');
+              mg.projects=kept;
               pjData.projects=(pjData.projects||[]).concat(mg.projects||[]);
               pjRender();
               try{ console.log('['+fn+']',(mg.projects||[]).length,'records merged'); }catch(e){}
@@ -3466,6 +3583,7 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
         var emb = window.__BUNDLED && window.__BUNDLED['projects.json'];
         if(emb && emb.projects && emb.projects.length){
           pjData=_pjPlaceByISO({projects:emb.projects.slice()});
+          pjData.projects=clevelSplit(pjData.projects);
           pjRender();
           noteData('projects.json',true,((pjData&&pjData.projects)||[]).length,'from the copy bundled into this file');
           return;
@@ -3474,6 +3592,7 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
           ((PJ_SEED&&PJ_SEED.projects&&PJ_SEED.projects.length)||0)+
           '-record seed set baked into this file. Run the harvesters for the full layer.',err);
         pjData=_pjPlaceByISO({projects:((PJ_SEED&&PJ_SEED.projects)||[]).slice()});
+        pjData.projects=clevelSplit(pjData.projects);
         pjRender();
         noteData('projects.json',false,0,'not harvested \u2014 showing the seed set baked into index.html');
       });
@@ -3750,6 +3869,7 @@ function applyIntent(v){ var hint=document.getElementById('intentHint');
         source: 'wire',
         type: incType(it),
         state: place,
+        local: !!it.region,      /* region-matched: sub-national, stays a dot */
         lat: ll[0], lng: ll[1],
         precise: false,                                   // always a centroid: hollow ring
         impact: incSeverity(it),
