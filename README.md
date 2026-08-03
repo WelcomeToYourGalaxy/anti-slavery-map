@@ -34,10 +34,15 @@ legal case, and where money goes.
 
 ## One file, if you want one
 
-`python3 bundle.py` writes **index.bundle.html** with every data layer embedded
+`python3 bundle.py` writes **index.bundle.html** with the data layers embedded
 — a single self-contained file you can upload, email or drop into any host with
 nothing beside it. The workflow rebuilds it after every harvest, so there is
 always a current one in the repo.
+
+**One layer is deliberately left out: `infra.json`** — 3,630 ports, which
+embedded to 2.1 MB, a quarter of the file, for the layer least likely to be why
+anyone opened the map. Deploy it next to the bundle and the ports appear;
+`bundle.py --embed infra.json` folds it back in.
 
 The runtime is unchanged: the map still prefers a real JSON file on disk and
 only falls back to the embedded copy. So the bundle works alone *and* picks up

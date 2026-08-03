@@ -1166,6 +1166,7 @@ var DATA_LAYERS = [
    cmd:'python3 harvest_scale.py --directory',
    needs:'The GMSD front-end is a JS app; if no endpoint responds the script says how to find it.'},
   {f:'infra.json', label:'Ports, recruitment agencies, free zones',
+   external:true,
    cmd:'python3 harvest_infra.py --all',
    needs:'Ports run unattended from the World Port Index. Recruitment registers and zone files need a committed export in data/ \u2014 both are published as HTML or PDF rather than data.'},
   {f:'routes.json', label:'Trafficking corridors (origin \u2192 destination)',
@@ -1191,9 +1192,18 @@ function renderDataStatus(){
               ' <span class="ds-n">'+s.n.toLocaleString()+'</span></div>';
     } else if(s){
       missing++;
+      /* Some layers are fetched at runtime on purpose rather than bundled \u2014
+         saying "not harvested" about those would send someone to re-run a
+         harvester that already worked. */
       rows += '<div class="ds-row ds-no"><b>\u2014</b> '+_esc(L.label)+
-              '<div class="ds-fix"><code>'+_esc(L.cmd)+'</code>'+
-              (L.needs?('<br>'+_esc(L.needs)):'')+'</div></div>';
+              '<div class="ds-fix">'+
+              (L.external
+                ? 'Loaded separately by design, to keep the single-file build a '
+                  +'sensible size. Deploy <code>'+_esc(L.f)+'</code> next to this '
+                  +'page and it appears. Rebuild with <code>bundle.py --embed '
+                  +_esc(L.f)+'</code> to fold it in.'
+                : '<code>'+_esc(L.cmd)+'</code>'+(L.needs?('<br>'+_esc(L.needs)):''))+
+              '</div></div>';
     }
   });
   el.innerHTML = '<div class="ds-head">Data layers &mdash; '+loaded+' loaded, '+
@@ -1949,6 +1959,7 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
      scattered small islands still lands on its mainland. */
   try{
     window.ISO_CENTROID=window.ISO_CENTROID||{};
+    window.NAME2ISO=window.NAME2ISO||{};
     countries.features.forEach(function(f){
       var a3=NUM2A3[f.id]; if(!a3||!f.geometry) return;
       var polys=(f.geometry.type==='Polygon')?[f.geometry.coordinates]:f.geometry.coordinates;
@@ -1964,6 +1975,22 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
         bx+=cx*a; by+=cy*a; ba+=a;
       });
       if(ba>0) window.ISO_CENTROID[a3]=[by/ba,bx/ba];
+      /* Some sources publish country NAMES and no code \u2014 Walk Free's
+         spreadsheet is one. The boundary file already carries both, so
+         build the lookup here rather than shipping a name table that would
+         drift. */
+      try{ var nm=(f.properties&&(f.properties.name||f.properties.NAME));
+        if(nm) window.NAME2ISO[String(nm).toLowerCase()]=a3; }catch(_e){}
+      /* Name -> ISO3 from the same features. A harvester that only knows a
+         country by name (Walk Free publishes names, not codes) can then be
+         resolved against exactly the countries this map draws — so anything
+         that resolves is guaranteed placeable, which a separate lookup table
+         cannot promise. */
+      try{
+        var nm=(f.properties&&(f.properties.name||f.properties.NAME))||'';
+        if(nm){ window.ISO_BY_NAME=window.ISO_BY_NAME||{};
+          window.ISO_BY_NAME[String(nm).toLowerCase()]=a3; }
+      }catch(_e){}
     });
     try{ if(window._pjFlushPending) window._pjFlushPending(); }catch(e){}
     try{ if(window.drawRoutes) drawRoutes(); }catch(e){}
@@ -2975,6 +3002,8 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
   var PJ_SRC=[
     {k:"wire",cat:"Live",label:"Live incidents (press-reported)",
      desc:"Built in your browser, this session, from the news wire below \u2014 reported raids, rescues, charges, convictions, deaths and named employers from the last feed window. Placed at a country or region centroid because no feed carries coordinates, so every one of these is a hollow ring. A news report is not a finding by an authority: open the article. And the coverage is editorial \u2014 where these outlets do not report, there are no dots, which says nothing about what happens there."},
+    {k:"listasuja",cat:"Enforcement outcomes",label:"Employers named by Brazil (the 'lista suja')",
+     desc:"The <b>Cadastro de Empregadores</b>: employers found by Brazilian labour inspectors to have subjected workers to conditions analogous to slavery, published by the state after the administrative process concludes. Nothing else in this field is comparable \u2014 not modelled, not a risk score, not an allegation, and it <b>names the employer and the establishment</b>. Banks and buyers use it, which gives it commercial force a report does not have. It is also contested: employers have repeatedly obtained injunctions removing names, so check the current edition. Dots are municipalities; the establishment address is in each record. Requires harvest_bulk.py --listasuja."},
     {k:"brazil",cat:"Enforcement outcomes",label:"Rescue operations (Brazil, by municipality)",
      desc:"People found in conditions analogous to slavery and removed by Brazil's mobile inspection group, located to the <b>municipality</b> \u2014 60,251 of them between 1995 and 2022. The best sub-national enforcement data anywhere in this field, and the only layer here that records a <b>rescue</b> rather than a risk. That Brazil dominates this layer says less about Brazil than about what a country looks like when it actually counts. Requires harvest_bulk.py --brazil."},
     {k:"glotip",cat:"Detection",label:"Detected victims (UNODC)",
@@ -3560,6 +3589,37 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
       var C=window.ISO_CENTROID||{}, used={}, out=[], dropped=0;
       list.forEach(function(p){
         if(typeof p.lat==='number' && typeof p.lng==='number'){ out.push(p); return; }
+        /* Fall back to the country name when no code was supplied. */
+        if(!p.iso && p.country_name && window.ISO_BY_NAME){
+          var key=String(p.country_name).toLowerCase();
+          var alias={"united states of america":"united states","russian federation":"russia",
+            "republic of korea":"south korea","democratic people's republic of korea":"north korea",
+            "iran (islamic republic of)":"iran","viet nam":"vietnam","syrian arab republic":"syria",
+            "lao people's democratic republic":"laos","republic of moldova":"moldova",
+            "united republic of tanzania":"tanzania","bolivia (plurinational state of)":"bolivia",
+            "venezuela (bolivarian republic of)":"venezuela","czechia":"czech republic",
+            "t\u00fcrkiye":"turkey","turkiye":"turkey","c\u00f4te d'ivoire":"ivory coast",
+            "cote d'ivoire":"ivory coast","eswatini":"swaziland","cabo verde":"cape verde",
+            "north macedonia":"macedonia","timor-leste":"east timor","the gambia":"gambia",
+            "brunei darussalam":"brunei","congo, democratic republic of the":"dem. rep. congo",
+            "democratic republic of the congo":"dem. rep. congo","myanmar":"myanmar"};
+          p.iso = window.ISO_BY_NAME[key] || window.ISO_BY_NAME[alias[key]||''] ||
+                  window.ISO_BY_NAME[key.replace(/\s*\(.*?\)\s*/,'').trim()] || p.iso;
+        }
+        if(!p.iso && p.country_name && window.NAME2ISO){
+          var key=String(p.country_name).toLowerCase().trim();
+          /* maps a source's name to the boundary file's name, not to a code */
+          var alias={'united states':'united states of america',
+            'russia':'russian federation','south korea':'republic of korea',
+            'north korea':"dem. rep. korea",'vietnam':'viet nam',
+            'laos':'lao pdr','syria':'syrian arab republic','iran':'iran (islamic republic of)',
+            'tanzania':'united republic of tanzania','bolivia':'bolivia (plurinational state of)',
+            'venezuela':'venezuela (bolivarian republic of)','moldova':'republic of moldova',
+            'czech republic':'czechia','ivory coast':"côte d'ivoire",'cape verde':'cabo verde',
+            'burma':'myanmar','swaziland':'eswatini','macedonia':'north macedonia',
+            'democratic republic of the congo':'dem. rep. congo','republic of the congo':'congo'};
+          p.iso = window.NAME2ISO[key] || window.NAME2ISO[alias[key]||''] || null;
+        }
         var c=p.iso && C[p.iso];
         if(!c){
           /* Not "no such country" \u2014 usually "the boundary geometry has not

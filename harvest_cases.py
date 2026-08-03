@@ -74,8 +74,8 @@ COUNTRY_COLS = ["citizenship", "CountryOfExploitation", "countryOfExploitation",
 PREFER = ["countryofexploitation", "exploitcountry", "country_of_exploitation",
           "countryofexploitationiso", "citizenship"]
 
-TYPE_COLS = ["typeOfExploitConcatenated", "majorityStatus", "typeOfLabourConcatenated",
-             "isForcedLabour", "isSexualExploit"]
+TYPE_COLS = ["typeOfExploitConcatenated", "majorityStatus", "ageBroad",
+             "typeOfLabourConcatenated", "isForcedLabour", "isSexualExploit"]
 
 
 
@@ -158,6 +158,75 @@ def find_csv(verbose=False):
     return None
 
 
+def pick_origin_col(fields):
+    """Country of citizenship, which for a trafficking record is where the
+    person came from. Distinct from country of exploitation."""
+    low = {f.lower().replace(" ", "").replace("_", ""): f for f in fields}
+    for p in ("citizenship", "countryoforigin", "origincountry", "nationality"):
+        if p in low:
+            return low[p]
+    return None
+
+
+def build_routes(rows, origin_col, dest_col, min_n):
+    """Origin -> destination pairs.
+
+    This is the one thing on the map that shows MOVEMENT. Every other layer
+    answers "where is this happening"; a route answers "where did the person
+    come from", and that is where the recruitment fee was charged, where the
+    debt was created, and where a licence could have been pulled before anyone
+    travelled. The destination is where the exploitation was found; the origin
+    is where it was arranged.
+
+    Same-country pairs are kept but flagged: internal trafficking is the
+    majority of recorded cases in several countries, and dropping it would
+    misrepresent the shape of the problem as international by definition.
+    """
+    pairs = {}
+    for r in rows:
+        o = (r.get(origin_col) or "").strip().upper()
+        dcy = (r.get(dest_col) or "").strip().upper()
+        if len(o) != 3 or len(dcy) != 3 or o in ("-99",) or dcy in ("-99",):
+            continue
+        k = (o, dcy)
+        e = pairs.setdefault(k, {"n": 0, "labour": 0, "sexual": 0, "minor": 0})
+        e["n"] += 1
+        blob = " ".join(str(r.get(t, "")) for t in TYPE_COLS).lower()
+        if "labour" in blob or r.get("isForcedLabour") == "1":
+            e["labour"] += 1
+        if "sexual" in blob or r.get("isSexualExploit") == "1":
+            e["sexual"] += 1
+        age = str(r.get("ageBroad") or "")
+        if "minor" in blob or age.startswith(("0", "9--", "09--")):
+            e["minor"] += 1
+
+    out = []
+    for (o, dcy), e in sorted(pairs.items(), key=lambda kv: -kv[1]["n"]):
+        if e["n"] < min_n:
+            continue
+        internal = (o == dcy)
+        kind = ("labour exploitation" if e["labour"] > e["sexual"] else
+                "sexual exploitation" if e["sexual"] > e["labour"] else
+                "mixed")
+        out.append({
+            "from": o, "to": dcy, "n": e["n"], "internal": internal, "kind": kind,
+            "labour": e["labour"], "sexual": e["sexual"], "minor": e["minor"],
+            "desc": (("%s people recorded as trafficked within %s." % (format(e["n"], ","), o))
+                     if internal else
+                     ("%s people recorded as trafficked from %s and exploited in %s."
+                      % (format(e["n"], ","), o, dcy)))
+                    + (" Of those, %d with labour exploitation, %d with sexual exploitation"
+                       % (e["labour"], e["sexual"]))
+                    + ((", %d who were children at the time" % e["minor"]) if e["minor"] else "")
+                    + ". From the Counter-Trafficking Data Collaborative. "
+                      "<b>A route is drawn between country centroids and is not a path anyone "
+                      "travelled</b> \u2014 it says where a case began and where it was found, "
+                      "not how the person got there. And it is detection again: a corridor with "
+                      "no line may have no trafficking, or no one identifying it.",
+        })
+    return out
+
+
 def pick_country_col(fields):
     low = {f.lower().replace(" ", "").replace("_", ""): f for f in fields}
     for p in PREFER:
@@ -175,6 +244,8 @@ def main():
     ap.add_argument("--file", help="a CSV already downloaded by hand, when "
                                    "CTDC blocks the automated request")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--min-route", type=int, default=5,
+                    help="drop corridors with fewer cases than this")
     ap.add_argument("--min", type=int, default=1,
                     help="drop countries with fewer than this many records")
     ap.add_argument("--force", action="store_true")
@@ -183,7 +254,10 @@ def main():
 
     fp = read_file(find_export(args.file, "ctdc", "synthetic", "victim"), "Download the Global Synthetic Dataset CSV from "
                               "ctdatacollaborative.org, save it into your repo folder, "
-                              "cd there, and re-run.") if args.file else None
+                              "cd there, and re-run.")
+    # The `if args.file` guard meant a file committed to data/ was found and
+    # then thrown away: find_export exists precisely so nobody has to pass a
+    # path, and gating on --file defeated it.
     if args.file and not fp:
         return 1
     if fp:
@@ -229,7 +303,10 @@ def main():
             k["labour"] += 1
         if sex:
             k["sexual"] += 1
-        if "minor" in blob:
+        # The 2026 release replaced majorityStatus with ageBroad; "09--17" is
+        # the child band. Both are checked so older files still work.
+        age = str(row.get("ageBroad") or "")
+        if "minor" in blob or age.startswith(("0", "9--", "09--")):
             k["minor"] += 1
 
         kind = ("labour exploitation" if lab and not sex else
@@ -320,6 +397,26 @@ def main():
                 "people who were trafficked and many of whom are still at risk."
                 % (format(n, ","), breakdown)).strip(),
         })
+
+    origin_col = pick_origin_col(fields)
+    routes = []
+    if origin_col and origin_col != col:
+        rdr2 = csv.DictReader(io.StringIO(text))
+        routes = build_routes(list(rdr2), origin_col, col, args.min_route)
+        print("routes: %d corridor(s) with >= %d cases (origin column %r)"
+              % (len(routes), args.min_route, origin_col))
+        if routes and not args.dry_run:
+            rp = os.path.join(HERE, "routes.json")
+            with open(rp, "w", encoding="utf-8") as f:
+                json.dump({"generated": datetime.now(timezone.utc).isoformat(),
+                           "source": "Counter-Trafficking Data Collaborative",
+                           "note": ("Origin to destination corridors. Lines join country "
+                                    "centroids and are not travelled paths."),
+                           "routes": routes}, f, ensure_ascii=False, indent=1)
+            print("wrote", rp, "-", os.path.getsize(rp), "bytes")
+    elif not origin_col:
+        print("no citizenship/origin column found, so no routes were built. "
+              "Columns seen: %s" % ", ".join(fields[:12]))
 
     print("records: %d (%d sliced by type and period, %d country totals)"
           % (len(recs), len(recs) - len(counts), len(counts)))

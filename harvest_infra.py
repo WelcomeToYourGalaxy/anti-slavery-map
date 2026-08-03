@@ -91,7 +91,7 @@ def find_export(*patterns):
         return None
     for f in sorted(os.listdir(DATA_DIR)):
         low = f.lower()
-        if low.endswith((".csv", ".json", ".geojson", ".xlsx")) and any(p in low for p in patterns):
+        if low.endswith((".csv", ".json", ".geojson", ".xlsx", ".zip", ".dbf")) and any(p in low for p in patterns):
             p = os.path.join(DATA_DIR, f)
             print("  found export in data/: %s" % f)
             return p
@@ -105,16 +105,88 @@ def num(v):
         return None
 
 
+
+def read_dbf(path, encoding="latin-1"):
+    """Minimal DBF reader.
+
+    The World Port Index ships as an Access database or a shapefile. Neither is
+    a format you can read with the standard library alone -- except that a
+    shapefile's attributes are a DBF, and DBF is simple enough to parse
+    directly: fixed-width records behind a field descriptor table. That avoids
+    making anyone install GDAL or pyshp to put ports on a map.
+
+    The .shp holds the geometry, but WPI's DBF carries latitude and longitude
+    as fields too, so the attributes alone are enough.
+    """
+    with open(path, "rb") as f:
+        raw = f.read()
+    if len(raw) < 32:
+        return []
+    nrec = int.from_bytes(raw[4:8], "little")
+    hdr = int.from_bytes(raw[8:10], "little")
+    rlen = int.from_bytes(raw[10:12], "little")
+    fields, pos = [], 32
+    while pos < hdr - 1 and raw[pos] != 0x0D:
+        name = raw[pos:pos + 11].split(b"\x00")[0].decode(encoding, "replace").strip()
+        ftype = chr(raw[pos + 11])
+        flen = raw[pos + 16]
+        fields.append((name, ftype, flen))
+        pos += 32
+    rows = []
+    for i in range(nrec):
+        off = hdr + i * rlen
+        rec = raw[off:off + rlen]
+        if not rec or rec[:1] == b"*":          # deleted
+            continue
+        cur, out = 1, {}
+        for name, ftype, flen in fields:
+            val = rec[cur:cur + flen].decode(encoding, "replace").strip()
+            out[name] = val
+            cur += flen
+        rows.append(out)
+    return rows
+
+
+def wpi_rows(fp):
+    """Accept the shapefile bundle, the .dbf on its own, or a CSV export."""
+    import zipfile
+    if fp.lower().endswith(".zip"):
+        with zipfile.ZipFile(fp) as z:
+            names = z.namelist()
+            dbf = next((n for n in names if n.lower().endswith(".dbf")), None)
+            csvn = next((n for n in names if n.lower().endswith(".csv")), None)
+            if dbf:
+                tmp = os.path.join(HERE, "_wpi_tmp.dbf")
+                with open(tmp, "wb") as out:
+                    out.write(z.read(dbf))
+                try:
+                    return read_dbf(tmp)
+                finally:
+                    try:
+                        os.remove(tmp)
+                    except OSError:
+                        pass
+            if csvn:
+                return list(csv.DictReader(io.StringIO(
+                    z.read(csvn).decode("utf-8", "replace"))))
+        return []
+    if fp.lower().endswith(".dbf"):
+        return read_dbf(fp)
+    return list(csv.DictReader(open(fp, encoding="utf-8-sig")))
+
+
 # ====================================================================== PORTS
 FISHING_HINT = ("fish", "seafood", "trawl", "cannery", "processing")
 
 
 def harvest_ports(a):
     raw = None
-    fp = find_export("port", "wpi")
+    fp = find_export("port", "wpi", "pub150")
+    rows = None
     if fp:
-        raw = open(fp, "rb").read()
-    else:
+        rows = wpi_rows(fp)
+        print("  %s: %d rows" % (os.path.basename(fp), len(rows)))
+    if rows is None:
         for u in WPI_SOURCES:
             try:
                 raw = fetch(u)
@@ -123,13 +195,14 @@ def harvest_ports(a):
             except Exception as ex:
                 if a.verbose:
                     print("  %-64s %s" % (u[:64], str(ex)[:40]))
-    if not raw:
+    if rows is None and not raw:
         print("  World Port Index unreachable. It is public-domain US government "
               "data; download Pub 150 from msi.nga.mil and commit it to data/ "
               "with 'port' in the filename.")
         return []
 
-    rows = list(csv.DictReader(io.StringIO(raw.decode("utf-8", "replace"))))
+    if rows is None:
+        rows = list(csv.DictReader(io.StringIO(raw.decode("utf-8", "replace"))))
     if not rows:
         print("  no rows parsed")
         return []
@@ -148,24 +221,30 @@ def harvest_ports(a):
             continue
         name = (col(r, "portname", "mainportname", "name") or "Port").strip()
         country = (col(r, "country") or "").strip()
-        harbour = str(col(r, "harborsize", "harboursize") or "").strip()
-        blob = " ".join(str(v) for v in r.values()).lower()
-        fishing = any(w in blob for w in FISHING_HINT)
-        big = harbour.lower().startswith(("l", "m"))     # Large / Medium
-        if not (fishing or big) and not a.all_ports:
+        # The WPI encodes harbour size as a single letter -- V(ery small), S,
+        # M(edium), L(arge) -- and has no fishing flag at all. The previous
+        # version looked for the word "fish" in the row, found it 5 times in
+        # 3,630, and silently dropped 3,100 ports on a test that could not work.
+        harbour = str(col(r, "harborsize", "harboursize") or "").strip().upper()[:1]
+        SIZE = {"L": ("large", 3), "M": ("medium", 3), "S": ("small", 2),
+                "V": ("very small", 2)}
+        size_word, impact = SIZE.get(harbour, ("unclassified", 2))
+        name_l = name.lower()
+        fishing = any(w in name_l for w in FISHING_HINT)
+        if a.big_only and harbour not in ("L", "M"):
             continue
         out.append({
             "name": name[:100],
             "source": "ports",
-            "type": "Port" + (" \u2014 fishing" if fishing else ""),
+            "type": "Port \u2014 %s harbour" % size_word,
             "lat": lat, "lng": lng, "precise": True,
-            "impact": 3 if fishing else 2,
+            "impact": impact + (1 if fishing else 0),
             "status": "Port",
             "state": country,
             "url": "https://msi.nga.mil/Publications/WPI",
             "desc": (("Port listed in the World Port Index"
-                      + (" (%s)" % country if country else "") + ". "
-                      + ("Handles fishing or seafood. " if fishing else ""))
+                      + (" (%s)" % country if country else "")
+                      + ", %s harbour. " % size_word)
                      + "Ports matter here for one specific reason: <b>transhipment</b>. "
                        "Catch and crew transferred between vessels at sea, or in port without "
                        "anyone going ashore, is how a fisher stays offshore for months or "
@@ -296,8 +375,8 @@ def main():
     ap = argparse.ArgumentParser()
     for f in ("ports", "recruiters", "zones", "all"):
         ap.add_argument("--" + f, action="store_true")
-    ap.add_argument("--all-ports", action="store_true",
-                    help="keep every port, not only large and fishing ports")
+    ap.add_argument("--big-only", action="store_true",
+                    help="keep only large and medium harbours")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("-v", "--verbose", action="store_true")
     a = ap.parse_args()

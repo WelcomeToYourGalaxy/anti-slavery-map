@@ -59,60 +59,19 @@ OUT = os.path.join(HERE, "bulk.json")
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
       "Chrome/124.0 Safari/537.36")
 
-IBGE_MUN = "https://servicodados.ibge.gov.br/api/v1/localidades/municipios"
-
-# The MPT-hosted address stopped resolving; the Observatorio now lives on the
-# SmartLab platform, which is where its download controls are.
-BR_PAGES = [
-    "https://smartlabbr.org/trabalhoescravo",
-    "https://observatorioescravo.mpt.mp.br/",
-]
-
-GLOTIP_PAGES = [
-    "https://dataunodc.un.org/dp-trafficking-persons",
-    "https://www.unodc.org/unodc/en/data-and-analysis/glotip.html",
-]
-
-# The RFMO lists are the actual sources of record; the combined list is a
-# convenience wrapper over them. Both of the pages tried first turned out to be
-# JS shells with no vessel data in the served HTML, so the RFMO pages -- which
-# are plain server-rendered tables -- come first now.
-IUU_SOURCES = [
-    ("ICCAT IUU list", "https://www.iccat.int/en/IUUlist.html"),
-    ("IOTC IUU list", "https://iotc.org/vessels/iuu"),
-    ("GFCM IUU list", "https://www.fao.org/gfcm/data/iuu-vessel-list/en/"),
-    ("FAO Global Record", "https://www.fao.org/global-record/en/"),
-    ("CCAMLR IUU list (non-contracting parties)",
-     "https://www.ccamlr.org/en/compliance/non-contracting-party-iuu-vessel-list"),
-    ("CCAMLR IUU list (contracting parties)",
-     "https://www.ccamlr.org/en/compliance/contracting-party-iuu-vessel-list"),
-    ("NAFO IUU list", "https://www.nafo.int/Fisheries/IUU"),
-    ("SEAFO IUU list", "https://www.seafo.org/Management/IUU-Vessels"),
-    # These four 404'd on the live run, so they point at each body's landing
-    # page instead; the document-following step finds the list from there.
-    ("IATTC", "https://www.iattc.org/en-US/Fisheries/IUU"),
-    ("SPRFMO", "https://www.sprfmo.int/measures/"),
-    ("NPFC", "https://www.npfc.int/"),
-    ("WCPFC", "https://www.wcpfc.int/"),
-    ("Combined IUU Vessel List (TMT)", "https://iuu-vessels.org/"),
-]
-
-
-
 DATA_DIR = os.path.join(HERE, "data")
 
 
 def find_export(path, *patterns):
-    """Repo-only workflow: an export committed to data/ is found automatically,
-    so a GitHub Action can use it without anyone passing a path. --file still
-    wins when given."""
+    """Repo-only workflow: an export committed to data/ is found by keyword, so
+    a GitHub Action uses it without anyone passing a path."""
     if path:
         return path
     if not os.path.isdir(DATA_DIR):
         return None
     for f in sorted(os.listdir(DATA_DIR)):
         low = f.lower()
-        if low.endswith((".csv", ".xlsx", ".json")) and any(p in low for p in patterns):
+        if low.endswith((".csv", ".json", ".xlsx")) and any(p in low for p in patterns):
             found = os.path.join(DATA_DIR, f)
             print("  found export in data/: %s" % f)
             return found
@@ -120,7 +79,7 @@ def find_export(path, *patterns):
 
 
 def read_file(path, what):
-    """A missing input should say what to do, not throw a stack trace at you."""
+    """A missing input should say what to do, not throw a stack trace."""
     if not path:
         return None
     if not os.path.exists(path):
@@ -128,84 +87,66 @@ def read_file(path, what):
         print("\n  File not found: %s" % path)
         print("  You are in: %s" % here)
         print("  %s" % what)
-        near = [f for f in os.listdir(here) if f.lower().endswith((".csv", ".json", ".xlsx"))]
-        if near:
-            print("  Data files in this directory: %s" % ", ".join(sorted(near)[:12]))
-        else:
-            print("  No .csv/.json/.xlsx files in this directory at all \u2014 you are "
-                  "probably not in the repo folder, or the export has not been made yet.")
         return None
     return path
 
 
-def fetch(url, timeout=90, headers=None):
-    ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
-    h = {"User-Agent": UA, "Accept": "*/*"}
-    if headers:
-        h.update(headers)
-    with urllib.request.urlopen(urllib.request.Request(url, headers=h),
-                               timeout=timeout, context=ctx) as r:
-        return r.read()
+# IBGE's own API returned 403s and then a 500. It also needed a second request
+# per municipality for geometry, which is thousands of calls for one layer.
+# This gazetteer is a single 5,570-row CSV with coordinates already in it,
+# served from GitHub, which both this and a GitHub Actions runner can reach.
+MUN_GAZETTEER = ("https://raw.githubusercontent.com/kelvins/municipios-brasileiros"
+                 "/main/csv/municipios.csv")
+UF_BY_CODE = {11:"RO",12:"AC",13:"AM",14:"RR",15:"PA",16:"AP",17:"TO",21:"MA",
+              22:"PI",23:"CE",24:"RN",25:"PB",26:"PE",27:"AL",28:"SE",29:"BA",
+              31:"MG",32:"ES",33:"RJ",35:"SP",41:"PR",42:"SC",43:"RS",50:"MS",
+              51:"MT",52:"GO",53:"DF"}
 
-
-# ==================================================================== BRAZIL
 _MUN = None
 
 
 def ibge_index(verbose=False):
-    """Municipality name + state -> coordinates, from IBGE. Public, no key."""
+    """Municipality name + UF -> coordinates. One request, no per-row lookups."""
     global _MUN
     if _MUN is not None:
         return _MUN
-    local = find_export(None, "ibge", "municipios")
+    text = None
+    local = find_export(None, "municipio", "ibge", "gazetteer")
     if local:
+        text = open(local, encoding="utf-8-sig").read()
+    else:
         try:
-            rows = json.loads(open(local, encoding="utf-8").read())
-            _MUN = _index_ibge(rows, verbose)
+            text = fetch(MUN_GAZETTEER, timeout=120).decode("utf-8", "replace")
+        except Exception as ex:
+            print("  gazetteer fetch failed: %s" % str(ex)[:70])
+            print("  Download %s and commit it to data/ with 'municipios' in the "
+                  "filename." % MUN_GAZETTEER)
+            _MUN = {}
             return _MUN
-        except Exception as ex:
-            print("  could not read committed IBGE list: %s" % str(ex)[:60])
-    rows = None
-    for attempt in (1, 2, 3):
-        try:
-            raw = fetch(IBGE_MUN, timeout=120)
-            rows = json.loads(raw.decode("utf-8", "replace"))
-            break
-        except Exception as ex:
-            head = ""
-            try:
-                head = raw[:120].decode("utf-8", "replace").replace("\n", " ")
-            except Exception:
-                pass
-            print("  IBGE attempt %d failed: %s%s"
-                  % (attempt, str(ex)[:60],
-                     ("  |  response began: %r" % head) if head else ""))
-            time.sleep(attempt * 3)
-    if rows is None:
-        print("  IBGE unreachable after 3 attempts. Municipality names cannot be "
-              "resolved to coordinates, so nothing is placed \u2014 rather than "
-              "guessing positions. The API is servicodados.ibge.gov.br; if it is "
-              "blocking cloud IPs, download the municipality list once and commit "
-              "it to data/ with 'ibge' in the filename.")
-        _MUN = {}
-        return _MUN
-    _MUN = _index_ibge(rows, verbose)
-    return _MUN
-
-
-def _index_ibge(rows, verbose=False):
     idx = {}
-    for m in rows:
+    for r in csv.DictReader(io.StringIO(text)):
         try:
-            uf = m["microrregiao"]["mesorregiao"]["UF"]["sigla"]
-        except Exception:
-            uf = (m.get("UF") or {}).get("sigla", "") if isinstance(m.get("UF"), dict) else ""
-        key = (norm(m.get("nome", "")), uf)
-        idx[key] = {"id": m.get("id"), "uf": uf, "name": m.get("nome")}
-    print("  IBGE municipalities indexed: %d" % len(idx))
+            uf = UF_BY_CODE.get(int(r.get("codigo_uf") or 0), "")
+            lat = float(r["latitude"])
+            lng = float(r["longitude"])
+        except (TypeError, ValueError, KeyError):
+            continue
+        idx[(norm(r.get("nome", "")), uf)] = {
+            "id": r.get("codigo_ibge"), "uf": uf, "name": r.get("nome"),
+            "lat": lat, "lng": lng}
+    print("  municipalities indexed: %d" % len(idx))
+    _MUN = idx
     return idx
+
+
+_COORD_CACHE = {}
+
+
+def mun_coords(entry):
+    """Coordinates come straight from the gazetteer row now."""
+    if isinstance(entry, dict):
+        return (entry.get("lat"), entry.get("lng"))
+    return None
 
 
 def norm(s):
@@ -216,35 +157,6 @@ def norm(s):
 
 
 _COORD_CACHE = {}
-
-
-def mun_coords(mun_id):
-    """IBGE malha endpoint returns the municipality boundary; its centre is
-    good enough and avoids shipping a gazetteer."""
-    if mun_id in _COORD_CACHE:
-        return _COORD_CACHE[mun_id]
-    url = ("https://servicodados.ibge.gov.br/api/v3/malhas/municipios/%s?formato=application/vnd.geo+json"
-           % mun_id)
-    try:
-        gj = json.loads(fetch(url, timeout=40).decode("utf-8", "replace"))
-        geom = gj["features"][0]["geometry"]["coordinates"]
-        pts = []
-
-        def walk(x):
-            if isinstance(x, list) and x and isinstance(x[0], (int, float)):
-                pts.append(x)
-            elif isinstance(x, list):
-                for y in x:
-                    walk(y)
-        walk(geom)
-        if not pts:
-            raise ValueError("no points")
-        lat = sum(p[1] for p in pts) / len(pts)
-        lng = sum(p[0] for p in pts) / len(pts)
-        _COORD_CACHE[mun_id] = (lat, lng)
-    except Exception:
-        _COORD_CACHE[mun_id] = None
-    return _COORD_CACHE[mun_id]
 
 
 def brazil_file_kind(path):
@@ -322,7 +234,7 @@ def harvest_brazil(a):
         if not hit:
             unmatched += 1
             continue
-        c = mun_coords(hit["id"])
+        c = mun_coords(hit)
         if not c:
             unmatched += 1
             continue
@@ -465,7 +377,7 @@ def harvest_listasuja_file(fp, a):
         if not hit:
             unmatched.append("%s/%s" % (mun, uf))
             continue
-        c = mun_coords(hit["id"])
+        c = mun_coords(hit)
         if not c:
             unmatched.append("%s/%s (no geometry)" % (mun, uf))
             continue
@@ -523,69 +435,121 @@ def harvest_listasuja_file(fp, a):
 
 # ==================================================================== GLOTIP
 def harvest_glotip(a):
-    fp = read_file(find_export(a.file, "glotip", "unodc", "traffick"), "Export the country table from dataunodc.un.org "
-                           "(Trafficking in Persons), save it into your repo folder, "
-                           "cd there, and re-run.")
-    if fp:
-        raw = open(fp, "rb").read()
-    else:
-        raw = None
-        for page in GLOTIP_PAGES:
-            try:
-                html = fetch(page).decode("utf-8", "replace")
-            except Exception as ex:
-                if a.verbose:
-                    print("  %-52s %s" % (page, str(ex)[:40]))
-                continue
-            for l in re.findall(r'href="([^"]+\.(?:csv|xlsx))"', html):
-                u = l if l.startswith("http") else urllib.parse.urljoin(page, l)
-                try:
-                    raw = fetch(u)
-                    print("  using:", u)
-                    break
-                except Exception:
-                    continue
-            if raw:
-                break
-    if not raw:
-        print("  UNODC publishes GLOTIP through its data portal "
-              "(dataunodc.un.org) rather than a stable file URL. Export the "
-              "country table there and re-run with --file.")
+    """UNODC GLOTIP.
+
+    The file is a long table -- one row per country, indicator, dimension,
+    category, sex, age and year -- so it has to be filtered rather than read.
+    Only rows counting DETECTED VICTIMS are taken, and only the "Total" sex and
+    age rows, or every victim would be counted three or four times over.
+
+    Values below five are published as "<5" rather than a number, because a
+    small count in a small country can identify a person. Those rows are kept
+    at a nominal 3 and the record says so, since dropping them would make the
+    countries doing least identification look like the countries with least
+    trafficking.
+    """
+    fp = read_file(find_export(a.file, "glotip", "unodc", "traffick"),
+                   "Export the country table from dataunodc.un.org and commit "
+                   "it to data/ with 'glotip' in the filename.")
+    if not fp:
         return []
 
-    rows = list(csv.DictReader(io.StringIO(raw.decode("utf-8", "replace"))))
-    agg = {}
-    for r in rows:
-        iso = None
-        for k, v in r.items():
-            if norm(k) in ("iso3 code", "iso3", "country code") and v:
-                iso = str(v).strip().upper()[:3]
-        if not iso:
-            continue
+    rows = []
+    if fp.lower().endswith((".xlsx", ".xls")):
         try:
-            val = float(str(r.get("VALUE") or r.get("Value") or 0).replace(",", ""))
+            import openpyxl
+        except ImportError:
+            print("  that file is a spreadsheet and openpyxl is not installed.\n"
+                  "      pip install openpyxl")
+            return []
+        wb = openpyxl.load_workbook(fp, read_only=True, data_only=True)
+        ws = wb[wb.sheetnames[0]]
+        # UNODC's export declares its dimensions as A1:A1, so a read-only sheet
+        # stops after one row and the whole file reads as empty. Recomputing
+        # from the actual cells is the documented fix.
+        try:
+            ws.reset_dimensions()
         except Exception:
+            pass
+        hdr = None
+        for r in ws.iter_rows(values_only=True):
+            vals = ["" if c is None else str(c).strip() for c in r]
+            if hdr is None:
+                if "iso3_code" in [v.lower() for v in vals]:
+                    hdr = vals
+                continue
+            rows.append(dict(zip(hdr, vals)))
+    else:
+        rows = list(csv.DictReader(open(fp, encoding="utf-8-sig", newline="")))
+    print("  rows: %d" % len(rows))
+
+    def g(r, *keys):
+        for k in r:
+            if norm(k).replace(" ", "") in keys:
+                return r[k]
+        return ""
+
+    agg, censored = {}, 0
+    for r in rows:
+        iso = (g(r, "iso3code") or "").strip().upper()
+        if len(iso) != 3:
             continue
-        agg[iso] = agg.get(iso, 0) + val
+        if "detected" not in (g(r, "indicator") or "").lower():
+            continue
+        if (g(r, "sex") or "Total").strip().lower() != "total":
+            continue
+        if (g(r, "age") or "Total").strip().lower() != "total":
+            continue
+        # GLOTIP is long-format and the same victims appear under several
+        # DIMENSIONS at once -- by age group, by form of exploitation, by
+        # country of repatriation. Summing them all gave 1.56 million detected
+        # victims worldwide, roughly triple the plausible figure, with Pakistan
+        # above the United States. Only the "Total" dimension is unduplicated.
+        if (g(r, "dimension") or "Total").strip().lower() != "total":
+            continue
+        raw = (g(r, "txtvalue") or "").strip()
+        if raw.startswith("<"):
+            val, censored = 3, censored + 1
+        else:
+            try:
+                val = float(raw.replace(",", ""))
+            except ValueError:
+                continue
+        e = agg.setdefault(iso, {"n": 0.0, "yrs": set(),
+                                 "country": (g(r, "country") or iso).strip()})
+        e["n"] += val
+        y = (g(r, "year") or "").strip()
+        if y.isdigit():
+            e["yrs"].add(int(y))
+
     out = []
-    for iso, v in agg.items():
-        if v <= 0:
+    for iso, e in agg.items():
+        if e["n"] <= 0:
             continue
+        yrs = sorted(e["yrs"])
+        span = ("%d\u2013%d" % (yrs[0], yrs[-1])) if len(yrs) > 1 else (str(yrs[0]) if yrs else "")
         out.append({
-            "name": "%s detected victims reported" % format(int(v), ","),
+            "name": "%s detected victims reported" % format(int(e["n"]), ","),
             "source": "glotip", "type": "Detected victims (UNODC)",
-            "iso": iso, "state": iso, "precise": False,
-            "impact": 5 if v >= 5000 else 4 if v >= 1000 else 3 if v >= 100 else 2,
+            "iso": iso, "state": e["country"], "country_name": e["country"],
+            "precise": False,
+            "impact": 5 if e["n"] >= 5000 else 4 if e["n"] >= 1000 else 3 if e["n"] >= 100 else 2,
             "status": "Detected",
             "url": "https://www.unodc.org/unodc/en/data-and-analysis/glotip.html",
-            "desc": ("Victims of trafficking detected and reported to UNODC by this state. "
-                     "<b>This counts the response, not the phenomenon.</b> A country "
-                     "reporting few detections may have little trafficking or no "
-                     "identification system, and this number cannot tell you which \u2014 "
-                     "UNODC says so itself. Read alongside the prevalence estimate, which "
-                     "is modelled independently of whether anyone was looking."),
+            "desc": ("%s victims of trafficking detected and reported to UNODC by %s"
+                     % (format(int(e["n"]), ","), e["country"])
+                     + ((", across %s" % span) if span else "") + ". "
+                     + "<b>This counts the response, not the phenomenon.</b> A country "
+                       "reporting few detections may have little trafficking or no "
+                       "identification system, and this number cannot distinguish them "
+                       "\u2014 UNODC says so itself. Read it against the prevalence "
+                       "estimate, which is modelled independently of whether anyone was "
+                       "looking; the two disagreeing about a country is the finding. "
+                       "Counts below five are published as \u2018<5\u2019 rather than a "
+                       "number, because a small count in a small country can identify a "
+                       "person; those are counted here as 3."),
         })
-    print("  GLOTIP country records: %d" % len(out))
+    print("  countries: %d (%d censored '<5' cells counted as 3)" % (len(out), censored))
     return out
 
 
@@ -646,6 +610,25 @@ def linked_docs(html, base):
             seen.add(u)
             out.append(u)
     return out[:6]
+
+
+IUU_SOURCES = [
+    ("ICCAT IUU list", "https://www.iccat.int/en/IUUlist.html"),
+    ("IOTC IUU list", "https://iotc.org/vessels/iuu"),
+    ("GFCM IUU list", "https://www.fao.org/gfcm/data/iuu-vessel-list/en/"),
+    ("FAO Global Record", "https://www.fao.org/global-record/en/"),
+    ("CCAMLR IUU list (non-contracting parties)",
+     "https://www.ccamlr.org/en/compliance/non-contracting-party-iuu-vessel-list"),
+    ("CCAMLR IUU list (contracting parties)",
+     "https://www.ccamlr.org/en/compliance/contracting-party-iuu-vessel-list"),
+    ("NAFO IUU list", "https://www.nafo.int/Fisheries/IUU"),
+    ("SEAFO IUU list", "https://www.seafo.org/Management/IUU-Vessels"),
+    ("IATTC", "https://www.iattc.org/en-US/Fisheries/IUU"),
+    ("SPRFMO", "https://www.sprfmo.int/measures/"),
+    ("NPFC", "https://www.npfc.int/"),
+    ("WCPFC", "https://www.wcpfc.int/"),
+    ("Combined IUU Vessel List (TMT)", "https://iuu-vessels.org/"),
+]
 
 
 def _imo_check(s):
@@ -823,6 +806,22 @@ def main():
     if a.gfw or a.all:
         print("=== Global Fishing Watch ===")
         recs += harvest_gfw(a)
+
+    # --all runs both Brazilian steps, and --brazil now routes a lista suja file
+    # to the lista suja parser, so the same 522 employers arrived twice. Dedupe
+    # on what actually identifies a record rather than trusting the callers.
+    seen, merged = set(), []
+    for r in recs:
+        k = (r.get("source"), r.get("name"),
+             round(float(r.get("lat") or 0), 4), round(float(r.get("lng") or 0), 4))
+        if k in seen:
+            continue
+        seen.add(k)
+        merged.append(r)
+    if len(merged) != len(recs):
+        print("  removed %d duplicate record(s) produced by overlapping steps"
+              % (len(recs) - len(merged)))
+    recs = merged
 
     print("total records: %d" % len(recs))
     if a.dry_run:

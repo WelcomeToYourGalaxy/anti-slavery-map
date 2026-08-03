@@ -43,6 +43,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LAYERS = ["projects.json", "cases.json", "prevalence.json", "points.json",
           "bulk.json", "directory.json", "wire.json", "hotlines.json",
           "routes.json", "infra.json"]
+
+# Layers deliberately left OUT of the bundle and fetched at runtime instead.
+# infra.json is 3,630 ports at 2.1 MB embedded -- a quarter of the file for the
+# layer that is least likely to be why anyone opened the map. Kept as a separate
+# fetch so the single-file build stays around 5 MB and the ports still appear
+# whenever infra.json is deployed alongside it.
+DEFAULT_EXTERNAL = ["infra.json"]
 MARK = "\u0001"          # never appears in the source text
 
 
@@ -78,6 +85,10 @@ def main():
     ap.add_argument("--inplace", action="store_true")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--no-compact", action="store_true")
+    ap.add_argument("--external", action="append", metavar="FILE",
+                    help="fetch this layer at runtime instead of embedding it")
+    ap.add_argument("--embed", action="append", metavar="FILE",
+                    help="embed a layer that is external by default (e.g. infra.json)")
     a = ap.parse_args()
 
     src = os.path.join(HERE, "index.html")
@@ -93,10 +104,19 @@ def main():
         print("removed a previous bundle before rebuilding")
 
     bundle, rows = {}, []
+    external = set(DEFAULT_EXTERNAL)
+    for fn in (a.embed or []):
+        external.discard(fn)
+    for fn in (a.external or []):
+        external.add(fn)
+
     for fn in LAYERS:
         p = os.path.join(HERE, fn)
         if not os.path.exists(p):
             rows.append((fn, 0, 0, "not present"))
+            continue
+        if fn in external:
+            rows.append((fn, 0, 0, "loaded separately (deploy it alongside)"))
             continue
         try:
             with io.open(p, encoding="utf-8") as f:
@@ -159,8 +179,13 @@ def main():
         f.write(out_html)
     print("\nwrote %s \u2014 %.1f MB, %d layer(s) embedded"
           % (os.path.basename(dest), os.path.getsize(dest) / 1048576.0, len(bundle)))
-    print("Upload that one file. The side JSON files stay in the repo for the "
-          "harvesters to keep refreshing; they are used in preference when present.")
+    if external:
+        print("Deploy alongside it: %s \u2014 %s"
+              % (", ".join(sorted(external)),
+                 "fetched at runtime rather than embedded, to keep the single "
+                 "file a sensible size. Use --embed to fold one back in."))
+    print("The side JSON files stay in the repo for the harvesters to keep "
+          "refreshing; they are used in preference when present.")
     return 0
 
 

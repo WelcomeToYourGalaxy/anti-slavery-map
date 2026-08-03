@@ -176,7 +176,7 @@ def harvest_directory(args):
     synced = datetime.now(timezone.utc).date().isoformat()
     rows = None
     fp = read_file(find_export(args.file, "gmsd", "directory", "provider"), "Save the GMSD export into data/ in your repo, "
-                              "and re-run.") if args.file else None
+                              "and re-run.")
     if args.file and not fp:
         return 1
     if fp:
@@ -233,6 +233,69 @@ def harvest_directory(args):
     return 0
 
 
+
+def name_to_iso3():
+    """Country name -> ISO3, read out of index.html.
+
+    The map already carries the country list it renders; deriving from it means
+    a name that resolves here is guaranteed to be placeable there, which a
+    separate lookup table cannot promise. Without an ISO code a record has no
+    country to attach to and is silently dropped, which is how 160 prevalence
+    estimates would have gone missing.
+    """
+    idx = os.path.join(HERE, "index.html")
+    out = {}
+    if not os.path.exists(idx):
+        return out
+    doc = open(idx, encoding="utf-8").read()
+    a2to3 = {}
+    m = re.search(r"var _WIRE_A2TO3=(\{.*?\});", doc, re.S)
+    if m:
+        try:
+            a2to3 = json.loads(m.group(1))
+        except Exception:
+            pass
+    m = re.search(r"var _wireISONAME=\{(.*?)\};", doc, re.S)
+    if m:
+        for a2, nm in re.findall(r"(\w{2}):'([^']+)'", m.group(1)):
+            iso3 = a2to3.get(a2)
+            if iso3:
+                out[nm.lower()] = iso3
+    # names the two publishers spell differently from the map
+    for alias, target in {
+        "united states of america": "united states", "russian federation": "russia",
+        "republic of korea": "south korea", "korea, republic of": "south korea",
+        "democratic people's republic of korea": "north korea",
+        "iran (islamic republic of)": "iran", "viet nam": "vietnam",
+        "syrian arab republic": "syria", "lao people's democratic republic": "laos",
+        "republic of moldova": "moldova", "united republic of tanzania": "tanzania",
+        "bolivia (plurinational state of)": "bolivia", "czechia": "czech republic",
+        "venezuela (bolivarian republic of)": "venezuela", "turkiye": "turkey",
+        "t\u00fcrkiye": "turkey", "cote d'ivoire": "ivory coast",
+        "c\u00f4te d'ivoire": "ivory coast", "myanmar": "myanmar",
+        "congo, democratic republic of the": "democratic republic of the congo",
+        "hong kong sar, china": "hong kong", "macao": "macau",
+        "the gambia": "gambia", "eswatini": "swaziland",
+        "north macedonia": "macedonia", "cabo verde": "cape verde",
+        "brunei darussalam": "brunei", "timor-leste": "east timor",
+    }.items():
+        if target in out and alias not in out:
+            out[alias] = out[target]
+    return out
+
+
+_N2I = None
+
+
+def iso_for(name):
+    global _N2I
+    if _N2I is None:
+        _N2I = name_to_iso3()
+        print("  country-name index: %d entries" % len(_N2I))
+    n = str(name or "").strip().lower()
+    return _N2I.get(n) or _N2I.get(re.sub(r"\s*\(.*?\)\s*", "", n).strip())
+
+
 # =============================================================== PREVALENCE
 GSI_PAGES = [
     "https://www.walkfree.org/global-slavery-index/downloads/",
@@ -244,7 +307,7 @@ def harvest_prevalence(args):
     """Find and parse Walk Free's country-level data file."""
     fp = read_file(find_export(args.file, "gsi", "slavery-index", "slavery_index", "walkfree", "prevalence"), "Download the Global Slavery Index country data from "
                               "walkfree.org/global-slavery-index/downloads, save it into "
-                              "your repo folder, cd there, and re-run.") if args.file else None
+                              "your repo folder, cd there, and re-run.")
     if args.file and not fp:
         return 1
     if fp:
@@ -292,15 +355,26 @@ def harvest_prevalence(args):
             return 1
         wb = openpyxl.load_workbook(io.BytesIO(raw), data_only=True)
         for ws in wb.worksheets:
+            if "summary" not in ws.title.lower() and len(wb.worksheets) > 1:
+                continue
             data = list(ws.values)
             if not data or len(data) < 3:
                 continue
             hdr = None
-            for i, r in enumerate(data[:8]):
-                joined = " ".join(str(x or "").lower() for x in r)
-                if "country" in joined and ("prevalence" in joined or "estimated" in joined):
+            for i, r in enumerate(data[:10]):
+                cells = [str(x or "").strip().lower() for x in r]
+                # The header row is the one whose FIRST cell is "country"; the
+                # banner rows above it also contain the word "prevalence", so
+                # matching anywhere in the row picks the wrong one.
+                if cells and cells[0] == "country":
                     hdr = i
                     break
+            if hdr is None:
+                for i, r in enumerate(data[:10]):
+                    joined = " ".join(str(x or "").lower() for x in r)
+                    if "country" in joined and ("prevalence" in joined or "estimated" in joined):
+                        hdr = i
+                        break
             if hdr is None:
                 continue
             cols = [str(x or "").strip() for x in data[hdr]]
@@ -319,7 +393,7 @@ def harvest_prevalence(args):
                 return d_[k]
         return None
 
-    recs = []
+    recs, unresolved = [], []
     for r in rows:
         country = col(r, "country")
         est = col(r, "estimated number", "population in modern slavery", "absolute")
@@ -337,10 +411,16 @@ def harvest_prevalence(args):
             p = float(str(per1k).replace(",", "")) if per1k is not None else None
         except Exception:
             p = None
+        iso = iso_for(country)
+        if not iso:
+            # Not dropped: the map resolves names against its own boundary data,
+            # which knows every country it draws. Emit the name and let it.
+            unresolved.append(country)
         recs.append({
             "name": (("%s people estimated in modern slavery" % format(n, ",")) if n
                      else ("%.1f per 1,000 estimated in modern slavery" % p)),
             "source": "gsi",
+            "iso": iso or "",
             "type": "Prevalence estimate",
             "state": country,
             "country_name": country,
@@ -363,6 +443,10 @@ def harvest_prevalence(args):
         })
 
     print("prevalence records: %d" % len(recs))
+    if unresolved:
+        print("  %d country name(s) had no ISO code here and are left for the map "
+              "to resolve by name: %s%s" % (len(unresolved), ", ".join(sorted(set(unresolved))[:8]),
+                                 " ..." if len(set(unresolved)) > 8 else ""))
     if args.dry_run:
         for r in recs[:15]:
             print("  %-28s %s" % (r["state"][:28], r["name"]))
