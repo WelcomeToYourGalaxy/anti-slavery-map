@@ -159,23 +159,52 @@ def ibge_index(verbose=False):
     global _MUN
     if _MUN is not None:
         return _MUN
-    try:
-        rows = json.loads(fetch(IBGE_MUN).decode("utf-8", "replace"))
-    except Exception as ex:
-        print("  IBGE lookup failed: %s" % str(ex)[:70])
+    local = find_export(None, "ibge", "municipios")
+    if local:
+        try:
+            rows = json.loads(open(local, encoding="utf-8").read())
+            _MUN = _index_ibge(rows, verbose)
+            return _MUN
+        except Exception as ex:
+            print("  could not read committed IBGE list: %s" % str(ex)[:60])
+    rows = None
+    for attempt in (1, 2, 3):
+        try:
+            raw = fetch(IBGE_MUN, timeout=120)
+            rows = json.loads(raw.decode("utf-8", "replace"))
+            break
+        except Exception as ex:
+            head = ""
+            try:
+                head = raw[:120].decode("utf-8", "replace").replace("\n", " ")
+            except Exception:
+                pass
+            print("  IBGE attempt %d failed: %s%s"
+                  % (attempt, str(ex)[:60],
+                     ("  |  response began: %r" % head) if head else ""))
+            time.sleep(attempt * 3)
+    if rows is None:
+        print("  IBGE unreachable after 3 attempts. Municipality names cannot be "
+              "resolved to coordinates, so nothing is placed \u2014 rather than "
+              "guessing positions. The API is servicodados.ibge.gov.br; if it is "
+              "blocking cloud IPs, download the municipality list once and commit "
+              "it to data/ with 'ibge' in the filename.")
         _MUN = {}
         return _MUN
+    _MUN = _index_ibge(rows, verbose)
+    return _MUN
+
+
+def _index_ibge(rows, verbose=False):
     idx = {}
     for m in rows:
         try:
             uf = m["microrregiao"]["mesorregiao"]["UF"]["sigla"]
         except Exception:
-            uf = ""
+            uf = (m.get("UF") or {}).get("sigla", "") if isinstance(m.get("UF"), dict) else ""
         key = (norm(m.get("nome", "")), uf)
         idx[key] = {"id": m.get("id"), "uf": uf, "name": m.get("nome")}
-    if verbose:
-        print("  IBGE municipalities indexed: %d" % len(idx))
-    _MUN = idx
+    print("  IBGE municipalities indexed: %d" % len(idx))
     return idx
 
 
@@ -218,12 +247,39 @@ def mun_coords(mun_id):
     return _COORD_CACHE[mun_id]
 
 
+def brazil_file_kind(path):
+    """The two Brazilian files look alike and get named alike. Decide by
+    columns rather than by filename, because `resgates_brazil.csv` turned out
+    to be the employer register and went to the wrong parser."""
+    try:
+        raw = open(path, "rb").read(4000)
+        for enc in ("utf-8-sig", "latin-1"):
+            try:
+                head = raw.decode(enc).split("\n")[0].lower()
+                break
+            except UnicodeDecodeError:
+                continue
+        if "empregador" in head or "estabelecimento" in head or "cnpj" in head:
+            return "listasuja"
+        if "resgat" in head or "trabalhadores" in head and "munic" in head:
+            return "rescues"
+    except Exception:
+        pass
+    return "rescues"
+
+
 def harvest_brazil(a):
     """Expects a CSV of municipality, UF, rescued count, years. The Observatorio
     is a Shiny dashboard rather than an API, so its export is the realistic
     input; --file takes it."""
     rows = []
-    fp = read_file(find_export(a.file, "resgat", "escrav", "brazil", "municip"), "Export the municipality table from "
+    fp = find_export(a.file, "resgat", "escrav", "brazil", "municip",
+                     "cadastro", "empregador", "suja")
+    if fp and brazil_file_kind(fp) == "listasuja":
+        print("  that file is the employer register, not a municipality table \u2014 "
+              "routing it to the lista suja parser instead")
+        return harvest_listasuja_file(fp, a)
+    fp = read_file(fp, "Export the municipality table from "
                            "smartlabbr.org/trabalhoescravo (its download control), commit it "
                            "to data/ with 'resgat' in the filename.")
     if fp:
@@ -297,6 +353,171 @@ def harvest_brazil(a):
         print("  %d row(s) could not be matched to an IBGE municipality and were "
               "dropped rather than placed approximately" % unmatched)
     print("  Brazil municipality records: %d" % len(out))
+    return out
+
+
+
+UFS = ("AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR "
+       "SC SP SE TO").split()
+
+# "FAZENDA SAO JOSE, MUNICIPIO DE CORUMBA/MS" -> ("CORUMBA", "MS")
+# Handles the slash and dash forms, the "MUNICIPIO DE" prefix, and trailing
+# punctuation, which all appear in the published file.
+MUN_RE = re.compile(
+    r"(?:MUNIC[IÍ]PIO\s+DE\s+)?([A-ZÀ-Ú][A-ZÀ-Ú'\u2019 .\-]{2,40}?)\s*[/\-]\s*(%s)\b"
+    % "|".join(UFS))
+
+
+def split_municipality(estab):
+    """Take the LAST municipality-looking token, because the establishment
+    string reads outward-in: farm, road, district, municipality/UF."""
+    if not estab:
+        return None, None
+    hits = MUN_RE.findall(estab.upper())
+    if not hits:
+        return None, None
+    mun, uf = hits[-1]
+    # "... AMERICO DE CAMPOS/SP E MAGDA/SP" leaves a leading conjunction on the
+    # second match; strip that and the common address-part prefixes.
+    # The dash form ("PEDREIRA DA CERQUINHA - ZONA RURAL - REGENERACAO/PI")
+    # lets the capture run backwards through the whole address, so keep only
+    # the last address part before the state code.
+    mun = re.split(r"\s*[,]\s*|\s+-\s+", mun)[-1]
+    # Strip the phrases that introduce a municipality rather than being part of
+    # its name: "MUNICIPIO DE X", "ATRACADA NO PORTO FLUVIAL DE X", "NA ZONA
+    # RURAL DO MUNICIPIO DE X". Accents vary in the source, so match loosely.
+    mun = re.sub(r"^.*?MUNIC[IÍÌ]PIOS?\s+DE\s+", "", mun.strip(" ,.-"))
+    mun = re.sub(r"^.*?\b(?:CIDADES?|PORTO FLUVIAL)\s+DE\s+", "", mun)
+    mun = re.sub(r"^(E|DE|DA|DO|DOS|DAS)\s+", "", mun.strip(" ,.-\u00a0")).strip()
+    mun = re.sub(r"^(ZONA RURAL|DISTRITO|POVOADO|BAIRRO|CENTRO|S/N|SN)[ ,]*", "",
+                 mun.strip(" ,.-"))
+    mun = mun.strip(" ,.-")
+    return (mun or None), uf
+
+
+def mask_id(v):
+    """CNPJ identifies a company and stays. CPF identifies a person and does
+    not: the Brazilian state publishes it because publication is the sanction,
+    but re-publishing an individual's tax number on a third-party map is a
+    different act with a different risk, and the map does not need it to be
+    useful. Last two digits kept so an entry can still be checked against the
+    official register."""
+    v = (v or "").strip()
+    if "/" in v:                      # CNPJ: 00.000.000/0001-00
+        return v
+    if re.match(r"^\d{3}\.\d{3}\.\d{3}-\d{2}$", v):
+        return "CPF \u2022\u2022\u2022.\u2022\u2022\u2022.\u2022\u2022\u2022-" + v[-2:]
+    return v
+
+
+def harvest_listasuja(a):
+    """Brazil's Cadastro de Empregadores -- the "lista suja".
+
+    Employers found by labour inspectors to have subjected workers to
+    conditions analogous to slavery, published by the state after the
+    administrative process concludes. Nothing else in this field is comparable:
+    it is not modelled, not a risk score, not an allegation, and it names the
+    employer and the establishment. Banks and buyers use it, which gives it
+    commercial force a report does not have.
+
+    It is also contested: employers have repeatedly obtained injunctions
+    removing their names, and entries carry the date of inclusion for exactly
+    that reason. Every record on the map states the edition it came from.
+    """
+    fp = read_file(find_export(a.file, "cadastro", "empregador", "suja", "lista",
+                               "resgat", "brazil"),
+                   "Download the Cadastro de Empregadores CSV from "
+                   "gov.br/trabalho-e-emprego and commit it to data/ with "
+                   "'cadastro' or 'suja' in the filename.")
+    if not fp:
+        return []
+    return harvest_listasuja_file(fp, a)
+
+
+def harvest_listasuja_file(fp, a):
+    raw = open(fp, "rb").read()
+    for enc in ("utf-8-sig", "latin-1"):
+        try:
+            text = raw.decode(enc)
+            break
+        except UnicodeDecodeError:
+            continue
+    delim = ";" if text.count(";") > text.count(",") else ","
+    rows = list(csv.DictReader(io.StringIO(text), delimiter=delim))
+    print("  rows: %d (delimiter %r)" % (len(rows), delim))
+
+    idx = ibge_index(a.verbose)
+    out, unmatched, nomun = [], [], 0
+    for r in rows:
+        low = {norm(k): v for k, v in r.items()}
+        emp = (low.get("empregador") or "").strip()
+        estab = (low.get("estabelecimento") or "").strip()
+        if not emp:
+            continue
+        uf_col = (low.get("uf") or "").strip().upper()[:2]
+        mun, uf = split_municipality(estab)
+        uf = uf or uf_col
+        if not mun:
+            nomun += 1
+            continue
+        hit = idx.get((norm(mun), uf)) or next(
+            (v for (nm, _u), v in idx.items() if nm == norm(mun)), None)
+        if not hit:
+            unmatched.append("%s/%s" % (mun, uf))
+            continue
+        c = mun_coords(hit["id"])
+        if not c:
+            unmatched.append("%s/%s (no geometry)" % (mun, uf))
+            continue
+
+        try:
+            n = int(float(low.get("trabalhadores envolvidos") or 0))
+        except ValueError:
+            n = 0
+        year = (low.get("ano da acao fiscal") or "").strip()
+        cnae = (low.get("cnae") or "").strip()
+        incl = (low.get("inclusao no cadastro de empregadores") or "").strip()
+        doc = mask_id(low.get("cnpj/cpf"))
+
+        out.append({
+            "name": emp[:120],
+            "source": "listasuja",
+            "type": "Employer on Brazil's register",
+            "lat": c[0], "lng": c[1], "precise": False, "local": True,
+            "impact": 5 if n >= 30 else 4 if n >= 10 else 3 if n >= 2 else 2,
+            "status": "Named by the state",
+            "state": "%s, %s" % (hit["name"], hit["uf"]),
+            "url": ("https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/"
+                    "inspecao-do-trabalho/areas-de-atuacao/trabalho-escravo"),
+            "desc": (
+                ("<b>%s</b> was found by Brazilian labour inspectors to have subjected "
+                 "workers to conditions analogous to slavery" % emp)
+                + ((", %d worker%s involved" % (n, "" if n == 1 else "s")) if n else "")
+                + ((", in the %s inspection year" % year) if year else "") + ". "
+                + (("Establishment: %s. " % estab) if estab else "")
+                + (("Registered as %s. " % doc) if doc else "")
+                + (("Economic activity code %s. " % cnae) if cnae else "")
+                + (("Added to the register %s. " % incl) if incl else "")
+                + "From the <b>Cadastro de Empregadores</b>, the register the Brazilian "
+                  "state publishes after the administrative process concludes \u2014 not "
+                  "an allegation and not a risk score, but a completed finding, with the "
+                  "employer named. Banks and buyers use it, which gives it commercial "
+                  "force a report does not have. "
+                  "<b>Two things to hold on to.</b> The register is contested: employers "
+                  "have repeatedly obtained injunctions removing their names, so check the "
+                  "current edition before relying on any single entry. And the dot is the "
+                  "municipality, not the farm \u2014 the establishment address is in the "
+                  "text above, and it is more precise than the map can honestly draw."),
+        })
+
+    print("  employers placed: %d" % len(out))
+    if nomun:
+        print("  %d row(s) had no municipality in the establishment field" % nomun)
+    if unmatched:
+        print("  %d municipality name(s) did not match IBGE and were dropped rather "
+              "than approximated: %s%s"
+              % (len(unmatched), ", ".join(sorted(set(unmatched))[:6]),
+                 " ..." if len(set(unmatched)) > 6 else ""))
     return out
 
 
@@ -572,7 +793,7 @@ def harvest_gfw(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    for f in ("brazil", "glotip", "iuu", "gfw", "all"):
+    for f in ("brazil", "listasuja", "glotip", "iuu", "gfw", "all"):
         ap.add_argument("--" + f, action="store_true")
     ap.add_argument("--file")
     ap.add_argument("--token")
@@ -583,13 +804,16 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("-v", "--verbose", action="store_true")
     a = ap.parse_args()
-    if not any([a.brazil, a.glotip, a.iuu, a.gfw, a.all]):
-        ap.error("choose --brazil, --glotip, --iuu, --gfw or --all")
+    if not any([a.brazil, a.listasuja, a.glotip, a.iuu, a.gfw, a.all]):
+        ap.error("choose --brazil, --listasuja, --glotip, --iuu, --gfw or --all")
 
     recs = []
     if a.brazil or a.all:
         print("=== Brazil: municipality-level rescue operations ===")
         recs += harvest_brazil(a)
+    if a.listasuja or a.all:
+        print("=== Brazil: Cadastro de Empregadores (the 'lista suja') ===")
+        recs += harvest_listasuja(a)
     if a.glotip or a.all:
         print("=== UNODC GLOTIP: detected victims ===")
         recs += harvest_glotip(a)
