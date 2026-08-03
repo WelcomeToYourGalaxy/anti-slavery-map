@@ -20,7 +20,7 @@ const fs = require("fs");
 const path = require("path");
 const { JSDOM, VirtualConsole } = require("jsdom");
 
-const VERSION = "smoke_test 2026-08-02c";   // bump when this file changes
+const VERSION = "smoke_test 2026-08-03";   // bump when this file changes
 const FILE = process.argv[2] || path.join(__dirname, "index.html");
 console.log(VERSION + "  |  node " + process.version);
 const WAIT = 3000;
@@ -199,6 +199,34 @@ setTimeout(() => {
     unbalanced.forEach((u) => console.log("  " + u));
   } else {
     console.log("CSS braces: all " + styleBlocks.length + " style blocks balanced");
+  }
+
+  // An element with opacity:0 is invisible but still receives clicks. One of
+  // those sat over the map at z-index 1100 and swallowed everything in a
+  // 380px-wide band from top to bottom. Nothing about it was visible, so
+  // nothing short of a rule like this would have caught it.
+  const ghosts = [];
+  styleBlocks.forEach((s) => {
+    const rules = s.match(/[^{}]+\{[^}]*\}/g) || [];
+    rules.forEach((r) => {
+      const i = r.indexOf("{");
+      const sel = r.slice(0, i).trim();
+      const body = r.slice(i + 1, -1);
+      if (/opacity\s*:\s*0(\.0+)?\s*[;}]/.test(body + ";")
+          && !/pointer-events/.test(body)
+          && !/display\s*:\s*none/.test(body)
+          && /position\s*:\s*(fixed|absolute)/.test(body)) {
+        ghosts.push(sel.slice(0, 60));
+      }
+    });
+  });
+  if (ghosts.length) {
+    fail = true;
+    console.log("\nFAIL \u2014 invisible elements that still intercept clicks "
+      + "(add pointer-events:none to the hidden state):");
+    [...new Set(ghosts)].forEach((g) => console.log("  " + g));
+  } else {
+    console.log("click blockers: none (no positioned opacity:0 rule lacks pointer-events)");
   }
 
   if (missing.length) { fail = true; console.log("\nFAIL — missing elements: " + missing.join(", ")); }

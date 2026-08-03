@@ -2188,3 +2188,495 @@ for a tolerance.
 **Those 45 are still real and still worth fixing.** They are in the run's
 `report.csv` artifact; send it and I will work through them. From the earlier
 report, expect a cluster: retired URL schemes where one edit fixes ten entries.
+
+---
+
+# Twenty-eighth pass — the failure was in the test, not the page
+
+The version stamp did its job: `smoke_test 2026-08-02 | node v22.23.1` proved
+the current file was running, so the failure was real. Then the widened error
+capture named it:
+
+```
+"type=unhandled-exception  message=Uncaught [SyntaxError: Invalid or unexpected token]"
+```
+
+And it was **mine, in the harness**.
+
+## The bug
+
+`smoke_test.js` injects a stub `<script>` built as a JavaScript template
+literal. I had written `split('\n')` inside it. A template literal consumes that
+escape, so what actually got injected was a string literal containing a **real
+newline** — which is a syntax error. The injected script died on parse, jsdom
+reported an uncaught exception against the document, and the harness blamed
+`index.html`.
+
+All six real script elements parse cleanly. I confirmed that separately by
+splitting the document the way an HTML parser does — at the first `</script`,
+not by my own regex — and compiling each one: 2,122,647 bytes, 54,542, 252,657,
+11,893, 11,782, 15,484, all fine.
+
+## Why it hid for two runs
+
+The old error handler stringified a jsdom error detail object into an empty
+string, so the log printed `FAIL — uncaught runtime errors:` followed by a blank
+line. My "ignore blank errors" change from the last pass made that worse: it was
+built on the theory that the blank was jsdom noise. It was not. It was a real
+error with an unhelpful stringification, and I had reasoned my way into
+suppressing the one signal that mattered.
+
+The capture now records name, message, first three stack frames, source file and
+position, from `onerror`, the `error` event and `unhandledrejection`; falls back
+to `JSON.stringify` on anything opaque; and prints entries JSON-escaped so a
+leading newline can never render as a blank line again.
+
+## The check that should have existed
+
+**The harness now parses its own stub before injecting it**, and exits 2 with a
+distinct message:
+
+```
+HARNESS BUG: the injected stub does not parse — Unexpected token ';'
+This is smoke_test.js's own fault, not index.html's.
+```
+
+Verified by deliberately breaking the stub. A test that reports its own faults
+as faults in the thing under test is worse than no test, because it sends you
+looking in the wrong 2.5 MB file.
+
+Also added: the file under test is now printed with its **byte count and a short
+sha256**, so a stale or truncated upload is visible in the first two lines of
+the log rather than inferred three runs later.
+
+---
+
+# Twenty-ninth pass — a real CSS defect, found by a version mismatch
+
+The widened capture finally named it:
+
+```
+"type=css parsing  message=Could not parse CSS stylesheet"
+```
+
+## Why CI failed and my machine did not
+
+`package.json` pinned `"jsdom": "^24.0.0"`. My build directory had **jsdom 30**,
+installed without that constraint. So CI ran a six-major-version-older CSS
+parser than the one I was verifying against, and jsdom 24 is much stricter.
+
+Reproduced by installing jsdom 24 deliberately. Pinned to `^30.0.0` so CI and I
+run the same engine.
+
+## And jsdom 24 was right about something
+
+Bisecting the stylesheet by brace depth found this, at line 130 of the first
+style block:
+
+```css
+@media (max-width:640px){ ... { ... } } }
+                                    ^ one closing brace too many
+```
+
+The block ends at **brace depth −1**. Browsers recover from this; jsdom 30
+recovers from it; jsdom 24 rejects the sheet outright. It has been there the
+whole time — **including in the original `index2.html` you gave me**, so it is
+in the sibling maps too and worth fixing wherever that stylesheet came from.
+
+An extra brace silently kills every rule after it in some engines. That is
+exactly the class of defect nobody notices until a stricter parser complains.
+
+## The remaining complaint is jsdom's, not the page's
+
+With the brace fixed, jsdom 24 still objects — its CSS engine rejects things
+browsers accept, and it does not say what. jsdom's CSS parser is not a
+conformance oracle, so a `css parsing` jsdomError is now **reported loudly and
+separately but does not fail the build.**
+
+That would be the same reasoning error I made two passes ago — suppressing a
+signal because it is inconvenient — except this time it is replaced with
+something better:
+
+**The smoke test now checks brace balance itself**, per style block, skipping
+comments and strings. That is the structural check jsdom 24 was accidentally
+providing, done deliberately and in a way that names the block and the depth.
+Verified in both directions: the current file reports "all 6 style blocks
+balanced", and a deliberately broken copy fails with "style block 0 ends at
+brace depth 1".
+
+Under jsdom 24 the suite now passes with the note printed. Under jsdom 30 it
+passes clean.
+
+---
+
+# Thirtieth pass — the "20 dots" had a second cause, and it was one line
+
+The race-condition fix was correct but incomplete. There was a second path that
+bypassed it entirely:
+
+```js
+.catch(function(err){ ...; pjData = PJ_SEED; pjRender(); });
+```
+
+When `projects.json` is absent — which it is, because the harvest push has not
+landed yet — the loader falls back to the seed set baked into `index.html`. And
+it assigned that seed **raw**, without running it through `_pjPlaceByISO`.
+
+216 of the 234 seed records carry an ISO code and no coordinates; they are meant
+to be placed at a country centroid at load. Assigned raw, they have no `lat` and
+never render. The map drew **the 18 records that happen to have explicit
+lat/lng** — the vessels, the region-wide orders — and looked almost empty.
+
+Verified both ways: old fallback yields 18 renderable dots, new fallback yields
+**234 of 234**. The console now also says which set is in use and how many
+records it holds, so "is this the seed or the harvest?" is answerable from the
+log rather than by counting dots.
+
+Two different bugs produced the same symptom, which is why the first fix looked
+like it had not worked.
+
+## IPIS now finds its own layer
+
+That timeout was the blocker on the one dataset that gives real GPS points —
+~2,800 field-visited artisanal mining sites in eastern DRC, each with a direct
+child-labour observation.
+
+It no longer depends on a hard-coded layer name. It reads GeoServer's
+`GetCapabilities`, filters to layers mentioning mines, and **sorts DRC first,
+then CAR, preferring curated layers**, falling back to three known names if
+capability discovery itself fails. Each attempt is reported. Timeout raised to
+240s, because a WFS request for 2,800 features with full attributes is a slow
+request rather than a broken one, and the previous 90s ceiling was the whole
+failure.
+
+Tested against a synthetic capabilities document: correct ordering, correct URL
+construction.
+
+## Where the point-level data stands
+
+| Layer | Points | Status |
+|---|---|---|
+| IPIS mining sites | ~2,800 GPS | discovery + 240s timeout; retry the workflow |
+| Brick kilns | 62,671 GPS | needs the one-off HuggingFace extraction |
+| Brazil rescues | municipality | needs the Observatório export in `data/` |
+| Open Supply Hub | millions | needs a free API token |
+
+The 234 dots you will see after this fix are country centroids. **The genuine
+lat/long layer is IPIS**, and it is one successful workflow run away.
+
+---
+
+# Thirty-first pass — the map now says why a layer is empty
+
+Four layers were reported missing. **Three of them cannot have data yet, and
+that is not a bug:**
+
+| Layer | Why it is empty |
+|---|---|
+| Brick kilns (62,671 GPS) | needs a one-off HuggingFace extraction that has not been run |
+| Brazil rescues | needs the Observatório export committed to `data/` — it is a dashboard, not an API |
+| Open Supply Hub | needs a free API token, never supplied |
+| **IPIS mining sites** | **should run unattended — this one is a real failure** |
+
+Only IPIS is unexplained, and its log line will say which layers GeoServer
+advertised and which it tried.
+
+## The page should have told you this
+
+We have spent several rounds trading workflow logs to answer "why is this
+empty?", which is a question the page can answer about itself. It could not,
+because a missing side file produced no message at all — just fewer dots.
+
+There is now a **data-layer list under the map key**, listing all seven files:
+whether each loaded, how many records it contributed, and for anything missing,
+**the exact command that writes it and what that command needs first**. Plus a
+line that matters more than the list: *a layer that is not present is a file
+that has not been harvested yet, not an absence of data in the world.*
+
+```
+Data layers — 3 loaded, 3 not present · 3,121 records
+  ✓ Determinations (customs orders, listed goods)   289
+  — Identified cases by country (CTDC)
+      python3 harvest_cases.py
+      CTDC blocks some automated requests. If it fails, download the
+      Global Synthetic Dataset CSV and commit it to data/ ...
+```
+
+`dataDiag()` in the console prints the same as a table, including the reason
+string from any fetch that threw.
+
+The provenance panel now opens with the same point, naming the three layers that
+cannot run unattended so nobody waits on a workflow that was never going to
+produce them.
+
+Tested in both states: all-missing, and partial success with counts and the
+record total.
+
+---
+
+# Thirty-second pass — IPIS is network-blocked, not broken
+
+```
+GetCapabilities failed (<urlopen error timed out>); trying known layer names
+  public:cod_mines_curated_all_opendata_p_ipis   <urlopen error [Errno 110] Connection ti
+  public:cod_mines_curated_all_opendata_ipis     <urlopen error [Errno 110] Connection ti
+  public:caf_mines_curated_all_opendata_p_ipis   <urlopen error [Errno 110] Connection ti
+```
+
+A connection timeout on **every** attempt, including the tiny GetCapabilities
+request, is not a slow query. `geo.ipisresearch.be` is refusing GitHub's cloud
+IP ranges — the exact case the README warns about. No layer-name fix or timeout
+increase can reach it.
+
+So IPIS gets the same `data/` escape hatch as the dashboard sources: download
+the GeoJSON once, commit it, and every run uses it with no network call. The
+failure message now prints those three steps instead of speculating about
+service speed. Tested end to end with a committed export: features read,
+child-labour flag honoured, and the flagged record correctly ships without the
+"not evidence" hedge because that one *is* a field observation.
+
+`find_export` now accepts `.geojson`.
+
+## The IUU document-following worked, and followed the wrong documents
+
+```
+from linked document CMM-01-2026-Trachurus-murphyi.pdf: 4 candidate numbers
+from linked document CMM-02-2026-Data-Standards.pdf: 11 candidate numbers
+```
+
+The PDF extractor works — it read six PDFs and pulled numbers out of all of
+them. But my link filter accepted anything containing `cmm`, which is every
+conservation measure the body has ever published, and the "candidate numbers"
+were paragraph and year references. The check digit rejected all of them, which
+is the system working, but the run was wasted.
+
+Narrowed to `iuu` in the filename, or `vessel` **and** `list` together. Verified:
+`CMM-04-2025-IUU-Vessel-List-.pdf` and `vessel_list_2026.pdf` are followed;
+`CMM-01-Trachurus` and `CMM-02-Data-Standards` are skipped.
+
+Each followed document now reports **characters extracted, candidates found, and
+valid IMOs**, and says so explicitly when almost no text came out — which
+distinguishes "this PDF has no vessel numbers" from "this PDF is scanned images
+and my extractor cannot read it". That distinction was invisible before.
+
+## Everything else in that run
+
+- **Determinations**: 61 CBP records, up from 55 — the six vessel flag states
+  resolved as intended.
+- **Wire**: working.
+- **IUU**: 18 vessels from CCAMLR, unchanged.
+- **Hotlines**: still 0, from 181,147 bytes and 4,653 words of visible text. The
+  page has content but neither a table nor `Country: number` lines. Needs
+  `--dump` and a look at the actual markup.
+
+---
+
+# Thirty-third pass — the IPIS data landed, and it is the best layer on the map
+
+You uploaded the two IPIS CSVs. They carry more than I expected.
+
+## What is actually in them
+
+**8,077 sites, every one with coordinates.** And the columns are not risk
+proxies — they are field observations:
+
+```
+childunder15                 934 sites flagged (DRC), plus counts in the CAR file
+childunder15work             the tasks recorded for those children:
+                             "Creuser, Lavage, Traiter les déchets" — digging,
+                             washing, processing waste
+forced_labour_armed_group1/2/3   192 sites where an armed group was recorded
+                                 as using forced labour
+```
+
+`harvest_points.py` now reads the CSV form as well as GeoJSON, reads **several
+files at once** so DRC and CAR sit side by side, and handles the two flag
+conventions — the DRC file uses 1/0, the CAR file records a count.
+
+Records where forced labour was observed are severity 5, child labour 4, and
+**neither carries the "not evidence that this site uses it" hedge**, because
+for these the observation *is* the evidence. Everything else keeps the hedge.
+
+## Thinning would have deleted exactly the wrong records
+
+8,077 points is 7.9 MB and would not render. But a grid that keeps one point per
+cell discards whichever site is not first in each cell — and of ~8,000 sites,
+1,791 carry an observation. Most of them would have gone, in favour of
+unremarkable pits.
+
+Decimation now **never thins a site with an observation**. All 1,791 are kept
+regardless of the grid; the grid applies only to the rest.
+
+```
+kept all 1791 site(s) with an observation of forced or child labour
+3128 kept, 4949 dropped at 0.040° per cell
+
+Child labour observed   1,582
+Forced labour observed     209
+Site visited             1,337
+```
+
+**`points.json` is generated and included** — 3,128 records, all precise pins.
+Commit it and the layer appears immediately; no workflow run needed.
+
+## The Brazil link
+
+`observatorioescravo.mpt.mp.br` no longer resolves. The Observatório moved to
+the SmartLab platform: **smartlabbr.org/trabalhoescravo**. Corrected in the
+harvester and in its failure message.
+
+---
+
+# Thirty-fourth pass — Open Supply Hub is no longer free, and I said otherwise
+
+I told you to register and generate a token. That path does not exist any more.
+As of 2026 the OS Hub API is a **paid subscription** — 14-day trial, then billed
+via Stripe — and the *My Account → Settings → API → Generate New API Token*
+route I described is gone. My instruction sent you to install Postman for a page
+that no longer exists, which is on me.
+
+The GitHub organisation you found is the platform's own source code and
+`open-supply-hub-api-examples` is its developer documentation. Neither carries
+the facility data, so neither is a way round the subscription.
+
+Two routes that cost nothing, both now in the script's failure message:
+
+1. **Free/discounted API access policy** for non-profits, civil society
+   organisations and research institutions. Application form, reviewed within
+   two weeks. This project fits that description squarely.
+2. **Data Downloads** — the same data as CSV or Excel, no API at all. The
+   harvester now treats a committed download as a **first-class input** rather
+   than a fallback, since it is the only free route: drop it in `data/` with
+   `osh`, `supply` or `facilit` in the filename and it is read on every run.
+   Tested with a sample file.
+
+And the honest weighting, which the script now prints before either route:
+**this layer maps facilities, not exploitation.** A garment factory on the map
+is not evidence of anything. Its value is the link from a site to a named buyer,
+which is real but secondary — it is the weakest of the four point layers, and
+the one to do last if at all.
+
+The order I would work in now: IPIS is done. Brazil next, because municipality
+rescues are enforcement outcomes. Kilns after, if the licence suits. Open Supply
+Hub only if the free-access application succeeds.
+
+---
+
+# Thirty-fifth pass — one file
+
+Eight uploads to change one thing was the wrong shape for how you actually work,
+and a map that silently loses a layer when one of them does not land is worse.
+
+`bundle.py` writes **index.bundle.html**: every data layer embedded, nothing
+beside it required. Upload that one file.
+
+## The runtime did not change
+
+The loader still fetches the side files first and only falls back to the
+embedded copy. So the same bundle **works alone** and **picks up fresh harvest
+output** when deployed next to it. Bundling adds a floor; it does not freeze
+anything, and a stale bundle cannot override newer data.
+
+The workflow rebuilds it after every harvest, so there is always a current one
+in the repo without anyone doing anything.
+
+## Compaction, because 3,128 records is mostly the same paragraph
+
+The IPIS layer is 2.7 MB, of which **1.7 MB is description text** — and those
+3,128 records share only **62 distinct endings**. Each unique tail is stored
+once and referenced by index; the page reassembles the full string before
+anything reads it.
+
+```
+points.json    3,128 records    1,753K embedded    65% of 2,701 KB
+```
+
+Verified lossless against the original: 3,128 of 3,128 records restored, every
+description **byte-identical**, every coordinate identical, no leftover markers,
+and the tails table deleted after use.
+
+Bundled file: **4.2 MB**, smoke test passes on it exactly as on the unbundled
+one.
+
+## What this changes for you
+
+Uploading is now one file rather than eight, and the harvesters keep running in
+Actions regardless. The only things that still need a hand-upload are the
+*inputs* the publishers will not serve to a cloud IP — the IPIS CSVs you already
+sent, and later the Brazil and kiln exports. Those go into `data/` once and are
+read on every run thereafter.
+
+---
+
+# Thirty-sixth pass — the kilns without a 2.2 GB download
+
+`load_dataset()` exhausted your machine's memory because it pulls the **whole**
+dataset, satellite imagery included. That is why the splits are 2.2 GB, 747 MB
+and 580 MB. The map needs three columns.
+
+**The harvester now pulls kiln coordinates through HuggingFace's datasets-server
+rows API**, 100 rows at a time, across all three splits, de-duplicated on
+rounded coordinates. Image fields come back as URLs rather than bytes, so the
+kilns arrive as a few megabytes of JSON — and it runs inside the workflow with
+nothing downloaded by hand. No parquet, no venv, and no answer needed to "which
+file goes in data/".
+
+Tested offline against a stubbed endpoint: pagination, split traversal,
+termination on empty pages, de-duplication. One bug found doing it: `%2F` in the
+dataset URL was being read as a printf conversion, so every request failed with
+"must be real number, not str". Escaped.
+
+If the rows API is ever unavailable, the fallback advice is now correct rather
+than the thing that broke your laptop — a column-pruned `pyarrow` read that
+touches a few megabytes of the 2.2 GB instead of loading all of it.
+
+## Also
+
+The two IPIS CSVs are returned alongside the build, so they can go into `data/`
+and the harvester can regenerate that layer itself rather than depending on the
+copy I made.
+
+`osh-application.md` drafts the free/discounted access request. It leads with the
+specific gap OS Hub closes — every other source on this map stops at country or
+commodity level, and without a facility-to-buyer link the evidence stays one
+level of abstraction above where anything can be acted on — and commits up
+front to labelling every facility as a production site and explicitly not as
+evidence of exploitation, which is already how the kiln and mining layers are
+handled.
+
+---
+
+# Thirty-seventh pass — an invisible panel was eating the map's clicks
+
+`#infoPanel` is hidden with `opacity:0`. **Opacity hides an element; it does not
+stop it receiving clicks.** That panel is 340–380px wide, runs from `top:70px`
+to `bottom:18px`, and sits at `z-index:1100` — so while closed it was
+swallowing every click over that whole band of the map, and nothing about it was
+visible to suggest why.
+
+Fixed by adding `pointer-events:none` to the closed state and `auto` to `.open`.
+
+Two more, found in the same sweep: `#sidebar` and `#rightbar` are bare flex
+containers with a 9px gap and a full-height max. The panels inside them are
+meant to be clickable; the gaps between them and the space below the last one
+are map, and were not. Both are now `pointer-events:none` with
+`> * { pointer-events:auto }`.
+
+## Made into a rule, because this bug is invisible by definition
+
+The smoke test now fails on **any positioned rule with `opacity:0` and no
+`pointer-events`**. There is no legitimate version of that combination: an
+element you cannot see should not be catching clicks.
+
+Verified in both directions — clean on the current file, and on a copy with
+the fix removed it reports:
+
+```
+FAIL — invisible elements that still intercept clicks
+  #infoPanel
+```
+
+`clickCheck()` is also available in the console: it samples a 10×10 grid,
+reports how many points reach the map, and names whatever is covering the rest.
+Nothing about a transparent overlay shows up in a screenshot, so it needs a
+deliberate test rather than an eye.
