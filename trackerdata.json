@@ -86,6 +86,78 @@
    }
   ]
  },
+ "AUT": {
+  "name": "Austria",
+  "trackers": [
+   {
+    "desc": "+43 1 796 92 98. The designated victim-protection organisation for women and girls in Austria: shelter, legal accompaniment through both the criminal case and the residence application, and support with compensation claims. Run by an NGO rather than by police, which is the distinction that decides whether a woman without papers can safely walk in.",
+    "kind": "institution",
+    "name": "LEF\u00d6-IBF \u2014 intervention centre for trafficked women",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "conserve:legalaid",
+     "organizing:legal"
+    ],
+    "url": "https://www.lefoe.at/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "+43 677 61 34 34 34, and an email intake at the Interior Ministry. The police route, as distinct from LEF\u00d6-IBF above \u2014 faster to an investigation, slower and riskier for someone whose immigration status is irregular. In immediate danger the emergency number is 133.",
+    "kind": "structured",
+    "name": "Criminal Police anti-trafficking line",
+    "skind": "justicegov",
+    "tags": [
+     "conserve:hotline"
+    ],
+    "url": "https://www.bmi.gv.at/",
+    "voice": "official"
+   }
+  ]
+ },
+ "BEL": {
+  "name": "Belgium",
+  "trackers": [
+   {
+    "desc": "+32 78 055 800, during working hours and around the clock for urgent situations. The national entry point, routing to the three recognised specialist centres. Belgium's model is unusual: recognition as a victim, and the residence permit that follows, runs through those centres rather than through police directly.",
+    "kind": "structured",
+    "name": "Stop Human Trafficking \u2014 national helpline",
+    "skind": "oversight",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter"
+    ],
+    "url": "https://www.stophumantrafficking.be/",
+    "voice": "official"
+   },
+   {
+    "desc": "One of Belgium's three recognised specialist reception centres, in Brussels, covering both sexual and labour exploitation. Provides accommodation, social and legal support, and the administrative route to a residence permit.",
+    "kind": "institution",
+    "name": "PAG-ASA",
+    "skind": "helpline",
+    "tags": [
+     "conserve:shelter",
+     "conserve:legalaid",
+     "organizing:legal",
+     "organizing:help"
+    ],
+    "url": "https://pag-asa.be/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The independent body that reports annually on trafficking in Belgium and litigates on migrants' rights. Its reports are where the gap between the number identified and the number actually granted status is documented.",
+    "kind": "structured",
+    "name": "Myria \u2014 federal migration centre",
+    "skind": "oversight",
+    "tags": [
+     "advocacy:watchdog"
+    ],
+    "url": "https://www.myria.be/",
+    "voice": "official"
+   }
+  ]
+ },
  "BGD": {
   "name": "Bangladesh",
   "trackers": [
@@ -122,6 +194,48 @@
      "corporate:recruit"
     ],
     "url": "https://bmet.gov.bd/",
+    "voice": "official"
+   }
+  ]
+ },
+ "BGR": {
+  "name": "Bulgaria",
+  "trackers": [
+   {
+    "desc": "0800 20 100, free and twenty-four hours. Run by an NGO, takes anonymous third-party reports, and is the line most commonly given for Bulgaria \u2014 a significant origin country within the EU, where recruitment often happens through someone the person already knows.",
+    "kind": "institution",
+    "name": "A21 \u2014 national anti-trafficking hotline",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter"
+    ],
+    "url": "https://www.a21.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "0800 1 8676 and +359 2 981 7686, twenty-four hours, for victims of violence and trafficking. Long-established Bulgarian NGO providing counselling, shelter and reintegration.",
+    "kind": "institution",
+    "name": "Animus Association Foundation",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "organizing:help"
+    ],
+    "url": "https://animusassociation.org/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "+359 700 17 670, weekday office hours, for labour exploitation and rights violations specifically. A different door from the trafficking hotlines: it acts on conditions and pay without anyone having to establish coercion.",
+    "kind": "structured",
+    "name": "General Labour Inspectorate \u2014 exploitation line",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect",
+     "conserve:compensation"
+    ],
+    "url": "https://www.gli.government.bg/",
     "voice": "official"
    }
   ]
@@ -1070,6 +1184,26 @@
    }
   ]
  },
+ "CHE": {
+  "name": "Switzerland",
+  "trackers": [
+   {
+    "desc": "Zurich-based specialist agency providing shelter, counselling and legal accompaniment, and the organisation that has documented how cantonal differences in Switzerland change what a victim is actually entitled to.",
+    "kind": "institution",
+    "name": "FIZ \u2014 Advocacy and Support for Migrant Women and Victims of Trafficking",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "conserve:legalaid",
+     "organizing:legal",
+     "organizing:help"
+    ],
+    "url": "https://www.fiz-info.ch/",
+    "voice": "interpretive"
+   }
+  ]
+ },
  "CHN": {
   "name": "China",
   "trackers": [
@@ -1155,6 +1289,24 @@
     ],
     "url": "https://www.nummergegenkummer.de/",
     "voice": "interpretive"
+   }
+  ]
+ },
+ "DNK": {
+  "name": "Denmark",
+  "trackers": [
+   {
+    "desc": "+45 70 20 25 50, twenty-four hours. Denmark's national centre against human trafficking, under the National Board of Social Services: identification, health and social support, and prepared return. Reporting here does not require going to police first.",
+    "kind": "structured",
+    "name": "Center mod Menneskehandel (CMM)",
+    "skind": "oversight",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "organizing:help"
+    ],
+    "url": "https://www.cmm.dk/",
+    "voice": "official"
    }
   ]
  },
@@ -1507,6 +1659,23 @@
     "trust": "record",
     "type": "institutional",
     "url": "https://www.cocoainitiative.org/",
+    "voice": "interpretive"
+   }
+  ]
+ },
+ "GRC": {
+  "name": "Greece",
+  "trackers": [
+   {
+    "desc": "1109, free and twenty-four hours, run in partnership with the Greek state. Greece is both a destination for agricultural labour and a major arrival point, and the two situations reach this line differently \u2014 say which it is when you call.",
+    "kind": "institution",
+    "name": "A21 Greece \u2014 national hotline 1109",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter"
+    ],
+    "url": "https://www.a21.org/",
     "voice": "interpretive"
    }
   ]
@@ -2160,6 +2329,20 @@
     "type": "records-data",
     "url": "https://www.forbrukertilsynet.no/",
     "voice": "official"
+   },
+   {
+    "desc": "+47 22 33 11 60, twenty-four hours. Norway's national assistance and coordination service for trafficked people: safe accommodation anywhere in the country, and follow-up through the reflection-period application.",
+    "kind": "institution",
+    "name": "ROSA project",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "conserve:legalaid",
+     "organizing:legal"
+    ],
+    "url": "https://rosa-help.no/",
+    "voice": "interpretive"
    }
   ]
  },
@@ -2288,6 +2471,70 @@
    }
   ]
  },
+ "POL": {
+  "name": "Poland",
+  "trackers": [
+   {
+    "desc": "Runs Poland's national consultation centre for victims of trafficking under contract to the Interior Ministry: crisis intervention, shelter, and legal and interpreting support. Poland is both a destination for workers from further east and an origin country, and this centre handles both directions.",
+    "kind": "institution",
+    "name": "La Strada Poland \u2014 National Intervention and Consultation Centre",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "conserve:legalaid",
+     "organizing:legal",
+     "organizing:help"
+    ],
+    "url": "https://www.strada.org.pl/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "Handles complaints about pay, hours and conditions, including from foreign workers, and can act without an immigration referral. The practical route when the situation is unpaid and coercive but not yet provably trafficking.",
+    "kind": "structured",
+    "name": "National Labour Inspectorate (PIP)",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect",
+     "conserve:compensation"
+    ],
+    "url": "https://www.pip.gov.pl/",
+    "voice": "official"
+   }
+  ]
+ },
+ "PRT": {
+  "name": "Portugal",
+  "trackers": [
+   {
+    "desc": "116 006, the national victim support line, with a dedicated trafficking unit (UAVMD). Free legal and psychological support, and help through the criminal process and compensation claims.",
+    "kind": "institution",
+    "name": "APAV \u2014 Portuguese Association for Victim Support",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "conserve:legalaid",
+     "organizing:legal",
+     "conserve:compensation"
+    ],
+    "url": "https://apav.pt/",
+    "voice": "interpretive"
+   },
+   {
+    "desc": "The state observatory that publishes Portugal's identification and referral statistics, including the split between labour and sexual exploitation. Portuguese agriculture has produced repeated documented cases involving workers recruited from South and Southeast Asia.",
+    "kind": "structured",
+    "name": "Observat\u00f3rio do Tr\u00e1fico de Seres Humanos",
+    "skind": "oversight",
+    "tags": [
+     "advocacy:watchdog",
+     "records:stats"
+    ],
+    "url": "https://www.otsh.mai.gov.pt/",
+    "voice": "official"
+   }
+  ]
+ },
  "QAT": {
   "name": "Qatar",
   "trackers": [
@@ -2343,6 +2590,36 @@
    }
   ]
  },
+ "ROU": {
+  "name": "Romania",
+  "trackers": [
+   {
+    "desc": "Romania's national coordinating agency, with regional centres and a national helpline. Romania is consistently among the largest origin countries for people identified as trafficked elsewhere in the EU, so the agency's role in reintegration of returning citizens is as important as its domestic casework.",
+    "kind": "structured",
+    "name": "ANITP \u2014 National Agency against Trafficking in Persons",
+    "skind": "oversight",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "advocacy:watchdog"
+    ],
+    "url": "https://anitp.mai.gov.ro/",
+    "voice": "official"
+   },
+   {
+    "desc": "Romanian anti-trafficking organisation working on prevention, survivor support and practitioner training, with material aimed at people who suspect a case rather than only at professionals.",
+    "kind": "institution",
+    "name": "eLiberare",
+    "skind": "ngo",
+    "tags": [
+     "organizing:help",
+     "organizing:fund"
+    ],
+    "url": "https://www.eliberare.com/",
+    "voice": "interpretive"
+   }
+  ]
+ },
  "SGP": {
   "name": "Singapore",
   "trackers": [
@@ -2359,6 +2636,34 @@
     ],
     "url": "https://www.home.org.sg/",
     "voice": "interpretive"
+   }
+  ]
+ },
+ "SWE": {
+  "name": "Sweden",
+  "trackers": [
+   {
+    "desc": "020-390 000. Run under the Gender Equality Agency, this line advises both people in the situation and professionals who encounter one \u2014 which makes it usable when you are a colleague, a landlord or a nurse who has seen something and does not know what to do next.",
+    "kind": "structured",
+    "name": "National Support Line against Prostitution and Trafficking (NSPM)",
+    "skind": "oversight",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter"
+    ],
+    "url": "https://jamstalldhetsmyndigheten.se/",
+    "voice": "official"
+   },
+   {
+    "desc": "Inspects working and living conditions, including employer-provided accommodation, and takes reports about a workplace from anyone. Berry-picking and construction are the two Swedish sectors with a documented record here.",
+    "kind": "structured",
+    "name": "Swedish Work Environment Authority",
+    "skind": "inspectorate",
+    "tags": [
+     "environment:inspect"
+    ],
+    "url": "https://www.av.se/",
+    "voice": "official"
    }
   ]
  },
@@ -2426,6 +2731,25 @@
     "type": "institutional",
     "url": "https://www.cottoncampaign.org/",
     "voice": "commentary"
+   }
+  ]
+ },
+ "UKR": {
+  "name": "Ukraine",
+  "trackers": [
+   {
+    "desc": "0 800 500 335, or 116 123 from a mobile. National hotline on trafficking, gender-based violence and children's rights, run by an NGO. Ukraine's displacement since 2022 has made both the outbound recruitment risk and the difficulty of tracing people substantially worse, and this line handles cases in both directions.",
+    "kind": "institution",
+    "name": "La Strada Ukraine",
+    "skind": "helpline",
+    "tags": [
+     "conserve:hotline",
+     "conserve:shelter",
+     "conserve:child",
+     "organizing:help"
+    ],
+    "url": "https://la-strada.org.ua/",
+    "voice": "interpretive"
    }
   ]
  },
