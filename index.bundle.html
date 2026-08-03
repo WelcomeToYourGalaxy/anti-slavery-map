@@ -490,6 +490,8 @@ window.__BUNDLED = {"points.json":{"generated":"2026-08-02T19:57:19.470092+00:00
   <div id="legBody">
   
   <label class="f-status"><input type="checkbox" id="projChk" checked> Live cases &amp; sites</label>
+  <label class="f-status"><input type="checkbox" id="routeChk" checked onchange="toggleRoutes(this.checked)"> Trafficking corridors</label>
+  <div class="facf-hint" style="margin:2px 0 6px;">Origin → destination, from case records. <b style="color:#7fb3d0">Blue</b> labour, <b style="color:#c98ac0">pink</b> sexual, <b style="color:#c0a86a">gold</b> mixed; thickness is volume. Curved on purpose — a straight line would read as a path travelled, and this is a pair of countries and a count, not a journey. A dashed ring marks trafficking <i>within</i> a country, which is the majority of recorded cases in several of them.</div>
   <div id="dataStatus"></div>
   <div id="bgStatus" class="facf-hint" style="display:none;margin:3px 0 6px;color:#aeb19c;"></div>
   <div id="incCount" class="facf-hint" style="margin:3px 0 6px;">Building live incidents from the wire&hellip;</div>
@@ -497,7 +499,7 @@ window.__BUNDLED = {"points.json":{"generated":"2026-08-02T19:57:19.470092+00:00
   <div class="proj-search"><input id="projQ" type="search" placeholder="Search cases by name, place or commodity&hellip;" autocomplete="off"><span id="projQn"></span></div>
   <div class="proj-time"><span class="ps-lab">Recency &mdash; dated sources</span><span class="pt-pill on" data-tw="0">All ages</span><span class="pt-pill" data-tw="30">&le;30d</span><span class="pt-pill" data-tw="90">&le;90d</span><span class="pt-pill" data-tw="180">&le;6mo</span><span class="pt-pill" data-tw="365">&le;1yr</span><label class="pt-und"><input type="checkbox" id="pjUndated" checked> Include undated</label></div><div class="lp-detail collapsed"><div class="lp-detail-head" onclick="this.parentNode.classList.toggle('collapsed')"><span class="lp-car">&#9662;</span> Where this data comes from &amp; what's not (yet) in it</div><div class="lp-detail-body">
 <b class="hl-sec">Hover a country for what is on record; click it for help there</b><br>
-<b>Every dot on this map is somewhere.</b> Country-level findings — listed goods, prevalence estimates, national determinations — are no longer drawn as pins, because a pin at a country’s centre asserts a place the source never identified, and two hundred of them buried the layer that does have coordinates. <b>Hover</b> a country and they appear in a list beside it, grouped by what kind of claim each one is; click any line for the source and what it does and does not establish. <b>Click</b> the country instead and you get the services and legal routes there. Two questions, two gestures.<br><br>What stays on the map is what has a location: field-visited sites with coordinates, municipality-level rescue operations, and incidents matched to a region. Nothing on the map is placed at a country centroid any more.<br><br><b class="hl-sec">If the map looks thin, check the data-layer list in the key</b><br>
+<b>Every dot on this map is somewhere.</b> Country-level findings — listed goods, prevalence estimates, national determinations — are no longer drawn as pins, because a pin at a country’s centre asserts a place the source never identified, and two hundred of them buried the layer that does have coordinates. <b>Hover</b> a country and they appear in a list beside it, grouped by what kind of claim each one is; click any line for the source and what it does and does not establish. <b>Click</b> the country instead and you get the services and legal routes there. Two questions, two gestures.<br><br><b>Corridors are the exception to that rule, and deliberately so.</b> A trafficking corridor is a line between two country centroids: it says where a case began and where it was found, not how anyone travelled. They are drawn curved for that reason — a straight line reads as a route taken. They are the only layer here that shows <i>movement</i>, and movement is where the recruitment fee is charged and the debt created, which is upstream of every workplace on this map.<br><br>What stays on the map is what has a location: field-visited sites with coordinates, municipality-level rescue operations, and incidents matched to a region. Nothing on the map is placed at a country centroid any more.<br><br><b class="hl-sec">If the map looks thin, check the data-layer list in the key</b><br>
 Every layer here lives in a separate file that a harvester writes. A layer that is not present is <b>a file that has not been harvested yet, not an absence of data in the world</b> — and the list under the map key says which is which, with the command that produces each one. Three of them cannot run entirely unattended, and it is worth knowing which before waiting on them: <b>brick kilns</b> (62,671 GPS points) need a one-off extraction from HuggingFace; <b>Brazil’s municipality rescues</b> need the Observatório’s own export, because it is a dashboard rather than an API; and <b>Open Supply Hub</b> needs a free API token. The rest run on their own.<br><br><b class="hl-sec">Two kinds of dot, and where each comes from</b><br>
 The dots are two different things and should not be read as one. <b>Live incidents</b> are press reports — a raid, a rescue, a charge, a conviction, a death, an inspection finding — built in your browser this session from the news wire, filtered to reported events rather than analysis or a report launch, and placed at a country or region centroid because no feed in this field carries coordinates. Every one is a hollow ring for that reason, and a news report is not a finding by any authority: open the article before relying on it. <b>Determinations</b> are the separate, hand-entered set of published government findings — import bans, national employer blacklists, listed goods — which are citable as they stand.<br><br>The wire itself has two paths, and the count under the layer checkbox says which one is in use rather than leaving you to guess. If <code>wire.json</code> has been built by <code>harvest_wire.py</code> and deployed alongside this file, it is used: country and region are tagged once at harvest time against the full country list, over a 30-day window, in six languages. If it is absent, the browser pulls the same feeds live through a public RSS-to-JSON bridge instead — slower, dependent on a third party, country-level only, and a shorter window.<br><br>One thing to carry through all of it: <b>an absence of dots over a country means these feeds do not report there.</b> Coverage tracks journalism, inspectorates and courts, not the distribution of the harm. The blank areas are frequently the ones to worry about most.<br><br><b class="hl-sec">Read this before you trust a dot</b><br>
     <b>The case layer does not ship with this build.</b> The engine reads its dots from a <code>projects.json</code> file that is harvested separately, and that harvester has not been run for this subject yet. What you are looking at right now is a small hand-entered seed set, described below. Saying so plainly is the point: an empty layer is honest, a fabricated one is not.<br><br>
@@ -1188,6 +1190,12 @@ var DATA_LAYERS = [
   {f:'directory.json', label:'Service providers (Global Modern Slavery Directory)',
    cmd:'python3 harvest_scale.py --directory',
    needs:'The GMSD front-end is a JS app; if no endpoint responds the script says how to find it.'},
+  {f:'infra.json', label:'Ports, recruitment agencies, free zones',
+   cmd:'python3 harvest_infra.py --all',
+   needs:'Ports run unattended from the World Port Index. Recruitment registers and zone files need a committed export in data/ \u2014 both are published as HTML or PDF rather than data.'},
+  {f:'routes.json', label:'Trafficking corridors (origin \u2192 destination)',
+   cmd:'python3 harvest_cases.py',
+   needs:'Built from the same CTDC file as the case counts \u2014 it needs the citizenship column, which the Global Synthetic Dataset carries.'},
   {f:'wire.json', label:'News wire (drives the live incident dots)',
    cmd:'python3 harvest_wire.py --days 30',
    needs:'Runs unattended. Without it the map pulls feeds live in your browser instead, which is slower and country-level only.'}
@@ -1338,6 +1346,101 @@ window.clevelOpen = function(i){
     showInfoPanel ? showInfoPanel(h) : L.popup().setLatLng(map.getCenter()).setContent(h).openOn(map);
   }catch(e){ try{console.warn('clevelOpen',e);}catch(_e){} }
 };
+
+
+/* ---- trafficking corridors -------------------------------------------
+   Origin to destination, from CTDC case records. The one layer here that shows
+   movement rather than location. */
+window.ROUTES = null;
+var _routeLayer = null, _routesOn = true;
+
+function routeColour(k){
+  return k === 'sexual exploitation' ? '#c98ac0'
+       : k === 'labour exploitation' ? '#7fb3d0'
+       : '#c0a86a';
+}
+
+window.drawRoutes = drawRoutes;
+function drawRoutes(){
+  try{
+    if(_routeLayer){ map.removeLayer(_routeLayer); _routeLayer = null; }
+    if(!_routesOn || !window.ROUTES || !window.ROUTES.length) return;
+    var C = window.ISO_CENTROID || {};
+    var max = window.ROUTES.reduce(function(m,r){ return Math.max(m, r.n||0); }, 1);
+    var group = L.layerGroup();
+    var drawn = 0, unplaceable = 0;
+
+    window.ROUTES.forEach(function(r){
+      var a = C[r.from], b = C[r.to];
+      if(!a || !b){ unplaceable++; return; }
+
+      /* Internal trafficking has no line to draw -- origin and destination are
+         the same country. It gets a ring instead, so it is not silently
+         dropped: in several countries it is the majority of recorded cases, and
+         a map that only draws crossings would show them as unaffected. */
+      var w = 1 + 5 * Math.sqrt((r.n||1) / max);
+      var col = routeColour(r.kind);
+      var pop = '<div class="popup-country">'
+              + (r.internal ? ('Within ' + _esc(r.from)) : (_esc(r.from) + ' \u2192 ' + _esc(r.to)))
+              + '</div><div class="tracker-desc">' + String(r.desc||'') + '</div>';
+
+      if(r.internal){
+        group.addLayer(L.circleMarker([a[0], a[1]], {
+          radius: 4 + 6 * Math.sqrt((r.n||1)/max), color: col, weight: w,
+          fill: false, opacity: 0.75, dashArray: '3 3'
+        }).bindPopup(pop));
+        drawn++;
+        return;
+      }
+
+      /* A quadratic curve, bowed perpendicular to the line. Straight lines read
+         as routes travelled; a bow makes it plain this is a link, not a path.
+         It also stops overlapping corridors sitting on top of each other. */
+      var lat1=a[0], lon1=a[1], lat2=b[0], lon2=b[1];
+      if(Math.abs(lon2-lon1) > 180) lon2 += (lon1 > lon2 ? 360 : -360);
+      var mx=(lat1+lat2)/2, my=(lon1+lon2)/2;
+      var dx=lat2-lat1, dy=lon2-lon1;
+      var bow=0.16;
+      var cx=mx - dy*bow, cy=my + dx*bow;
+      var pts=[];
+      for(var t=0; t<=1.0001; t+=0.05){
+        var u=1-t;
+        pts.push([u*u*lat1 + 2*u*t*cx + t*t*lat2,
+                  u*u*lon1 + 2*u*t*cy + t*t*lon2]);
+      }
+      group.addLayer(L.polyline(pts, {color:col, weight:w, opacity:0.62,
+                                      lineCap:'round'}).bindPopup(pop));
+      /* a dot at the destination end, so direction is readable without arrows */
+      group.addLayer(L.circleMarker([lat2, lon2], {radius:Math.max(2,w*0.7),
+        color:col, weight:1, fillColor:col, fillOpacity:0.85}).bindPopup(pop));
+      drawn++;
+    });
+
+    _routeLayer = group.addTo(map);
+    try{ console.log('[routes]', drawn, 'corridor(s) drawn'
+      + (unplaceable ? (', ' + unplaceable + ' with no centroid for one end') : '')); }catch(e){}
+  }catch(e){ try{ console.warn('drawRoutes', e); }catch(_e){} }
+}
+
+window.toggleRoutes = function(on){
+  _routesOn = (on === undefined) ? !_routesOn : !!on;
+  drawRoutes();
+  var el = document.getElementById('routeChk');
+  if(el) el.checked = _routesOn;
+};
+
+function loadRoutes(){
+  fetch('routes.json',{cache:'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){ return j || (window.__BUNDLED && window.__BUNDLED['routes.json']) || null; })
+    .then(function(j){
+      if(!j || !j.routes || !j.routes.length){ noteData('routes.json', false, 0, 'absent'); return; }
+      window.ROUTES = j.routes;
+      noteData('routes.json', true, j.routes.length, '');
+      drawRoutes();
+    })
+    .catch(function(e){ noteData('routes.json', false, 0, String(e).slice(0,80)); });
+}
 
 window.dataDiag = function(){
   var out = {};
@@ -1888,6 +1991,7 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
       if(ba>0) window.ISO_CENTROID[a3]=[by/ba,bx/ba];
     });
     try{ if(window._pjFlushPending) window._pjFlushPending(); }catch(e){}
+    try{ if(window.drawRoutes) drawRoutes(); }catch(e){}
   }catch(e){ try{console.warn('centroid build failed',e);}catch(_e){} }
   function baseStyle(f){ const a3=NUM2A3[f.id]||''; const L=countryAny(a3),A=countryActive(a3),acc=DMAP[domain].accent;
     return {fillColor:'#ffd24a',weight:L?1.6:0.5,opacity:L?0.85:0.22,color:L?'#ffd24a':'rgba(210,215,200,0.28)',fillOpacity:0}; }
@@ -2902,6 +3006,12 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
      desc:"Victims detected and reported to UNODC by each state. <b>Counts the response, not the phenomenon</b> \u2014 few detections can mean little trafficking or no identification system, and UNODC says itself the data cannot distinguish them. Read against the prevalence estimate, which is modelled independently of whether anyone was looking. Requires harvest_bulk.py --glotip."},
     {k:"iuu",cat:"At sea",label:"IUU-listed fishing vessels",
      desc:"Vessels listed for illegal, unreported or unregulated fishing. <b>Not a forced-labour finding</b> \u2014 included because IUU operation and forced labour at sea are strongly correlated in documented cases, and because an IMO number is a named, actionable entity in a domain where almost nothing else is. Requires harvest_bulk.py --iuu."},
+    {k:"ports",cat:"Infrastructure",label:"Ports & transhipment points",
+     desc:"Ports from the World Port Index, filtered to fishing and large harbours. Here for one reason: <b>transhipment</b>. Catch and crew transferred between vessels at sea, or in port without anyone going ashore, is how a fisher stays offshore for months or years \u2014 and the port state is the authority that could inspect and usually does not. <b>Infrastructure, not a finding.</b> Requires harvest_infra.py --ports."},
+    {k:"recruiters",cat:"Infrastructure",label:"Licensed recruitment agencies",
+     desc:"The origin end of the chain, and the point most worth watching: <b>this is where the fee is charged and the debt created</b>, months before anyone reaches a workplace. It is also the only place where a single administrative act \u2014 pulling a licence \u2014 stops the next hundred people being placed. <b>Infrastructure, not a finding.</b> Requires harvest_infra.py --recruiters."},
+    {k:"zones",cat:"Infrastructure",label:"Export processing & free zones",
+     desc:"Areas where labour law, inspection or the right to organise is reduced by statute to attract investment. Where exploitation occurs in a zone it is often <b>not a failure of enforcement but the absence of law by design</b>, which makes the remedy legislative rather than a complaint to an inspector with no jurisdiction. <b>Infrastructure, not a finding.</b> Requires harvest_infra.py --zones."},
     {k:"ipis",cat:"Sites (point data)",label:"Artisanal mining sites (IPIS)",
      desc:"Field-visited artisanal mining sites in eastern DRC, roughly 2,800 of them, mapped by IPIS since 2009 with per-site records of <b>child labour observed</b>, armed-group interference, worker numbers and minerals. The strongest dataset in this field: real coordinates, repeat field visits, and a direct child-labour observation rather than an inference. Requires harvest_points.py --ipis."},
     {k:"kilns",cat:"Sites (point data)",label:"Brick kilns (SentinelKilnDB)",
@@ -3503,6 +3613,7 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
     }catch(e){ try{console.warn('_pjPlaceByISO',e);}catch(_e){} }
     return data;
   }
+  try{ loadRoutes(); }catch(e){}
   function pjLoad(){
     var bust='?_='+Date.now();
     // Data is committed gzipped (projects.json.gz) because the raw JSON exceeds
@@ -3549,7 +3660,7 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
         /* Three optional side files, each loaded independently so one failing
            cannot take the others down. cases.json = detection, prevalence.json
            = modelled estimate, and they are NEVER merged into one number. */
-        ['cases.json','prevalence.json','points.json','bulk.json'].forEach(function(fn){
+        ['cases.json','prevalence.json','points.json','bulk.json','infra.json'].forEach(function(fn){
           fetch(fn,{cache:'no-store'})
             .then(function(r){ return r.ok?r.json():null; })
             /* Fall back to the copy bundled into this file by bundle.py, so a

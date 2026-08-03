@@ -2680,3 +2680,155 @@ FAIL — invisible elements that still intercept clicks
 reports how many points reach the map, and names whatever is covering the rest.
 Nothing about a transparent overlay shows up in a screenshot, so it needs a
 deliberate test rather than an eye.
+
+---
+
+# Thirty-eighth pass — a dot now means a place
+
+You were right, and it was a modelling error rather than a display preference. A
+listed good is a finding about a **country and a commodity**. Drawing it at a
+country centroid asserts something the source never said — that there is a
+place — and two hundred of those pins buried the one layer that does have
+coordinates.
+
+**Records are now sorted three ways:**
+
+| | Stays on the map | Example |
+|---|---|---|
+| `precise` | yes | IPIS mining site, GPS from a field visit |
+| `local` | yes | Brazil municipality rescue; incident matched to a region |
+| country-level | **no** | listed good, prevalence estimate, national determination |
+
+Of the 234 seed records, **216 moved off the map** into a country panel; the
+3,128 IPIS points all stayed. Municipality rescues and region-matched wire
+incidents stay too — they are not exact, but they are somewhere, and that is
+the line that matters rather than precision.
+
+## Hover and click do different things
+
+**Hover** a country: a panel appears beside the cursor listing everything on
+record for it, grouped by what kind of claim each is — *Goods listed as
+produced with forced or child labour*, *Determinations and enforcement actions*,
+*Identified cases*, *Prevalence estimate*. Click any line for that entry's
+source and what it does and does not establish.
+
+**Click** the country: the resources box, unchanged.
+
+The panel follows the cursor horizontally, flips to the other side rather than
+running off screen, stays open while the pointer is inside it, and closes on a
+220ms delay so it survives the gap between country and panel.
+
+India renders as: brick kilns and mica under determinations, then twelve listed
+goods — bricks, carpets, cotton, garments, mica, sugarcane, rice, stones,
+footwear, embellished textiles, bidis, fireworks.
+
+## What this changes
+
+The map is now what you asked for: **every dot is somewhere.** The country-level
+evidence has not been lost or downgraded — it is one hover away, better
+organised than it was as a cluster of identical pins, and it no longer competes
+with the sites that have real coordinates.
+
+---
+
+# Thirty-ninth pass — trafficking corridors
+
+The only layer here that shows **movement**. Every other one answers "where is
+this happening"; a corridor answers "where did the person come from" — and
+that is where the recruitment fee was charged, the debt created, and a licence
+could have been pulled before anyone travelled.
+
+## Built from the data already being fetched
+
+CTDC records carry country of **citizenship** as well as country of
+**exploitation**, so the same file that produces the case counts produces the
+corridors. `harvest_cases.py` now writes `routes.json` alongside `cases.json`:
+origin→destination pairs with case counts and a labour / sexual / minor
+breakdown, thresholded at five cases by default.
+
+Tested on a synthetic CTDC file: NPL→QAT, MMR→THA, NGA→ITA and an
+internal IND→IND corridor all built correctly with the right dominant type.
+
+**Internal trafficking is kept, not dropped.** In several countries it is the
+majority of recorded cases, and a map that only drew border crossings would show
+those countries as unaffected. It has no line to draw, so it gets a dashed ring
+at the country instead.
+
+## Curved on purpose
+
+A straight line between two countries reads as a path someone travelled. It is
+not: it is a pair of countries and a count, joined at their centroids. The lines
+are drawn as quadratic curves bowed perpendicular to the join, which makes that
+plain and also stops overlapping corridors sitting on top of each other. The
+help text says it outright, and so does every popup.
+
+Colour is the dominant exploitation type — blue labour, pink sexual, gold
+mixed — thickness is volume on a square-root scale, and a dot at the
+destination end gives direction without arrowheads. Antimeridian crossings are
+unwrapped so a Pacific corridor does not draw the long way round the world.
+
+Verified in a headless render: three crossings become three curves of 21 points
+each plus three destination dots, the internal corridor becomes a ring, and a
+corridor with an unknown country is skipped and **counted in the log** rather
+than silently dropped.
+
+Toggle in the map key, registered in the data-layer list and in the bundler.
+
+## The caveat that travels with it
+
+Every corridor popup ends with the same two points: the line is not a path
+anyone took, and this is detection again — a corridor with no line may have
+no trafficking, or no one identifying it.
+
+---
+
+# Fortieth pass — ports, recruiters, zones
+
+`harvest_infra.py`. Three layers that share one property: **none of them is
+evidence of exploitation.** Each marks a place where the mechanism operates, at
+a different point in it.
+
+**Ports.** From the World Port Index — public-domain US government data,
+~3,700 ports with coordinates — filtered to fishing and large harbours.
+They are here for transhipment: catch and crew transferred between vessels at
+sea, or in port without anyone going ashore, is how a fisher stays offshore for
+months or years, and the port state is the authority that could inspect and
+usually does not. Tested against a sample: fishing and large ports kept, a small
+recreational harbour dropped.
+
+**Recruitment agencies.** The origin end, and the point most worth watching:
+this is where the fee is charged and the debt created, months before anyone
+reaches a workplace. It is also the only place in the chain where **one
+administrative act — pulling a licence — stops the next hundred people
+being placed.** Seven origin-state registers are named with their URLs when no
+export is present. A row without coordinates is **dropped rather than placed at
+a country centre**, because an agency is an address and a centroid would say
+something the register does not.
+
+**Export processing and free zones.** Where labour law, inspection or the right
+to organise is reduced by statute to attract investment. The point worth holding
+onto: exploitation in a zone is often **not a failure of enforcement but the
+absence of law by design**, which makes the remedy legislative rather than a
+complaint to an inspector with no jurisdiction.
+
+## What is honestly automatable
+
+| | Unattended | Why |
+|---|---|---|
+| Ports | **yes** | WPI is public-domain data with coordinates |
+| Recruiters | partly | registers are HTML tables and PDFs behind JS |
+| Zones | **no** | no authoritative global boundary set exists that I can verify |
+
+The zones harvester does not approximate. ILO and UNCTAD publish counts and
+country lists, not geometry, and the commercial datasets are not open — so it
+reads a committed file and says plainly that a zone drawn in the wrong place is
+worse than no zone.
+
+## The caveat that matters most here
+
+Every record in all three layers carries: *this marks infrastructure, not a
+finding. It is a place where the mechanism operates, not evidence that anyone
+here is exploited.* These are the layers where a dot is most likely to be
+misread as an accusation — a named recruitment agency especially — so the
+disclaimer is in the record itself rather than only in a panel someone may never
+open.

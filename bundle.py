@@ -41,7 +41,8 @@ from collections import Counter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 LAYERS = ["projects.json", "cases.json", "prevalence.json", "points.json",
-          "bulk.json", "directory.json", "wire.json", "hotlines.json"]
+          "bulk.json", "directory.json", "wire.json", "hotlines.json",
+          "routes.json", "infra.json"]
 MARK = "\u0001"          # never appears in the source text
 
 

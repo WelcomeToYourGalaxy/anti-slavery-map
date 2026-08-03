@@ -11,7 +11,9 @@
     "cases": "python3 harvest_cases.py",
     "scale": "python3 harvest_scale.py --all",
     "points": "python3 harvest_points.py --all",
-    "bulk": "python3 harvest_bulk.py --all"
+    "bulk": "python3 harvest_bulk.py --all",
+    "bundle": "python3 bundle.py",
+    "infra": "python3 harvest_infra.py --all"
   },
   "devDependencies": {
     "jsdom": "^30.0.0"
