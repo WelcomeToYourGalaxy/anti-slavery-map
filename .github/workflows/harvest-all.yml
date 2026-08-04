@@ -37,8 +37,12 @@ jobs:
         run: python3 harvest_bulk.py --all || true
       - name: infrastructure (recruiters, zones)
         run: python3 harvest_infra.py --all || true
-      - name: facilities (courthouses, consulates, border posts)
+      - name: facilities (courthouses, consulates)
         run: python3 harvest_facilities.py --all || true
+      - name: located sites (SHERLOC, Delve, EJAtlas, ITSCi, GFW)
+        run: python3 harvest_sites.py --all || true
+      - name: the buyer end (UFLPA, UK and AU statement registries)
+        run: python3 harvest_companies.py --all || true
 
       # The first version of this step pushed straight at main and lost a whole
       # harvest when someone committed through the web UI while it was running:
@@ -63,7 +67,7 @@ jobs:
           # continuation, so the list silently split across two commands.
           for f in wire.json projects.json cases.json prevalence.json \
                    directory.json points.json bulk.json hotlines.json \
-                   infra.json routes.json facilities.json index.bundle.html; do
+                   infra.json routes.json facilities.json sites.json companies.json index.bundle.html; do
             [ -f "$f" ] && git add "$f" && echo "staged $f"
           done
 
