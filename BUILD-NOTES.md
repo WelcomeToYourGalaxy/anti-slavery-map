@@ -3863,3 +3863,158 @@ present in every statement record.
 2. **Recruitment registers** — one origin-state export unlocks it.
 3. **Export processing zones** — no verifiable global geometry exists.
 4. **HTLC** — request sent.
+
+---
+
+# Fifty-eighth pass — what each state already promised
+
+`harvest_law.py`. Six instruments per country: **C029** and its **2014
+Protocol**, **C105**, **C138**, **C182**, **C188**.
+
+This is the layer that changes what a user can ask for. *Please do something
+about this* is a request. *Your country ratified Protocol 29, which obliges it
+to provide victims access to remedies including compensation irrespective of
+their presence or legal status in the territory* is a citation — and that
+last clause is the sentence to quote when a worker without papers is told their
+status disqualifies them.
+
+Each record lists what was ratified and when, what each instrument obliges, and
+**what was not ratified**, because a state that has not undertaken the
+obligation is a different ask of different people from one that has and is not
+meeting it.
+
+**Ratification is a promise, not a practice**, and every record says so —
+several of the worst records on this map belong to states that ratified decades
+ago. What it gives you is standing: a supervisory body that accepts complaints,
+a reporting cycle, and an obligation the government cannot argue was never
+agreed.
+
+C138 and C182 are near-universal, which is worth knowing in itself: on child
+labour almost no state can say it never undertook the duty. C188 is not, and the
+gap between the fleets that fish and the states that have ratified it is one of
+the more legible failures in this field.
+
+NORMLEX is server-rendered and refuses automated requests from some networks, so
+a committed `{country: {code: year}}` JSON in `data/` is read instead. Tested
+both paths.
+
+---
+
+# Fifty-ninth pass — where it is thought to be
+
+You are right that the 0.5% figure answers the wrong question. Your goal is to
+compile **the data that exists**, and that has a different denominator.
+
+`harvest_suspected.py` addresses the part of your question that data can
+actually reach: subnational geography of where it is *thought* to be, as against
+where it was found.
+
+**Programme hotspots** — eight geographies where a funder concentrated after
+its own assessment: Bihar and eastern UP kilns, Tamil Nadu spinning mills, the
+Nepal Terai, Samut Sakhon and the Thai Gulf coast, Amhara and Oromia origin
+areas, the Moei strip, the Pará–Maranhão frontier, the Kivus.
+Built in, so this ships working. **Not an estimate and not a finding**: it marks
+places thought to matter enough to spend years on.
+
+**India NCRB** — trafficking and bonded labour cases by state and district.
+One of very few official sources anywhere publishing this below national level.
+
+**Polaris hotline signals** by US state, carrying the line that layer needs:
+*a signal is a contact, not a case* — the same person may contact twice,
+most contacts are not victims, and what it really maps is **where people know
+the number and are able to call**.
+
+## What I deliberately did not build
+
+There are vulnerability indices that would produce a smooth global subnational
+surface. They are built from proxies — poverty, conflict, governance —
+and would give this map a confident-looking heat layer whose colour was decided
+by a regression rather than by anyone observing anything.
+
+The map already has one honest measure of what is not seen: prevalence estimates
+against detection counts, with the two disagreeing about a country being the
+finding. An inferred surface on top would blur exactly that. Everything in this
+layer is something a named body published about a named place.
+
+---
+
+# Sixtieth pass — EJAtlas in, and a false positive it caught
+
+**67 cases**, from 3,861. Brazil, the US, Myanmar, Cambodia, Bangladesh, the
+DRC, India.
+
+## The term list was wrong and the data showed it
+
+My first pass matched a bare "trafficking" and pulled in *Aerial fumigations and
+Plan Colombia* — a coca eradication case, on a forced-labour map, because the
+word appears in "drug-trafficking activities".
+
+Fixed two ways. The term list now requires a human-trafficking phrasing
+(`human trafficking`, `trafficking in persons`, `trafficking of women`,
+`sex trafficking`, `trafficked`) or a labour term, and a case matching **only**
+on a trafficking word is dropped if the surrounding text is about drugs, arms or
+wildlife.
+
+The surviving 67 match on: slavery (26), child labour (26 across both
+spellings), forced labour (16), human trafficking (6), modern slavery (4).
+
+## Each record says why it is there
+
+The matched term is now in the record — *Its record names: **forced
+labour***  — along with the sentence it came from, so a reader can see what
+triggered the inclusion rather than taking the classification on trust:
+
+> Increased militarization around the dam site has led to human rights abuses,
+> which includes forced labour, illegal taxation and rape (13).
+
+## Location accuracy honoured per case
+
+EJAtlas grades every case HIGH, MEDIUM or LOW. **37 HIGH cases draw as pins, 30
+draw as rings.** The dataset is telling you how well it knows where something is
+and overriding that would be inventing precision the source does not claim.
+
+---
+
+# Sixty-first pass — Delve is not what I said it was
+
+I called Delve "the obvious extension of the IPIS layer". It is not, and the
+file you found proves it.
+
+`Donnees-statistiques-ARM-Genre.xlsx` is a **376-respondent gender survey** of
+artisanal miners in Burkina Faso: age band, education, marital status, activity
+on site, working-conditions rating, earnings band. Seven named collection sites,
+**no coordinates**, and **three respondents under 18 out of 376**.
+
+That is a real and useful dataset for its own purpose and a poor map layer. It
+describes people, not places.
+
+**Delve is a knowledge platform** — country profiles, narrative, and partner
+uploads of whatever shape the partner happened to have. There is no bulk
+site-level download, which is what I implied there was. Corrected in the
+harvester, on the map, and in the failure message, which now says outright: *do
+not wait on Delve for the IPIS extension; it is not that.*
+
+The parser stays, because some partner uploads do carry coordinates and reading
+one costs nothing. But it is opportunistic, not a pipeline.
+
+## What that means for "located sites at 100%"
+
+The honest position on that target: **it is not reachable**, because the
+denominator is not a fixed set of datasets. IPIS-quality data — someone went
+to a place and wrote down what was there — exists for eastern DRC, CAR, the
+Indo-Gangetic kilns, and not much else. The rest of the world's forced labour
+has not been visited and recorded that way by anyone.
+
+What is reachable, in descending order of certainty:
+
+1. **Kilns — 62,671 sites.** `harvest_points.py --kilns` pulls these through
+   HuggingFace's rows API with nothing to download. This is the single largest
+   located-site gain available and needs no permission from anyone.
+2. **EJAtlas — 67.** Done this session.
+3. **ITSCi.** Request only; email drafted.
+4. **Open Supply Hub.** Awaiting your application.
+5. **Delve.** Opportunistic.
+
+After the kilns, the located-site layer would stand at roughly **66,000 points**
+against 3,195 today, and that is close to the ceiling of what has actually been
+recorded site by site anywhere in the world.

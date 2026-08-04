@@ -1229,6 +1229,12 @@ var DATA_LAYERS = [
    external:true,
    cmd:'python3 harvest_infra.py --all',
    needs:'Ports run unattended from the World Port Index. Recruitment registers and zone files need a committed export in data/ \u2014 both are published as HTML or PDF rather than data.'},
+  {f:'suspected.json', label:'Where it is thought to be (subnational)',
+   cmd:'python3 harvest_suspected.py --all',
+   needs:'Hotspots are built in. NCRB and Polaris need a committed export in data/ \u2014 both publish tables rather than feeds.'},
+  {f:'law.json', label:'ILO ratifications per country',
+   cmd:'python3 harvest_law.py',
+   needs:'NORMLEX is a server-rendered application and refuses automated requests from some networks; a committed {country:{code:year}} JSON in data/ is read instead.'},
   {f:'companies.json', label:'The buyer end \u2014 statements and entity lists',
    cmd:'python3 harvest_companies.py --all',
    needs:'UK and Australian registries publish bulk downloads; the UFLPA list is mirrored by OpenSanctions. All three fall back to a committed export in data/.'},
@@ -3249,6 +3255,14 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
      desc:"The origin end of the chain, and the point most worth watching: <b>this is where the fee is charged and the debt created</b>, months before anyone reaches a workplace. It is also the only place where a single administrative act \u2014 pulling a licence \u2014 stops the next hundred people being placed. <b>Infrastructure, not a finding.</b> Requires harvest_infra.py --recruiters."},
     {k:"zones",cat:"Infrastructure",label:"Export processing & free zones",
      desc:"Areas where labour law, inspection or the right to organise is reduced by statute to attract investment. Where exploitation occurs in a zone it is often <b>not a failure of enforcement but the absence of law by design</b>, which makes the remedy legislative rather than a complaint to an inspector with no jurisdiction. <b>Infrastructure, not a finding.</b> Requires harvest_infra.py --zones."},
+    {k:"hotspots",cat:"Where it is thought to be",label:"Programme hotspots",
+     desc:"Subnational geographies where a funder concentrated after its own assessment \u2014 Bihar and eastern UP kilns, Tamil Nadu spinning mills, the Nepal Terai, Thai seafood, Ethiopian origin districts, the Moei strip, the Brazilian frontier, the Kivus. <b>Not an estimate and not a finding</b>: it marks places thought to matter enough to spend years on, which is different from places where something was recorded. The coordinate is the centre of a region, not a site."},
+    {k:"ncrb",cat:"Where it is thought to be",label:"Cases by state (India, NCRB)",
+     desc:"Human trafficking and bonded labour cases registered by Indian state and district. One of the very few official sources anywhere publishing this <b>below national level</b>. It counts what an institution recorded, not what happened \u2014 where a state reports a lot, someone is looking."},
+    {k:"polaris",cat:"Where it is thought to be",label:"Hotline signals by state (US)",
+     desc:"Contacts to the US National Human Trafficking Hotline by state. <b>A signal is a contact, not a case</b> \u2014 the same person may contact twice, most contacts are not victims, and many come from professionals asking about someone else. What it maps is <b>where people know the number and are able to call</b>, which is a real thing to know and not the thing it looks like."},
+    {k:"normlex",cat:"Obligations",label:"ILO ratifications (what the state already promised)",
+     desc:"Which of the six instruments each state has ratified \u2014 C029 and its 2014 Protocol, C105, C138, C182 and C188 \u2014 with the obligation each one carries.<br><br>This is the layer that changes what you can ask for. <i>Please do something about this</i> is a request; <i>your country ratified Protocol 29, which obliges it to provide victims access to remedies including compensation <b>irrespective of their presence or legal status in the territory</b></i> is a citation, and it is the one that gets an answer from a ministry.<br><br><b>Ratification is a promise, not a practice</b> \u2014 several of the worst records here belong to states that ratified decades ago. What it gives you is standing: a supervisory body that accepts complaints, a reporting cycle, and an obligation the government cannot argue was never agreed. And a state that has <i>not</i> ratified is a different ask of different people from one that has and is not meeting it."},
     {k:"uflpa",cat:"The buyer end",label:"UFLPA Entity List",
      desc:"Entities whose goods are <b>presumed</b> made with forced labour and barred from US entry unless an importer rebuts the presumption with clear and convincing evidence. Not a disclosure and not a risk score \u2014 a determination with an automatic consequence, which makes it the sharpest instrument here. Check the current list before citing: entities are added and occasionally removed."},
     {k:"ukmsr",cat:"The buyer end",label:"Modern slavery statements (UK)",
@@ -3266,7 +3280,7 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
     {k:"rightslab",cat:"Sites (point data)",label:"Satellite-detected sites (Rights Lab)",
      desc:"Sites detected from satellite imagery by the Rights Lab \u2014 charcoal in Brazil, fish processing in the Sundarbans, mica in Jharkhand. <b>A detection is not a finding about that site</b>: it says a facility of this kind is here, which is where to look rather than what was found. Requires harvest_sites.py --rightslab with a committed dataset."},
     {k:"delve",cat:"Sites (point data)",label:"Artisanal mining sites (Delve)",
-     desc:"Artisanal and small-scale mining sites from the World Bank's Delve platform \u2014 the extension of the IPIS layer beyond the DRC, several of them IPIS-derived. Where a record came from a field visit it says so; where it is a register entry it does not, and that difference is worth checking before citing a single site. Requires harvest_sites.py --delve."},
+     desc:"Artisanal and small-scale mining sites from partner datasets on the World Bank's Delve platform. Delve has no bulk site download and its country uploads vary in shape \u2014 several are surveys of people rather than registers of places \u2014 so this layer fills only where a contributed dataset happens to carry coordinates. Where a record came from a field visit it says so; where it is a register entry it does not."},
     {k:"ejatlas",cat:"Sites (point data)",label:"Reported conflicts with labour impacts (EJAtlas)",
      desc:"Cases from the Environmental Justice Atlas whose records name forced labour, bonded labour or child labour among the impacts. <b>Community-reported, not field-verified</b> \u2014 compiled with and by the people affected, which is its strength for reaching places no inspectorate goes and its limit as evidence. Requires harvest_sites.py --ejatlas."},
     {k:"ipis",cat:"Sites (point data)",label:"Artisanal mining sites (IPIS)",
@@ -3948,7 +3962,7 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
         /* Three optional side files, each loaded independently so one failing
            cannot take the others down. cases.json = detection, prevalence.json
            = modelled estimate, and they are NEVER merged into one number. */
-        ['cases.json','prevalence.json','points.json','bulk.json','infra.json','sites.json','companies.json'].forEach(function(fn){
+        ['cases.json','prevalence.json','points.json','bulk.json','infra.json','sites.json','companies.json','law.json','suspected.json'].forEach(function(fn){
           fetch(fn,{cache:'no-store'})
             .then(function(r){ return r.ok?r.json():null; })
             /* Fall back to the copy bundled into this file by bundle.py, so a

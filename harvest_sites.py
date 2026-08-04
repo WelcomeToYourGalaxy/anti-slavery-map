@@ -26,11 +26,19 @@ how close they come, and each record says which rung it is on:
             anything here, and past tense, which matters for the reason set out
             under --sexual below.
 
-  delve     ARTISANAL MINING SITES. The World Bank's ASM data platform
-            aggregates site-level datasets beyond the DRC, several of which
-            carry the same child-labour and worker-count fields IPIS uses,
-            because several ARE IPIS-derived. The obvious extension of the
-            layer that already works.
+  delve     ARTISANAL MINING SITES -- AND A CORRECTION. I described Delve as
+            the obvious extension of the IPIS layer. It is not. Delve is a
+            knowledge platform: country profiles, narrative, and partner
+            uploads of whatever shape the partner had. There is no bulk
+            site-level download, and the files attached to country pages are
+            often surveys of people rather than registers of places -- one
+            Burkina Faso upload turned out to be a 376-respondent gender survey
+            with site names, no coordinates, and three respondents under 18.
+            That is a real dataset and a poor map layer.
+
+            The parser stays because some partner uploads DO carry site
+            coordinates, and reading one costs nothing. But Delve is not an
+            IPIS equivalent and should not be waited on as though it were.
 
   ejatlas   ENVIRONMENTAL JUSTICE ATLAS. Roughly 4,000 geolocated conflicts,
             each with a case narrative. A subset name forced labour, debt
@@ -90,9 +98,20 @@ EJATLAS_SOURCES = [
 ]
 
 # Terms that mark an EJAtlas case as belonging on this map at all.
-EJ_TERMS = ["forced labour", "forced labor", "slave", "slavery", "bonded",
-            "debt bondage", "child labour", "child labor", "trafficking",
-            "indentured", "servitude", "forced eviction and labour"]
+# A bare "trafficking" matched drug and arms trafficking, which is how a
+# US-Colombia coca fumigation case ended up on a forced-labour map. The term
+# list now requires a human-trafficking phrasing or a labour term, and a case
+# that matched ONLY on a trafficking word is dropped if the surrounding text is
+# about drugs, arms or wildlife.
+EJ_TERMS = ["forced labour", "forced labor", "modern slavery", "slave labour",
+            "slave labor", "slavery", "bonded labour", "bonded labor",
+            "debt bondage", "child labour", "child labor", "human trafficking",
+            "trafficking in persons", "trafficking of women",
+            "trafficking of children", "sex trafficking", "trafficked",
+            "indentured", "servitude", "forced work", "peonage"]
+EJ_EXCLUDE = re.compile(
+    r"drug[- ]traffick|arms traffick|wildlife traffick|"
+    r"traffick\w* of (?:drugs|cocaine|timber|wildlife)", re.I)
 
 
 def fetch(url, timeout=120):
@@ -177,11 +196,14 @@ def harvest_delve(a):
                 if a.verbose:
                     print("  %-58s %s" % (u[:58], str(ex)[:36]))
     if not raw:
-        print("  Delve unreachable. It is the World Bank's artisanal-mining data "
-              "platform \u2014 delvedatabase.org \u2014 and its site-level exports "
-              "carry the same shape as the IPIS files already on this map. "
-              "Download one and commit it to data/ with 'delve' or 'asm' in the "
-              "filename.")
+        print("  No Delve export found, and there is no bulk site download to fetch \u2014 "
+              "delvedatabase.org is a knowledge platform of country profiles, with "
+              "partner uploads of varying shape attached to some of them. Several are "
+              "surveys of people rather than registers of places and carry no "
+              "coordinates at all.")
+        print("  If you find one that does carry latitude and longitude, commit it to "
+              "data/ with 'delve' or 'asm' in the filename and this reads it. Do not "
+              "wait on Delve for the IPIS extension; it is not that.")
         return []
 
     out = []
@@ -293,22 +315,39 @@ def harvest_ejatlas(a):
         lat, lng, low = latlng(r)
         if lat is None or lng is None:
             continue
-        blob = " ".join(str(v) for v in r.values()).lower()
-        if not any(t in blob for t in EJ_TERMS):
+        blob_raw = " ".join(str(v) for v in r.values())
+        blob = blob_raw.lower()
+        hits = [t for t in EJ_TERMS if t in blob]
+        if not hits:
             continue
+        if all("traffick" in t for t in hits) and EJ_EXCLUDE.search(blob_raw):
+            continue
+        # EJAtlas publishes an accuracy grade per case. Honour it: a HIGH local
+        # case is a pin, anything coarser is a ring, because the dataset is
+        # telling you how well it knows where this is and overriding that would
+        # be inventing precision it does not claim.
+        acc = str(low.get("accuracyoflocation") or low.get("accuracy") or "").upper()
+        exact = acc.startswith("HIGH")
         out.append({
-            "name": str(low.get("name") or low.get("title") or "Conflict")[:130],
+            "name": str(low.get("name") or low.get("case") or low.get("title")
+                        or "Conflict")[:130],
             "source": "ejatlas", "type": "Reported conflict \u2014 labour impacts",
-            "lat": lat, "lng": lng, "precise": True,
+            "lat": lat, "lng": lng, "precise": exact, "local": not exact,
             "impact": 3, "status": "Reported",
             "state": str(low.get("country") or ""),
             "url": low.get("url") or "https://ejatlas.org/",
-            "desc": ("Case from the Environmental Justice Atlas whose record names forced "
-                     "labour, bonded labour or child labour among its impacts. "
-                     "<b>Community-reported, not field-verified</b> \u2014 EJAtlas is "
-                     "compiled with and by the people affected, which is its strength for "
-                     "reaching places no inspectorate goes and its limit as evidence. "
-                     "Open the case for the sources the contributors cited."),
+            "desc": (((str(low.get("impacts") or "")[:300] + " ")
+                       if low.get("impacts") else "")
+                     + ("Case from the Environmental Justice Atlas. Its record names: "
+                        "<b>%s</b>. " % (str(low.get("matchedterms")) or "; ".join(hits)))
+                     + ("" if exact else
+                        ("EJAtlas grades this location %s, so it is drawn as an area "
+                         "rather than a point. "
+                         % (acc.split()[0].lower() if acc else "coarse")))
+                     + "<b>Community-reported, not field-verified</b> \u2014 EJAtlas is "
+                       "compiled with and by the people affected, which is its strength "
+                       "for reaching places no inspectorate goes and its limit as "
+                       "evidence. Open the case for the sources the contributors cited."),
         })
     print("  EJAtlas: %d of %d cases name forced, bonded or child labour" % (len(out), seen))
     return out
