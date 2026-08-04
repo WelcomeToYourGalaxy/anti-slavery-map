@@ -55,9 +55,18 @@
   .chv-grp { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8f9187; margin:7px 0 3px; }
   .chv-item { padding:2px 0 2px 8px; cursor:pointer; color:#c6c8ba; line-height:1.35; border-left:2px solid var(--accent-soft); margin:1px 0; }
   .chv-item:hover { color:var(--accent-hi); border-left-color:var(--accent-hi); }
+  .chv-route { border-left-color:#7fb3d0; cursor:default; }
   .chv-n { opacity:.6; font-size:9.5px; }
   .chv-more { font-size:9.5px; color:#7f8177; padding-left:8px; }
   .chv-foot { font-size:9.5px; color:#7f8177; font-style:italic; line-height:1.4; margin-top:7px; border-top:1px solid var(--accent-soft); padding-top:5px; }
+  /* The <select> itself was dark but the OPEN list was not: the browser
+     draws that from the option elements and its own colour scheme, so the
+     menu flashed white against everything else. color-scheme tells the
+     browser which palette to use; the option rules cover the engines that
+     ignore it. */
+  #intentSel option, #angleSel option, select option { background:#152527; color:#e6e7dd; }
+  #intentSel optgroup, #angleSel optgroup, select optgroup { background:#0f1c1e; color:#a7ab80; font-style:normal; }
+  select, #intentSel, #angleSel { color-scheme:dark; }
   .no-data { color:#717782; font-style:italic; font-size:12.5px; padding:4px 0; }
   #controls { position:fixed; top:70px; right:16px; z-index:1001; background:rgba(16,24,25,0.95); border:1px solid var(--accent-soft); border-radius:10px; padding:11px 12px 12px; backdrop-filter:blur(12px); box-shadow:0 4px 22px rgba(0,0,0,0.45); width:252px; max-height:calc(100vh - 88px); overflow-y:auto; scrollbar-width:auto; }
   #controls::-webkit-scrollbar{width:5px;} #controls::-webkit-scrollbar-thumb{background:var(--accent-soft);border-radius:3px;}
@@ -160,7 +169,7 @@
   #legend .leg-swatch{ width:11px; height:11px; flex:0 0 auto; margin-top:1px; }
   @media (max-width:640px){ #legend{ bottom:150px !important; max-width:170px; } }
   #gbLoad{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1200;display:none;background:rgba(19,22,28,0.95);border:1px solid var(--accent-soft);border-radius:10px;padding:12px 18px;font-size:13px;color:#e5e7ea;box-shadow:0 4px 16px rgba(0,0,0,0.5);}
-  #infoPanel{position:fixed;right:16px;left:auto;top:70px;width:340px;max-height:calc(100vh - 150px);z-index:1100;display:flex;flex-direction:column;background:rgba(13,22,23,0.97);border:1px solid var(--accent-soft);border-radius:11px;box-shadow:0 10px 32px rgba(0,0,0,0.55);backdrop-filter:blur(12px);transform:translateX(380px);opacity:0;transition:transform .22s ease,opacity .22s ease;/* opacity:0 hides a panel but does NOT stop it receiving clicks. This one is 340-380px wide, runs top:70px to bottom:18px, and sits at z-index 1100 — so while closed it was swallowing every click over that whole band of the map. Invisible must mean intangible. */pointer-events:none;}
+  #infoPanel{position:fixed;left:322px;right:auto;top:70px;width:340px;max-height:calc(100vh - 150px);z-index:1100;display:flex;flex-direction:column;background:rgba(13,22,23,0.97);border:1px solid var(--accent-soft);border-radius:11px;box-shadow:0 10px 32px rgba(0,0,0,0.55);backdrop-filter:blur(12px);transform:translateX(-380px);opacity:0;transition:transform .22s ease,opacity .22s ease;/* opacity:0 hides a panel but does NOT stop it receiving clicks. This one is 340-380px wide, runs top:70px to bottom:18px, and sits at z-index 1100 — so while closed it was swallowing every click over that whole band of the map. Invisible must mean intangible. */pointer-events:none;}
   #infoPanel.open{transform:translateX(0);opacity:1;pointer-events:auto;}
   #infoBody{flex:1 1 auto;min-height:0;overflow-y:auto;padding:30px 16px 16px;scrollbar-width:thin;}
   #infoDrag{position:absolute;top:0;left:0;right:0;height:24px;cursor:move;display:flex;align-items:center;justify-content:center;z-index:1;}
@@ -745,7 +754,10 @@ function applyAccent(){ const d=DMAP[domain], r=document.documentElement.style;
      getElementById on it threw here on every init and every lens change --
      which aborted applyAccent and everything the init line called after it. */
   var _la=document.getElementById('legActive'); if(_la) _la.style.background=d.accent;
-  var _st=document.getElementById('subtitle'); if(_st) _st.textContent=d.desc;
+  /* The subtitle states what the map is. A lens changes what you are looking
+     through, not what the map is, and rewriting the standing description each
+     time made it read as though the subject had changed. The lens description
+     goes to its own field only. */
   var _dd=document.getElementById('domainDesc'); if(_dd) _dd.textContent=d.desc; }
 function renderPills(){ const b=document.getElementById('domainPills'); b.innerHTML='';
   function prow(key,label,desc,accent){ const r=document.createElement('div'); r.className='subrow'; const p=document.createElement('span'); p.className='dpill'; p.textContent=label; p.dataset.key=key;
@@ -1365,6 +1377,15 @@ function clevelShow(iso, name, pt){
       /* Take ONLY the leading count. Stripping every non-digit swallowed the
          year range too, so "1,204 identified: labour, 2015-2019" contributed
          120420152019 and the totals came out in the billions. */
+      /* cases.json carries BOTH a country total and the per-type/period slices
+         that compose it. Adding the slices next to the total reported the same
+         people twice — which is why the US line repeated its count. The
+         total is recognised and kept whole; the slices collapse without one. */
+      if(/cases on record\s*$/i.test(label)){
+        (byLabel['__total__'] = byLabel['__total__'] || {rows:[], total:0, any:label, whole:true})
+          .rows.push(r);
+        return;
+      }
       var lead = /^([\d,]+)\s/.exec(label);
       var n = lead ? parseInt(lead[1].replace(/,/g,''), 10) : NaN;
       (byLabel[key] = byLabel[key] || {rows:[], total:0, any:label})
@@ -1374,18 +1395,37 @@ function clevelShow(iso, name, pt){
     Object.keys(byLabel).slice(0,40).forEach(function(key){
       var e = byLabel[key];
       var i = window.__CLEVEL_IDX.push(e.rows[0]) - 1;
-      if(e.rows.length === 1){
+      if(e.whole || e.rows.length === 1){
         h += '<div class="chv-item" onclick="clevelOpen('+i+')">'+_esc(e.any)+'</div>';
       } else {
+        /* No number here when the total is already shown above it. */
+        var haveTotal = !!byLabel['__total__'];
         h += '<div class="chv-item" onclick="clevelOpen('+i+')">'
-           + (e.total ? (e.total.toLocaleString()+' ') : '')
-           + _esc(key)
+           + ((e.total && !haveTotal) ? (e.total.toLocaleString()+' ') : '')
+           + _esc(haveTotal ? ('broken down by type and period') : key)
            + '<span class="chv-n"> \u00b7 '+e.rows.length+' records</span></div>';
       }
     });
     var extra = Object.keys(byLabel).length - 40;
     if(extra > 0) h += '<div class="chv-more">+'+extra+' more</div>';
   });
+  /* Corridors touching this country, named. The map draws the lines; the
+     panel is where you can actually read which countries they go to. */
+  try{
+    var partners = (window.routePartners ? window.routePartners(iso) : []);
+    if(partners.length){
+      h += '<div class="chv-grp">Trafficking corridors \u2014 '+partners.length+'</div>';
+      partners.slice(0,14).forEach(function(p){
+        var nm = (window.ISO_NAME && window.ISO_NAME[p.iso]) ||
+                 (trackerData[p.iso] && trackerData[p.iso].name) || p.iso;
+        var arrow = p.dir==='to' ? '\u2192 ' : p.dir==='from' ? '\u2190 ' : '\u21ba ';
+        h += '<div class="chv-item chv-route">'+arrow+_esc(nm)+
+             '<span class="chv-n"> \u00b7 '+p.n.toLocaleString()+'</span></div>';
+      });
+      if(partners.length>14) h += '<div class="chv-more">+'+(partners.length-14)+' more</div>';
+    }
+  }catch(e){}
+
   h += '<div class="chv-foot">Click any line for the source and what it does and does not '
      + 'establish. Click the country itself for services and legal routes there.</div>';
   b.innerHTML = h;
@@ -1431,14 +1471,42 @@ window.drawRoutes = drawRoutes;
    strength and everything else drops back, so one country's connections can be
    read out of 332 lines without turning the layer off. */
 window.ROUTE_FOCUS = null;
+window.ROUTE_PINNED = null;     /* set by clicking; hover cannot override it */
 window.setRouteFocus = function(iso){
+  if(window.ROUTE_PINNED) return;             // a click wins until it is undone
   if(window.ROUTE_FOCUS === iso) return;      // no redraw, no flicker
   window.ROUTE_FOCUS = iso || null;
   drawRoutes();
 };
+window.pinRouteFocus = function(iso){
+  window.ROUTE_PINNED = iso || null;
+  window.ROUTE_FOCUS = iso || null;
+  drawRoutes();
+};
 
+/* Which countries a country is linked to, for its own popup. */
+window.routePartners = function(iso){
+  var out = [];
+  (window.ROUTES||[]).forEach(function(r){
+    if(r.internal){ if(r.from===iso) out.push({iso:iso, n:r.n, dir:'within', kind:r.kind}); return; }
+    if(r.from===iso) out.push({iso:r.to, n:r.n, dir:'to', kind:r.kind});
+    else if(r.to===iso) out.push({iso:r.from, n:r.n, dir:'from', kind:r.kind});
+  });
+  out.sort(function(a,b){ return b.n-a.n; });
+  return out;
+};
+
+var _routeDrawing = false;
 function drawRoutes(){
   try{
+    /* Re-entrancy leak. drawRoutes is called from three places -- the initial
+       fetch, the centroid build, and every focus change -- and _routeLayer was
+       only assigned at the END. A second call arriving before that assignment
+       left the first group on the map untracked, so it could never be removed:
+       corridors accumulated, which is why Ghana to the US appeared more than
+       once. Clear first, and refuse to re-enter. */
+    if(_routeDrawing) return;
+    _routeDrawing = true;
     if(_routeLayer){ map.removeLayer(_routeLayer); _routeLayer = null; }
     if(!_routesOn || !window.ROUTES || !window.ROUTES.length) return;
     var C = window.ISO_CENTROID || {};
@@ -1511,9 +1579,10 @@ function drawRoutes(){
     });
 
     _routeLayer = group.addTo(map);
+    _routeDrawing = false;
     try{ console.log('[routes]', drawn, 'corridor(s) drawn'
       + (unplaceable ? (', ' + unplaceable + ' with no centroid for one end') : '')); }catch(e){}
-  }catch(e){ try{ console.warn('drawRoutes', e); }catch(_e){} }
+  }catch(e){ _routeDrawing=false; try{ console.warn('drawRoutes', e); }catch(_e){} }
 }
 
 window.toggleRoutes = function(on){
@@ -1815,11 +1884,12 @@ function gbApplyBubble(iso,layer){ if(!layer) return;
   });
   if(changed) layer.setStyle(f=>gbUnitStyle(iso,gbCurLvl,f));
 }
-window._reflowInfo=function(){ var p=document.getElementById('infoPanel'); if(!p||!p.classList.contains('open'))return; if(window.innerWidth<=640){ p.style.left='';p.style.width='';p.style.top='';p.style.bottom='';p.style.maxHeight=''; return; } try{ /* Anchor to the right-hand control column, not the left help panel: the box now flies in from the right, and it should land where it came from. Falls back to a fixed right margin if the controls are collapsed or absent. */ var rb=document.getElementById('controls')||document.getElementById('rightbar'); var r=rb?rb.getBoundingClientRect():null; /* Sit as a second column immediately LEFT of the controls, not underneath them: the controls run nearly full height, so stacking would push this off the bottom of the screen. */ var right=r?Math.round(window.innerWidth-r.left)+12:16; var w=Math.max(300,Math.min(380,window.innerWidth-right-300)); if(w<300){ w=340; right=16; } p.style.left='auto'; p.style.right=right+'px'; p.style.width=w+'px'; p.style.top='70px'; p.style.bottom='18px'; p.style.maxHeight=(window.innerHeight-88)+'px'; p.style.overflowY='auto'; }catch(e){} };
+window._reflowInfo=function(){ var p=document.getElementById('infoPanel'); if(!p||!p.classList.contains('open'))return; if(window.innerWidth<=640){ p.style.left='';p.style.width='';p.style.top='';p.style.bottom='';p.style.maxHeight=''; return; } try{ /* Anchor to the right-hand control column, not the left help panel: the box now flies in from the right, and it should land where it came from. Falls back to a fixed right margin if the controls are collapsed or absent. */ var hp=document.getElementById('helpPanel')||document.getElementById('sidebar'); var r=hp?hp.getBoundingClientRect():null; /* Under the "how to use this map" panel, in the left column: that is where someone is already reading when they click a country. */ var left=r?Math.round(r.left):322; var w=r?Math.max(260,Math.round(r.width)):270; var top=r?Math.round(r.bottom)+9:70; if(top>window.innerHeight-200) top=Math.max(70,window.innerHeight-320); p.style.right='auto'; p.style.left=left+'px'; p.style.width=w+'px'; p.style.top=top+'px'; p.style.bottom='18px'; p.style.maxHeight=(window.innerHeight-top-18)+'px'; p.style.overflowY='auto'; }catch(e){} };
 window.addEventListener('resize',function(){ if(window._reflowInfo)_reflowInfo(); });
 function showInfoPanel(html){ document.body.classList.add('info-open'); var b=document.getElementById('infoBody'); if(b)b.innerHTML=html; var p=document.getElementById('infoPanel'); if(p){ p.classList.add('open'); if(window._reflowInfo)_reflowInfo(); } }
-function hideInfoPanel(){ const p=document.getElementById('infoPanel'); if(p)p.classList.remove('open'); document.body.classList.remove('info-open'); }
-function gbFitPad(sz){ return (window.innerWidth<=640) ? {paddingTopLeft:[40,95],paddingBottomRight:[40,Math.round(sz.y*0.5)+16]} : {paddingTopLeft:[40,72],paddingBottomRight:[Math.max(660,Math.min(720,Math.round(sz.x*0.45))),50]}; }
+function hideInfoPanel(){
+  try{ if(window.pinRouteFocus) window.pinRouteFocus(null); }catch(e){} const p=document.getElementById('infoPanel'); if(p)p.classList.remove('open'); document.body.classList.remove('info-open'); }
+function gbFitPad(sz){ return (window.innerWidth<=640) ? {paddingTopLeft:[40,95],paddingBottomRight:[40,Math.round(sz.y*0.5)+16]} : {paddingTopLeft:[Math.max(660,Math.min(720,Math.round(sz.x*0.45))),72],paddingBottomRight:[40,50]}; }
 function gbFitWithPanel(bounds){ if(!bounds)return; try{ gbFitTime=Date.now(); map.fitBounds(bounds,gbFitPad(map.getSize())); }catch(e){} }
 function gbPanClear(latlng){ if(!latlng||gbDragging)return; try{
   const card=document.getElementById('infoPanel'); if(!card||!card.classList.contains('open'))return;
@@ -2072,7 +2142,16 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
     countries.features.forEach(function(f){
       var a3=NUM2A3[f.id]; if(!a3||!f.geometry) return;
       var polys=(f.geometry.type==='Polygon')?[f.geometry.coordinates]:f.geometry.coordinates;
-      var bx=0,by=0,ba=0;
+      /* Longitude is circular, and averaging it arithmetically breaks on any
+         country that crosses the antimeridian. Russia spans roughly +20E to
+         -170W, so a plain mean landed its centroid out by Kamchatka; Fiji, New
+         Zealand and the US with the Aleutians have the same problem, and some
+         came out beyond +/-180 entirely, which is why corridor endpoints were
+         appearing off the edge of the map.
+         Averaging unit vectors instead and taking atan2 gives the true circular
+         mean. Latitude is not circular in any usable range, so it stays a
+         straight weighted mean. */
+      var by=0,ba=0,sx=0,sy=0;
       polys.forEach(function(poly){
         var ring=poly&&poly[0]; if(!ring||ring.length<3) return;
         var a=0,cx=0,cy=0;
@@ -2081,15 +2160,22 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
           var cr=x0*y1-x1*y0; a+=cr; cx+=(x0+x1)*cr; cy+=(y0+y1)*cr;
         }
         if(!a) return; a=a/2; cx=cx/(6*a); cy=cy/(6*a); a=Math.abs(a);
-        bx+=cx*a; by+=cy*a; ba+=a;
+        var r=cx*Math.PI/180;
+        sx+=Math.cos(r)*a; sy+=Math.sin(r)*a;
+        by+=cy*a; ba+=a;
       });
-      if(ba>0) window.ISO_CENTROID[a3]=[by/ba,bx/ba];
+      if(ba>0){
+        var lon=Math.atan2(sy/ba, sx/ba)*180/Math.PI;
+        while(lon>180) lon-=360; while(lon<-180) lon+=360;
+        window.ISO_CENTROID[a3]=[by/ba, lon];
+      }
       /* Some sources publish country NAMES and no code \u2014 Walk Free's
          spreadsheet is one. The boundary file already carries both, so
          build the lookup here rather than shipping a name table that would
          drift. */
       try{ var nm=(f.properties&&(f.properties.name||f.properties.NAME));
-        if(nm) window.NAME2ISO[String(nm).toLowerCase()]=a3; }catch(_e){}
+        if(nm){ window.NAME2ISO[String(nm).toLowerCase()]=a3;
+                (window.ISO_NAME=window.ISO_NAME||{})[a3]=nm; } }catch(_e){}
       /* Name -> ISO3 from the same features. A harvester that only knows a
          country by name (Walk Free publishes names, not codes) can then be
          resolved against exactly the countries this map draws — so anything
@@ -2162,15 +2248,25 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
                         e.originalEvent?{x:e.originalEvent.clientX,y:e.originalEvent.clientY}
                                        :map.latLngToContainerPoint(e.latlng)); }catch(_e){}
       },
+      /* mousemove used to re-place the panel on every pixel of travel, which
+         is the jitter. It now only moves if it would otherwise run off the
+         right edge, and never while the pointer is inside it. */
       mousemove:e=>{ try{ var b=document.getElementById('cHover');
-        if(b&&b.style.display==='block'&&e.originalEvent){
-          var w=b.offsetWidth||300, x=e.originalEvent.clientX+18;
-          if(x+w>window.innerWidth-12) x=e.originalEvent.clientX-w-18;
-          b.style.left=Math.round(x)+'px';
+        if(b&&b.style.display==='block'&&e.originalEvent&&!b.matches(':hover')){
+          var w=b.offsetWidth||300, cur=parseInt(b.style.left,10)||0;
+          if(cur+w>window.innerWidth-12){
+            b.style.left=Math.max(8, window.innerWidth-w-12)+'px';
+          }
         } }catch(_e){} },
       mouseout:e=>{ geojsonLayer.resetStyle(e.target);
-        clearTimeout(_chvTimer); _chvTimer=setTimeout(clevelHide,220); },
-      click:e=>{ clevelHide(); baseClick(f,e.latlng); } }); }
+        /* Leaflet fires mouseout at every internal boundary of a multi-polygon
+           country as well as when the pointer really leaves it. A long delay
+           plus the same-country guard on the way back in means crossing an
+           internal edge never closes the panel. */
+        clearTimeout(_chvTimer); _chvTimer=setTimeout(clevelHide,600); },
+      click:e=>{ clevelHide();
+        try{ var a3c=NUM2A3[f.id]||''; window.pinRouteFocus(a3c); }catch(_e){}
+        baseClick(f,e.latlng); } }); }
     countries.features.forEach(f=>{ if(!f.geometry)return;
     if(f.geometry.type==='Polygon'){ const p=nrPoly(f.geometry.coordinates);
       if(p.length>1) f.geometry={type:'MultiPolygon',coordinates:p}; else f.geometry.coordinates=p[0];
@@ -3988,7 +4084,7 @@ document.addEventListener('keydown',function(e){ if(!document.getElementById('to
 
 
 <style>
-#intentSel{width:100%;margin:2px 0 4px;padding:6px 8px;background:#152527;color:#f5f5f4;border:1px solid rgba(149,171,157,0.45);border-radius:7px;font-size:9.5px;font-weight:600;text-overflow:ellipsis;}
+#intentSel{width:100%;margin:2px 0 4px;padding:6px 8px;background:#152527;color:#f5f5f4;color-scheme:dark;border:1px solid rgba(149,171,157,0.45);border-radius:7px;font-size:9.5px;font-weight:600;text-overflow:ellipsis;}
 #intentHint{font-size:10.5px;color:#b9bba9;line-height:1.45;margin:0 0 8px;padding:0 2px;}
 #intentHint:empty{display:none;}
 
