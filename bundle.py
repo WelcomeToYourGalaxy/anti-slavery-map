@@ -49,7 +49,7 @@ LAYERS = ["projects.json", "cases.json", "prevalence.json", "points.json",
 # layer that is least likely to be why anyone opened the map. Kept as a separate
 # fetch so the single-file build stays around 5 MB and the ports still appear
 # whenever infra.json is deployed alongside it.
-DEFAULT_EXTERNAL = ["infra.json"]
+DEFAULT_EXTERNAL = ["infra.json", "facilities.json"]
 MARK = "\u0001"          # never appears in the source text
 
 
