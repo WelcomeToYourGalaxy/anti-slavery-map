@@ -3799,3 +3799,67 @@ On HTLC itself: ask for the federal civil trafficking case data and say what it
 is for. Expect it to take a while, and expect possible conditions on
 republication — worth agreeing **before** building on it rather than after,
 because a condition discovered late is a layer you have to pull down.
+
+---
+
+# Fifty-seventh pass — the buyer end, without waiting for Open Supply Hub
+
+The biggest hole on this map has been that every determination names a producer,
+a commodity or a country, and **the leverage is at the other end**. A workplace
+has little to lose. The brand several tiers above it has a reputation, a
+compliance obligation and a legal exposure, and is reachable in a way a
+subcontractor is not.
+
+Open Supply Hub is the route to facility-to-buyer links and it is behind a
+subscription. But **two governments already compel the buyer end to publish**,
+and those registries are open.
+
+`harvest_companies.py`:
+
+**UK Modern Slavery Statement Registry** — every organisation over the
+turnover threshold supplying goods or services in the UK must publish an annual
+statement under section 54. Thousands of named companies with the statement, the
+year and the approval record.
+
+**Australian Modern Slavery Register** — the same shape, and better in one
+respect worth saying in the record: Australia's Act sets **mandatory reporting
+criteria** a statement must address, so an Australian statement can be assessed
+against a standard rather than only read.
+
+**DHS UFLPA Entity List** — not a disclosure. Goods made wholly or in part
+by a listed entity are **presumed** made with forced labour and barred from US
+entry unless the importer rebuts with clear and convincing evidence. An
+automatic consequence, which makes it the sharpest instrument on this map.
+
+## The line every statement record carries
+
+**A published statement is not evidence of good practice, and its absence is not
+evidence of bad.** The duty is to publish, not to have found anything, and the
+research consistently finds most statements are boilerplate. Ship this layer
+without that sentence and it becomes a compliance leaderboard, which is the
+opposite of useful.
+
+What it does give you is a named company, a date, a document you can quote back,
+and a duty they are already under. And it composes with what is already here:
+*a statement saying nothing was found, next to a listed good from a country that
+company buys from, is a question someone has to answer.* That sentence is why
+the layer belongs on this map rather than in a separate one.
+
+## Company records are not places
+
+They carry no site, so they are written country-level and land in the **country
+hover panel rather than as dots** — the same rule that moved the listed
+goods off the map. A company is not a location.
+
+Tested with representative files for all three: UFLPA entities read from both
+the OpenSanctions nested shape and a flat CSV, UK and Australian statements
+parsed with their different column names, everything country-level, caveat
+present in every statement record.
+
+## Still outstanding
+
+1. **Open Supply Hub** — still the only route to facility-to-buyer links,
+   still on your application.
+2. **Recruitment registers** — one origin-state export unlocks it.
+3. **Export processing zones** — no verifiable global geometry exists.
+4. **HTLC** — request sent.

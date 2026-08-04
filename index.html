@@ -1229,6 +1229,9 @@ var DATA_LAYERS = [
    external:true,
    cmd:'python3 harvest_infra.py --all',
    needs:'Ports run unattended from the World Port Index. Recruitment registers and zone files need a committed export in data/ \u2014 both are published as HTML or PDF rather than data.'},
+  {f:'companies.json', label:'The buyer end \u2014 statements and entity lists',
+   cmd:'python3 harvest_companies.py --all',
+   needs:'UK and Australian registries publish bulk downloads; the UFLPA list is mirrored by OpenSanctions. All three fall back to a committed export in data/.'},
   {f:'sites.json', label:'Court cases, mine sites, conflicts, transhipment',
    cmd:'python3 harvest_sites.py --all',
    needs:'SHERLOC has no bulk endpoint \u2014 export the trafficking case list and commit it to data/. Delve and EJAtlas are tried automatically and fall back to a committed export.'},
@@ -3246,6 +3249,12 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
      desc:"The origin end of the chain, and the point most worth watching: <b>this is where the fee is charged and the debt created</b>, months before anyone reaches a workplace. It is also the only place where a single administrative act \u2014 pulling a licence \u2014 stops the next hundred people being placed. <b>Infrastructure, not a finding.</b> Requires harvest_infra.py --recruiters."},
     {k:"zones",cat:"Infrastructure",label:"Export processing & free zones",
      desc:"Areas where labour law, inspection or the right to organise is reduced by statute to attract investment. Where exploitation occurs in a zone it is often <b>not a failure of enforcement but the absence of law by design</b>, which makes the remedy legislative rather than a complaint to an inspector with no jurisdiction. <b>Infrastructure, not a finding.</b> Requires harvest_infra.py --zones."},
+    {k:"uflpa",cat:"The buyer end",label:"UFLPA Entity List",
+     desc:"Entities whose goods are <b>presumed</b> made with forced labour and barred from US entry unless an importer rebuts the presumption with clear and convincing evidence. Not a disclosure and not a risk score \u2014 a determination with an automatic consequence, which makes it the sharpest instrument here. Check the current list before citing: entities are added and occasionally removed."},
+    {k:"ukmsr",cat:"The buyer end",label:"Modern slavery statements (UK)",
+     desc:"Companies publishing under section 54 of the Modern Slavery Act 2015. <b>A statement is not evidence of good practice, and its absence is not evidence of bad</b> \u2014 the duty is to publish, not to have found anything, and most statements are boilerplate. What it gives you is a named company, a date, a document you can quote back, and a duty they are already under. A statement saying nothing was found, next to a listed good from a country that company buys from, is a question someone has to answer."},
+    {k:"aumsr",cat:"The buyer end",label:"Modern slavery statements (Australia)",
+     desc:"Companies publishing under Australia's Modern Slavery Act 2018, which unlike the UK Act sets <b>mandatory reporting criteria</b> a statement must address \u2014 so an Australian statement can be assessed against a standard rather than only read. Same caveat otherwise: publication is a duty, not an achievement."},
     {k:"defendants",cat:"Court findings",label:"Businesses named in trafficking cases",
      desc:"Businesses and premises named as defendants in trafficking cases \u2014 hotels, massage businesses, car washes, farms \u2014 at the address the case record gives. <b>Concluded and pending cases are both shown and each says which it is</b>: a concluded case is a finding, a pending one is an allegation on a public court record, and the difference is stated rather than left to be assumed. Addresses are geocoded; where only a city is on record the point is drawn as a ring rather than a pin. <b>Read it in the past tense</b> \u2014 a business named years ago is not a claim about that address today. The record names the party prosecuted and says nothing about the people who were working there. Sourced from court dockets and prosecution records; the Human Trafficking Legal Center's civil database is the richest and is obtained by request rather than downloaded."},
     {k:"sherloc",cat:"Court findings",label:"Prosecuted cases (UNODC SHERLOC)",
@@ -3939,7 +3948,7 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
         /* Three optional side files, each loaded independently so one failing
            cannot take the others down. cases.json = detection, prevalence.json
            = modelled estimate, and they are NEVER merged into one number. */
-        ['cases.json','prevalence.json','points.json','bulk.json','infra.json','sites.json'].forEach(function(fn){
+        ['cases.json','prevalence.json','points.json','bulk.json','infra.json','sites.json','companies.json'].forEach(function(fn){
           fetch(fn,{cache:'no-store'})
             .then(function(r){ return r.ok?r.json():null; })
             /* Fall back to the copy bundled into this file by bundle.py, so a
