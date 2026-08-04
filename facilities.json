@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-04T08:41:54.571304+00:00",
+ "generated": "2026-08-04T14:10:45.255426+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -101194,7 +101194,7 @@
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
-   "name": "Embassy of the People's Republic of China",
+   "name": "ສະຖານທູດ ສ.ປ ຈີນ",
    "k": "dp",
    "type": "Embassy / consulate",
    "lat": 17.9341011,
@@ -174107,8 +174107,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 31.746554,
-   "lng": -106.4824634,
+   "lat": 31.7465577,
+   "lng": -106.4824721,
    "country": "",
    "url": "https://www.openstreetmap.org/node/34495111",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -174337,8 +174337,8 @@
    "name": "Little Gold Creek (895) Canada",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 64.0855716,
-   "lng": -141.001319,
+   "lat": 64.0855282,
+   "lng": -141.0013192,
    "country": "",
    "url": "https://www.openstreetmap.org/node/65892900",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -174421,6 +174421,16 @@
    "lng": 28.805281,
    "country": "",
    "url": "https://www.openstreetmap.org/node/96774005",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 30.3472715,
+   "lng": -87.3005383,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/97522707",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -174807,8 +174817,8 @@
    "name": "МАПП Чалдыбар",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 42.8230545,
-   "lng": 73.5110693,
+   "lat": 42.8230154,
+   "lng": 73.5111656,
    "country": "",
    "url": "https://www.openstreetmap.org/node/244525321",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -174817,8 +174827,8 @@
    "name": "МАПП Сыпатай Батыр",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 42.823245,
-   "lng": 73.5095949,
+   "lat": 42.8232781,
+   "lng": 73.5098614,
    "country": "",
    "url": "https://www.openstreetmap.org/node/244525322",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -175184,7 +175194,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Border / customs post",
+   "name": "מעבר גבול טאבה (מנחם בגין)",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 29.4909641,
@@ -175219,7 +175229,7 @@
    "type": "Border / customs post",
    "lat": 45.4732909,
    "lng": 28.1987429,
-   "country": "",
+   "country": "MD",
    "url": "https://www.openstreetmap.org/node/273195436",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -175347,8 +175357,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": -1.2454132,
-   "lng": 36.8908985,
+   "lat": -1.2452966,
+   "lng": 36.8907631,
    "country": "",
    "url": "https://www.openstreetmap.org/node/281247142",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -175964,16 +175974,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": -37.4786406,
-   "lng": -71.313495,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/303515752",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "КП Лунга (ПМР)",
    "k": "bd",
    "type": "Border / customs post",
@@ -176031,16 +176031,6 @@
    "lng": 98.4209481,
    "country": "",
    "url": "https://www.openstreetmap.org/node/305690452",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 44.3443606,
-   "lng": -75.9820553,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/305863498",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -176141,16 +176131,6 @@
    "lng": 14.4083265,
    "country": "",
    "url": "https://www.openstreetmap.org/node/309371895",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 47.1010657,
-   "lng": 29.0983589,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/309545616",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -176437,6 +176417,16 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
+   "lat": 54.906093,
+   "lng": 8.8323346,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/323833545",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
    "lat": 47.5951644,
    "lng": 7.6555831,
    "country": "",
@@ -176501,16 +176491,6 @@
    "lng": 34.3260501,
    "country": "",
    "url": "https://www.openstreetmap.org/node/328360744",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "מעבר נחל עוז",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 31.4827202,
-   "lng": 34.4890449,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/328414570",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -177057,8 +177037,8 @@
    "name": "Ponte Chiasso",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 45.8321533,
-   "lng": 9.0341497,
+   "lat": 45.8321592,
+   "lng": 9.0341547,
    "country": "",
    "url": "https://www.openstreetmap.org/node/370368630",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -177189,7 +177169,7 @@
    "type": "Border / customs post",
    "lat": 45.4685285,
    "lng": 28.1884181,
-   "country": "",
+   "country": "RO",
    "url": "https://www.openstreetmap.org/node/382023679",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -177574,7 +177554,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "جسر الملك حسين",
+   "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 31.8738717,
@@ -178054,12 +178034,12 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Thai Border Control",
+   "name": "Thai Border Control Huai Kon",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 19.5962892,
    "lng": 101.0860357,
-   "country": "",
+   "country": "Thailand",
    "url": "https://www.openstreetmap.org/node/482962931",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -179434,16 +179414,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 35.6144912,
-   "lng": 46.0153127,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/774598216",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "Granični prijelaz Macelj",
    "k": "bd",
    "type": "Border / customs post",
@@ -180127,8 +180097,8 @@
    "name": "Customs House",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 18.38465,
-   "lng": 103.63311,
+   "lat": 18.384485,
+   "lng": 103.6330609,
    "country": "",
    "url": "https://www.openstreetmap.org/node/912498894",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -180138,7 +180108,7 @@
    "k": "bd",
    "type": "Border / customs post",
    "lat": 18.39013,
-   "lng": 103.64165,
+   "lng": 103.6416807,
    "country": "",
    "url": "https://www.openstreetmap.org/node/912500518",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -180147,8 +180117,8 @@
    "name": "Thai Border Post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 18.39537,
-   "lng": 103.61584,
+   "lat": 18.39541,
+   "lng": 103.61579,
    "country": "",
    "url": "https://www.openstreetmap.org/node/912500847",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -180997,8 +180967,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 46.6242771,
-   "lng": 10.1901104,
+   "lat": 46.6243126,
+   "lng": 10.1901062,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1022860434",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -182067,8 +182037,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 28.5445292,
-   "lng": 48.3893144,
+   "lat": 28.5445675,
+   "lng": 48.3893606,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1154416129",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -182077,8 +182047,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 28.5439974,
-   "lng": 48.3887124,
+   "lat": 28.5439098,
+   "lng": 48.3888118,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1154416131",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -182087,8 +182057,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 28.5436289,
-   "lng": 48.3903196,
+   "lat": 28.5436232,
+   "lng": 48.3903121,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1154416133",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -183587,8 +183557,8 @@
    "name": "معبر رفح البري",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 31.2483171,
-   "lng": 34.2574284,
+   "lat": 31.2483202,
+   "lng": 34.2573962,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1266480503",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -183977,16 +183947,6 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 22.5453438,
-   "lng": 114.2208548,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/1339061662",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
    "lat": 45.003828,
    "lng": -73.756142,
    "country": "",
@@ -184311,16 +184271,6 @@
    "lng": 58.4056069,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1365292671",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "La Línea de la Concepción",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.15508,
-   "lng": -5.347762,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/1366555671",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -185587,8 +185537,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 31.7465263,
-   "lng": -106.482134,
+   "lat": 31.7465268,
+   "lng": -106.4821318,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1501776505",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -185597,8 +185547,8 @@
    "name": "Aduanas e Inmigracion Mexicano, Cd. Juárez",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 31.7626678,
-   "lng": -106.451519,
+   "lat": 31.7626654,
+   "lng": -106.4515179,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1501776522",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -186637,8 +186587,8 @@
    "name": "МАПП Акбалшык",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 54.6446685,
-   "lng": 65.827377,
+   "lat": 54.6445423,
+   "lng": 65.827455,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1628032992",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -187268,7 +187218,7 @@
    "k": "bd",
    "type": "Border / customs post",
    "lat": 28.5430629,
-   "lng": 48.3896077,
+   "lng": 48.3895785,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1706765074",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -188614,6 +188564,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 54.8320014,
+   "lng": 9.4203768,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/1804898039",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Port of Entry - Aldergrove",
    "k": "bd",
    "type": "Border / customs post",
@@ -189558,7 +189518,7 @@
    "k": "bd",
    "type": "Border / customs post",
    "lat": 44.9931513,
-   "lng": -74.0857419,
+   "lng": -74.0857713,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1894604135",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -190007,8 +189967,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 47.4496891,
-   "lng": -69.2347373,
+   "lat": 47.4496852,
+   "lng": -69.2347431,
    "country": "",
    "url": "https://www.openstreetmap.org/node/1934632795",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -190487,8 +190447,8 @@
    "name": "Торугарт пограничный пункт",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 40.5516953,
-   "lng": 75.3939088,
+   "lat": 40.55168,
+   "lng": 75.3939316,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2007687085",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -191031,6 +190991,16 @@
    "lng": 30.2343143,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2062176086",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": -7.3250543,
+   "lng": 109.2187516,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/2062671538",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -192234,11 +192204,11 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Border / customs post",
+   "name": "Aduana Frontera Puente Nuevo Desaguadero",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": -16.5807899,
-   "lng": -69.0321244,
+   "lat": -16.5807845,
+   "lng": -69.0320396,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2197215858",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -193177,8 +193147,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 41.0523906,
-   "lng": 52.9098255,
+   "lat": 41.0526203,
+   "lng": 52.909777,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2331994537",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -194139,7 +194109,7 @@
    "type": "Border / customs post",
    "lat": 9.9479929,
    "lng": 98.5949226,
-   "country": "",
+   "country": "Thailand",
    "url": "https://www.openstreetmap.org/node/2427378266",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -194644,7 +194614,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Granični prijelaz Kula",
+   "name": "Granični prelaz Kula",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 42.8003914,
@@ -194671,16 +194641,6 @@
    "lng": 15.66092,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2495537964",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Митний пост «Володимир-Волинський»",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 50.8521722,
-   "lng": 24.3331946,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/2496039687",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -195001,6 +194961,16 @@
    "lng": 99.5782056,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2548491211",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 22.1050263,
+   "lng": 99.5799587,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/2548491213",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -195761,16 +195731,6 @@
    "lng": -58.3109926,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2642201780",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 14.7073613,
-   "lng": 107.5538562,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/2643762524",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -197737,8 +197697,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 0.9857071,
-   "lng": 110.35217,
+   "lat": 0.9857072,
+   "lng": 110.3521699,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2896446964",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -197747,8 +197707,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 0.9860445,
-   "lng": 110.3518177,
+   "lat": 0.9860418,
+   "lng": 110.3518204,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2896446966",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -198099,7 +198059,7 @@
    "type": "Border / customs post",
    "lat": 19.5947788,
    "lng": 97.9479837,
-   "country": "",
+   "country": "ไทย",
    "url": "https://www.openstreetmap.org/node/2960069625",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -198534,7 +198494,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Кусјак",
+   "name": "Granični prelaz Kusjak",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 44.2986671,
@@ -198544,7 +198504,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Кусјак",
+   "name": "Granični prelaz Kusjak",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 44.2986763,
@@ -199697,8 +199657,8 @@
    "name": "Schaanwald",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 47.2178851,
-   "lng": 9.5698112,
+   "lat": 47.2178817,
+   "lng": 9.5698212,
    "country": "",
    "url": "https://www.openstreetmap.org/node/3256854624",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -200114,7 +200074,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Кусјак",
+   "name": "Granični prelaz Kusjak",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 44.2986146,
@@ -202057,8 +202017,8 @@
    "name": "מחסום אל-וולג'ה - עין יעל / حاجز الولجة - عين ياعيل",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 31.7425736,
-   "lng": 35.1708226,
+   "lat": 31.7373378,
+   "lng": 35.1511031,
    "country": "",
    "url": "https://www.openstreetmap.org/node/3658366387",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -202717,8 +202677,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 31.7500222,
-   "lng": -106.4833049,
+   "lat": 31.7500234,
+   "lng": -106.4833003,
    "country": "",
    "url": "https://www.openstreetmap.org/node/3767448265",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -205057,8 +205017,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 31.7466847,
-   "lng": -106.4830315,
+   "lat": 31.7466781,
+   "lng": -106.4830269,
    "country": "",
    "url": "https://www.openstreetmap.org/node/4343684039",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -205194,7 +205154,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Granični prijelaz Kordunski Ljeskovac",
+   "name": "Granični prijelaz Kordunski Ljeskovac (HR)",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 44.9755338,
@@ -205279,7 +205239,7 @@
    "type": "Border / customs post",
    "lat": 45.46846,
    "lng": 28.1884736,
-   "country": "",
+   "country": "RO",
    "url": "https://www.openstreetmap.org/node/4393272298",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -205289,7 +205249,7 @@
    "type": "Border / customs post",
    "lat": 45.4680954,
    "lng": 28.1887619,
-   "country": "",
+   "country": "RO",
    "url": "https://www.openstreetmap.org/node/4393272301",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -205584,7 +205544,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Кусјак",
+   "name": "Granični prelaz Kusjak",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 44.2987452,
@@ -205751,6 +205711,16 @@
    "lng": -77.3694874,
    "country": "",
    "url": "https://www.openstreetmap.org/node/4483154351",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 46.9214762,
+   "lng": -69.7715525,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/4485811319",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -206007,8 +205977,8 @@
    "name": "checkpoint",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 42.8025491,
-   "lng": 43.5432235,
+   "lat": 42.8025447,
+   "lng": 43.5432011,
    "country": "",
    "url": "https://www.openstreetmap.org/node/4535692358",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -207897,8 +207867,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 47.4562245,
-   "lng": -69.2284189,
+   "lat": 47.4562135,
+   "lng": -69.228362,
    "country": "",
    "url": "https://www.openstreetmap.org/node/4691589433",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -209164,6 +209134,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 37.8652563,
+   "lng": 70.009067,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/4858031325",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Каменны Лог (вяртанне талончыка)",
    "k": "bd",
    "type": "Border / customs post",
@@ -209677,8 +209657,8 @@
    "name": "Ивангород (закрыто)",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 59.3605355,
-   "lng": 28.2005323,
+   "lat": 59.3605297,
+   "lng": 28.2004996,
    "country": "",
    "url": "https://www.openstreetmap.org/node/4936986456",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -209951,16 +209931,6 @@
    "lng": 24.9152217,
    "country": "",
    "url": "https://www.openstreetmap.org/node/4950527821",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Customs",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 8.5468489,
-   "lng": 39.0953517,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/4952598172",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -213324,6 +213294,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "Poste contrôle kolokani",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 13.5406858,
+   "lng": -8.0420342,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/5103826323",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
@@ -215284,16 +215264,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Aduana",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": -25.5928205,
-   "lng": -54.596607,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/5253023352",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
@@ -215774,16 +215744,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Гранични прелаз Мердаре",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 42.9368436,
-   "lng": 21.2465002,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/5324873980",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
@@ -216157,8 +216117,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 6.1125718,
-   "lng": 1.1979034,
+   "lat": 6.1125812,
+   "lng": 1.1978994,
    "country": "",
    "url": "https://www.openstreetmap.org/node/5393369814",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -216477,8 +216437,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 20.8221961,
-   "lng": 103.4707805,
+   "lat": 20.8221401,
+   "lng": 103.4707795,
    "country": "",
    "url": "https://www.openstreetmap.org/node/5480276106",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -216687,8 +216647,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 7.9148603,
-   "lng": -72.463905,
+   "lat": 7.9148723,
+   "lng": -72.4639299,
    "country": "",
    "url": "https://www.openstreetmap.org/node/5520578746",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -221544,7 +221504,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Transnistria Customs",
+   "name": "Миграционный контроль",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 46.7871367,
@@ -221634,6 +221594,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "Garita Frontera",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 20.0373844,
+   "lng": -75.0788988,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/6496273685",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
@@ -221671,16 +221641,6 @@
    "lng": 20.8496389,
    "country": "",
    "url": "https://www.openstreetmap.org/node/6504556080",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 35.6142215,
-   "lng": 46.016787,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/6505458337",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -222107,8 +222067,8 @@
    "name": "Phou Keau/Bo Y Border Crossing",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 14.7070721,
-   "lng": 107.5529695,
+   "lat": 14.7070805,
+   "lng": 107.552969,
    "country": "",
    "url": "https://www.openstreetmap.org/node/6592134870",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -222117,8 +222077,8 @@
    "name": "Phou Keau/Bo Y Border Crossing",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 14.7068782,
-   "lng": 107.5528482,
+   "lat": 14.7068719,
+   "lng": 107.5528486,
    "country": "",
    "url": "https://www.openstreetmap.org/node/6592134872",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -222177,8 +222137,8 @@
    "name": "Metaljka",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 43.5492642,
-   "lng": 19.1329651,
+   "lat": 43.5492597,
+   "lng": 19.1328973,
    "country": "",
    "url": "https://www.openstreetmap.org/node/6606485007",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -224944,16 +224904,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Pelabuhan Klang",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 2.9997728,
-   "lng": 101.3901567,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/7083925248",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "Port Dickson",
    "k": "bd",
    "type": "Border / customs post",
@@ -225241,106 +225191,6 @@
    "lng": 100.4241637,
    "country": "",
    "url": "https://www.openstreetmap.org/node/7093958944",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "สะเดา",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 6.5184323,
-   "lng": 100.4208853,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/7096424314",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "สะเดา (รถบรรทุก)",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 6.5194584,
-   "lng": 100.4191468,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/7096487370",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "สะเดา (รถบัส)",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 6.5191849,
-   "lng": 100.420113,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/7096487371",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "สะเดา",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 6.5183252,
-   "lng": 100.4208847,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/7096487373",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "สะเดา",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 6.5182372,
-   "lng": 100.4208798,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/7096487374",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "สะเดา",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 6.5191642,
-   "lng": 100.4178356,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/7096487375",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "สะเดา",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 6.5191308,
-   "lng": 100.4179013,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/7096487376",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "สะเดา",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 6.5190979,
-   "lng": 100.4179666,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/7096487377",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "สะเดา",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 6.5191853,
-   "lng": 100.417964,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/7096487379",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "สะเดา",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 6.5192482,
-   "lng": 100.4179309,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/7096487380",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -229554,11 +229404,11 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "新樓街警崗 San Lau Street Police Post",
+   "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 22.544537,
-   "lng": 114.2258255,
+   "lat": 22.544561,
+   "lng": 114.2258605,
    "country": "",
    "url": "https://www.openstreetmap.org/node/7368293290",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -229911,6 +229761,16 @@
    "lng": 88.8839323,
    "country": "",
    "url": "https://www.openstreetmap.org/node/7557117257",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.6141094,
+   "lng": 46.0171786,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/7569702914",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -231204,16 +231064,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Серпневе",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 46.3166654,
-   "lng": 29.0035336,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/8043738117",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "UK customs",
    "k": "bd",
    "type": "Border / customs post",
@@ -231549,7 +231399,7 @@
    "type": "Border / customs post",
    "lat": 45.473227,
    "lng": 28.1988007,
-   "country": "",
+   "country": "MD",
    "url": "https://www.openstreetmap.org/node/8150272562",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -231559,7 +231409,7 @@
    "type": "Border / customs post",
    "lat": 45.4733521,
    "lng": 28.1986915,
-   "country": "",
+   "country": "MD",
    "url": "https://www.openstreetmap.org/node/8150272563",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -231569,7 +231419,7 @@
    "type": "Border / customs post",
    "lat": 45.4735253,
    "lng": 28.1985253,
-   "country": "",
+   "country": "MD",
    "url": "https://www.openstreetmap.org/node/8150272564",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -231579,7 +231429,7 @@
    "type": "Border / customs post",
    "lat": 45.4735867,
    "lng": 28.1984694,
-   "country": "",
+   "country": "MD",
    "url": "https://www.openstreetmap.org/node/8150272565",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -231589,7 +231439,7 @@
    "type": "Border / customs post",
    "lat": 45.4736449,
    "lng": 28.1984051,
-   "country": "",
+   "country": "MD",
    "url": "https://www.openstreetmap.org/node/8150272566",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -231599,7 +231449,7 @@
    "type": "Border / customs post",
    "lat": 45.4738288,
    "lng": 28.1985443,
-   "country": "",
+   "country": "MD",
    "url": "https://www.openstreetmap.org/node/8150272567",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -231609,7 +231459,7 @@
    "type": "Border / customs post",
    "lat": 45.4738936,
    "lng": 28.1984784,
-   "country": "",
+   "country": "MD",
    "url": "https://www.openstreetmap.org/node/8150272568",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -231619,7 +231469,7 @@
    "type": "Border / customs post",
    "lat": 45.4739345,
    "lng": 28.1978486,
-   "country": "",
+   "country": "MD",
    "url": "https://www.openstreetmap.org/node/8150272569",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -231629,7 +231479,7 @@
    "type": "Border / customs post",
    "lat": 45.4738664,
    "lng": 28.1979074,
-   "country": "",
+   "country": "MD",
    "url": "https://www.openstreetmap.org/node/8150272570",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -231664,7 +231514,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "国境管控站",
+   "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 44.1587158,
@@ -231674,7 +231524,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "国境管控站",
+   "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 44.1569638,
@@ -232249,7 +232099,7 @@
    "type": "Border / customs post",
    "lat": 45.4692865,
    "lng": 28.1879228,
-   "country": "",
+   "country": "RO",
    "url": "https://www.openstreetmap.org/node/8222829543",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -234677,16 +234527,6 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 39.0772464,
-   "lng": -96.8618582,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/8731167196",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
    "lat": 31.290537,
    "lng": 121.151776,
    "country": "",
@@ -234751,26 +234591,6 @@
    "lng": -99.5310762,
    "country": "",
    "url": "https://www.openstreetmap.org/node/8759444059",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.1554156,
-   "lng": -5.3484256,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/8767426043",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.1554107,
-   "lng": -5.3483797,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/8767426044",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -238354,6 +238174,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "Hraniční přechod Cetviny - Hammern",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.6140083,
+   "lng": 14.5449693,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/9742059843",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
@@ -240964,7 +240794,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Врбница",
+   "name": "Гранични прелаз Врбница",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 43.1560623,
@@ -241187,8 +241017,8 @@
    "name": "Čabar - Podplanina",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 45.5925169,
-   "lng": 14.6510707,
+   "lat": 45.5925053,
+   "lng": 14.6513057,
    "country": "",
    "url": "https://www.openstreetmap.org/node/10299437512",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -243444,6 +243274,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 43.1551155,
+   "lng": -79.0490219,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/10738744600",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Достық",
    "k": "bd",
    "type": "Border / customs post",
@@ -243784,11 +243624,11 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Customs checkpoint",
+   "name": "Customs Checkpoint",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 10.859315,
-   "lng": -1.6701324,
+   "lat": 10.8593676,
+   "lng": -1.6701548,
    "country": "",
    "url": "https://www.openstreetmap.org/node/10751406648",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -244327,46 +244167,6 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 36.1547891,
-   "lng": -5.3485655,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/10807468355",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.1549673,
-   "lng": -5.3482001,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/10807813320",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.1550773,
-   "lng": -5.3486058,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/10807813323",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.1550105,
-   "lng": -5.3485656,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/10807813325",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
    "lat": 41.1318734,
    "lng": 95.4167206,
    "country": "",
@@ -244478,7 +244278,7 @@
    "k": "bd",
    "type": "Border / customs post",
    "lat": 22.5152636,
-   "lng": 114.0656157,
+   "lng": 114.0656188,
    "country": "",
    "url": "https://www.openstreetmap.org/node/10841608426",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -244488,7 +244288,7 @@
    "k": "bd",
    "type": "Border / customs post",
    "lat": 22.5152652,
-   "lng": 114.0656335,
+   "lng": 114.065636,
    "country": "",
    "url": "https://www.openstreetmap.org/node/10841608427",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -244497,8 +244297,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 22.5181774,
-   "lng": 114.065413,
+   "lat": 22.5181776,
+   "lng": 114.0654158,
    "country": "",
    "url": "https://www.openstreetmap.org/node/10841608428",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -244507,8 +244307,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 22.5181759,
-   "lng": 114.0654392,
+   "lat": 22.5181758,
+   "lng": 114.0654383,
    "country": "",
    "url": "https://www.openstreetmap.org/node/10841608429",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -245241,16 +245041,6 @@
    "lng": -73.2963952,
    "country": "",
    "url": "https://www.openstreetmap.org/node/11034139640",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 43.0307986,
-   "lng": 75.9895065,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/11035343661",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -246101,16 +245891,6 @@
    "lng": 91.7229813,
    "country": "",
    "url": "https://www.openstreetmap.org/node/11310006361",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Nitzana Border Crossing",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 30.8823729,
-   "lng": 34.3949771,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/11316404240",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -248177,8 +247957,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 46.6142872,
-   "lng": 15.4663236,
+   "lat": 46.6142692,
+   "lng": 15.4663058,
    "country": "",
    "url": "https://www.openstreetmap.org/node/11955914154",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -248201,6 +247981,16 @@
    "lng": 19.4736828,
    "country": "",
    "url": "https://www.openstreetmap.org/node/11956457321",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Hraniční přechod Dolní Dvořiště - Wullowitz",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.6445522,
+   "lng": 14.4541271,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/11964963153",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -248639,7 +248429,7 @@
    "type": "Border / customs post",
    "lat": 45.4683863,
    "lng": 28.1885376,
-   "country": "",
+   "country": "RO",
    "url": "https://www.openstreetmap.org/node/12124168152",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
@@ -248691,16 +248481,6 @@
    "lng": -76.8731011,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12144986322",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Ministery of foreign afgairs in Osh",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 40.4978646,
-   "lng": 72.8187382,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/12159905404",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -249021,16 +248801,6 @@
    "lng": 15.0650253,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12229471535",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "TRA Customs",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": -7.7765846,
-   "lng": 35.6955792,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/12229966626",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -249451,16 +249221,6 @@
    "lng": -66.0041379,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12338117239",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 27.5012607,
-   "lng": -99.5080039,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/12339869514",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -250017,8 +249777,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 20.3178831,
-   "lng": 100.0999537,
+   "lat": 20.3179707,
+   "lng": 100.099851,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12492884505",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -250107,8 +249867,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 35.881947,
-   "lng": -5.507009,
+   "lat": 35.8819781,
+   "lng": -5.5069524,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12521015556",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -250117,8 +249877,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 35.8818357,
-   "lng": -5.5067367,
+   "lat": 35.8818849,
+   "lng": -5.5067358,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12521015557",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -250127,8 +249887,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 35.8817762,
-   "lng": -5.506591,
+   "lat": 35.8818243,
+   "lng": -5.5065949,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12521015558",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -250137,8 +249897,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 35.8827869,
-   "lng": -5.5064596,
+   "lat": 35.882824,
+   "lng": -5.5064462,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12521015578",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -250147,8 +249907,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 35.8827039,
-   "lng": -5.5062291,
+   "lat": 35.8827253,
+   "lng": -5.5062105,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12521034802",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -250157,8 +249917,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 35.8826601,
-   "lng": -5.5061047,
+   "lat": 35.8826766,
+   "lng": -5.5060942,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12521034803",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -250544,7 +250304,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Border / customs post",
+   "name": "Граничен премин Белановце - Станчиќ / Vendkalimi Kufitar Stançiç - Bellanoc",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 42.2534185,
@@ -251797,8 +251557,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 2.175615,
-   "lng": 11.3618444,
+   "lat": 2.175607,
+   "lng": 11.3617988,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12870469750",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -251807,8 +251567,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 2.1754981,
-   "lng": 11.361867,
+   "lat": 2.1755249,
+   "lng": 11.3618335,
    "country": "",
    "url": "https://www.openstreetmap.org/node/12870469751",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -253017,8 +252777,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 40.7833911,
-   "lng": -119.2327449,
+   "lat": 40.7797123,
+   "lng": -119.2374285,
    "country": "",
    "url": "https://www.openstreetmap.org/node/13056485047",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -253474,16 +253234,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Jordan River Border Crossing",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 32.4965261,
-   "lng": 35.5746966,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/13159413001",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
@@ -253511,26 +253261,6 @@
    "lng": 8.6373983,
    "country": "",
    "url": "https://www.openstreetmap.org/node/13159613750",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "מעבר גבול - יצחק רבין",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 29.5751131,
-   "lng": 34.9781413,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/13159638501",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "מעבר גבול טאבה (מנחם בגין)",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 29.491182,
-   "lng": 34.9032699,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/13159641801",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -254194,6 +253924,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "Visa on arrival",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 17.9577125,
+   "lng": 102.6745224,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13377942608",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
@@ -254574,7 +254314,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Garita de Acceso Vocacional",
+   "name": "Garita",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 20.8845543,
@@ -254807,40 +254547,10 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 36.1549809,
-   "lng": -5.3452423,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/13556178092",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
    "lat": 52.7221839,
    "lng": 7.065346,
    "country": "",
    "url": "https://www.openstreetmap.org/node/13573981105",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Gibraltar",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.1549204,
-   "lng": -5.3484342,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/13578269927",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Gibraltar",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.1549224,
-   "lng": -5.3483427,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/13578269928",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -255867,6 +255577,26 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
+   "lat": 42.2996001,
+   "lng": -83.1000234,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13826170505",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2994341,
+   "lng": -83.1001815,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13826170506",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
    "lat": 49.9557664,
    "lng": 23.1123134,
    "country": "",
@@ -256037,8 +255767,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 41.9866303,
-   "lng": 22.8757745,
+   "lat": 41.9866311,
+   "lng": 22.875776,
    "country": "",
    "url": "https://www.openstreetmap.org/node/13885547359",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -256047,8 +255777,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 41.9865122,
-   "lng": 22.8758987,
+   "lat": 41.9864981,
+   "lng": 22.8759079,
    "country": "",
    "url": "https://www.openstreetmap.org/node/13885547360",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -256574,6 +256304,1316 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 43.4968339,
+   "lng": 40.0598789,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13936364195",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 19.4623032,
+   "lng": 5.8036405,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13954894599",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.5634075,
+   "lng": 21.7520383,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13955579527",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Vendkalimi kufitar Merdarë",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.9368998,
+   "lng": 21.2432835,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13959887210",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Vendkalimi kufitar Merdarë",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.93655,
+   "lng": 21.2433038,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13959887211",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Vendkalimi kufitar Merdarë",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.9366721,
+   "lng": 21.2433038,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13959887212",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Vendkalimi kufitar Merdarë",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.9368234,
+   "lng": 21.2432925,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13959887214",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Vendkalimi kufitar Merdarë",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.9364258,
+   "lng": 21.2433075,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13959887215",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Vendkalimi kufitar Merdarë",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.9366106,
+   "lng": 21.2433025,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13959887216",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Vendkalimi kufitar Merdarë",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.9364876,
+   "lng": 21.243306,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13959887217",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Vendkalimi kufitar Merdarë",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.9369847,
+   "lng": 21.2432858,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13959887218",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Vendkalimi kufitar Merdarë",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.9367591,
+   "lng": 21.2432949,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13959887219",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.1009392,
+   "lng": 24.7438119,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649061",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.0720619,
+   "lng": 24.8230643,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649062",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.0744031,
+   "lng": 24.795438,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649063",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.0722979,
+   "lng": 24.7845872,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649064",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.0510426,
+   "lng": 24.7554256,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649065",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.0453629,
+   "lng": 24.7489736,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649066",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.048121,
+   "lng": 24.7374916,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649067",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.0524026,
+   "lng": 24.7364367,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649068",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.0184391,
+   "lng": 24.738815,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649069",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.0151155,
+   "lng": 24.7661823,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649070",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.0159725,
+   "lng": 24.89464,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649071",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.0068923,
+   "lng": 24.8476764,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649072",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.9726009,
+   "lng": 24.8237966,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649073",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.9572388,
+   "lng": 24.8196593,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649074",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.9444024,
+   "lng": 24.8763035,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649075",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.9459624,
+   "lng": 24.835714,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649076",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.8826297,
+   "lng": 25.1639511,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649077",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.8866724,
+   "lng": 25.1693765,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649078",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.9159725,
+   "lng": 25.0852827,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649079",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.9101138,
+   "lng": 25.1118069,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649080",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.8947569,
+   "lng": 25.145565,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649081",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.8251896,
+   "lng": 25.1606356,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649082",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.7814601,
+   "lng": 25.1687737,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649083",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.7749785,
+   "lng": 25.1244662,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649084",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.8170943,
+   "lng": 25.1003533,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649085",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.7936108,
+   "lng": 24.9517573,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649087",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.8571536,
+   "lng": 25.0032987,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649088",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "КПП ДПСУ",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.903506,
+   "lng": 24.8611057,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13968649089",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 55.6275174,
+   "lng": 12.6555769,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13969670675",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 55.6272813,
+   "lng": 12.6560486,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13969670676",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Vyšné Nemecké",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.6558059,
+   "lng": 22.2650634,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13972322839",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 46.6243264,
+   "lng": 10.1903007,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13972586484",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8828717,
+   "lng": -5.5065603,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979087969",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8827736,
+   "lng": -5.5063258,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979087970",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8826254,
+   "lng": -5.5059717,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979087971",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8825777,
+   "lng": -5.5058579,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979087972",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8820723,
+   "lng": -5.5071714,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979087996",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8820412,
+   "lng": -5.507099,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979087998",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8820091,
+   "lng": -5.5070245,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979088000",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8819467,
+   "lng": -5.5068795,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979088002",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8819167,
+   "lng": -5.5068098,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979088004",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8818552,
+   "lng": -5.5066669,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979088006",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8817938,
+   "lng": -5.5065242,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979088008",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8817589,
+   "lng": -5.5064431,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979088010",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.8817316,
+   "lng": -5.5063797,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13979088012",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.6144,
+   "lng": 46.0154744,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13983222913",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.614269,
+   "lng": 46.0170136,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13983222919",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 35.6144584,
+   "lng": 46.0156555,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13983222922",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.9979402,
+   "lng": -102.2756212,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13986861105",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.997922,
+   "lng": -102.2755381,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13986861106",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.999321,
+   "lng": -102.5531971,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13986861107",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.9993613,
+   "lng": -102.5530698,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13986861108",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.9960354,
+   "lng": -111.2592878,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13986861109",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 43.1093266,
+   "lng": -79.0562982,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/13986861110",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Libyan Military Checkpoint",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 24.5359228,
+   "lng": 10.5063884,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14006556828",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 37.7538987,
+   "lng": 112.6291776,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14008691584",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "МАПП Сыпатай Батыр",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.8234407,
+   "lng": 73.5098444,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14008701601",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "МАПП Чалдыбар",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.8231337,
+   "lng": 73.5111979,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14008701610",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 16.0544286,
+   "lng": -16.5063315,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14045534536",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 16.0502534,
+   "lng": -16.5065041,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14045534537",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Hraniční přechod Cetviny -  Mairspindt",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.6035994,
+   "lng": 14.5623719,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14049844393",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Douanes",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 2.2778481,
+   "lng": 12.0638409,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14051846542",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.4081215,
+   "lng": 130.6377049,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14056404214",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.299606,
+   "lng": -83.1012142,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14058986763",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996096,
+   "lng": -83.1013202,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14058986767",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.299608,
+   "lng": -83.1013999,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024425",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996133,
+   "lng": -83.1014879,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024428",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996172,
+   "lng": -83.1015853,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024431",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996199,
+   "lng": -83.1016761,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024434",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996228,
+   "lng": -83.1017773,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024437",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996347,
+   "lng": -83.1018721,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024440",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996422,
+   "lng": -83.1019591,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024444",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996529,
+   "lng": -83.1020658,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024448",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996652,
+   "lng": -83.1021636,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024452",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996727,
+   "lng": -83.1022579,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024456",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996815,
+   "lng": -83.1023581,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024463",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996922,
+   "lng": -83.1024578,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024470",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996014,
+   "lng": -83.1011298,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024473",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2998988,
+   "lng": -83.1036789,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024477",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2998627,
+   "lng": -83.1036361,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024480",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2998277,
+   "lng": -83.1035804,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024483",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2997836,
+   "lng": -83.1035392,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024486",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.299749,
+   "lng": -83.1034901,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024489",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2997107,
+   "lng": -83.1034361,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024492",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996744,
+   "lng": -83.1033888,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024495",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996357,
+   "lng": -83.1033387,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024499",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2996007,
+   "lng": -83.103293,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024502",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2995702,
+   "lng": -83.1032295,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024505",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2999393,
+   "lng": -83.1037257,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024508",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.2999751,
+   "lng": -83.1037703,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024511",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.3000225,
+   "lng": -83.1038137,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024514",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.3000686,
+   "lng": -83.1038566,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024517",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.3001069,
+   "lng": -83.1039039,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024520",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.3001522,
+   "lng": -83.1039457,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024523",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.3001901,
+   "lng": -83.1039902,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024526",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.3002338,
+   "lng": -83.1040303,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024529",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.3002795,
+   "lng": -83.1040704,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024532",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.3003236,
+   "lng": -83.1041156,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024535",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.300373,
+   "lng": -83.1041484,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14059024538",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": -25.5092568,
+   "lng": -54.6056667,
+   "country": "PY",
+   "url": "https://www.openstreetmap.org/node/14060976474",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": -25.5097022,
+   "lng": -54.6056701,
+   "country": "PY",
+   "url": "https://www.openstreetmap.org/node/14061046102",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": -25.599914,
+   "lng": -54.5612953,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061151427",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6954935,
+   "lng": 22.8175563,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682011",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6954869,
+   "lng": 22.817632,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682012",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6954786,
+   "lng": 22.8177269,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682013",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6954696,
+   "lng": 22.8178291,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682014",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6954617,
+   "lng": 22.8179186,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682015",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6954535,
+   "lng": 22.8180121,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682016",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6954442,
+   "lng": 22.8181179,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682017",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6955379,
+   "lng": 22.817077,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682082",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6955452,
+   "lng": 22.8169779,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682083",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6955526,
+   "lng": 22.8168782,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682084",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6955588,
+   "lng": 22.8167942,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682085",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6955662,
+   "lng": 22.8166936,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682086",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6957303,
+   "lng": 22.816563,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682087",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.695742,
+   "lng": 22.816417,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682088",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 49.6955329,
+   "lng": 22.8171418,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14061682089",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Granični prijelaz Tržačka Raštela (BIH)",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 44.9755964,
+   "lng": 15.7835128,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14063423216",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 20.3261962,
+   "lng": 100.097066,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14072288267",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "گمرک مرزی آستارا",
    "k": "bd",
    "type": "Border / customs post",
@@ -256741,16 +257781,6 @@
    "lng": 37.4310155,
    "country": "RU",
    "url": "https://www.openstreetmap.org/way/40794565",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "מעבר רפיח",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 31.2499775,
-   "lng": 34.2605035,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/41313250",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -257427,8 +258457,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 54.6160822,
-   "lng": -5.9194625,
+   "lat": 54.6160838,
+   "lng": -5.9194837,
    "country": "",
    "url": "https://www.openstreetmap.org/way/133023596",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -257548,7 +258578,7 @@
    "k": "bd",
    "type": "Border / customs post",
    "lat": 53.5609019,
-   "lng": 8.5654749,
+   "lng": 8.5654448,
    "country": "",
    "url": "https://www.openstreetmap.org/way/142895360",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -257971,16 +259001,6 @@
    "lng": 25.8547494,
    "country": "",
    "url": "https://www.openstreetmap.org/way/177667898",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.155036,
-   "lng": -5.3482277,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/177684726",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -258644,6 +259664,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "МАПП Караузек",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 46.5460335,
+   "lng": 48.6379235,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/208985601",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "منفذ تيبات الحدودي",
    "k": "bd",
    "type": "Border / customs post",
@@ -258767,8 +259797,8 @@
    "name": "Таможня",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 54.0137283,
-   "lng": 61.7452442,
+   "lat": 54.0136803,
+   "lng": 61.745228,
    "country": "",
    "url": "https://www.openstreetmap.org/way/221210802",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -259364,16 +260394,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.1550346,
-   "lng": -5.3485899,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/257431086",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "Tulli",
    "k": "bd",
    "type": "Border / customs post",
@@ -259634,6 +260654,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 51.4706216,
+   "lng": 3.6809879,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/276003037",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Пограничный КПП",
    "k": "bd",
    "type": "Border / customs post",
@@ -259797,26 +260827,6 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 31.248359,
-   "lng": 34.2593554,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/295837441",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Митниця Славута-центр",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 50.291768,
-   "lng": 26.8854955,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/296078619",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
    "lat": 27.9924268,
    "lng": -82.0142013,
    "country": "",
@@ -259854,7 +260864,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Oddział Celny",
+   "name": "ECM IK",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 51.1452797,
@@ -260011,6 +261021,16 @@
    "lng": 79.1821668,
    "country": "KZ",
    "url": "https://www.openstreetmap.org/way/311062804",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Mandera Border Control",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 3.9336616,
+   "lng": 41.8696305,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/312793636",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -260814,16 +261834,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "בניין שירות המכס",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 31.8716107,
-   "lng": 35.5378124,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/380429389",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "AFIP",
    "k": "bd",
    "type": "Border / customs post",
@@ -261414,16 +262424,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Granični prelaz Kusjak",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 44.2986771,
-   "lng": 22.5578461,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/447056359",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "长岭过境耕作口",
    "k": "bd",
    "type": "Border / customs post",
@@ -261711,16 +262711,6 @@
    "lng": -67.7815441,
    "country": "",
    "url": "https://www.openstreetmap.org/way/482937571",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Aduana CDE -ANNP",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": -25.5083992,
-   "lng": -54.6049033,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/483242468",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -262301,16 +263291,6 @@
    "lng": 69.3455699,
    "country": "",
    "url": "https://www.openstreetmap.org/way/542010356",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Kyzyl-Art",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 39.3738197,
-   "lng": 73.3270348,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/543531423",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -262994,26 +263974,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "HM Customs, Gibraltar (Land Frontier)",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.1546423,
-   "lng": -5.3484001,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/660758046",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Passport Control",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 36.1549215,
-   "lng": -5.348382,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/660758052",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "Border Control Checkpoint",
    "k": "bd",
    "type": "Border / customs post",
@@ -263144,6 +264104,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "吉木乃口岸",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 47.5029391,
+   "lng": 85.6139453,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/676534736",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
@@ -263181,16 +264151,6 @@
    "lng": 114.0970858,
    "country": "",
    "url": "https://www.openstreetmap.org/way/681793974",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 42.5633816,
-   "lng": 21.7521016,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/682968448",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -264387,6 +265347,16 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
+   "lat": 47.891239,
+   "lng": 24.7912652,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/810279049",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
    "lat": 15.0936728,
    "lng": -12.6948402,
    "country": "",
@@ -265101,6 +266071,16 @@
    "lng": 109.1395211,
    "country": "",
    "url": "https://www.openstreetmap.org/way/863228739",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 17.0576449,
+   "lng": -89.1504987,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/864661145",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -266167,16 +267147,6 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 31.5553776,
-   "lng": 34.5372431,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/971360246",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
    "lat": 28.5621675,
    "lng": 97.0837202,
    "country": "",
@@ -266191,26 +267161,6 @@
    "lng": 38.5231031,
    "country": "",
    "url": "https://www.openstreetmap.org/way/973298536",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 48.2936404,
-   "lng": 38.5346126,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/973299014",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 31.554232,
-   "lng": 34.5350654,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/974000971",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -266404,6 +267354,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "Пограничный пункт Республики Казахстан",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 46.5496236,
+   "lng": 48.7545114,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/988506179",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
@@ -266474,16 +267434,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "U.S. Customs and Border Protection - Comstock Border Patrol Station",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 29.6399822,
-   "lng": -101.1295228,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/1000942268",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
@@ -266514,7 +267464,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "曲什曼检查站",
+   "name": "塔什库尔干县曲曼公安检查站",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 37.8821401,
@@ -267021,16 +267971,6 @@
    "lng": 61.6637613,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1073259169",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "云南平年公安交通检察执法站",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 23.8825181,
-   "lng": 106.0836333,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/1074274168",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -269377,8 +270317,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 37.0318525,
-   "lng": 35.1203963,
+   "lat": 37.0322771,
+   "lng": 35.1212916,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1221066726",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -269444,7 +270384,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "ဝ နယ်ခြားစစ်ဆေးရေးဂိတ်",
+   "name": "ဝ နယ်ခြားစစ်ဆေးရေးဂိတ် 缅甸佤邦南邓特区检查站",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 23.4788807,
@@ -269667,8 +270607,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 54.3584994,
-   "lng": 64.7870076,
+   "lat": 54.3585494,
+   "lng": 64.7867844,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1252054953",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -270507,8 +271447,8 @@
    "name": "Kajo keji County & Moyo District Border Crossing (South Sudan & Uganda Border Crossing)",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 3.7048215,
-   "lng": 31.6761748,
+   "lat": 3.7063632,
+   "lng": 31.6764162,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1353908497",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -271944,16 +272884,6 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Контрольный пост",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 54.7717354,
-   "lng": 25.9305897,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/1509165258",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
@@ -272041,6 +272971,206 @@
    "lng": 14.2838159,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1528183476",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 52.3473778,
+   "lng": 14.5527843,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1531029830",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 46.5458095,
+   "lng": 48.6368514,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1531440425",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 46.5458568,
+   "lng": 48.6389832,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1531440426",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Пограничный пункт Российской Федерации",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 46.5471092,
+   "lng": 48.7508441,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1531440432",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 43.0250174,
+   "lng": 74.703494,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1531599630",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 51.4707627,
+   "lng": 3.6814929,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1533890675",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 46.5430421,
+   "lng": 48.7095423,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1533965355",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "中英街檢查站 Chung Ying Street Checkpoint",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 22.5461455,
+   "lng": 114.22533,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1534196746",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Buko Dai Security Peaje",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 8.2774849,
+   "lng": -81.6666335,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1535107272",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 69.6556914,
+   "lng": 30.203144,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1537517649",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Storskog",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 69.6586085,
+   "lng": 30.2043964,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1537517650",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 36.1550485,
+   "lng": -5.3460844,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1539469983",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 36.1550565,
+   "lng": -5.3456522,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1539469984",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 45.1350895,
+   "lng": 18.0125597,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1539707995",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 25.667003,
+   "lng": 89.2997174,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1541237327",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 25.6661782,
+   "lng": 89.3002235,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1541237328",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 16.0501419,
+   "lng": -16.5066608,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1545095930",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 42.4080915,
+   "lng": 130.6375877,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1545421583",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Dogana di Saint-Rhemy-En-Bosses",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 45.8685703,
+   "lng": 7.165313,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1546995505",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Border / customs post",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 36.6179142,
+   "lng": 27.8390818,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1547133630",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   }
  ]
