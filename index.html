@@ -237,7 +237,21 @@
 .kind-group:not(.collapsed) .kg-caret{transform:rotate(90deg);}
 .kind-group.collapsed .kg-body{display:none;}
 .kg-body{padding-left:8px;border-left:1px solid var(--accent-soft);margin-left:3px;}
-.mg-head,.kg-head{flex-wrap:wrap;} .grp-def{flex-basis:100%;font-size:9.5px;font-weight:400;color:#96978c;margin-top:2px;line-height:1.35;}
+/* flex-wrap:wrap was letting the label drop to its own line and the count float
+   off, which is the gap and the extra lines. The head stays one row; the LABEL
+   wraps inside its own cell, so a long goal keeps its second line under the
+   text rather than under the caret. Written after the earlier rules so it wins
+   without having to hunt down every conflicting one. */
+.mg-head,.kg-head{
+  flex-wrap:nowrap; align-items:flex-start; gap:6px; padding:3px 0; line-height:1.3;
+}
+.mg-head > .mg-caret,.kg-head > .mg-caret{ flex:0 0 auto; margin-top:2px; }
+.mg-head > .mg-count,.kg-head > .mg-count{ flex:0 0 auto; margin-left:auto; padding-left:6px; }
+.mg-head > span:not(.mg-caret):not(.mg-count),
+.kg-head > span:not(.mg-caret):not(.mg-count){
+  flex:1 1 auto; min-width:0; overflow-wrap:anywhere;
+}
+.media-group{margin:2px 0;} .grp-def{flex-basis:100%;font-size:9.5px;font-weight:400;color:#96978c;margin-top:2px;line-height:1.35;}
 .facfilter-wrap{margin-top:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:8px;}.facf-hint{font-size:10px;color:#96978d;margin:2px 0 6px;line-height:1.35;}#facFilter{display:flex;flex-direction:column;gap:3px;}.facf-row{display:flex;align-items:center;gap:6px;font-size:11px;color:#d0d0cc;cursor:pointer;}.facf-row input{margin:0;flex:0 0 auto;}.facf-sw{width:10px;height:10px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 0 1px rgba(255,255,255,.35);}.facf-lb{flex:1 1 auto;} .facf-ct{color:#96978d;font-variant-numeric:tabular-nums;font-size:10px;}
 .best-wrap{margin:8px 0;} .best-hint{font-size:10px;color:#96978d;margin:2px 0 5px;line-height:1.35;}#bestPills{display:flex;gap:5px;flex-wrap:wrap;}.best-pill{font-size:11px;padding:3px 9px;border-radius:12px;border:1px solid var(--accent-soft);color:#d0d0cc;cursor:pointer;background:rgba(255,255,255,.03);user-select:none;}.best-pill:hover{border-color:#989b80;}.best-pill.on{background:#989b80;color:#0a1112;border-color:#989b80;font-weight:600;}
 .top-src{margin:6px 0 10px;padding:7px 9px;background:rgba(83,125,104,.10);border:1px solid rgba(83,125,104,.28);border-radius:8px;}.top-src-h{font-size:11px;font-weight:700;color:#afb29c;margin-bottom:5px;letter-spacing:.02em;}.ts-row{font-size:12px;margin:3px 0;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}.ts-row a{color:#989b80;}.ts-b{font-size:9.5px;padding:1px 6px;border-radius:9px;font-weight:600;white-space:nowrap;}.ts-pop{background:#8d9072;color:#091011;} .ts-help{background:#8d9071;color:#091112;}
@@ -1370,13 +1384,31 @@ function clevelShow(iso, name, pt){
           : (r.source==='ctdc') ? 'Identified cases'
           : (r.source==='gsi')  ? 'Prevalence estimate'
           : (r.source==='glotip') ? 'Detected victims'
-          : (r.source==='brazil') ? 'Rescue operations'
-          : 'Determinations and enforcement actions';
+          : (r.source==='brazil'||r.source==='listasuja') ? 'Rescue operations'
+          : (r.source==='ukmsr'||r.source==='aumsr') ? 'Companies under a disclosure duty'
+          : (r.source==='normlex') ? 'What this state has already promised'
+          /* "Determinations and enforcement actions" told a reader the
+             bureaucratic category and not what the entries are. These are
+             import bans, blacklists and prosecutions \u2014 the things that have
+             an actual consequence attached. */
+          : 'Bans, blacklists and prosecutions \u2014 findings with a consequence';
     (groups[g] = groups[g] || []).push(r);
   });
 
   var h = '<div class="chv-head">'+_esc(name||iso)+'</div>';
-  Object.keys(groups).forEach(function(g){
+  /* The prevalence estimate is the one number that is not a count of what an
+     institution noticed, so it belongs at the top: everything below it is a
+     fraction of it. */
+  var ORDER = ['Prevalence estimate',
+               'Bans, blacklists and prosecutions \u2014 findings with a consequence',
+               'Rescue operations', 'Detected victims', 'Identified cases',
+               'Goods listed as produced with forced or child labour',
+               'Companies under a disclosure duty',
+               'What this state has already promised'];
+  Object.keys(groups).sort(function(a,b){
+    var ia=ORDER.indexOf(a), ib=ORDER.indexOf(b);
+    return (ia<0?99:ia) - (ib<0?99:ib);
+  }).forEach(function(g){
     h += '<div class="chv-grp">'+_esc(g)+'</div>';
     /* Twelve near-identical lines that differ only by a period or an
        exploitation type is a list nobody reads. Collapse a run of records that
@@ -1394,33 +1426,35 @@ function clevelShow(iso, name, pt){
          that compose it. Adding the slices next to the total reported the same
          people twice — which is why the US line repeated its count. The
          total is recognised and kept whole; the slices collapse without one. */
-      if(/cases on record\s*$/i.test(label)){
-        (byLabel['__total__'] = byLabel['__total__'] || {rows:[], total:0, any:label, whole:true})
-          .rows.push(r);
-        return;
-      }
+      /* The country total and the slices that compose it must not both be
+         counted, or the same people are reported twice. The total is dropped
+         and the slices are summed, which produces the same number with one
+         grammar instead of two. */
+      if(/cases on record\s*$/i.test(label)) return;
       var lead = /^([\d,]+)\s/.exec(label);
       var n = lead ? parseInt(lead[1].replace(/,/g,''), 10) : NaN;
       (byLabel[key] = byLabel[key] || {rows:[], total:0, any:label})
         .rows.push(r);
       if(!isNaN(n)) byLabel[key].total += n;
     });
-    Object.keys(byLabel).slice(0,40).forEach(function(key){
+    Object.keys(byLabel).forEach(function(key){
       var e = byLabel[key];
       var i = window.__CLEVEL_IDX.push(e.rows[0]) - 1;
+      var ic = (g.indexOf('Goods listed') === 0) ? goodIcon(key || e.any) : '';
       if(e.whole || e.rows.length === 1){
-        h += '<div class="chv-item" onclick="clevelOpen('+i+')">'+_esc(e.any)+'</div>';
+        h += '<div class="chv-item" onclick="clevelOpen('+i+')">'+ic+_esc(e.any)+'</div>';
       } else {
-        /* No number here when the total is already shown above it. */
-        var haveTotal = !!byLabel['__total__'];
-        h += '<div class="chv-item" onclick="clevelOpen('+i+')">'
-           + ((e.total && !haveTotal) ? (e.total.toLocaleString()+' ') : '')
-           + _esc(haveTotal ? ('broken down by type and period') : key)
-           + '<span class="chv-n"> \u00b7 '+e.rows.length+' records</span></div>';
+        /* Every line in a group now reads the same way: a number, then what it
+           counts. "broken down by type and period \u00b7 18 records" next to
+           "872 identified trafficking cases on record" was two different
+           grammars in one list, and the first had no number at all. */
+        h += '<div class="chv-item" onclick="clevelOpen('+i+')">' + ic
+           + (e.total ? (e.total.toLocaleString()+' ') : '')
+           + _esc(key)
+           + '<span class="chv-n"> \u00b7 by type and period</span></div>';
       }
     });
-    var extra = Object.keys(byLabel).length - 40;
-    if(extra > 0) h += '<div class="chv-more">+'+extra+' more</div>';
+
   });
   /* Corridors touching this country, named. The map draws the lines; the
      panel is where you can actually read which countries they go to. */
@@ -1428,14 +1462,16 @@ function clevelShow(iso, name, pt){
     var partners = (window.routePartners ? window.routePartners(iso) : []);
     if(partners.length){
       h += '<div class="chv-grp">Trafficking corridors \u2014 '+partners.length+'</div>';
-      partners.slice(0,14).forEach(function(p){
+      partners.forEach(function(p){
         var nm = (window.ISO_NAME && window.ISO_NAME[p.iso]) ||
                  (trackerData[p.iso] && trackerData[p.iso].name) || p.iso;
         var arrow = p.dir==='to' ? '\u2192 ' : p.dir==='from' ? '\u2190 ' : '\u21ba ';
         h += '<div class="chv-item chv-route">'+arrow+_esc(nm)+
              '<span class="chv-n"> \u00b7 '+p.n.toLocaleString()+'</span></div>';
       });
-      if(partners.length>14) h += '<div class="chv-more">+'+(partners.length-14)+' more</div>';
+      /* No truncation. A country with 64 corridors has 64 lines: the whole
+         point of the list is that you can read which countries they are, and
+         "+50 more" is the one thing it must not say. The panel scrolls. */
     }
   }catch(e){}
 
@@ -1453,6 +1489,53 @@ function clevelShow(iso, name, pt){
   b.style.left = Math.round(x)+'px';
   b.style.top  = Math.round(y)+'px';
 }
+
+/* An emoji per listed good. Two hundred goods in a scrolling list are hard to
+   scan by shape alone, and a reader is usually looking for one commodity rather
+   than reading the lot. Matched longest-first so "palm oil" does not resolve as
+   "oil" and "cotton yarn" does not resolve as "yarn". */
+var GOOD_ICONS = [
+  ['brick','\uD83E\uDDF1'], ['cocoa','\uD83C\uDF6B'], ['coffee','\u2615'],
+  ['cotton','\uD83E\uDDF5'], ['sugarcane','\uD83C\uDF6C'], ['sugar','\uD83C\uDF6C'],
+  ['tobacco','\uD83D\uDEAC'], ['garment','\uD83D\uDC55'], ['textile','\uD83E\uDDF5'],
+  ['footwear','\uD83D\uDC5F'], ['carpet','\uD83E\uDDF6'], ['gold','\uD83E\uDD47'],
+  ['diamond','\uD83D\uDC8E'], ['gem','\uD83D\uDC8E'], ['coal','\u26CF\uFE0F'],
+  ['charcoal','\uD83D\uDD25'], ['cobalt','\uD83D\uDD0B'], ['mica','\u2728'],
+  ['tin','\uD83E\uDD6B'], ['tantalum','\uD83D\uDCF1'], ['tungsten','\uD83D\uDCA1'],
+  ['granite','\uD83E\uDEA8'], ['stone','\uD83E\uDEA8'], ['sand','\u23F3'],
+  ['salt','\uD83E\uDDC2'], ['fish','\uD83D\uDC1F'], ['shrimp','\uD83E\uDD90'],
+  ['seafood','\uD83E\uDD90'], ['rice','\uD83C\uDF5A'], ['palm oil','\uD83C\uDF34'],
+  ['timber','\uD83E\uDEB5'], ['wood','\uD83E\uDEB5'], ['rubber','\uD83D\uDEDE'],
+  ['cattle','\uD83D\uDC04'], ['beef','\uD83D\uDC04'], ['poultry','\uD83D\uDC14'],
+  ['tea','\uD83C\uDF75'], ['vanilla','\uD83C\uDF3F'], ['nuts','\uD83E\uDD5C'],
+  ['peanut','\uD83E\uDD5C'], ['coca','\uD83C\uDF3F'], ['tomato','\uD83C\uDF45'],
+  ['banana','\uD83C\uDF4C'], ['grape','\uD83C\uDF47'], ['corn','\uD83C\uDF3D'],
+  ['maize','\uD83C\uDF3D'], ['wheat','\uD83C\uDF3E'], ['soy','\uD83E\uDED8'],
+  ['sunflower','\uD83C\uDF3B'], ['flower','\uD83D\uDC90'], ['glass','\uD83E\uDD5B'],
+  ['ceramic','\uD83C\uDFFA'], ['electronic','\uD83D\uDCBB'], ['toy','\uD83E\uDDF8'],
+  ['firework','\uD83C\uDF86'], ['match','\uD83D\uDD25'], ['bidi','\uD83D\uDEAC'],
+  ['leather','\uD83D\uDC5C'], ['fur','\uD83E\uDDA1'], ['silk','\uD83E\uDD8B'],
+  ['wool','\uD83D\uDC11'], ['pork','\uD83D\uDC16'], ['egg','\uD83E\uDD5A'],
+  ['milk','\uD83E\uDD5B'], ['cheese','\uD83E\uDDC0'], ['honey','\uD83C\uDF6F'],
+  ['alcohol','\uD83C\uDF7A'], ['cement','\uD83C\uDFD7\uFE0F'], ['brass','\uD83D\uDD29'],
+  ['copper','\uD83D\uDD0C'], ['iron','\u2699\uFE0F'], ['steel','\u2699\uFE0F'],
+  ['zinc','\u2699\uFE0F'], ['silver','\uD83E\uDD48'], ['emerald','\uD83D\uDC9A'],
+  ['ruby','\u2764\uFE0F'], ['sapphire','\uD83D\uDC99'], ['jade','\uD83D\uDC9A'],
+  ['amber','\uD83D\uDFE0'], ['oil','\uD83D\uDEE2\uFE0F'], ['gas','\uD83D\uDD25'],
+  ['uranium','\u2622\uFE0F'], ['pornography','\u26A0\uFE0F'],
+  ['vessel','\uD83D\uDEA2'], ['ship','\uD83D\uDEA2'], ['scam','\uD83D\uDCBB'],
+  ['kiln','\uD83E\uDDF1'], ['mine','\u26CF\uFE0F'], ['quarry','\uD83E\uDEA8'],
+  ['farm','\uD83C\uDF3E'], ['fishing','\uD83C\uDFA3']
+].sort(function(a,b){ return b[0].length - a[0].length; });
+
+function goodIcon(label){
+  var s = String(label||'').toLowerCase();
+  for(var i=0;i<GOOD_ICONS.length;i++){
+    if(s.indexOf(GOOD_ICONS[i][0]) >= 0) return GOOD_ICONS[i][1] + ' ';
+  }
+  return '\u2022 ';
+}
+
 window.__CLEVEL_IDX = [];
 window.clevelOpen = function(i){
   var r = window.__CLEVEL_IDX[i];
@@ -1485,16 +1568,47 @@ window.drawRoutes = drawRoutes;
    read out of 332 lines without turning the layer off. */
 window.ROUTE_FOCUS = null;
 window.ROUTE_PINNED = null;     /* set by clicking; hover cannot override it */
+window._routeRefs = [];      /* {layers:[...], from, to, w, col, internal} */
+
+/* Restyling in place. No layer is removed or added, so there is nothing to
+   flicker: the corridors stay on the map and only their weight and opacity
+   change. Countries touched by the focused corridors are lit at the same time,
+   which is what makes a link readable in a dense area. */
+function applyRouteFocus(){
+  var focus = window.ROUTE_FOCUS, far = false;
+  try{ far = map.getZoom() <= 3; }catch(e){}
+  var touched = {};
+  (window._routeRefs||[]).forEach(function(ref){
+    var on = focus && (ref.from === focus || ref.to === focus);
+    var dim = focus && !on;
+    if(on){ touched[ref.from]=1; touched[ref.to]=1; }
+    var op = far ? 0.28 : 0.45;
+    if(on) op = 0.92; else if(dim) op = 0.05;
+    ref.layers.forEach(function(L){
+      try{
+        if(L.setStyle) L.setStyle(L._isDot
+          ? {opacity:op, fillOpacity: on?0.95:(dim?0.06:(far?0.5:0.8)),
+             radius: Math.max(1.6, ref.w*(on?0.9:0.55))}
+          : {opacity:op, weight: ref.w*(on?1.35:(far?0.55:0.85))});
+      }catch(e){}
+    });
+  });
+  /* light the other end of every focused corridor */
+  try{
+    if(window.setLinkedCountries) window.setLinkedCountries(focus ? touched : null);
+  }catch(e){}
+}
+
 window.setRouteFocus = function(iso){
   if(window.ROUTE_PINNED) return;             // a click wins until it is undone
-  if(window.ROUTE_FOCUS === iso) return;      // no redraw, no flicker
+  if(window.ROUTE_FOCUS === iso) return;
   window.ROUTE_FOCUS = iso || null;
-  drawRoutes();
+  applyRouteFocus();
 };
 window.pinRouteFocus = function(iso){
   window.ROUTE_PINNED = iso || null;
   window.ROUTE_FOCUS = iso || null;
-  drawRoutes();
+  applyRouteFocus();
 };
 
 /* Which countries a country is linked to, for its own popup. */
@@ -1521,6 +1635,7 @@ function drawRoutes(){
     if(_routeDrawing) return;
     _routeDrawing = true;
     if(_routeLayer){ map.removeLayer(_routeLayer); _routeLayer = null; }
+    window._routeRefs = [];
     /* This early return used to leave _routeDrawing set. The first call happens
        before routes.json has loaded, so the flag latched true and every later
        call was refused — the corridors never appeared at all. Clearing a
@@ -1544,15 +1659,18 @@ function drawRoutes(){
       var focus = window.ROUTE_FOCUS;
       var touches = focus && (r.from === focus || r.to === focus);
       var dim = focus && !touches;
+      var refs = [];
       var pop = '<div class="popup-country">'
               + (r.internal ? ('Within ' + _esc(r.from)) : (_esc(r.from) + ' \u2192 ' + _esc(r.to)))
               + '</div><div class="tracker-desc">' + String(r.desc||'') + '</div>';
 
       if(r.internal){
-        group.addLayer(L.circleMarker([a[0], a[1]], {
+        var ring = L.circleMarker([a[0], a[1]], {
           radius: 4 + 6 * Math.sqrt((r.n||1)/max), color: col, weight: w*0.8,
           fill: false, opacity: touches?0.9:(dim?0.08:0.45), dashArray: '3 3'
-        }).bindPopup(pop));
+        }).bindPopup(pop);
+        group.addLayer(ring);
+        window._routeRefs.push({layers:[ring], from:r.from, to:r.to, w:w, internal:true});
         drawn++;
         return;
       }
@@ -1585,13 +1703,23 @@ function drawRoutes(){
       var z = map.getZoom(), far = z <= 3;
       var op = far?0.28:0.45;
       if(touches) op = 0.9; else if(dim) op = 0.06;
-      group.addLayer(L.polyline(pts, {color:col,
-                                      weight:w*(touches?1.25:(far?0.55:0.85)),
-                                      opacity:op,
-                                      lineCap:'round'}).bindPopup(pop));
-      /* a dot at the destination end, so direction is readable without arrows */
-      group.addLayer(L.circleMarker([lat2, lon2], {radius:Math.max(2,w*0.7),
-        color:col, weight:1, fillColor:col, fillOpacity:0.85}).bindPopup(pop));
+      var line = L.polyline(pts, {color:col,
+                                  weight:w*(touches?1.25:(far?0.55:0.85)),
+                                  opacity:op,
+                                  lineCap:'round'}).bindPopup(pop);
+      group.addLayer(line);
+      refs.push(line);
+      /* A dot at the destination end, so direction is readable without arrows.
+         It uses lon2real, not the unwrapped lon2: unwrapping keeps the CURVE
+         from drawing the long way round the world, but placing the marker at
+         200E puts it off the edge of a map that does not repeat. */
+      var dot = L.circleMarker([lat2, lon2real], {radius:Math.max(1.6,w*0.6),
+        color:col, weight:1, fillColor:col,
+        fillOpacity: touches?0.95:(dim?0.06:(far?0.5:0.8))}).bindPopup(pop);
+      dot._isDot = true;
+      group.addLayer(dot);
+      refs.push(dot);
+      window._routeRefs.push({layers:refs, from:r.from, to:r.to, w:w, internal:false});
       drawn++;
     });
 
@@ -2208,6 +2336,12 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
     try{ if(window.drawRoutes) drawRoutes(); }catch(e){}
   }catch(e){ try{console.warn('centroid build failed',e);}catch(_e){} }
   function baseStyle(f){ const a3=NUM2A3[f.id]||''; const L=countryAny(a3),A=countryActive(a3),acc=DMAP[domain].accent;
+    /* The far end of a focused corridor. In a dense area a line alone does not
+       tell you which two countries it joins, so both ends are outlined in the
+       corridor colour while the focus holds. */
+    if(window.LINKED && window.LINKED[a3]){
+      return {fillColor:'#7fb3d0',weight:2.4,opacity:0.95,color:'#9fd0e6',fillOpacity:0.10};
+    }
     return {fillColor:'#ffd24a',weight:L?1.6:0.5,opacity:L?0.85:0.22,color:L?'#ffd24a':'rgba(210,215,200,0.28)',fillOpacity:0}; }
   function baseClick(f,latlng){ const a3=NUM2A3[f.id]||''; gbClickTime=Date.now();
     if(gbNav&&gbNav.iso&&a3&&a3!==gbNav.iso){ gbToWorld(); return; }   /* drilled into another country: step out first, then it's selectable */
@@ -2246,6 +2380,17 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
       const nm=(f.properties&&f.properties.name)||'This territory';
       showInfoPanel('<div class="popup-country">'+nm+'</div><div class="no-data">This area isn\'t identified as a country here, so it can\'t be opened.</div>'); return; }
     gbEnterCountry(a3,f,latlng); }
+  /* Countries at the far end of a focused corridor. Kept as a set the country
+     styler reads, so lighting them costs one restyle rather than a redraw. */
+  window.LINKED = null;
+  window.setLinkedCountries = function(set){
+    var changed = JSON.stringify(set||null) !== JSON.stringify(window.LINKED||null);
+    window.LINKED = set || null;
+    if(changed && geojsonLayer){
+      try{ geojsonLayer.setStyle(baseStyle); }catch(e){}
+    }
+  };
+
   function baseOnEach(f,layer){ layer.on({
       mouseover:e=>{ const a3=NUM2A3[f.id]||'';
         if(countryAny(a3)||trackerData[a3]||SUBGEO[a3]||window.CLEVEL[a3]){

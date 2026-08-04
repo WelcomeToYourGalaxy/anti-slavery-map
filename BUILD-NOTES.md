@@ -4018,3 +4018,60 @@ What is reachable, in descending order of certainty:
 After the kilns, the located-site layer would stand at roughly **66,000 points**
 against 3,195 today, and that is close to the ceiling of what has actually been
 recorded site by site anywhere in the world.
+
+---
+
+# Sixty-second pass — the flicker, properly this time
+
+## Why it kept flickering
+
+Every focus change was **rebuilding the entire corridor layer** — remove 332
+polylines from the map, construct 332 new ones, add them back. Leaflet re-fires
+`mouseover` at each internal boundary of a multi-polygon country, so that
+teardown was running several times a second. The guards I added stopped some
+redraws; they could not stop the ones that were legitimate.
+
+Now nothing is removed or added on focus at all. Layer references are kept at
+draw time and focus **restyles them in place**. Measured across eight focus
+changes: **0 removals, 0 additions, 32 restyle calls.**
+
+## Both ends of a corridor light up
+
+A line alone does not tell you which two countries it joins when the area is
+dense. Countries at the far end of a focused corridor are now outlined in the
+corridor colour for as long as the focus holds — one restyle, not a redraw,
+so it costs nothing.
+
+## The panel
+
+- **Prevalence first.** It is the one number that is not a count of what an
+  institution noticed; everything below it is a fraction of it. Explicit group
+  ordering rather than insertion order.
+- **"Determinations and enforcement actions" → "Bans, blacklists and
+  prosecutions — findings with a consequence."** The old name gave the
+  bureaucratic category instead of saying what the entries are.
+- **One grammar per line.** *broken down by type and period · 18 records*
+  next to *872 identified trafficking cases on record* was two different
+  sentence shapes in one list, and the first had no number. Every line is now
+  `<count> <what it counts> · by type and period`. The country total is
+  dropped and the slices summed, which reaches the same figure without
+  double-counting.
+- **Every linked country listed.** No `+64 more` — the point of the list is
+  that you can read which countries they are. The panel scrolls.
+- **An emoji per listed good**, matched longest-first so *palm oil* does not
+  resolve as *oil* and *cotton yarn* does not resolve as *yarn*. Ninety
+  commodities mapped, a bullet for anything unmatched.
+
+## The offset arrows, found at last
+
+`.mg-head,.kg-head{flex-wrap:wrap;}` — a single rule letting the label drop
+to its own line and the count float off, which is the gap and the extra lines
+you kept seeing. My earlier fix added correct rules that this one overrode.
+
+Replaced with one authoritative block written after the others: head stays a
+single row, the **label** wraps inside its own cell, so a long goal keeps its
+second line under the text rather than under the caret.
+
+Removed as asked: *This marks infrastructure, not a finding.* and *Read it as
+context for the determinations and cases on the other layers.* — from every
+harvester and from the map.

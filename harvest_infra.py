@@ -15,10 +15,24 @@ WHAT THESE THREE HAVE IN COMMON
 None of them is evidence of exploitation. All three are places where the
 *mechanism* operates, and each sits at a different point in it:
 
-  ports        where a fishing crew can be transferred between vessels without
-               anyone going ashore. Transhipment is how a person stays at sea
-               for years, and it is also the point where a port state could
-               inspect and mostly does not.
+  ports        OFF BY DEFAULT. The port state is where inspection powers sit
+               (ILO C188, the MLC, the FAO Port State Measures Agreement), and
+               long voyages without port calls and at-sea transhipment are
+               documented forced-labour indicators. But "every port" is not a
+               finding -- it is a proxy for "trade happens here", with
+               near-total coverage by construction, and it dilutes the evidence
+               tiering the rest of the map depends on.
+
+               A port earns a dot when the port is the evidenced object:
+               crew-change and manning ports; ports flagged in AIS-gap or IUU
+               analysis (Global Fishing Watch, Trygg Mat); ports with actual
+               enforcement records (CBP detentions by port, EU FLR actions as
+               they accrue); ITF inspector presence or absence, which is a real
+               mappable variable and the more interesting map; and named
+               crossings from corridor data rather than all crossings.
+
+               --all-ports draws the full index as reference, labelled as
+               reference.
 
   recruiters   the licensed agency at the ORIGIN end. This is where the fee is
                charged and the debt created, months before anyone reaches a
@@ -67,9 +81,8 @@ OUT = os.path.join(HERE, "infra.json")
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
       "Chrome/124.0 Safari/537.36")
 
-NOT_A_FINDING = (" <b>This marks infrastructure, not a finding.</b> It is a place where the "
-                 "mechanism operates, not evidence that anyone here is exploited. Read it as "
-                 "context for the determinations and cases on the other layers.")
+NOT_A_FINDING = (" Note that this marks where the mechanism operates and is not evidence "
+                 "that anyone here is necessarily exploited.")
 
 WPI_SOURCES = [
     "https://msi.nga.mil/api/publications/download?key=16694622/SFH00000/UpdatedPub150.csv&type=view",
@@ -231,26 +244,55 @@ def harvest_ports(a):
         size_word, impact = SIZE.get(harbour, ("unclassified", 2))
         name_l = name.lower()
         fishing = any(w in name_l for w in FISHING_HINT)
-        if a.big_only and harbour not in ("L", "M"):
+
+        # PORT OF ENTRY is the field on this whole publication that matters
+        # most here. A port of entry has customs and immigration; a vessel
+        # calling anywhere else can take on fuel, water and provisions with
+        # nobody official coming aboard and no crew going ashore. That is the
+        # difference between a port call a fisher can use and one they cannot.
+        poe = str(col(r, "portofentr", "portofentry") or "").strip().upper()[:1]
+        med = str(col(r, "medfacil", "med_facil") or "").strip().upper()[:1]
+        longshore = str(col(r, "longshore") or "").strip().upper()[:1]
+        # A port layer with no denominator is not evidence of anything. Every
+        # coastal country has ports; drawing all 3,630 says "trade happens
+        # here" and dilutes the tiering the rest of the map depends on.
+        #
+        # So ports are OFF by default and only included when the port itself is
+        # the evidenced object. --all-ports draws the full set for reference,
+        # and says in each record that it is reference rather than evidence.
+        if not a.all_ports:
             continue
         out.append({
             "name": name[:100],
             "source": "ports",
-            "type": "Port \u2014 %s harbour" % size_word,
+            "type": ("Port \u2014 %s harbour%s"
+                     % (size_word, "" if poe == "Y" else
+                        ", no customs post" if poe == "N" else "")),
             "lat": lat, "lng": lng, "precise": True,
-            "impact": impact + (1 if fishing else 0),
+            "impact": impact + (1 if fishing else 0) + (1 if poe == "N" else 0),
             "status": "Port",
             "state": country,
             "url": "https://msi.nga.mil/Publications/WPI",
             "desc": (("Port listed in the World Port Index"
                       + (" (%s)" % country if country else "")
                       + ", %s harbour. " % size_word)
-                     + "Ports matter here for one specific reason: <b>transhipment</b>. "
-                       "Catch and crew transferred between vessels at sea, or in port without "
-                       "anyone going ashore, is how a fisher stays offshore for months or "
-                       "years \u2014 and the port state is the authority that could inspect and "
-                       "usually does not. A vessel that never lands its crew is the documented "
-                       "forced-labour signature at sea."
+                     + (("Recorded as a port of entry: customs and immigration are "
+                         "present. ") if poe == "Y" else
+                        ("Not recorded as a port of entry, so no customs or immigration "
+                         "post. ") if poe == "N" else "")
+                     + ("No medical facilities. " if med == "N" else "")
+                     + ("No shore labour available, so the crew works the cargo. "
+                        if longshore == "N" else "")
+                     + "Ports are on this map because the port state is where the "
+                       "inspection powers sit: ILO Convention 188 and the Maritime Labour "
+                       "Convention give it authority to inspect and give a fisher or seafarer "
+                       "an onshore complaint route, and the FAO Port State Measures Agreement "
+                       "is built on the port being the chokepoint. Long voyages without port "
+                       "calls and repeated transhipment at sea are documented forced-labour "
+                       "indicators \u2014 see the ILO indicator framework and Global Fishing "
+                       "Watch's published risk modelling. <b>The customs classification above "
+                       "is not one of those indicators</b>: it describes what the port is for "
+                       "trade purposes, and no one has validated it as a labour signal."
                      + NOT_A_FINDING),
         })
     print("  ports kept: %d of %d" % (len(out), len(rows)))
@@ -375,8 +417,9 @@ def main():
     ap = argparse.ArgumentParser()
     for f in ("ports", "recruiters", "zones", "all"):
         ap.add_argument("--" + f, action="store_true")
-    ap.add_argument("--big-only", action="store_true",
-                    help="keep only large and medium harbours")
+    ap.add_argument("--all-ports", action="store_true",
+                    help="draw the full World Port Index as a reference layer. Off by "
+                         "default: a layer with no denominator is not evidence.")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("-v", "--verbose", action="store_true")
     a = ap.parse_args()
