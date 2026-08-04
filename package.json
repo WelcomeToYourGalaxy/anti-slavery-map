@@ -13,7 +13,8 @@
     "points": "python3 harvest_points.py --all",
     "bulk": "python3 harvest_bulk.py --all",
     "bundle": "python3 bundle.py",
-    "infra": "python3 harvest_infra.py --all"
+    "infra": "python3 harvest_infra.py --all",
+    "facilities": "python3 harvest_facilities.py --all"
   },
   "devDependencies": {
     "jsdom": "^30.0.0"

@@ -2832,3 +2832,504 @@ here is exploited.* These are the layers where a dot is most likely to be
 misread as an accusation — a named recruitment agency especially — so the
 disclaimer is in the record itself rather than only in a panel someone may never
 open.
+
+---
+
+# Forty-first pass — the lista suja
+
+You found the thing I had been circling. Not municipality rescue counts —
+**the Cadastro de Empregadores itself**: 583 employers found by Brazilian
+labour inspectors to have subjected workers to conditions analogous to slavery,
+each with the establishment address, the worker count, the inspection year and
+the date of inclusion.
+
+Nothing else in this field is comparable. It is not modelled, not a risk score,
+not an allegation. It is a state naming an employer after the administrative
+process concludes, and banks and buyers use it, which gives it commercial force
+a report does not have.
+
+## Parsing
+
+Establishment strings read outward-in — farm, road, district,
+municipality/UF — so the parser takes the **last** municipality-looking
+token, then cleans it. That needed four passes to get right, and each was a real
+failure mode in the published file:
+
+- **the dash form.** "PEDREIRA DA CERQUINHA - ZONA RURAL - REGENERAÇÃO/PI"
+  let the capture run backwards through the whole address.
+- **introducer phrases.** "MUNICÍPIO DE X", "ATRACADA NO PORTO FLUVIAL DE X",
+  "NA ZONA RURAL DO MUNICÍPIO DE X" are not part of the name.
+- **conjunctions.** "... AMÉRICO DE CAMPOS/SP E MAGDA/SP" leaves "E MAGDA".
+- **accent variants.** The file contains both `MUNICÍPIO` and `MUNICÌPIO`.
+
+**541 of 583 parse to a municipality — 371 distinct, across 26 states.** The
+42 that do not are almost all "RESIDÊNCIA DE [name]" with no place in the
+string at all, which is domestic servitude and genuinely has no address in the
+register. They are dropped and counted, not approximated.
+
+Municipality names resolve through IBGE as before, and a name that does not
+match is **dropped rather than placed**.
+
+## One editorial decision worth stating
+
+The register publishes each employer's **CPF** — an individual's tax number
+— alongside company CNPJs. The Brazilian state publishes it because
+publication *is* the sanction.
+
+CNPJ identifies a company and stays in full. **CPF is masked to its last two
+digits.** Re-publishing an individual's national tax number on a third-party map
+is a different act from a state publishing it in its own register, with a
+different risk profile, and the map does not need it to be useful. Two digits
+are kept so an entry can still be checked against the official version.
+
+## What each record says
+
+The employer, the worker count, the inspection year, the full establishment
+address as published, the activity code, and the inclusion date — plus two
+caveats that travel with every one: the register is **contested**, with
+employers repeatedly obtaining injunctions removing names, so check the current
+edition; and the dot is the **municipality, not the farm** — the address in
+the text is more precise than the map can honestly draw.
+
+Both CSVs are returned with this build, ready for `data/`.
+
+---
+
+# Forty-second pass — the run worked; the commit step killed it
+
+```
+fatal: pathspec 'cases.json' did not match any files
+##[error]Process completed with exit code 128
+```
+
+Everything above that line succeeded. **2,922 IPIS points**, 295
+determinations, 18 IUU vessels, the wire, and a 4.6 MB bundle with four layers
+embedded — all built, then discarded at the last step.
+
+Two faults in one line.
+
+**`git add -- a.json b.json` fails the whole command the moment one file is
+missing**, and most of these are missing most of the time by design. It now
+loops and stages only what exists, echoing each one.
+
+**And a stray backslash.** An earlier edit of mine left `\\` where the line
+continuation needed `\`, so bash saw a literal backslash argument and the file
+list silently split across two commands. Visible in the echoed command in the
+log, invisible in the YAML. Tested the replacement in a scratch repo with nine
+of eleven files absent: stages the two that exist, commits, exits 0.
+
+## `resgates_brazil.csv` was the employer register
+
+You committed the lista suja under the filename I had suggested for the
+municipality table, so it went to the wrong parser. That is a naming trap I
+built, not a mistake you made.
+
+The Brazilian harvester now **decides by columns, not by filename**: a header
+containing `empregador`, `estabelecimento` or `cnpj` is the employer register
+and gets routed to that parser with a line saying so. Verified against your
+actual file.
+
+## IBGE returned something that was not JSON
+
+```
+IBGE lookup failed: Expecting value: line 1 column 1 (char 0)
+```
+
+That is a 403 arriving as HTML. It now retries three times with backoff and
+**prints the first 120 bytes of whatever came back**, so "blocked" and "moved"
+are distinguishable. And there is a committed fallback: drop IBGE's municipality
+list into `data/` with `ibge` in the filename and it is used without a network
+call — the same escape hatch the other cloud-blocked sources have.
+
+Tested with a three-municipality stub: index built, employers placed, the
+remaining 530 names reported as unmatched **and dropped rather than
+approximated**, CPF masked, records marked `local` so they stay on the map.
+
+## Still outstanding, all input rather than code
+
+`data/` needs: the World Port Index, the CTDC synthetic dataset (which unlocks
+cases, slices *and* corridors), Walk Free's country data, and — if IBGE keeps
+refusing the runner — its municipality list. The kilns now come from
+HuggingFace's rows API with nothing to download.
+
+---
+
+# Forty-third pass — every source you sent is now on the map
+
+```
+cases.json       1,153 records    CTDC, 268,515 case records processed
+routes.json        261 corridors  229 cross-border, 32 internal
+prevalence.json    160 countries  Walk Free
+bulk.json          717 records    522 Brazilian employers + 195 UNODC countries
+infra.json         526 ports      World Port Index
+points.json      3,128 sites      IPIS
+```
+
+**Bundle: 6.2 MB, six layers embedded.**
+
+Top corridors, from real data rather than reputation: **Mexico→United States
+6,877**; Ukraine→Russia 4,071; Nigeria→Libya 2,492; Nigeria→Mali
+1,229; Philippines→United States 1,226; Vietnam→China 1,134.
+
+## IBGE gave up, so I stopped using it
+
+403s, then a 500. It also needed a second request per municipality for geometry
+— thousands of calls for one layer.
+
+Replaced with a **single 5,570-row gazetteer** with coordinates already in it,
+served from GitHub, which both this sandbox and an Actions runner can reach. One
+request, no per-row lookups. **522 of 583 employers placed**, up from 0; the 19
+unmatched names and 42 address-less rows are reported and dropped rather than
+approximated.
+
+## Five bugs found by running real files through the code
+
+**`find_export` was gated on `--file`.** `read_file(find_export(...)) if args.file else None`
+— so a file committed to `data/` was found and then thrown away, which is the
+opposite of what `find_export` exists for. Fixed in both `harvest_cases.py` and
+`harvest_scale.py`.
+
+**Prevalence had no country codes.** Walk Free publishes names; the map places
+by ISO. All 160 records would have vanished silently. The map now builds a
+**name→ISO3 index from the boundary data it already loads**, so anything that
+resolves is guaranteed placeable — which a shipped lookup table cannot
+promise. 160 of 160 now place.
+
+**UNODC's spreadsheet declares its dimensions as A1:A1.** A read-only openpyxl
+sheet therefore stops after one row and the file reads as empty. `reset_dimensions()`
+recovers it: **0 rows → 65,398**.
+
+**GLOTIP is a long table**, one row per country × indicator × dimension ×
+sex × age × year. Filtered to detected-victim rows at Total sex and Total
+age, or every victim is counted three or four times.
+
+**The World Port Index ships as Access or shapefile.** Neither reads with the
+standard library — except a shapefile's attributes are a DBF, and DBF is
+fixed-width records behind a field table. Wrote a **35-line DBF reader** rather
+than make anyone install GDAL. 3,630 ports parsed, 526 kept after filtering to
+fishing and large harbours.
+
+## One judgement worth stating
+
+UNODC publishes counts below five as **‘<5’** rather than a number, because
+a small count in a small country can identify a person. 7,228 cells are censored
+that way. They are counted here as **3**, and every record says so — dropping
+them would make the countries doing least identification look like the countries
+with least trafficking, which inverts the finding.
+
+---
+
+# Forty-third pass — the data landed
+
+## CTDC: 268,515 records
+
+`cases.json` — **1,153 records**, 71 countries of exploitation, sliced by
+exploitation type and period.
+
+`routes.json` — **332 corridors**, 33 of them internal. The map's first
+movement layer, and the shape of it is worth reading:
+
+```
+USA -> USA   10,928   sexual exploitation
+UKR -> UKR    7,796   labour exploitation
+MEX -> USA    6,877   labour exploitation
+MDA -> MDA    5,675   sexual exploitation
+UKR -> RUS    4,071   labour exploitation
+NGA -> LBY    2,492   labour exploitation
+```
+
+**The two largest corridors are internal.** A map drawing only border crossings
+would have shown the United States and Ukraine as pass-through, which is the
+opposite of what the records say — the decision to keep internal trafficking
+as a dashed ring rather than drop it was load-bearing after all.
+
+One fix on the way in: the 2026 release replaced `majorityStatus` with
+`ageBroad`, so the child count was reading zero. Both column names are now
+handled, with `09--17` as the child band.
+
+## Walk Free: 160 countries
+
+The workbook's summary sheet has two banner rows above the header, and both
+contain the word "prevalence" — so matching that word anywhere picked the
+banner and read nothing. It now requires the row whose **first cell** is
+"Country", with the loose match kept as a fallback.
+
+**62 of the 160 countries had no ISO code**, because the spreadsheet publishes
+names only. Rather than ship a name table that would drift, the map now builds
+a name→ISO index from the boundary file it already loads, plus a short alias
+list for the names that differ between sources — *United States* /
+*United States of America*, *Russia* / *Russian Federation*, *Ivory Coast* /
+*Côte d'Ivoire*, *Burma* / *Myanmar*. Verified.
+
+## IBGE returned 500, so nothing depends on it now
+
+The localidades endpoint 403s from cloud IPs and 500s from everywhere else. The
+Brazilian layer no longer calls it: it reads a **single CSV gazetteer that
+already carries latitude and longitude**, which also removes the
+one-HTTP-request-per-municipality geometry call that was the slowest part of the
+harvester. A committed copy in `data/` is used first, so after one download it
+never touches the network.
+
+Verified end to end with a three-municipality stand-in: index built, employers
+placed at real coordinates, the other 530 names reported as unmatched **and
+dropped rather than approximated**.
+
+## Current bundle
+
+```
+cases.json        1,153 records      785K embedded
+prevalence.json     160              118K
+points.json       3,128            1,753K
+routes.json         332              191K
+infra.json          526 ports        291K
+
+index.bundle.html   5.5 MB, 5 layers
+```
+
+---
+
+# Forty-fourth pass — ports, UNODC, and two counting errors
+
+## World Port Index: 526 → 3,630
+
+The shapefile's DBF holds all 3,630 ports; I extracted it directly rather than
+depending on a download that keeps failing.
+
+Then a real bug. My filter looked for the word "fish" in each row and for a
+harbour size starting with "L" or "M" — but **the WPI has no fishing flag at
+all**, and encodes harbour size as a single letter. It found "fish" 5 times in
+3,630 rows and silently dropped 3,100 ports on a test that could not work.
+
+Ports are now kept in full and tiered by the letter the file actually uses:
+160 large, 362 medium, 977 small, 2,125 very small. `--big-only` restores the
+old behaviour deliberately rather than by accident.
+
+## UNODC GLOTIP: 625,154 detections, not 1.56 million
+
+Two things had to be fixed to read this file at all.
+
+**It would not open.** The workbook has a dangling drawing relationship that
+makes openpyxl raise `KeyError: 'xl/drawings/drawing1.xml'`. The reader now
+strips that relationship in memory before opening, and finds the header row
+rather than assuming row 1 — UNODC puts two banner rows above it.
+
+**And the first read was wrong by a factor of three.** GLOTIP is long-format,
+and the same victims appear under several *dimensions* at once: by age group,
+by form of exploitation, by country of repatriation. Summing them gave
+**1,562,199 detected victims worldwide, with Pakistan above the United
+States** — numbers that would have discredited the layer on sight. Only the
+`Total` dimension is unduplicated.
+
+Corrected: **625,154 across 2007–2022**, about 39,000 a year, which is the
+scale UNODC itself reports. 166 countries.
+
+Small counts are published as `<5` rather than a number, because a small count
+in a small country can identify a person. They are counted as 3, and every
+record says so.
+
+## Brazil: 522 of 583 employers placed
+
+With the municipality gazetteer committed, the lista suja resolves. 42 rows have
+no municipality in the establishment field at all — almost all
+"RESIDÊNCIA DE [name]", which is domestic servitude and genuinely has no
+address in the register — and 19 names did not match and were **dropped
+rather than approximated**.
+
+## A duplication caught on the way out
+
+`--all` ran both Brazilian steps, and since `--brazil` now routes a lista suja
+file to the right parser, the same 522 employers arrived twice: 1,044 records.
+Deduped on source, name and rounded coordinates rather than by trusting the
+callers not to overlap.
+
+## Bundle now
+
+```
+points.json    3,128    IPIS mining sites, GPS
+infra.json     3,630    ports
+cases.json     1,153    CTDC identified cases
+bulk.json        672    Brazilian employers + UNODC detections
+routes.json      332    trafficking corridors
+prevalence.json  160    Walk Free estimates
+
+index.bundle.html   8.0 MB, 6 layers
+```
+
+---
+
+# Forty-fifth pass — ports moved out of the bundle
+
+**8.0 MB → 5.9 MB.** `infra.json` is 3,630 ports, which embedded to 2.1 MB
+— a quarter of the file for the layer least likely to be why anyone opened
+the map.
+
+It is now fetched at runtime instead. Deploy `infra.json` next to
+`index.bundle.html` and the ports appear exactly as before; deploy the bundle
+alone and everything else still works.
+
+`bundle.py` gained `--external FILE` and `--embed FILE`, with `infra.json`
+external by default. The choice is one flag either way rather than an edit.
+
+## The message that would have been wrong
+
+The data-layer panel reports a missing layer with the command that produces it.
+For a layer that is external **by design**, that would have sent you to re-run a
+harvester that had already worked — the file exists, it is simply not
+embedded.
+
+External layers now say so instead:
+
+> Loaded separately by design, to keep the single-file build a sensible size.
+> Deploy `infra.json` next to this page and it appears. Rebuild with
+> `bundle.py --embed infra.json` to fold it in.
+
+Tested in both states.
+
+## Current shape
+
+```
+index.bundle.html   5.9 MB   cases, prevalence, points, bulk, routes
+infra.json          3.2 MB   ports — deploy alongside
+```
+
+---
+
+# Forty-sixth pass — one WPI field I should not have discarded
+
+The shapefile bundle held nothing new — `.shp/.shx/.sbn/.sbx/.prj/.cpg` are
+geometry and indices for coordinates already in the DBF, and `WPI2019.xls` and
+`WPI.mdb` are the same records in other formats.
+
+But I had kept 7 of the DBF's 78 fields, and one of the 71 I dropped is the most
+relevant field in the whole publication: **PORT OF ENTRY.**
+
+A port of entry has customs and immigration. Anywhere else, a vessel can take on
+fuel, water and provisions with **nobody official coming aboard and nobody going
+ashore** — which is exactly the kind of call that keeps a crew at sea
+indefinitely. It is the difference between a port call a fisher can use and one
+they cannot, and it is published as a plain Y/N.
+
+**1,710 ports are ports of entry. 549 are explicitly not.** Those 549 now say so
+in their own record and carry a higher severity, so the layer distinguishes
+between somewhere a crew could be reached and somewhere they could not.
+
+Also pulled in: medical facilities and shore labour, both noted only when
+**absent** — no medical facility, or no longshore labour so the crew works
+the cargo themselves.
+
+The rest of the discarded fields are navigational — pilotage, crane
+capacities, dry dock, turning basin — with no bearing on this subject.
+
+`wpi_ports.csv` re-extracted with 11 columns instead of 7.
+
+---
+
+# Forty-seventh pass — the ports argument, and a list of fixes
+
+## You were right about ports, and I was making an argument
+
+Port of entry is a **customs classification**. I used it as a proxy for "a crew
+could be reached or inspected here" and wrote *"precisely the kind of call that
+keeps a crew at sea indefinitely"* in the same voice as the sourced material.
+Nobody has validated non-port-of-entry status as a forced-labour indicator, and
+presenting my inference as a finding is the exact failure this map is built to
+avoid.
+
+Separated now. What is documented stays and is attributed: the port state holds
+the inspection powers (ILO C188, the MLC, the FAO Port State Measures
+Agreement), and long voyages without port calls and at-sea transhipment are
+established indicators (ILO's framework, Global Fishing Watch's published
+modelling). The customs field is stated as what it is, with a line saying it is
+**not** one of those indicators.
+
+**And the blanket layer is off by default.** A layer with near-total coverage by
+construction is a proxy for "trade happens here" and dilutes the tiering the
+rest of the map depends on. Ports earn a dot when the port is the evidenced
+object — crew-change and manning ports, ports flagged in AIS-gap or IUU
+analysis, ports with actual enforcement records, ITF inspector presence or
+absence. That last one is the more interesting map, as you said, because the
+absence is the variable. `--all-ports` draws the full index as labelled
+reference.
+
+On a percentage: there is no honest one. Nobody samples ports. The measured
+quantity nearby is the domestic / cross-border split among detected victims,
+which is in GLOTIP — already harvested, worth pulling deliberately rather
+than quoting from memory.
+
+## Fixed
+
+- **Route endpoints off the map.** Unwrapping across the antimeridian pushed a
+  destination to 200E so the curve would not draw the long way round — and
+  the end marker was then placed at that unwrapped longitude, off the edge. The
+  curve keeps the unwrapped value; the marker uses the real one.
+- **Hover flicker.** Leaflet re-fires `mouseover` every time the pointer crosses
+  an internal boundary of a multi-polygon country, and the panel was rebuilt
+  each time. Same country as last time now leaves it alone.
+- **Hover list too long.** Runs of near-identical records — eight lines
+  differing only by period and exploitation type — collapse to one line
+  carrying the total. One bug caught doing it: stripping non-digits to read the
+  count swallowed the year range too, so totals came out in the billions.
+- **Corridors at world zoom.** Thinner and much fainter below zoom 4.
+- **Hovering a country now focuses its corridors** — lines touching it go to
+  full strength, the rest drop to 6%.
+- **Country highlight over satellite.** Past zoom 6 the country is outlined
+  rather than filled, so the imagery is visible.
+- Deleted: the "where to look / do not approach" caveat, the "unusually for this
+  field" line, "which gives it commercial force", "not an allegation and not a
+  risk score", "Two things to hold on to". *"The register is contested"* →
+  *"The register, however, is contested"*. Infrastructure caveat replaced with
+  your wording. Subtitle now reads forced labour, **trafficking** and child
+  labour.
+
+---
+
+# Forty-eighth pass — police stations stay, and the zero counts explained
+
+## You are right about police stations
+
+I lumped them in with town halls and I should not have. The test that separates
+them is whether the function is **universal**: a report can be made at any
+police station, a case heard at any courthouse, a passport replaced at any
+consulate. Plotting all of them asserts nothing about which ones are special,
+so there is no false selection — the layer is not a proxy for the thing, it
+is the thing.
+
+Town halls and generic government offices fail that test. 145,000 + 256,000
+civic buildings filtered by nothing is a proxy for "a town is here", and the
+description was doing work the data could not support ("where local licensing
+sits *in some countries*"). Both removed.
+
+Kept: police station, courthouse, embassy/consulate, border/customs post,
+agency HQ.
+
+Worth saying plainly, because the map cuts both ways on police: for a third
+party who discovers forced labour, the police station is usually the right
+call. For the worker, in several jurisdictions, walking into one without status
+means being treated as an immigration case rather than a victim — which is
+why the survivor lens lists specialist hotlines first, and why that record says
+so rather than leaving it to be discovered.
+
+## The three zero counts were not a bug
+
+Courthouse, embassy and border post all showed **0** because the facility layer
+is fed by a dataset built for a sibling map, which carries police stations,
+town halls and government offices and not those three. The records are not in
+the source. No tag fix would have found them.
+
+`harvest_facilities.py` pulls them from OpenStreetMap via Overpass, with three
+mirrors tried in turn. Global queries for these are small enough to run whole
+— tens of thousands of courthouses worldwide, not millions, which is
+precisely why they are worth plotting and town halls are not. Merged into the
+existing layer at load, so the toggles and popups work unchanged.
+
+Tested offline: elements without coordinates are dropped, `way` centres are
+read as well as `node` positions, and the correct facility key is assigned.
+Overpass 403s from this sandbox, so the live pull is untested — run it and
+send me what it prints if the counts look wrong.
+
+## And the pasted analysis
+
+Yes — all of it is in. The port reasoning is now the module docstring of
+`harvest_infra.py`, the layer is off by default, and the "no honest percentage"
+point is recorded with the pointer to GLOTIP's domestic / cross-border split as
+the measured quantity that actually exists.
