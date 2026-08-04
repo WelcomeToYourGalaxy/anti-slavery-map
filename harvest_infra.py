@@ -189,12 +189,149 @@ def wpi_rows(fp):
 
 
 # ====================================================================== PORTS
+
+# The World Port Index uses two-letter country codes; country-level selectors
+# use ISO3. Only the codes that appear in the WPI are needed.
+ISO2_TO_3 = {
+ "AD":"AND","AE":"ARE","AF":"AFG","AG":"ATG","AI":"AIA","AL":"ALB","AM":"ARM",
+ "AO":"AGO","AQ":"ATA","AR":"ARG","AS":"ASM","AT":"AUT","AU":"AUS","AW":"ABW",
+ "AZ":"AZE","BA":"BIH","BB":"BRB","BD":"BGD","BE":"BEL","BF":"BFA","BG":"BGR",
+ "BH":"BHR","BI":"BDI","BJ":"BEN","BM":"BMU","BN":"BRN","BO":"BOL","BR":"BRA",
+ "BS":"BHS","BW":"BWA","BY":"BLR","BZ":"BLZ","CA":"CAN","CD":"COD","CF":"CAF",
+ "CG":"COG","CH":"CHE","CI":"CIV","CK":"COK","CL":"CHL","CM":"CMR","CN":"CHN",
+ "CO":"COL","CR":"CRI","CU":"CUB","CV":"CPV","CY":"CYP","CZ":"CZE","DE":"DEU",
+ "DJ":"DJI","DK":"DNK","DM":"DMA","DO":"DOM","DZ":"DZA","EC":"ECU","EE":"EST",
+ "EG":"EGY","ER":"ERI","ES":"ESP","ET":"ETH","FI":"FIN","FJ":"FJI","FK":"FLK",
+ "FM":"FSM","FO":"FRO","FR":"FRA","GA":"GAB","GB":"GBR","GD":"GRD","GE":"GEO",
+ "GF":"GUF","GH":"GHA","GI":"GIB","GL":"GRL","GM":"GMB","GN":"GIN","GP":"GLP",
+ "GQ":"GNQ","GR":"GRC","GT":"GTM","GU":"GUM","GW":"GNB","GY":"GUY","HK":"HKG",
+ "HN":"HND","HR":"HRV","HT":"HTI","HU":"HUN","ID":"IDN","IE":"IRL","IL":"ISR",
+ "IN":"IND","IQ":"IRQ","IR":"IRN","IS":"ISL","IT":"ITA","JM":"JAM","JO":"JOR",
+ "JP":"JPN","KE":"KEN","KH":"KHM","KI":"KIR","KM":"COM","KN":"KNA","KP":"PRK",
+ "KR":"KOR","KW":"KWT","KY":"CYM","KZ":"KAZ","LB":"LBN","LC":"LCA","LK":"LKA",
+ "LR":"LBR","LT":"LTU","LV":"LVA","LY":"LBY","MA":"MAR","MC":"MCO","MD":"MDA",
+ "ME":"MNE","MG":"MDG","MH":"MHL","MM":"MMR","MO":"MAC","MP":"MNP","MQ":"MTQ",
+ "MR":"MRT","MS":"MSR","MT":"MLT","MU":"MUS","MV":"MDV","MX":"MEX","MY":"MYS",
+ "MZ":"MOZ","NA":"NAM","NC":"NCL","NG":"NGA","NI":"NIC","NL":"NLD","NO":"NOR",
+ "NR":"NRU","NU":"NIU","NZ":"NZL","OM":"OMN","PA":"PAN","PE":"PER","PF":"PYF",
+ "PG":"PNG","PH":"PHL","PK":"PAK","PL":"POL","PM":"SPM","PR":"PRI","PT":"PRT",
+ "PW":"PLW","PY":"PRY","QA":"QAT","RE":"REU","RO":"ROU","RU":"RUS","SA":"SAU",
+ "SB":"SLB","SC":"SYC","SD":"SDN","SE":"SWE","SG":"SGP","SH":"SHN","SI":"SVN",
+ "SK":"SVK","SL":"SLE","SN":"SEN","SO":"SOM","SR":"SUR","ST":"STP","SV":"SLV",
+ "SY":"SYR","TC":"TCA","TG":"TGO","TH":"THA","TL":"TLS","TN":"TUN","TO":"TON",
+ "TR":"TUR","TT":"TTO","TV":"TUV","TW":"TWN","TZ":"TZA","UA":"UKR","US":"USA",
+ "UY":"URY","VC":"VCT","VE":"VEN","VG":"VGB","VI":"VIR","VN":"VNM","VU":"VUT",
+ "WS":"WSM","YE":"YEM","ZA":"ZAF"}
+
+SELECTORS = {}
+COUNTRY_SEL = {}
 FISHING_HINT = ("fish", "seafood", "trawl", "cannery", "processing")
+
+
+
+# ============================================================ PORT SELECTORS
+# A port earns a dot when the port itself is the evidenced object. Each selector
+# below is a JOIN against the World Port Index, not a list of its own: the WPI
+# supplies the coordinates, the selector supplies the reason. With no selector
+# files present the ports layer is EMPTY, and that is the correct output rather
+# than a failure -- an unselected port has nothing to say.
+PORT_SELECTORS = {
+    "model": {
+        "files": ("pnas_port", "highrisk_port", "modelport"),
+        "label": "High-risk vessel calls",
+        "impact": 4,
+        "why": ("A measurable share of the fishing vessels calling here were "
+                "flagged high-risk by the published behavioural model "
+                "(McDonald et al., PNAS 2021), which is trained on 27 observable "
+                "vessel behaviours \u2014 among them <b>AIS gaps over 12 and over "
+                "24 hours</b>, <b>presence on an official IUU fishing list</b>, "
+                "flag of convenience, visits to ports of convenience, and "
+                "transhipment events with IUU or known forced-labour vessels. "
+                "<b>A model output, and a disputed one</b>: a reply in the same "
+                "journal notes that only 21 of 193 known abuse vessels produced "
+                "profiles the method could use, and that the features are not "
+                "causally linked to conditions on board. Treat it as where the "
+                "model is pointing, not as what is there."),
+        "src": "https://github.com/emlab-ucsb/slavery-in-fisheries",
+    },
+    "cbp": {
+        "files": ("cbp_port", "detention", "uflpa_port", "enforcement"),
+        "label": "Enforcement record",
+        "impact": 5,
+        "why": ("Goods have actually been detained or excluded here under a "
+                "forced-labour import measure. <b>Not a risk indicator \u2014 a "
+                "record of enforcement having happened</b>, which is the rarest "
+                "thing on this layer and the only one with a consequence already "
+                "attached."),
+        "src": "https://www.cbp.gov/newsroom/stats/trade",
+    },
+}
+
+
+def load_selectors(a):
+    """Read whichever selector files are present and return
+    {normalised port name: [(key, note), ...]}."""
+    sel = {}
+    COUNTRY_SEL.clear()
+    for key, spec in PORT_SELECTORS.items():
+        fp = find_export(*spec["files"])
+        if not fp:
+            continue
+        try:
+            rows = list(csv.DictReader(open(fp, encoding="utf-8-sig")))
+        except Exception as ex:
+            print("  could not read %s: %s" % (os.path.basename(fp), str(ex)[:50]))
+            continue
+        n = 0
+        for r in rows:
+            low = {str(k).lower().replace(" ", "").replace("_", ""): v
+                   for k, v in r.items()}
+            note = str(low.get("note") or low.get("detail") or low.get("inspector")
+                       or low.get("count") or low.get("sharepct") or "").strip()
+            name = str(low.get("port") or low.get("portname") or low.get("name")
+                       or "").strip()
+            if name:
+                sel.setdefault(norm_port(name), []).append((key, note))
+                n += 1
+                continue
+            # Some sources are published by PORT STATE rather than by port --
+            # the PNAS port-visit table is one. Applying it to every port in the
+            # country is coarse and is labelled as such in the record, but a
+            # country where most fishing calls are made by flagged vessels is
+            # telling you something real about its ports.
+            iso = str(low.get("portiso3") or low.get("iso3") or low.get("country")
+                      or "").strip().upper()
+            if len(iso) == 3:
+                COUNTRY_SEL.setdefault(iso, []).append(
+                    (key, (note + " (country-level: this applies to the port state, "
+                                  "not to this port specifically)").strip()))
+                n += 1
+        print("  selector %-6s %-28s %d port(s)" % (key, os.path.basename(fp), n))
+    if not sel:
+        print("  No port selector files in data/. The ports layer is EMPTY by design:")
+        for key, spec in PORT_SELECTORS.items():
+            print("    %-6s %-30s %s" % (key, spec["label"], spec["src"]))
+        print("  Each is a CSV with a 'port' column; anything else is carried as a "
+              "note. Commit one and only the ports it names are drawn, with the "
+              "reason stated in the record. --all-ports still draws the whole "
+              "index as labelled reference.")
+    return sel
+
+
+def norm_port(s):
+    s = str(s or "").upper()
+    for junk in (" HARBOR", " HARBOUR", " PORT OF ", "PORT OF ", " KO", " GANG"):
+        s = s.replace(junk, " ")
+    return " ".join(s.split())
 
 
 def harvest_ports(a):
     raw = None
-    fp = find_export("port", "wpi", "pub150")
+    # "port" alone matched cbp_port_detentions.csv, so the harvester read a
+    # two-row selector file as if it were the World Port Index. Selector files
+    # live in the same folder and several have "port" in the name; the index
+    # itself is now identified specifically.
+    fp = find_export("wpi", "world_port", "pub150")
     rows = None
     if fp:
         rows = wpi_rows(fp)
@@ -219,6 +356,10 @@ def harvest_ports(a):
     if not rows:
         print("  no rows parsed")
         return []
+
+    global SELECTORS
+    SELECTORS = load_selectors(a)
+    excluded = 0
 
     def col(r, *keys):
         for k in r:
@@ -260,20 +401,47 @@ def harvest_ports(a):
         # So ports are OFF by default and only included when the port itself is
         # the evidenced object. --all-ports draws the full set for reference,
         # and says in each record that it is reference rather than evidence.
-        if not a.all_ports:
+        hits = list(SELECTORS.get(norm_port(name)) or [])
+        iso3 = ISO2_TO_3.get(str(country).strip().upper()[:2], "")
+        if iso3:
+            hits += COUNTRY_SEL.get(iso3, [])
+        keys = set(k for k, _ in hits)
+
+        # THE INVERSION. The interesting map is not "here are the flagged
+        # ports" -- it is "here is where a crew has nobody to go to". So a port
+        # is EXCLUDED only when it is both covered and unflagged: an ITF
+        # inspector is present AND nothing has been flagged there. Everything
+        # else is drawn, and the size runs the other way from what you would
+        # expect -- the largest markers are the ports with the least protection,
+        # because that is where the absence is.
+        flagged = bool(keys & {"cbp", "model"})
+        if not a.all_ports and not flagged:
+            excluded += 1
             continue
+
+        # 0 = an inspector and no flags (never drawn); 4 = no inspector, and
+        # flagged by everything that can flag a port.
+        exposure = len(keys & {"cbp", "model"})
         out.append({
             "name": name[:100],
             "source": "ports",
-            "type": ("Port \u2014 %s harbour%s"
-                     % (size_word, "" if poe == "Y" else
-                        ", no customs post" if poe == "N" else "")),
+            "type": (("Port \u2014 " + ", ".join(
+                        PORT_SELECTORS[k]["label"] for k, _ in hits))
+                     if hits else "Port"),
             "lat": lat, "lng": lng, "precise": True,
-            "impact": impact + (1 if fishing else 0) + (1 if poe == "N" else 0),
+            # Severity IS the exposure, so the marker scales with how little
+            # stands between a crew and their employer.
+            "impact": max(3, min(5, exposure + 3)),
+            "exposure": exposure,
             "status": "Port",
             "state": country,
             "url": "https://msi.nga.mil/Publications/WPI",
-            "desc": (("Port listed in the World Port Index"
+            "desc": ("".join(
+                        "<b>%s.</b> %s%s " % (PORT_SELECTORS[k]["label"],
+                                              PORT_SELECTORS[k]["why"],
+                                              (" " + note) if note else "")
+                        for k, note in (hits or []))
+                     + ("Port listed in the World Port Index"
                       + (" (%s)" % country if country else "")
                       + ", %s harbour. " % size_word)
                      + (("Recorded as a port of entry: customs and immigration are "
@@ -295,7 +463,13 @@ def harvest_ports(a):
                        "trade purposes, and no one has validated it as a labour signal."
                      + NOT_A_FINDING),
         })
-    print("  ports kept: %d of %d" % (len(out), len(rows)))
+    print("  ports kept: %d of %d (%d excluded: nothing recorded against them)"
+          % (len(out), len(rows), excluded))
+    if out:
+        import collections as _c
+        dist = _c.Counter(r["exposure"] for r in out)
+        print("  exposure 1=one selector, 2=both: %s"
+              % dict(sorted(dist.items())))
     return out
 
 

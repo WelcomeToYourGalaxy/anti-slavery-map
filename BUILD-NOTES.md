@@ -4075,3 +4075,156 @@ second line under the text rather than under the caret.
 Removed as asked: *This marks infrastructure, not a finding.* and *Read it as
 context for the determinations and cases on the other layers.* — from every
 harvester and from the map.
+
+---
+
+# Sixty-third pass — ports become a join, not a list
+
+All four of your criteria, built as **selectors**. The World Port Index supplies
+the coordinates; a selector supplies the reason. A port with no selector is not
+drawn.
+
+| Selector | What it means | Severity |
+|---|---|---|
+| `itf` | An ITF inspector is based there | 3 |
+| `iuu` | Flagged in IUU or AIS-gap analysis | 4 |
+| `crew` | Crew-change and manning hub | 4 |
+| `cbp` | Goods actually detained under an import measure | 5 |
+
+Each carries its own reasoning in the record. The ITF one says the thing worth
+saying: an inspector can board a vessel, read the crew's contracts and wage
+records and recover unpaid wages, and **the absence of an inspector is the more
+interesting variable** — most of the world's ports have none, so a crew
+calling there has no one to go to who is not their employer.
+
+The CBP one is the sharpest: **a record of enforcement having happened**, not a
+risk indicator, and the only one with a consequence already attached.
+
+With no selector files, the ports layer is **empty and that is the correct
+output**, not a failure. The run prints the four sources and what each CSV needs
+(a `port` column; anything else is carried as a note).
+
+Tested against the real 3,630-port index with three sample selectors: **5 ports
+drawn out of 3,630**, each labelled with what selected it and given that
+selector's severity.
+
+## A bug this surfaced
+
+`find_export("port", "wpi")` matched `cbp_port_detentions.csv` — a two-row
+selector file — and the harvester read it as the World Port Index. Selector
+files live in the same folder and several have "port" in the name, so the index
+is now identified specifically by `wpi`, `world_port` or `pub150`.
+
+`--all-ports` still draws the whole index, and every record then says outright:
+*this port is here as reference only — nothing selected it.*
+
+## Where to get the four
+
+- **ITF inspectors**: itfseafarers.org/en/find-inspector — the directory
+  lists inspectors by port.
+- **IUU / AIS-gap**: Global Fishing Watch port-visit data, or Trygg Mat's IUU
+  vessel lists joined to port calls.
+- **CBP**: cbp.gov trade statistics publish detentions by port of entry.
+- **Crew change**: the Neptune Declaration hub list, or ICS crew-change
+  guidance.
+
+---
+
+# Sixty-fourth pass — the ports layer, inverted
+
+Built as you specified. A port is excluded only when it is **both covered and
+unflagged** — an ITF inspector is based there and nothing has been recorded
+against it. Everything else draws, and the marker **grows as protection thins**.
+
+Exposure runs 0 to 4: an inspector and no flags is 0 and never drawn; no
+inspector plus every flag is 4.
+
+## Say plainly what this produces
+
+With one selector loaded it drew **3,627 of 3,630 ports**, because only about
+130 ports worldwide have an ITF inspector. With the PNAS port-state data added
+it draws **all 3,630**.
+
+**This is the blanket layer, with the opposite justification.** That is not a
+criticism of the reasoning — "where is a crew unprotected" is a defensible
+map, and it is the version I argued was the more interesting one. But the
+differentiation has moved out of the *selection* and into the *size*, and you
+should choose that knowingly rather than discover it. Current spread:
+
+```
+exposure 1      3 ports   inspector present, but flagged
+exposure 2    206 ports   no inspector, nothing recorded
+exposure 3  3,421 ports   no inspector, high-risk vessel calls
+```
+
+## Your question about crew-change hubs
+
+You were right to ask, and the answer changes what that criterion is for.
+
+**People in forced labour at sea are characteristically not rotated through
+crew-change ports.** They are transhipped at sea and stay aboard for months or
+years — which is precisely why the *absence* of a port call is a documented
+indicator. A crew-change hub is where **lawful** rotation happens.
+
+So as a detection criterion it points the wrong way. Its real value is at the
+other end of the chain: a manning hub is where the agencies are, where the fee
+is charged and where documents are taken.
+
+Changed accordingly. It is renamed **Manning and recruitment hub**, it is still
+marked, and it **no longer counts towards exposure** — with the reasoning in
+the record so nobody has to reconstruct it.
+
+## The PNAS repository
+
+Vessels are **anonymised**: `mmsi_anonymous`, no IMO, no name. 66,368
+predictions, and not one of them is attributable to a ship. That looks
+deliberate, and it is the right call — publishing a percentage is a different
+act from naming a vessel as high-risk on a model whose method is contested in
+the same journal.
+
+What the repo does carry is `s6_figure_4_data.csv`: **port visits by high-risk
+vessels, by port state.** 174 port states, extracted to
+`data_pnas_port_states.csv` and wired as the `model` selector. Tuvalu, Tanzania
+and Trinidad show near-100% of fishing calls made by flagged vessels; the
+Falklands 87% on 6,881 visits; Mauritius 85% on 6,514.
+
+Country-level selectors are now supported for this, and every record produced
+that way says so: *this applies to the port state, not to this port
+specifically.*
+
+---
+
+# Sixty-fifth pass — two selectors, and an answer that removed one of them
+
+Cut to what you asked for. ITF inspectors and manning hubs are gone from the
+code entirely. Two things put a port on the map:
+
+**High-risk vessel calls** — the PNAS port-state table.
+**Enforcement record** — goods actually detained under an import measure.
+
+Ports with neither are not drawn. With the PNAS data and a sample CBP file:
+**3,424 of 3,630**, of which 2 carry both.
+
+## Your IUU / AIS-gap question answers itself
+
+It is already in there, and not as an approximation — as **named features of
+the model**. From the paper's own feature lookup:
+
+```
+gaps_12_hours          Number of AIS gaps greater than 12 hours
+gaps_24_hours          Number of AIS gaps greater than 24 hours
+iuu                    Vessel on official IUU fishing list
+number_iuu_encounters  Transshipment events with IUU vessels
+foc                    Flies flag of convenience
+number_poc_port_visits Visits to ports of convenience
+number_forced_labor_encounters  Transshipment with known forced-labour vessels
+```
+
+So a separate IUU/AIS-gap selector would have been **the same signal counted
+twice** — once inside the model score and once beside it — which would
+have quietly doubled the weight of going dark relative to enforcement. Dropped
+for that reason, and the model record now names the features so the reasoning is
+visible rather than buried in a citation.
+
+That leaves enforcement as the only genuinely independent second selector, which
+is the right shape: one modelled signal, one recorded fact.
