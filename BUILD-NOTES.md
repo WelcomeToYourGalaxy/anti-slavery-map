@@ -3333,3 +3333,469 @@ Yes — all of it is in. The port reasoning is now the module docstring of
 `harvest_infra.py`, the layer is off by default, and the "no honest percentage"
 point is recorded with the pointer to GLOTIP's domestic / cross-border split as
 the measured quantity that actually exists.
+
+---
+
+# Forty-ninth pass — the repeated corridors were a render leak
+
+## Ghana to the US appeared more than once, and the data was fine
+
+Zero duplicate origin/destination pairs in `routes.json` — GHA→USA
+appears exactly once, 91 cases, labour exploitation. The repeat was a
+**re-entrancy leak** in the renderer.
+
+`drawRoutes` is called from three places — the initial fetch, the centroid
+build, and every focus change — and `_routeLayer` was only assigned at the
+END of the function. A second call arriving before that assignment left the
+first layer group on the map **untracked**, so it could never be removed.
+Corridors accumulated. Now it clears first and refuses to re-enter.
+
+Not sex-related, and not confined to Ghana: any corridor could double, and
+whichever pair you happened to be looking at is the one you would notice.
+
+## Russia's corridors met at Kamchatka
+
+Longitude is circular and I was averaging it arithmetically. Russia spans about
++20E to −170W, so the plain mean landed its centroid out on the Pacific
+coast. Fiji, New Zealand and the US with the Aleutians have the same problem,
+and some came out **beyond ±180 entirely** — which is the other half of
+your report: endpoints sitting off the edge of a map that does not repeat.
+
+Averaging unit vectors and taking `atan2` gives the true circular mean.
+Latitude is not circular in any usable range and stays a weighted mean.
+Verified on synthetic geometry: a Russia-shaped country now centres at 72.7E
+(central Siberia), a Fiji-shaped one at 179.5E, both inside ±180.
+
+## The US popup counted the same people twice
+
+`cases.json` carries a country total **and** the per-type/period slices that
+compose it. The collapsed list summed the slices next to the total, reporting
+the same people in two lines. The total is now recognised and kept whole, and
+the slices collapse under it without a number:
+
+```
+203,546 identified trafficking cases on record
+broken down by type and period  · 2 records
+```
+
+## Also
+
+- **Corridor partners named.** Each country's panel now lists the countries it
+  links to, with direction and volume — `← Mexico · 6,877`,
+  `↺ United States · 10,928`. The map draws the lines; the panel is where
+  you can read which countries they go to.
+- **Clicking a country pins its corridors** until the panel closes. Hover still
+  previews, but a click wins and hover cannot override it.
+- **Panel moved back under the help box**, left column, sliding in from the
+  left, with the map panning clear on that side again.
+- **Hover jitter.** `mousemove` was re-placing the panel on every pixel of
+  travel. It now only moves to avoid running off the right edge, never while the
+  pointer is inside it, and the close delay went to 600ms so crossing an
+  internal boundary of a multi-polygon country cannot shut it.
+- **The subtitle no longer changes with the lens.** A lens changes what you look
+  through, not what the map is.
+- **The goal dropdown was white when open.** The `<select>` was styled but the
+  open list is drawn by the browser from the option elements and its own colour
+  scheme. `color-scheme:dark` plus explicit option and optgroup rules.
+
+---
+
+# Fiftieth pass — the corridors, the facilities, and a guard that latched
+
+## The corridors vanished because my fix broke them
+
+The re-entrancy guard I added last pass set `_routeDrawing = true` and then hit
+an early return — `if(!_routesOn || !window.ROUTES || !window.ROUTES.length)
+return;` — without clearing it. The **first** call happens before
+`routes.json` has loaded, so the flag latched true and every subsequent call was
+refused. The layer never drew at all.
+
+Clearing a guard on every exit path is the entire job of a guard, and I missed
+one. Verified now across three calls: nothing before the data arrives, draws
+once it does, redraws cleanly after that.
+
+## The sibling repos had the facilities
+
+They did, and it saves the Overpass pull entirely:
+
+- **`judicial_facilities.json`** — 37,076 records, of which **26,267 are
+  courthouses** (`k:'c'`).
+- **`execmap_local_diplomatic.json`** — **2,280 embassies and consulates**,
+  stored as positional arrays with address and phone.
+
+Both merged into `facilities.json`: **28,547 records**.
+
+**Border and customs posts are not there.** `execmap_local_border.json` holds
+one record, and it is a kerb-cut in Washington DC. The category is removed
+rather than left as a toggle that can only ever show zero — an empty count
+reads as a bug, and this is an absence of data, which is a different thing and
+should not look like one.
+
+## Size
+
+28,547 records each carrying the same two-paragraph description came to
+**15.5 MB**. Stored as one shared paragraph per kind plus per-row values:
+**3.1 MB**, same content. `facilities.json` is external like `infra.json`, so
+the bundle stays at **5.3 MB**.
+
+## The panel got narrower and the goal list did not follow
+
+Moving it under the help box cost about 70px, which wrapped every long goal
+— "Get a survivor their status, wages and compensation" — onto two
+lines, with the second line indented under the caret and the count floating off
+on its own.
+
+The head is now a flex row: caret fixed, label taking the remaining width, count
+pinned right. A wrapped second line sits under the text rather than under the
+arrow, vertical spacing is tightened so a two-line entry does not read as two
+entries, and the label is wrapped in its own span so flex can size it at all.
+
+---
+
+# Fifty-first pass — the sexual-exploitation split, and what should not be mapped
+
+## Added: detected victims by form of exploitation
+
+GLOTIP breaks detections down by form, and I had been discarding that dimension
+along with the ones that double-count. It does not double-count — it
+partitions the same total cleanly — so it can be read alongside it as long as
+it stays in its own bucket and is never added in.
+
+**137 of 153 countries** now carry the split:
+
+```
+Albania   1,714 detected
+          838 sexual exploitation (67%); 34 forced labour (3%); 370 other (30%)
+Angola      146 detected
+          60 sexual exploitation (47%); 55 forced labour (43%); 12 other (9%)
+Andorra      23 detected
+          17 forced labour (100%)
+```
+
+Every one carries the reading that matters: **a country reporting almost
+entirely one form is usually telling you which agency is doing the looking
+rather than what is there.** The two halves of this subject are counted by
+different agencies almost everywhere — vice units and labour inspectorates
+rarely share a case system — so the split is as much a map of institutional
+attention as of the phenomenon.
+
+Together with the corridors, sexual exploitation is now visible at three levels:
+125 of 332 corridors dominated by it, the per-country per-period case slices,
+and this country-level detection split.
+
+## Not added, deliberately: venue-level sex trafficking points
+
+The sub-national point data you asked about mostly exists in forms that should
+not be mapped, and the reason is specific rather than squeamish.
+
+A brick kiln location helps nobody exploit anyone. **A list of suspected
+commercial-sex venues is a directory for buyers and a target list for raids**,
+and raids in this sector overwhelmingly result in the women being arrested,
+deported, or moved on rather than assisted. The people such a layer would most
+reliably serve are not the people this map is for.
+
+That is not a reason to have nothing. What is defensible at point level:
+
+- **Court judgments.** UNODC's SHERLOC case-law database carries prosecuted
+  cases with locations. Past tense, public record, already adjudicated.
+- **Services**, which the directory already does — specialist support for
+  survivors of sexual exploitation is additive and carries no targeting risk.
+- **Corridors and country detection**, which are already in.
+
+SHERLOC is the one I would build next if you want to go further on this.
+
+---
+
+# Fifty-second pass — more located sites, and the one shape I did not build
+
+## What makes IPIS the strongest layer, and what else clears that bar
+
+IPIS works because of what its records **are**: someone went to a specific pit,
+wrote down the coordinates, and recorded whether children were working there.
+Observation, at a place, by someone who went.
+
+Very little else in this field meets that. `harvest_sites.py` adds the three
+sources that come closest, each stating which rung it is on:
+
+**SHERLOC** — UNODC's case-law database. Trafficking prosecutions with the
+court, the facts and the outcome, placed where the judgment locates them. Not an
+observation of a site, but **a court finding: the highest evidentiary standing
+of anything on this map**. Past tense, and the record says so — it
+establishes what a court found about events that have already happened, not what
+is happening there now.
+
+**Delve** — the World Bank's artisanal-mining platform, which aggregates
+site-level datasets beyond the DRC, several of them IPIS-derived and carrying
+the same child-labour and worker-count fields. The obvious extension of the
+layer that already works.
+
+**EJAtlas** — roughly 4,000 geolocated conflicts; the harvester keeps only
+those whose records name forced labour, bonded labour, debt bondage or child
+labour. **Community-reported, not field-verified**, which is its strength for
+reaching places no inspectorate goes and its limit as evidence. Every record
+says both halves.
+
+Tested against representative files: a wind-farm siting dispute correctly
+filtered out of EJAtlas, sexual-exploitation cases correctly flagged in SHERLOC,
+a UK case with no coordinates correctly placed at country level rather than
+guessed, child-labour flags read from Delve.
+
+## Sub-national sex trafficking: what I built and what I did not
+
+You said yes anyway, so: **SHERLOC includes sexual-exploitation cases at
+judgment-level location.** That is sub-national sex trafficking point data —
+prosecuted, adjudicated, public record.
+
+What is not in there is a layer of suspected commercial-sex venues, and the
+reason is narrow enough to state once. Every other point layer here is inert if
+misused: a brick kiln location helps nobody exploit anyone. A venue list is
+directly usable by buyers, and by police for raids that in this sector
+overwhelmingly end with the women arrested, deported or moved on rather than
+assisted. It is the one dataset shape where publishing the points predictably
+harms the people the map exists for.
+
+Court cases give the same geography without that, because the events have
+already happened and the venue is named by a judgment rather than by rumour.
+
+If you want the venue-level version regardless — your project, your call
+— I would want it behind an access control rather than in a public bundle,
+and I would rather you decided that deliberately than have me ship it quietly.
+The harvester's docstring says the same, so the reasoning travels with the code.
+
+## Other located sources worth having, in order
+
+1. **ITSCi / iTSCi tagged mine sites** — Rwanda, Burundi, Uganda, DRC.
+   Site-level, industry-run, and it names the cooperative.
+2. **Global Fishing Watch transhipment events** — point events at sea with
+   timestamps, which is the closest thing to a located record in fishing.
+3. **Rights Lab satellite work beyond kilns** — charcoal in Brazil, fish
+   processing in the Sundarbans, mica in Jharkhand.
+4. **Open Supply Hub** — still the buyers layer, still the biggest hole.
+
+---
+
+# Fifty-third pass — three more located sources
+
+`harvest_sites.py` now covers six.
+
+**ITSCi — tagged 3T mine sites.** Tin, tantalum and tungsten bagged and
+tagged at the mine and followed to the exporter, which makes it one of the very
+few site lists in this field that **names the cooperative working the pit**.
+That is the part worth having: a named operator is something you can write to
+and hold to an answer, which a coordinate on its own is not. It is industry-run,
+funded by the companies whose supply chains it certifies, and criticised on
+exactly that ground — every record says so, and says tagged does not mean
+clean, it means traced.
+
+**Global Fishing Watch — transhipment encounters.** Two vessels meeting at
+sea long enough to transfer catch. Every record leads with *an encounter is not
+a finding*: transhipment is legal and routine in most fisheries. It is here
+because it is the mechanism by which a crew stays offshore for months without a
+port call, and because it carries a **position and a timestamp** when almost
+nothing else at sea does.
+
+**Rights Lab — satellite-detected sites** beyond the brick kilns: charcoal
+in Brazil, fish processing in the Sundarbans, mica in Jharkhand. Published with
+the papers rather than as a feed, so the harvester reads a committed dataset. *A
+detection is not a finding about that site* — it says a facility of this kind
+is here.
+
+Tested with representative files: cooperatives read and surfaced, detection
+types carried through, disclosure lines present in every record.
+
+## The venue layer
+
+You have said yes twice and I have not built it, so I owe you the actual reason
+rather than the caution again.
+
+**There is no source that would make it evidence.** Working through what such a
+layer could be built from:
+
+- Polaris's illicit-massage-business research is published as aggregate counts,
+  not points, and deliberately so.
+- OpenStreetMap tags for massage and adult venues are **business listings**.
+  Plotting them would label lawful premises as trafficking sites by implication.
+- Review and directory sites are, literally, buyers' directories. Scraping one
+  and re-publishing it is republishing a buyers' directory with a humanitarian
+  label on it.
+- Court judgments name venues — and that is already built, in `--sherloc`.
+
+So the layer would not be a map of trafficking venues. It would be a map of
+commercial-sex premises, most of them not trafficking, presented on an
+anti-slavery map as though they were. It would expose sex workers who are not
+trafficked, and the two groups it reliably serves are buyers and vice squads.
+
+That is not me overriding your call on your project — it is that the thing
+being asked for does not exist in a form that does what you want it to do. If
+you have a source I have not thought of, send it and I will look at it on its
+merits. If what you want is venue-level geography for sexual exploitation,
+`--sherloc` is that, sourced from judgments.
+
+## Remaining, in order
+
+1. **Open Supply Hub** — the buyers layer. Still the biggest hole.
+2. **Recruitment registers** — one origin-state export unlocks it.
+3. **Export processing zones** — no verifiable global geometry exists.
+
+---
+
+# Fifty-fourth pass — the middle ground, and what GFW actually covers
+
+## Named defendants in concluded cases
+
+You were right that SHERLOC alone was too thin, and there is a middle ground.
+`harvest_sites.py --defendants` maps **businesses and premises named as
+defendants in concluded trafficking cases** — hotels, massage businesses,
+car washes, farms — at the address the case record gives.
+
+The distinction that makes this publishable where a venue list is not: **the
+naming has already been done, by a court, at an address on a public record.** A
+suspicion-based layer says "exploitation may be happening here" and is wrong
+about most of its points by construction. This says "a court found that it
+happened here", which is the sentence the judgment already contains. It covers
+sexual exploitation the same way it covers a car wash.
+
+Three disciplines in the code, not just the copy:
+
+- **Pending cases are excluded.** An allegation is not a finding, and the whole
+  justification is that the finding has been made.
+- **Past tense, stated in every record.** A business named in a 2019 judgment is
+  not a claim about that address in 2026 — ownership changes, premises
+  close, and treating an old finding as current is unfair to whoever is there
+  now.
+- **No coordinates means dropped, not approximated.** Naming a business means
+  naming an address, and an approximate one points at the wrong door.
+
+Richest source is the Human Trafficking Legal Center's federal civil database,
+which names corporate defendants and the businesses involved.
+
+## What Global Fishing Watch actually covers
+
+You asked for a percentage. Two of them exist and are published; the third does
+not and I am not going to invent it.
+
+**By vessel count: about 2–3%.** Roughly 100,000 fishing vessels broadcast
+AIS, out of a world fleet FAO puts at 2.9 to 4.9 million. Coverage is steeply
+size-dependent: **under 1% of vessels below 12 m, about 20% of 12–24 m, up
+to 90% above 24 m.**
+
+**By fishing effort far from shore: over half.** AIS-carrying vessels account
+for more than 50% of effort beyond 100 nautical miles and as much as 80% of high
+seas fishing.
+
+**And the newer figure cuts the other way.** GFW's 2024 satellite work found
+about **75% of the world's industrial fishing vessels are not publicly tracked
+at all**, with that dark activity concentrated around **Africa and South Asia**
+— which is precisely where much of the documented abuse is.
+
+So: for distant-water industrial fleets, the picture is reasonable. For coastal
+and domestic fleets — Thai trawlers, Ghanaian canoes on Lake Volta,
+Indonesian and Bangladeshi inshore boats, which is where a large share of
+documented forced labour at sea occurs — the coverage is close to nothing.
+
+**The share of slavery-at-sea vessels GFW sees has no honest number**, for the
+same reason as the ports figure: nobody knows the denominator. What can be said
+is directional and worth saying plainly — the layer is strongest exactly
+where the vessels are largest and furthest out, and weakest exactly where the
+boats are small and close to shore.
+
+---
+
+# Fifty-fifth pass — the number, and two corrections
+
+## The GFW figure you actually asked for
+
+Of the vessels GFW **does** monitor: **14 to 26 percent are high-risk for forced
+labour.**
+
+McDonald et al., PNAS 2021, applied machine learning to 27 behavioural
+indicators across roughly **16,000 industrial longliners, squid jiggers and
+trawlers** tracked 2012–2018, trained on vessels with reported abuses. It
+found **2,300–4,200 vessels** high-risk in at least one year — 14–26%
+of the fleet studied — carrying **57,000 to 100,000 individuals**. The model
+predicted forced labour in over 90% of reported high-risk activity. Squid
+jiggers scored highest, then longliners, then trawlers.
+
+That is the honest answer to the question, and it is narrower than it sounds:
+it is 14–26% of one subset of AIS-tracked industrial vessels, not of the
+world fleet. The coverage figures from the last pass still bound it — those
+16,000 vessels sit inside the ~2–3% of the global fleet that carries AIS at
+all.
+
+## Allegations are in, and labelled
+
+You were right that excluding them was the wrong call. A pending case is on a
+public court record; the reader just needs to be able to tell it apart from a
+finding.
+
+Both are shown. The type line says **"Named in a pending case"** or **"Named in
+a concluded case"**, pending records carry lower severity, and the description
+opens with *This case has not concluded. It is an allegation on a public court
+record, not a finding, and nothing here should be read as though a court had
+decided it.*
+
+## Geocoded, not dropped
+
+Also right. Dropping a case for want of a coordinate loses a real record to a
+formatting problem.
+
+Addresses are now resolved through Nominatim to the coordinates of the address
+matched — not an approximation, an actual lookup. Where only a city is on
+the case record, that is what resolves, and the record is marked imprecise so it
+**draws as a ring rather than a pin**: the honest way to show "this town" as
+against "this door". Results are cached to `data/geocache.json` so a case is
+looked up once and never again, and Nominatim's one-request-per-second is
+respected.
+
+Only a case with no address and no city at all is left out now, and the run says
+how many.
+
+---
+
+# Fifty-sixth pass — the measurement on the map, and a source that moved
+
+## McDonald et al. is now on the map, not just in these notes
+
+It appears twice, because it answers two different questions a reader will have
+in two different places.
+
+In the **provenance panel**, under its own heading, where someone meets the
+at-sea material: the AIS coverage figures, the 75% of industrial vessels outside
+public tracking, and then the finding — 14–26% of roughly 16,000 tracked
+industrial longliners, squid jiggers and trawlers at high risk of forced labour
+between 2012 and 2018, 2,300–4,200 vessels, 57,000–100,000 people.
+
+In the **Global Fishing Watch source family**, in full, with the scope stated
+where it cannot be missed: *that is 14–26% of one subset of the 2–3% of
+the world fleet that is visible at all, which is why no honest figure exists for
+how much slavery at sea this layer sees in total — nobody knows the
+denominator.*
+
+Both end on the same sentence, because it is the one that matters: it is a share
+of what is watched, not of what is out there, and the gap between those two is
+the whole problem with counting anything at sea.
+
+## The HTLC database is no longer a download
+
+You are right and my instruction was wrong. It used to be on the site; it is now
+**obtained by request**. The harvester said "export it", which would have sent
+you looking for a button that is not there.
+
+Corrected, and the guidance now leads with what is reachable **without asking
+anyone**:
+
+- **CourtListener / RECAP** — a free REST API over US federal dockets.
+  Search 18 U.S.C. §§ 1589 (forced labor), 1590 (trafficking), 1591
+  (sex trafficking) and 1595 (civil remedy); the case captions give the
+  defendant names. It will not give addresses — those come from the
+  complaint documents, or from geocoding the business name and city, which the
+  harvester now does.
+- **DOJ and US Attorney press releases** — defendant, business and usually
+  the town. The fastest route to a first hundred records.
+- **BHRRC's lawsuit database** — profiles with corporate defendants,
+  international rather than US-only.
+
+On HTLC itself: ask for the federal civil trafficking case data and say what it
+is for. Expect it to take a while, and expect possible conditions on
+republication — worth agreeing **before** building on it rather than after,
+because a condition discovered late is a layer you have to pull down.
