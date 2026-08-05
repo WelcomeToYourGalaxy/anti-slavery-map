@@ -40,7 +40,7 @@ jobs:
       - name: facilities (courthouses, consulates)
         run: python3 harvest_facilities.py --all || true
       - name: located sites (SHERLOC, Delve, EJAtlas, ITSCi, GFW)
-        run: python3 harvest_sites.py --all || true
+        run: python3 harvest_sites.py --all --token "${{ secrets.GFW_TOKEN }}" || true
       - name: the buyer end (UFLPA, UK and AU statement registries)
         run: python3 harvest_companies.py --all || true
       - name: obligations (ILO ratifications)
