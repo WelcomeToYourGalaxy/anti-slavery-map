@@ -4441,3 +4441,148 @@ map has identified thousands of slave ships. It has not and cannot.
 25 MB at first, because every cell carried the same paragraph. Only the heaviest
 10% are drawn — 2,316 cells, 2.4 MB — and the run reports how many were
 left out. `--top` changes it.
+
+---
+
+# Seventieth pass — what 33.1 was, and two new layers at sea
+
+## 33.1 is Indonesia
+
+889 of 2,683 fishing vessel calls to Indonesian ports were made by vessels the
+model flagged high-risk. **33.1%.** The bare number was that percentage with its
+label stripped, which is fixed.
+
+## Why the kilns still are not showing
+
+Because the fix has not been uploaded yet. The workflow step in your repo still
+reads:
+
+```
+python3 harvest_points.py --ipis --hotlines
+```
+
+The corrected `harvest-all.yml` adds `--kilns --osh`. Running the workflow with
+the old file will keep producing exactly what it produced before, correctly.
+
+One caveat once it does run: HuggingFace's rows API returns 403 from this
+sandbox. It may behave differently from a GitHub runner. If it does not, the
+harvester prints the column-pruned `pyarrow` fallback.
+
+## You have the GFW key, so: named vessels, live
+
+`harvest_sites.py --vessels --token ...`
+
+A ship appears **only if a state or an RFMO has named it** — an IUU listing
+or a US withhold release order. Each is a determination about an identified
+vessel, published by the body that made it. Roughly thirty ships, positioned
+from GFW AIS, last reported position with its date.
+
+Vessels the behavioural model flagged are **not** on it and cannot be. Their
+identities are withheld in the source, deliberately, on a method disputed in the
+same journal. Reconstructing them would defeat a choice the authors made.
+
+Every record ends on the point that matters here: *a position is where a ship
+reported being, which is not the same as where it is — AIS can be switched
+off, and on this layer that is the signal rather than the noise.*
+
+The workflow now passes `${{ secrets.GFW_TOKEN }}`. Add the key under
+**Settings → Secrets and variables → Actions** with that name.
+
+## And the answer to the anonymity question: the effort grid
+
+You were right that the model data still has spatial value even anonymised. It
+does, and better than a vessel count would.
+
+The repository publishes **gridded fishing effort split into total and
+at-risk** — `s5_figure_3_data.csv`, 74,664 half-degree cells for 2018.
+Aggregated to one degree and cut to the cells holding 60% of the at-risk total:
+**1,065 cells**.
+
+Measured as **effort, not vessel count** — kilowatt-hours — which is
+the more honest measure at sea, since one large trawler working continuously is
+not one vessel's worth of anything. The squid jigger grounds off the Argentine
+shelf are the densest thing on it: **67% of the fishing effort in the busiest
+cell** was done by flagged vessels.
+
+Two layers, deliberately distinct: **thirty named ships that are findings**, and
+**a thousand cells that are a model pointing.** Different sources, different
+standing, different colours.
+
+---
+
+# Seventy-first pass
+
+**Prevalence shading was failing silently.** `togglePrevalence` lives outside the
+closure that owns `geojsonLayer` and `baseStyle`, so its restyle call threw a
+ReferenceError straight into its own `try/catch` — the checkbox moved and
+nothing happened, with no error visible. Both are now exposed on `window`, and
+the layer restyles again when the rates finish loading rather than only on
+toggle.
+
+**Hover panel gated to zoom ≤ 5**, the atlas-to-satellite handover. Reading
+the world at a glance is what it is for; once you are picking out individual
+points it is in the way.
+
+**Kizomba A and 668 others were open roadsteads** — offshore moorings, not
+ports. Kizomba A is an FPSO loading buoy 150 km off Angola. Correct entries in a
+navigational publication and wrong ones here: a dot in open ocean with no shore,
+no customs post and nobody to walk to. Excluded by harbour type;
+`--keep-offshore` restores them.
+
+**EJAtlas historical cases.** Three attempts before this worked:
+
+*Start year* was wrong — Firestone's Liberia concession dates from 1926 and
+the allegations are current. *First matching sentence* was wrong — it pulled
+text out of unrelated reference fields, so São Tomé's oil-palm case
+displayed a paragraph about Florida tomato workers.
+
+What works: match only in the **narrative columns**, read **every** sentence
+carrying a term, and keep the case if **any** of them is about the present.
+São Tomé drops (Portuguese arrival, 1470s sugar), Firestone stays,
+Immokalee stays. **46 cases, 9 dropped as historical-only.**
+
+Deleted throughout: *Unusually for this field...*, *a report does not have*,
+*this is not a vessel and nobody here is identified*, the ILO C188 paragraph and
+the customs-classification sentence from port records, and the contradictory
+*treat it as where to look / do not approach* pair.
+
+The port share now reads: **6.3% of all fishing-vessel port calls to this
+country** were made by flagged vessels, *that figure is for the country as a
+whole — it was not measured at this particular port.*
+
+---
+
+# Seventy-second pass — the kilns, finally
+
+Your screenshot answered it in one look, and the answer was not the network.
+
+**There are no coordinate columns.** The dataset is image tiles:
+
+```
+image_name   image   dota_label   yolo_aa_label   yolo_obb_label
+20.1249_72.7295.png
+```
+
+**The position is in the filename.** `20.1249_72.7295.png` is
+latitude_longitude. Every column-name guess I made — `lat`, `latitude`,
+`centroid_lat` — returned nothing because none of them exists, and a parser
+that yields zero looks exactly like a request that failed. I spent three rounds
+blaming the network for a schema I had never looked at.
+
+Now parsed from the name, with a fallback to real columns if they ever appear.
+
+**And the labels give a count.** Each row is a tile, and the label list length is
+how many kilns were annotated in it — up to 22. So a record is not one kiln,
+it is *"Brick kilns — 12 here"*, sized by how many. Tiles with eight or more
+carry higher severity.
+
+Every record says what that position actually is: *the tile's own reference
+point — the dataset records kilns as annotated boxes inside a satellite tile
+rather than as individual coordinates, so this locates them to within about a
+kilometre, not to a chimney.*
+
+Tested against a stubbed endpoint in the real shape: 100 tiles parsed,
+coordinates read from filenames, counts read from label lists, singular and
+plural both correct.
+
+**71,900 tiles in the train split alone.** Decimation applies as before.

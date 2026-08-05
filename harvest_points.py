@@ -70,10 +70,7 @@ UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
       "Chrome/124.0 Safari/537.36")
 
 CAVEAT = (" <b>This is a site in a sector where forced or child labour is documented "
-          "to concentrate. It is not evidence that this particular site uses it.</b> "
-          "Treat it as where to look, not as a finding. Do not approach a site on the "
-          "strength of a dot on a map \u2014 the organisations under Allies and Legal "
-          "Help have done this before in this jurisdiction.")
+          "to concentrate. It is not evidence that this particular site uses it.</b>")
 
 
 
@@ -303,10 +300,9 @@ def harvest_ipis(a):
                      + (" <b>Children under 15 observed working at this site.</b>" if flagged else "")
                      + ((" Tasks recorded for them: %s." % childwork) if childwork else "")
                      + (" Armed interference recorded: %s." % armed if armed and armed.lower() not in ("none", "0") else "")
-                     + " IPIS has mapped roughly 2,800 sites in eastern DRC since 2009 through "
-                       "repeat field visits, recording child labour, armed-group interference, "
-                       "worker numbers and minerals per site. Unusually for this field, the "
-                       "child-labour flag is a direct field observation rather than an inference."
+                     + " IPIS has mapped these sites through repeat field visits, recording "
+                       "child labour, armed-group interference, worker numbers and minerals "
+                       "per site."
                      + ("" if (flagged or forced) else CAVEAT)),
         })
     return out
@@ -321,6 +317,18 @@ KILN_SOURCES = [
 HF_ROWS = ("https://datasets-server.huggingface.co/rows"
            "?dataset=SustainabilityLabIITGN%%2FSentinelKilnDB&config=default&split=%s"
            "&offset=%d&length=100")
+
+
+def _label_count(low):
+    """How many kilns were annotated in this tile."""
+    n = 0
+    for k in ("dotalabel", "yoloaalabel", "yoloobblabel"):
+        v = low.get(k)
+        if isinstance(v, list):
+            n = max(n, len(v))
+        elif isinstance(v, str) and v.strip().startswith("["):
+            n = max(n, v.count(",") + 1 if v.strip() != "[]" else 0)
+    return n
 
 
 def kilns_from_hf(a):
@@ -344,14 +352,50 @@ def kilns_from_hf(a):
                     print("  split %-11s %s" % (split, str(ex)[:52]))
                 break
             rows = j.get("rows") or []
+
+            # Diagnostics, because three runs have produced nothing and I have
+            # been guessing at the cause from outside. This prints what the
+            # endpoint ACTUALLY returned: the HTTP shape, the column names, and
+            # one row. If the columns are not lat/lon the parser yields zero
+            # silently, which looks identical to the request failing.
+            if offset == 0 and split == "train":
+                try:
+                    feats = [c.get("name") for c in (j.get("features") or [])]
+                    print("    columns returned: %s"
+                          % (", ".join(str(f) for f in feats[:14]) or "none"))
+                    if rows:
+                        r0 = rows[0].get("row") or {}
+                        print("    first row keys:   %s"
+                              % ", ".join(list(r0)[:14]))
+                        print("    first row sample: %s"
+                              % {k: str(v)[:24] for k, v in list(r0.items())[:5]})
+                    else:
+                        print("    payload keys:     %s" % ", ".join(list(j)[:10]))
+                except Exception as ex:
+                    print("    could not describe the payload: %s" % str(ex)[:50])
+
             if not rows:
                 empty += 1
                 if empty > 1:
                     break
             for wrapper in rows:
                 r = wrapper.get("row") or {}
-                lat = r.get("lat", r.get("latitude"))
-                lng = r.get("lon", r.get("lng", r.get("longitude")))
+                # THERE ARE NO COORDINATE COLUMNS. The dataset is image tiles:
+                # image_name, image, dota_label, yolo_aa_label, yolo_obb_label.
+                # The position is in the FILENAME -- "20.1249_72.7295.png" is
+                # latitude_longitude -- which is why every column-name guess
+                # returned nothing. Parse the name.
+                low = {str(k).lower().replace("_", ""): v for k, v in r.items()}
+                lat = next((low[k] for k in ("lat", "latitude", "y", "centroidlat")
+                            if k in low), None)
+                lng = next((low[k] for k in ("lon", "lng", "longitude", "x",
+                                             "centroidlon") if k in low), None)
+                if lat is None or lng is None:
+                    nm = str(low.get("imagename") or low.get("filename")
+                             or low.get("name") or "")
+                    m = re.match(r"^(-?\d+\.\d+)_(-?\d+\.\d+)", nm)
+                    if m:
+                        lat, lng = m.group(1), m.group(2)
                 try:
                     lat, lng = float(lat), float(lng)
                 except (TypeError, ValueError):
@@ -361,7 +405,7 @@ def kilns_from_hf(a):
                     continue
                 seen.add(k)
                 out.append({"lat": lat, "lng": lng,
-                            "kiln_type": r.get("kiln_type") or r.get("type") or ""})
+                            "kiln_type": "", "count": _label_count(low)})
             offset += 100
             if offset and offset % 5000 == 0:
                 print("    %s: %d rows so far" % (split, len(out)))
@@ -376,13 +420,24 @@ def harvest_kilns(a):
         rows = kilns_from_hf(a)
         if rows:
             out = [{
-                "name": "Brick kiln" + ((" (%s)" % r["kiln_type"]) if r["kiln_type"] else ""),
+                "name": (("Brick kilns \u2014 %d here" % r["count"]) if (r.get("count") or 0) > 1
+                         else "Brick kiln"),
                 "source": "kilns", "type": "Brick kiln",
                 "lat": r["lat"], "lng": r["lng"], "precise": True,
-                "impact": 3, "status": "Site detected",
+                "impact": 4 if (r.get("count") or 0) >= 8 else 3,
+                "status": (("%d kilns" % r["count"]) if (r.get("count") or 0) > 1
+                           else "1 kiln") if r.get("count") else "Detected",
                 "state": "Indo-Gangetic Plain",
                 "url": "https://huggingface.co/datasets/SustainabilityLabIITGN/SentinelKilnDB",
-                "desc": ("Brick kiln detected from Sentinel-2 satellite imagery and "
+                "desc": ((("<b>%d brick kilns</b> annotated in this satellite tile. "
+                           % r["count"]) if (r.get("count") or 0) > 1
+                          else ("<b>One brick kiln</b> annotated in this satellite tile. "
+                                if r.get("count") else ""))
+                         + "The position is the tile\u2019s own reference point \u2014 the "
+                           "dataset records kilns as annotated boxes inside a satellite "
+                           "tile rather than as individual coordinates, so this locates "
+                           "them to within about a kilometre, not to a chimney. "
+                         + "Detected from Sentinel-2 satellite imagery and "
                          "hand-validated, from SentinelKilnDB \u2014 62,671 kilns across the "
                          "Indo-Gangetic Plain covering India, Pakistan, Bangladesh and "
                          "Afghanistan. Brick kilns are the most consistently documented "
