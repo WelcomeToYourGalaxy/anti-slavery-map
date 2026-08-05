@@ -42,7 +42,7 @@ from collections import Counter
 HERE = os.path.dirname(os.path.abspath(__file__))
 LAYERS = ["projects.json", "cases.json", "prevalence.json", "points.json",
           "bulk.json", "directory.json", "wire.json", "hotlines.json",
-          "routes.json", "infra.json", "facilities.json", "sites.json", "companies.json"]
+          "routes.json", "infra.json", "facilities.json", "sites.json", "companies.json", "law.json", "suspected.json"]
 
 # Layers deliberately left OUT of the bundle and fetched at runtime instead.
 # infra.json is 3,630 ports at 2.1 MB embedded -- a quarter of the file for the

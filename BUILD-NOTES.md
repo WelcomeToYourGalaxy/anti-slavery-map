@@ -4228,3 +4228,216 @@ visible rather than buried in a citation.
 
 That leaves enforcement as the only genuinely independent second selector, which
 is the right shape: one modelled signal, one recorded fact.
+
+---
+
+# Sixty-sixth pass — the dashboard I described twice without looking
+
+Your screenshots show I was wrong about it twice: there is **no export button**,
+and there is **no port-of-entry breakdown**. The UFLPA dashboard reports by
+**country of origin**, industry, commodity and exam result. The enforcement
+selector on the ports layer cannot be filled from it, because the data it wants
+does not exist there.
+
+What is on it is more useful than what I was asking for. **65 countries of
+origin with detained shipment value**, transcribed from your screenshots and
+built as its own layer.
+
+## Two things in the numbers that change how they read
+
+**The largest values are not Chinese.** Malaysia $1.62B, Viet Nam $1.03B,
+Thailand $546M — China is fourth at $489M. The Act reaches goods with
+Xinjiang inputs wherever they were assembled, so this ranks **the shape of the
+transshipment route**, not where forced labour occurred. Read as a
+where-it-happens ranking it is actively misleading, and every record says so.
+
+**Examined is not denied.** Of $3.96B examined, **$2.96B was released** and
+$954M denied — roughly three quarters by value cleared the presumption. A
+country appearing here means shipments were stopped, not that they were found
+tainted. That sentence is in every record too, because without it this layer
+reads as an accusation against 65 countries.
+
+Totals carried: 42,807 shipments, 24,344 denied, 16,800 released, 1,663 pending.
+
+## Where this leaves the ports layer
+
+One selector, not two. The PNAS port-state data stands alone, and the layer
+description should not imply a second source is in there. The EU forced labour
+regulation applies from December 2027 and will produce the first genuinely
+independent enforcement source; until then there is nothing to join.
+
+---
+
+# Sixty-seventh pass
+
+**Timeframe on the collapsed case line.** *116,418 identified · by type and
+period* said it was broken down by period without saying which — the one
+thing a collapse should not lose. Years are now carried through the collapse and
+the line reads *· by type, 2007–2022*.
+
+**Corridor nodes off the right edge — the real cause.** Unwrapping stops the
+curve crossing the whole map but leaves the far half drawn beyond ±180,
+where nothing renders. Corridors crossing the antimeridian are now drawn as
+**two curves meeting at the date line**. One catch found in testing: a Fiji
+corridor starts at 178E and its second sample is already past 180, so requiring
+two points on each side skipped the split entirely. One point plus the edge is a
+valid segment. Verified on Fiji→Peru: two polylines, every point inside
+±180.
+
+**Port descriptions cut** to the selector reasoning plus the one sentence you
+kept. Also fixed a bare `6.3` sitting in the text — the share column was
+being carried as an unlabelled note; it now reads *6.3% of fishing vessel calls
+to this port state were flagged.*
+
+**Prevalence shading**, off by default. Two decisions in it:
+
+Scaled on the **rate per 1,000**, not the headcount — by headcount India and
+China swamp everything and it becomes a population map.
+
+Capped at **22% fill at its darkest**, in the map's own olive rather than a heat
+ramp. A choropleth over satellite imagery is usually a mistake: fill it enough
+to read properly and you have covered the thing people came to look at. North
+Korea at 104.6 per 1,000 reaches 0.22; the UK at 1.8 sits at 0.08. It is a wash
+that says "more here" without claiming a precision the estimate does not have.
+
+**CBP withhold release orders** carried the tag `conserve:compensation`, which
+is what filed it under *Get a survivor their status, wages and compensation*.
+You were right that it is tangential — an import ban is not a compensation
+route. Tag removed, and the sentence arguing the connection cut with it.
+
+---
+
+# Sixty-eighth pass — the international block was about the wrong subject
+
+I went looking for how international resources are placed, and found something
+more important than the placement question.
+
+**`INTL_MEMBER` lists anti-corruption bodies.** GRECO, EUROSAI, OECD, AFROSAI,
+ASOSAI, MESICIC, ARABOSAI, ACINET — 137 countries mapped to supreme audit
+institutions and corruption review mechanisms. Correct for the legislative,
+judicial and executive maps it was inherited from. **Wrong here: not one of
+those bodies supervises forced labour or trafficking.**
+
+A user clicking a country on an anti-slavery map was being told which
+anti-corruption review body it belongs to, under a heading implying relevance.
+
+## What replaced it
+
+**The ILO ratification record**, which `harvest_law.py` already produces per
+country. It is accurate by construction rather than transcribed, and it is the
+right answer to "what has this state committed to" for this subject. The block
+now reads *What this state has already promised* and uses `law.json` when
+present.
+
+**GRETA**, added as its own table — the Council of Europe's Group of Experts
+on Action against Trafficking in Human Beings, which is the exact analogue of
+GRECO for this subject and publishes country evaluation reports naming what a
+state failed to do. 46 Council of Europe states.
+
+**ACTIP** for the 10 ASEAN states, with the Bohol work plan as its
+implementation frame.
+
+Both verified: GRETA 46, ACTIP 10, and the block renders correctly with and
+without `law.json` loaded.
+
+## And the answer to your placement question
+
+International resources are **not placed on the map as icons at all**. They are
+a text block inside each country's popup, plus the worldwide fallback list. So
+there is nothing currently geolocated to headquarters, because nothing is
+geolocated at all.
+
+Giving them HQ coordinates and their own icon class is a real change and a
+reasonable one — the ILO in Geneva, IOM in Geneva, UNODC in Vienna, ITF in
+London, Walk Free in Perth. It is the next piece of work rather than something I
+should have slipped into this pass.
+
+---
+
+# Sixty-ninth pass
+
+## Why the kilns never appeared
+
+The workflow step read:
+
+```
+python3 harvest_points.py --ipis --hotlines
+```
+
+**No `--kilns`.** The harvester has worked since it was written; it was never
+being called. Same for `--osh`. Both added:
+
+```
+python3 harvest_points.py --ipis --kilns --osh --hotlines
+```
+
+A harvester that is never invoked looks exactly like a harvester that is
+failing, which is why this survived several rounds of log-reading.
+
+## The port text you quoted is stale
+
+`33.1 (country-level: this applies to the port state, not to this port
+specifically) Port listed in the World Port Index (ID), small harbour.` is the
+pre-trim description. The current `infra.json` has neither the unlabelled share
+nor the WPI boilerplate — verified. The copy in the repo predates the fix.
+
+## The intent menu, collapsed
+
+Seven phase headings became **two**: *Support someone* (8 goals) and
+*Investigate it* (16). All 24 goals kept, none dropped, verified against the
+selector.
+
+The seven described a **workflow**, and a workflow is what an investigator has.
+Someone who needs help now does not have a workflow, they have a situation. So
+the split is by who is reading, and support comes first — nobody in trouble
+should have to scroll past a supply-chain tool to reach a helpline.
+
+---
+
+# Seventieth pass — the number, the kilns, and the sea
+
+## 33.1 is Indonesia
+
+It is the `share_pct` column of the PNAS port-state table: **2,683 fishing
+vessel calls to Indonesian ports, 889 of them by vessels the model scored
+high-risk — 33.1%.** In the old build it was passed through as an unlabelled
+note and printed as a bare number. Already fixed; the copy in the repo predates
+it.
+
+## The kilns: the flag, not the harvester
+
+`harvest-all.yml` ran `harvest_points.py --ipis --hotlines`. **No `--kilns`.**
+The step never asked for them, so a correct repo and a correct workflow run
+still produced nothing — which is exactly what you observed. `--kilns` and
+`--osh` added.
+
+Worth knowing the second half: the HuggingFace rows API returns 403 from here.
+It may not from a GitHub runner. If it does, the failure message now prints the
+column-pruned `pyarrow` fallback rather than the `load_dataset` call that
+exhausted your machine.
+
+## At sea, in two layers that must never look alike
+
+**`harvest_vessels.py --named`** — ships on an RFMO IUU list or named in a
+withhold release order, by name and IMO, positioned by their last recorded port
+visit in Global Fishing Watch. Around 29. Each is a determination about an
+identified ship.
+
+**`harvest_vessels.py --grid`** — your question about the anonymised data
+was right. The repo carries `s5_figure_3_data.csv`: **at-risk fishing effort on
+a 2.5° grid**, 46,086 cells with effort, summed across drifting longlines,
+squid jiggers and trawlers.
+
+It answers exactly what you asked — scale and geography without identifying
+anyone. And it concentrates hard: half the cells carry 95% of the effort, and
+the single heaviest square is the **southwest Atlantic off Argentina at 70.8%
+of all effort in that cell**, which is the squid jigger grounds, the gear class
+the paper scored highest.
+
+Drawn as its own layer, its own colour, and every record opens with *this is not
+a vessel and nobody here is identified*. Conflating the two would suggest the
+map has identified thousands of slave ships. It has not and cannot.
+
+25 MB at first, because every cell carried the same paragraph. Only the heaviest
+10% are drawn — 2,316 cells, 2.4 MB — and the run reports how many were
+left out. `--top` changes it.

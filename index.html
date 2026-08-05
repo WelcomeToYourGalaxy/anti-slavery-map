@@ -502,6 +502,8 @@ body.info-open.wire-up #indexPanel{top:122px !important;}
   <div id="legBody">
   
   <label class="f-status"><input type="checkbox" id="projChk" checked> Live cases &amp; sites</label>
+  <label class="f-status"><input type="checkbox" id="prevChk" onchange="togglePrevalence(this.checked)"> Shade by estimated prevalence</label>
+  <div class="facf-hint" style="margin:2px 0 6px;">Walk Free\u2019s estimate, as a <b>rate per 1,000 people</b> rather than a headcount \u2014 by headcount India and China swamp everything and it becomes a population map. Deliberately faint: a fill dark enough to read would cover the satellite imagery underneath, and the estimate is not precise enough to deserve that.</div>
   <label class="f-status"><input type="checkbox" id="routeChk" checked onchange="toggleRoutes(this.checked)"> Trafficking corridors</label>
   <div class="facf-hint" style="margin:2px 0 6px;">Origin → destination, from case records. <b style="color:#7fb3d0">Blue</b> labour, <b style="color:#c98ac0">pink</b> sexual, <b style="color:#c0a86a">gold</b> mixed; thickness is volume. Curved on purpose — a straight line would read as a path travelled, and this is a pair of countries and a count, not a journey. A dashed ring marks trafficking <i>within</i> a country, which is the majority of recorded cases in several of them.</div>
   <div id="dataStatus"></div>
@@ -594,7 +596,7 @@ const internationalBodies =[
  {"name":"US DOL \u2014 List of Goods Produced by Child Labor or Forced Labor","url":"https://www.dol.gov/agencies/ilab/reports/child-labor/list-of-goods","desc":"204 goods across 82 countries and areas as of 5 September 2024 \u2014 the largest edition, adding 72 items including aluminium from China and twelve critical minerals, and removing four (among them shrimp from Thailand) where the problem was found reduced to isolated incidents. You CAN get: a downloadable good-and-country index, the evidence summaries behind each listing, and a public submission route to propose additions. You CAN'T get: named companies, or a site. It is explicitly a risk and awareness tool, not a sanctions list.","kind":"structured","voice":"official","skind":"database","tags":["projects:trackers","corporate:supply","spending:debarred"],"type":"records-data","trust":"record","scope":"own"},
  {"name":"US DOL \u2014 Sweat & Toil and the annual child labour findings","url":"https://www.dol.gov/agencies/ilab/resources/reports/child-labor/findings","desc":"The country-by-country Findings on the Worst Forms of Child Labor, with what each government did and did not do that year, plus the Sweat & Toil dataset and app. The country chapters name the specific legal and enforcement gaps \u2014 which is exactly what a submission or a campaign needs to cite.","kind":"structured","voice":"official","skind":"database","tags":["projects:trackers","environment:inspect","records:publications"],"type":"records-data","trust":"record","scope":"own"},
  {"name":"UFLPA Entity List (US DHS)","url":"https://www.dhs.gov/uflpa-entity-list","desc":"Companies whose goods are subject to a rebuttable presumption of forced labour and barred from US import. 144 entities after the January 2025 expansion \u2014 the largest single addition since the Act took effect \u2014 covering cotton, textiles, aluminium, silicon, coal and metals. Updated by Federal Register notice, so subscribe to that docket rather than checking the page.","kind":"structured","voice":"official","skind":"customs","tags":["spending:debarred","corporate:supply"],"type":"records-data","trust":"record","scope":"own"},
- {"name":"US CBP \u2014 withhold release orders and findings","url":"https://www.cbp.gov/trade/forced-labor/withhold-release-orders-and-findings","desc":"Orders under 19 U.S.C. \u00a7 1307 barring a named producer's goods, and the findings that follow. Note the revocations as well: they show what a company had to do to get the order lifted, which is the clearest public statement anywhere of what remediation is supposed to look like.","kind":"structured","voice":"official","skind":"customs","tags":["spending:debarred","conserve:compensation"],"type":"records-data","trust":"record","scope":"own"},
+ {"name":"US CBP \u2014 withhold release orders and findings","url":"https://www.cbp.gov/trade/forced-labor/withhold-release-orders-and-findings","desc":"Orders under 19 U.S.C. \u00a7 1307 barring a named producer's goods, and the findings that follow. Revocations are listed too, showing what a company did to get an order lifted.","kind":"structured","voice":"official","skind":"customs","tags":["spending:debarred"],"type":"records-data","trust":"record","scope":"own"},
  {"name":"US CBP \u2014 file a forced labour allegation","url":"https://www.cbp.gov/trade/forced-labor/e-allegations","desc":"Anyone, anywhere, can submit information alleging that goods made with forced labour are being imported into the United States. Submissions can be anonymous. This is one of the few enforcement routes in the world open to a member of the public with no standing and no lawyer.","kind":"structured","voice":"official","skind":"customs","tags":["courts:grievance","spending:debarred"],"type":"records-data","trust":"record","scope":"own"},
  {"name":"US State Department \u2014 Trafficking in Persons Report","url":"https://www.state.gov/trafficking-in-persons-report/","desc":"Annual country-by-country assessment with tier rankings, which carry real consequences for non-humanitarian assistance. Read it for the country narratives \u2014 prosecutions, convictions, victims identified, and what the government failed to do \u2014 while noting that the tiers are a US government judgement and are contested.","kind":"structured","voice":"official","skind":"court","tags":["projects:trackers","records:publications"],"type":"records-data","trust":"record","scope":"own"}]},
 {"name":"European Union","lat":50.8438,"lng":4.3826,"trackers":[
@@ -1003,38 +1005,45 @@ function mediaGroupsHTML(list,kind){ if(!list||!list.length)return '';
    The same goals as the selector, in the same order and under the same phase
    headings, so the two halves of the interface agree. */
 var INTENT_PHASES=[
- ["If someone needs help now",
+ /* Two families, not seven headings. The seven phases described a workflow, and
+    a workflow is what an investigator has \u2014 someone who needs help now does
+    not have a workflow, they have a situation. So the top split is by WHO IS
+    READING, and everything else nests under one of the two.
+
+    SUPPORT is anything that helps a person: reaching them, getting them status,
+    wages, a lawyer, a shelter, a union. INVESTIGATE is anything that builds a
+    case: finding the record, tracing the product, following the money, using
+    the law. The order matters too \u2014 support first, because someone in
+    trouble should not have to scroll past a supply-chain tool to find a
+    helpline. */
+ ["Support someone",
    [["help-now","Help someone in this situation right now"],
     ["report","Report someone you believe is a victim"],
     ["victim-rights","Get a survivor their status, wages and compensation"],
-    ["child-out","Get a child out of hazardous work"]]],
- ["Find the case",
-   [["where","See where this is known to happen, and in what"],
-    ["find-case","Find the record of a site, raid or case"],
-    ["inspection","Get the inspection and enforcement record"]]],
- ["Trace it to a company",
-   [["product","Trace a product back to where it was made"],
-    ["behind-co","Find out who owns and profits from the company"],
-    ["statements","Read what the company says about its supply chain"],
-    ["recruiters","Identify the labour brokers and recruiters"]]],
- ["Follow the money",
-   [["money-trail","Follow the fees, the debt and the unpaid wages"],
-    ["contracts","See who is buying it with public money"],
-    ["bans","Check import bans, sanctions and debarment lists"]]],
- ["Get the documents",
-   [["foi","Request government records (FOI)"]]],
- ["Use the law",
-   [["courts","Find past cases and precedent"],
-    ["complain","File a complaint where there is no court"],
-    ["lawreform","Go after the rule itself, not just this case"]]],
- ["Go public, and get help",
-   [["watch","Watch a site, a fleet or a facility over time"],
-    ["allies","Find watchdogs, journalists and allies"],
+    ["child-out","Get a child out of hazardous work"],
     ["find-help","Find local organisations and unions to enlist"],
     ["find-lawyers","Find lawyers who take these cases"],
-    ["raise-money","Fund your own campaign or case"],
-    ["donate","Give money to the organisations fighting this"]]]
+    ["donate","Give money to the organisations fighting this"],
+    ["raise-money","Fund your own campaign or case"]]],
+ ["Investigate it",
+   [["where","See where this is known to happen, and in what"],
+    ["find-case","Find the record of a site, raid or case"],
+    ["inspection","Get the inspection and enforcement record"],
+    ["product","Trace a product back to where it was made"],
+    ["behind-co","Find out who owns and profits from the company"],
+    ["statements","Read what the company says about its supply chain"],
+    ["recruiters","Identify the labour brokers and recruiters"],
+    ["money-trail","Follow the fees, the debt and the unpaid wages"],
+    ["contracts","See who is buying it with public money"],
+    ["bans","Check import bans, sanctions and debarment lists"],
+    ["foi","Request government records (FOI)"],
+    ["courts","Find past cases and precedent"],
+    ["complain","File a complaint where there is no court"],
+    ["lawreform","Go after the rule itself, not just this case"],
+    ["watch","Watch a site, a fleet or a facility over time"],
+    ["allies","Find watchdogs, journalists and allies"]]]
 ];
+
 
 /* Sub-filters that no goal claims directly. Without this they would all land in
    "Other", which is where a directory goes to die. */
@@ -1133,6 +1142,35 @@ function topSourcesHTML(list){ if(!list||!list.length)return '';
   top.forEach(function(t){ var b=BEST_POPULAR.has(_dom(t.url))?'<span class="ts-b ts-pop">Popular</span>':'<span class="ts-b ts-help">Entry point</span>';
     s+='<div class="ts-row">'+(_hasUrl(t.url)?('<a href="'+_esc(_href(t.url))+'" target="_blank" rel="noopener">'+_esc(t.name)+'</a>'):('<span class="ts-nourl">'+_esc(t.name)+'</span>'))+' '+b+'</div>'; });
   s+='</div>'; return s; }
+
+/* Regional mechanisms that monitor trafficking and forced labour specifically.
+   GRETA is the Council of Europe's anti-trafficking monitoring body — the
+   exact analogue of GRECO for this subject, and it publishes country
+   evaluation reports naming what a state failed to do. */
+const TRAFFICK_BODY = {};
+(function(){
+  var COE = ["Albania","Andorra","Armenia","Austria","Azerbaijan","Belgium",
+    "Bosnia and Herzegovina","Bulgaria","Croatia","Cyprus","Czech Republic",
+    "Denmark","Estonia","Finland","France","Georgia","Germany","Greece",
+    "Hungary","Iceland","Ireland","Italy","Latvia","Liechtenstein","Lithuania",
+    "Luxembourg","Malta","Moldova","Monaco","Montenegro","Netherlands",
+    "North Macedonia","Norway","Poland","Portugal","Romania","San Marino",
+    "Serbia","Slovakia","Slovenia","Spain","Sweden","Switzerland","Turkey",
+    "Ukraine","United Kingdom"];
+  COE.forEach(function(c){
+    TRAFFICK_BODY[c] = ["GRETA \u2014 Council of Europe Group of Experts on Action "
+      + "against Trafficking in Human Beings. Publishes country evaluation "
+      + "reports naming what a state has failed to do."];
+  });
+  var ASEAN = ["Brunei","Cambodia","Indonesia","Laos","Malaysia","Myanmar",
+               "Philippines","Singapore","Thailand","Vietnam"];
+  ASEAN.forEach(function(c){
+    TRAFFICK_BODY[c] = (TRAFFICK_BODY[c]||[]).concat([
+      "ASEAN Convention Against Trafficking in Persons (ACTIP), with the "
+      + "Bohol work plan as its implementation frame."]);
+  });
+})();
+
 const INTL_MEMBER={"Austria": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Belgium": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Bulgaria": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Croatia": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Cyprus": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Czech Republic": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Denmark": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Estonia": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Finland": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "France": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Germany": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Greece": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Hungary": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Ireland": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Italy": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Latvia": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Lithuania": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Luxembourg": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Malta": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Netherlands": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Poland": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Portugal": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Romania": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Slovakia": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Slovenia": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Spain": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Sweden": ["European Commission (EU Executive)", "GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Albania": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Andorra": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Armenia": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Azerbaijan": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Bosnia and Herzegovina": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Georgia": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Iceland": ["GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "LIE": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Moldova": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "MCO": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Montenegro": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "North Macedonia": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Norway": ["GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "SMR": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Serbia": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Switzerland": ["GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Turkey": ["GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Ukraine": ["GRECO (Council of Europe Anti-Corruption)", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "United Kingdom": ["GRECO (Council of Europe Anti-Corruption)", "OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "United States": ["GRECO (Council of Europe Anti-Corruption)", "OECD", "MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)"], "Kazakhstan": ["GRECO (Council of Europe Anti-Corruption)", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Australia": ["OECD", "Pacific Association of Supreme Audit Institutions (PASAI)"], "Canada": ["OECD", "MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)"], "Chile": ["OECD", "MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Colombia": ["OECD", "MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Costa Rica": ["OECD", "MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Israel": ["OECD", "European Organisation of Supreme Audit Institutions (EUROSAI)"], "Japan": ["OECD", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "South Korea": ["OECD", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Mexico": ["OECD", "MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "New Zealand": ["OECD", "Pacific Association of Supreme Audit Institutions (PASAI)"], "Algeria": ["African Union Advisory Board Against Corruption (AUABC)", "Arab Anti-Corruption & Integrity Network (ACINET)", "African Organisation of Supreme Audit Institutions (AFROSAI)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Bahrain": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Comoros": ["African Union Advisory Board Against Corruption (AUABC)", "Arab Anti-Corruption & Integrity Network (ACINET)", "African Organisation of Supreme Audit Institutions (AFROSAI)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Djibouti": ["African Union Advisory Board Against Corruption (AUABC)", "Arab Anti-Corruption & Integrity Network (ACINET)", "African Organisation of Supreme Audit Institutions (AFROSAI)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Egypt": ["African Union Advisory Board Against Corruption (AUABC)", "Arab Anti-Corruption & Integrity Network (ACINET)", "African Organisation of Supreme Audit Institutions (AFROSAI)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Iraq": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Jordan": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Kuwait": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Lebanon": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Libya": ["African Union Advisory Board Against Corruption (AUABC)", "Arab Anti-Corruption & Integrity Network (ACINET)", "African Organisation of Supreme Audit Institutions (AFROSAI)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Mauritania": ["African Union Advisory Board Against Corruption (AUABC)", "Arab Anti-Corruption & Integrity Network (ACINET)", "African Organisation of Supreme Audit Institutions (AFROSAI)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Morocco": ["African Union Advisory Board Against Corruption (AUABC)", "Arab Anti-Corruption & Integrity Network (ACINET)", "African Organisation of Supreme Audit Institutions (AFROSAI)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Oman": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Palestine": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Qatar": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Saudi Arabia": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Somalia": ["African Union Advisory Board Against Corruption (AUABC)", "Arab Anti-Corruption & Integrity Network (ACINET)", "African Organisation of Supreme Audit Institutions (AFROSAI)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Sudan": ["African Union Advisory Board Against Corruption (AUABC)", "Arab Anti-Corruption & Integrity Network (ACINET)", "African Organisation of Supreme Audit Institutions (AFROSAI)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Syria": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Tunisia": ["African Union Advisory Board Against Corruption (AUABC)", "Arab Anti-Corruption & Integrity Network (ACINET)", "African Organisation of Supreme Audit Institutions (AFROSAI)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "United Arab Emirates": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Yemen": ["Arab Anti-Corruption & Integrity Network (ACINET)", "Arab Organization of Supreme Audit Institutions (ARABOSAI)"], "Brunei": ["ASEAN Parties Against Corruption (ASEAN-PAC)", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Cambodia": ["ASEAN Parties Against Corruption (ASEAN-PAC)", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Indonesia": ["ASEAN Parties Against Corruption (ASEAN-PAC)", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Laos": ["ASEAN Parties Against Corruption (ASEAN-PAC)", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Malaysia": ["ASEAN Parties Against Corruption (ASEAN-PAC)", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Myanmar": ["ASEAN Parties Against Corruption (ASEAN-PAC)", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Philippines": ["ASEAN Parties Against Corruption (ASEAN-PAC)", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Singapore": ["ASEAN Parties Against Corruption (ASEAN-PAC)", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Thailand": ["ASEAN Parties Against Corruption (ASEAN-PAC)", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Vietnam": ["ASEAN Parties Against Corruption (ASEAN-PAC)", "Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Antigua and Barbuda": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Argentina": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Bahamas": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Barbados": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Belize": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Bolivia": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Brazil": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Dominica": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Dominican Republic": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Ecuador": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "El Salvador": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Grenada": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Guatemala": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Guyana": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Haiti": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)"], "Honduras": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Jamaica": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Nicaragua": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Panama": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Paraguay": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Peru": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "St Kitts and Nevis": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "St Lucia": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "St Vincent and the Grenadines": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Suriname": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Trinidad & Tobago": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Caribbean Organisation of Supreme Audit Institutions (CAROSAI)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Uruguay": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Venezuela": ["MESICIC — Follow-Up Mechanism, Inter-American Convention against Corruption (OAS)", "Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Angola": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Benin": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Botswana": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Burkina Faso": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Burundi": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Cabo Verde": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Cameroon": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Chad": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Republic of the Congo": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "DRC (Congo)": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Côte d’Ivoire": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Equatorial Guinea": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Eritrea": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Eswatini": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Ethiopia": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Gabon": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Gambia": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Ghana": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Guinea": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Guinea-Bissau": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Kenya": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Lesotho": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Liberia": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Madagascar": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Malawi": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Mali": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Mauritius": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Mozambique": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Namibia": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Niger": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Nigeria": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Rwanda": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "São Tomé and Príncipe": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Senegal": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Seychelles": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Sierra Leone": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "South Africa": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "South Sudan": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Tanzania": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Togo": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Uganda": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Zambia": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Zimbabwe": ["African Union Advisory Board Against Corruption (AUABC)", "African Organisation of Supreme Audit Institutions (AFROSAI)"], "Afghanistan": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Bangladesh": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Bhutan": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "China": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "India": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Iran": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Kyrgyzstan": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Maldives": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Mongolia": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Nepal": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "North Korea": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Pakistan": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Sri Lanka": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "TJK": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Timor-Leste": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Turkmenistan": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "UZB": ["Asian Organization of Supreme Audit Institutions (ASOSAI)"], "Russia": ["European Organisation of Supreme Audit Institutions (EUROSAI)"], "Cuba": ["Organization of Latin American & Caribbean Supreme Audit Institutions (OLACEFS)"], "Fiji": ["Pacific Association of Supreme Audit Institutions (PASAI)"], "Kiribati": ["Pacific Association of Supreme Audit Institutions (PASAI)"], "Marshall Islands": ["Pacific Association of Supreme Audit Institutions (PASAI)"], "Micronesia": ["Pacific Association of Supreme Audit Institutions (PASAI)"], "Nauru": ["Pacific Association of Supreme Audit Institutions (PASAI)"], "Palau": ["Pacific Association of Supreme Audit Institutions (PASAI)"], "Papua New Guinea": ["Pacific Association of Supreme Audit Institutions (PASAI)"], "Samoa": ["Pacific Association of Supreme Audit Institutions (PASAI)"], "Solomon Islands": ["Pacific Association of Supreme Audit Institutions (PASAI)"], "Tonga": ["Pacific Association of Supreme Audit Institutions (PASAI)"], "Tuvalu": ["Pacific Association of Supreme Audit Institutions (PASAI)"], "Vanuatu": ["Pacific Association of Supreme Audit Institutions (PASAI)"]};
 window._openIntlByName=function(nm){ if(typeof intlMarkers==='undefined')return; for(var i=0;i<intlMarkers.length;i++){ if(intlMarkers[i].body && intlMarkers[i].body.name===nm){ var im=intlMarkers[i]; try{ map.setView(im.mk.getLatLng(), Math.max(map.getZoom(),4)); }catch(e){} showInfoPanel(popHTML(im.body.name, vis(im.body.trackers),'intl','<span class="intl-badge">International</span>')); return; } } };
 var _BODY_INFO={
@@ -1148,13 +1186,38 @@ var _BODY_INFO={
 "Company, ownership & supply-chain tools":{url:"https://opencorporates.com/",note:"Global products rather than national ones: company registries, ownership data, sanctions screening, facility mapping and the statement registries. These sit here rather than being repeated under every country."},
 "The Ocean \u2014 fleets, seafarers & work beyond any coast":{url:"https://www.itfseafarers.org/",note:"A workplace that moves, under a flag chosen for its lack of enforcement, that a worker cannot walk away from. Port-state control and union inspectors in port are the routes that do not depend on the flag state."}
 };
-function membershipHTML(name){ var bodies=(typeof INTL_MEMBER!=='undefined')?INTL_MEMBER[name]:null; if(!bodies||!bodies.length)return '';
+/* The inherited INTL_MEMBER table lists anti-corruption and supreme-audit
+   bodies — GRECO, EUROSAI, OECD, AFROSAI, MESICIC. Correct for the sibling
+   maps it came from and wrong for this one: none of them supervises forced
+   labour or trafficking.
+   The accurate version of this block for this subject is the ILO ratification
+   record, which harvest_law.py already produces per country, so that is used
+   when law.json is present. TRAFFICK_BODY adds the regional mechanisms that do
+   monitor this subject — GRETA rather than GRECO. */
+function _lawFor(name){
+  try{
+    var L = (window.__LAW || {});
+    return L[name] || null;
+  }catch(e){ return null; }
+}
+function membershipHTML(name){
+  var law = _lawFor(name);
+  var extra = (typeof TRAFFICK_BODY!=='undefined' && TRAFFICK_BODY[name]) || [];
+  if(law){
+    var s='<div class="memb-sec"><div class="memb-h">What this state has already promised</div>';
+    s+='<div class="memb-row">'+law+'</div>';
+    extra.forEach(function(b){ s+='<div class="memb-row"><span class="memb-name">'+_esc(b)+'</span></div>'; });
+    s+='<div class="memb-note">Ratification is a promise, not a practice \u2014 but it is the difference between asking a ministry for a favour and citing an obligation it has already accepted in writing.</div></div>';
+    return s;
+  }
+  var bodies = extra.length ? extra : null;
+  if(!bodies||!bodies.length)return '';
   var s='<div class="memb-sec"><div class="memb-h">International &amp; regional bodies this country belongs to</div>';
   bodies.forEach(function(b){ var info=(typeof _BODY_INFO!=='undefined'&&_BODY_INFO[b])||{};
     var head=info.url?('<a class="memb-link" href="'+_href(info.url)+'" target="_blank" rel="noopener">'+_esc(b)+' \u2197</a>'):('<span class="memb-name">'+_esc(b)+'</span>');
     var note=info.note?('<div class="memb-note-inline">'+info.note+'</div>'):'';
     s+='<div class="memb-row">'+head+note+'</div>'; });
-  s+='<div class="memb-note">These bodies don\u2019t police a single project directly \u2014 but when a development turns on public money or suspect approvals, their country reports and standards are where the paper trail and the leverage often begin. More bodies, and a direct link for each, are being added.</div></div>';
+  s+='<div class="memb-note">These are the bodies that monitor this subject specifically. Their country reports are where the paper trail and the leverage usually begin.</div></div>';
   return s; }
 var _BODY_GUIDE={'The Ocean \u2014 High Seas & the Deep Seabed':'OCN'};
 function _oceanBody(){ try{ for(var i=0;i<internationalBodies.length;i++){ if(internationalBodies[i] && internationalBodies[i].guide==='OCN') return internationalBodies[i]; } }catch(e){} return null; }
@@ -1243,6 +1306,9 @@ var DATA_LAYERS = [
    external:true,
    cmd:'python3 harvest_infra.py --all',
    needs:'Ports run unattended from the World Port Index. Recruitment registers and zone files need a committed export in data/ \u2014 both are published as HTML or PDF rather than data.'},
+  {f:'vessels.json', label:'Named vessels and at-risk effort at sea',
+   cmd:'python3 harvest_vessels.py --all --token YOUR_GFW_TOKEN',
+   needs:'The grid comes from a committed extract of the PNAS repository. Named vessel positions need a free Global Fishing Watch token.'},
   {f:'suspected.json', label:'Where it is thought to be (subnational)',
    cmd:'python3 harvest_suspected.py --all',
    needs:'Hotspots are built in. NCRB and Polaris need a committed export in data/ \u2014 both publish tables rather than feeds.'},
@@ -1536,6 +1602,30 @@ function goodIcon(label){
   return '\u2022 ';
 }
 
+
+/* ---- prevalence shading ------------------------------------------------
+   A choropleth over a satellite atlas is usually a mistake: fill it enough to
+   read and you have covered the thing people came to look at. So this is off by
+   default, capped at 22% opacity at its darkest, and drawn in the map's own
+   olive rather than a heat ramp — a wash that says "more here" without
+   pretending to a precision the estimate does not have.
+
+   Scaled on the RATE per 1,000, not the headcount. By headcount India and China
+   dominate everything and the map becomes a population map. */
+window.PREV_RATE = {};
+window.prevOn = false;
+function prevColour(rate){
+  if(!rate) return null;
+  var t = Math.min(1, Math.sqrt(rate / 40));   /* 40/1,000 is above all but two */
+  return {fill:'#b9bf86', op: 0.04 + 0.18 * t};
+}
+window.togglePrevalence = function(on){
+  window.prevOn = (on === undefined) ? !window.prevOn : !!on;
+  var el = document.getElementById('prevChk');
+  if(el) el.checked = window.prevOn;
+  try{ if(geojsonLayer) geojsonLayer.setStyle(baseStyle); }catch(e){}
+};
+
 window.__CLEVEL_IDX = [];
 window.clevelOpen = function(i){
   var r = window.__CLEVEL_IDX[i];
@@ -1684,6 +1774,7 @@ function drawRoutes(){
          placed the END MARKER at that unwrapped longitude, which is off the
          edge of a map that does not repeat. The curve keeps the unwrapped
          value; the marker uses the real one. */
+      var crosses = Math.abs(lon2 - lon1) > 180;
       var lon2real = lon2;
       if(Math.abs(lon2-lon1) > 180) lon2 += (lon1 > lon2 ? 360 : -360);
       var mx=(lat1+lat2)/2, my=(lon1+lon2)/2;
@@ -1703,6 +1794,32 @@ function drawRoutes(){
       var z = map.getZoom(), far = z <= 3;
       var op = far?0.28:0.45;
       if(touches) op = 0.9; else if(dim) op = 0.06;
+      /* Corridors crossing the antimeridian are drawn as TWO curves meeting at
+         the date line. Unwrapping alone left the far half beyond +/-180, where
+         nothing renders — which is the trailing line and the stray node at
+         the right edge of the map. */
+      if(crosses){
+        var edge = lon1 > 0 ? 180 : -180;
+        var near = [], far2 = [];
+        pts.forEach(function(pp){
+          var lo = pp[1];
+          if(lo > 180 || lo < -180) far2.push([pp[0], lo > 180 ? lo - 360 : lo + 360]);
+          else near.push(pp);
+        });
+        /* The origin can be the ONLY point on its side of the date line — a
+           Fiji corridor starts at 178E and its second sample is already past
+           180 — so requiring two points on each side skipped the split
+           entirely. One point plus the edge is a valid segment. */
+        if(near.length >= 1 && far2.length >= 1){
+          near.push([near[near.length-1][0], edge]);
+          far2.unshift([far2[0][0], -edge]);
+          var l2 = L.polyline(far2, {color:col,
+                                     weight:w*(touches?1.25:(far?0.55:0.85)),
+                                     opacity:op, lineCap:'round'}).bindPopup(pop);
+          group.addLayer(l2); refs.push(l2);
+          pts = near;
+        }
+      }
       var line = L.polyline(pts, {color:col,
                                   weight:w*(touches?1.25:(far?0.55:0.85)),
                                   opacity:op,
@@ -2339,6 +2456,11 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
     /* The far end of a focused corridor. In a dense area a line alone does not
        tell you which two countries it joins, so both ends are outlined in the
        corridor colour while the focus holds. */
+    if(window.prevOn && window.PREV_RATE[a3] && !(window.LINKED && window.LINKED[a3])){
+      var pc = prevColour(window.PREV_RATE[a3]);
+      if(pc) return {fillColor:pc.fill, weight:L?1.2:0.4, opacity:L?0.7:0.18,
+                     color:L?'#ffd24a':'rgba(210,215,200,0.24)', fillOpacity:pc.op};
+    }
     if(window.LINKED && window.LINKED[a3]){
       return {fillColor:'#7fb3d0',weight:2.4,opacity:0.95,color:'#9fd0e6',fillOpacity:0.10};
     }
@@ -3408,6 +3530,8 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
      desc:"Contacts to the US National Human Trafficking Hotline by state. <b>A signal is a contact, not a case</b> \u2014 the same person may contact twice, most contacts are not victims, and many come from professionals asking about someone else. What it maps is <b>where people know the number and are able to call</b>, which is a real thing to know and not the thing it looks like."},
     {k:"normlex",cat:"Obligations",label:"ILO ratifications (what the state already promised)",
      desc:"Which of the six instruments each state has ratified \u2014 C029 and its 2014 Protocol, C105, C138, C182 and C188 \u2014 with the obligation each one carries.<br><br>This is the layer that changes what you can ask for. <i>Please do something about this</i> is a request; <i>your country ratified Protocol 29, which obliges it to provide victims access to remedies including compensation <b>irrespective of their presence or legal status in the territory</b></i> is a citation, and it is the one that gets an answer from a ministry.<br><br><b>Ratification is a promise, not a practice</b> \u2014 several of the worst records here belong to states that ratified decades ago. What it gives you is standing: a supervisory body that accepts complaints, a reporting cycle, and an obligation the government cannot argue was never agreed. And a state that has <i>not</i> ratified is a different ask of different people from one that has and is not meeting it."},
+    {k:"uflpa_origin",cat:"The buyer end",label:"UFLPA enforcement by country of origin",
+     desc:"Value of goods stopped and examined under the Uyghur Forced Labor Prevention Act, by the country they shipped from. <b>Examined is not denied</b>: of $3.96B examined, $2.96B was released and $954M denied \u2014 about three quarters by value cleared the presumption, so a country appearing here means shipments were stopped, not that they were found tainted.<br><br><b>Read the ranking carefully.</b> The largest values are not Chinese \u2014 they are Malaysian ($1.62B), Vietnamese ($1.03B) and Thai ($546M), because the Act reaches goods with Xinjiang inputs wherever they were assembled. What this ranks is <b>the shape of the transshipment route</b>, not where forced labour occurred. 42,807 shipments in total: 24,344 denied, 16,800 released, 1,663 pending."},
     {k:"uflpa",cat:"The buyer end",label:"UFLPA Entity List",
      desc:"Entities whose goods are <b>presumed</b> made with forced labour and barred from US entry unless an importer rebuts the presumption with clear and convincing evidence. Not a disclosure and not a risk score \u2014 a determination with an automatic consequence, which makes it the sharpest instrument here. Check the current list before citing: entities are added and occasionally removed."},
     {k:"ukmsr",cat:"The buyer end",label:"Modern slavery statements (UK)",
@@ -4115,7 +4239,22 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
                while a real file on disk still wins, because it is newer. */
             .then(function(j){ return j || (window.__BUNDLED && window.__BUNDLED[fn]) || null; })
             .then(function(cd){
+              try{
+                if(fn === 'law.json'){
+                  window.__LAW = window.__LAW || {};
+                  (cd.projects||[]).forEach(function(x){
+                    if(x.country_name) window.__LAW[x.country_name] = x.desc;
+                  });
+                }
+              }catch(e){}
               if(!cd||!cd.projects||!cd.projects.length){ noteData(fn,false,0,'absent or empty'); return; }
+              try{
+                (cd.projects||[]).forEach(function(x){
+                  if(x.source!=='gsi' || !x.iso) return;
+                  var m=/([\d.]+) people per 1,000/.exec(String(x.desc||''));
+                  if(m) window.PREV_RATE[x.iso]=parseFloat(m[1]);
+                });
+              }catch(e){}
               var mg=_pjPlaceByISO({projects:cd.projects});
               var kept=clevelSplit(mg.projects);
               noteData(fn,true,(mg.projects||[]).length,'');
