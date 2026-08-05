@@ -32,7 +32,7 @@ jobs:
       - name: prevalence + service directory
         run: python3 harvest_scale.py --all || true
       - name: point data (mines, kilns, facilities) + hotlines
-        run: python3 harvest_points.py --ipis --hotlines || true
+        run: python3 harvest_points.py --ipis --kilns --osh --hotlines || true
       - name: bulk (Brazil, UNODC, IUU vessels)
         run: python3 harvest_bulk.py --all || true
       - name: infrastructure (recruiters, zones)
@@ -43,6 +43,10 @@ jobs:
         run: python3 harvest_sites.py --all || true
       - name: the buyer end (UFLPA, UK and AU statement registries)
         run: python3 harvest_companies.py --all || true
+      - name: obligations (ILO ratifications)
+        run: python3 harvest_law.py || true
+      - name: where it is thought to be (hotspots, NCRB, Polaris)
+        run: python3 harvest_suspected.py --all || true
 
       # The first version of this step pushed straight at main and lost a whole
       # harvest when someone committed through the web UI while it was running:
@@ -67,7 +71,7 @@ jobs:
           # continuation, so the list silently split across two commands.
           for f in wire.json projects.json cases.json prevalence.json \
                    directory.json points.json bulk.json hotlines.json \
-                   infra.json routes.json facilities.json sites.json companies.json index.bundle.html; do
+                   infra.json routes.json facilities.json sites.json companies.json law.json suspected.json index.bundle.html; do
             [ -f "$f" ] && git add "$f" && echo "staged $f"
           done
 
