@@ -1403,6 +1403,7 @@ window.clickCheck = function(){
    about a country and a commodity; a centroid pin asserts a place the source
    never identified, and 200 of them bury the 3,128 sites that do have
    coordinates. They live here instead, keyed by ISO, and surface on hover. */
+var HOVER_MAXZ = 5;   /* atlas to satellite handover */
 window.CLEVEL = {};
 function clevelAdd(list){
   (list||[]).forEach(function(r){
@@ -1623,7 +1624,11 @@ window.togglePrevalence = function(on){
   window.prevOn = (on === undefined) ? !window.prevOn : !!on;
   var el = document.getElementById('prevChk');
   if(el) el.checked = window.prevOn;
-  try{ if(geojsonLayer) geojsonLayer.setStyle(baseStyle); }catch(e){}
+  try{
+    if(window.geojsonLayer && window.baseStyle){
+      window.geojsonLayer.setStyle(window.baseStyle);
+    }
+  }catch(e){ try{ console.warn('prevalence restyle', e); }catch(_e){} }
 };
 
 window.__CLEVEL_IDX = [];
@@ -2527,6 +2532,11 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
         }
         /* hover lists what is on record for the country; click still opens
            services. Two different questions, two different gestures. */
+        /* The hover panel is for reading the world at a glance. Once you are
+           zoomed in far enough to be picking out individual points it stops
+           being informative and starts being in the way, so it is bound to the
+           same threshold as the satellite handover. */
+        if(map.getZoom() > HOVER_MAXZ){ clevelHide(); return; }
         try{ if(window.setRouteFocus) window.setRouteFocus(a3); }catch(_e){}
         try{ clevelShow(a3, (trackerData[a3]&&trackerData[a3].name)||f.properties&&f.properties.name||a3,
                         e.originalEvent?{x:e.originalEvent.clientX,y:e.originalEvent.clientY}
@@ -2558,6 +2568,12 @@ fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json').then(r=>r
       f.geometry.coordinates.forEach(p=>{ nrPoly(p).forEach(q=>out.push(q)); });
       f.geometry.coordinates=out; } });
   geojsonLayer=L.geoJson(countries,{style:baseStyle,onEachFeature:baseOnEach,smoothFactor:1.6,coordsToLatLng:c=>L.latLng(c[1],c[0])}).addTo(map);
+  /* The prevalence toggle lives outside this closure and could not see
+     geojsonLayer or baseStyle, so its restyle call threw and was swallowed by
+     its own try/catch \u2014 the checkbox moved and nothing happened. */
+  window.geojsonLayer = geojsonLayer;
+  window.baseStyle = baseStyle;
+  try{ if(Object.keys(window.PREV_RATE||{}).length) geojsonLayer.setStyle(baseStyle); }catch(e){}
   const ResetCtl=L.control({position:'topleft'});
   ResetCtl.onAdd=function(){ const d=L.DomUtil.create('div','leaflet-bar'); const a=L.DomUtil.create('a','',d); a.href='#'; a.title='Reset view (hide state/province layer)'; a.innerHTML='\u2302'; a.style.fontWeight='700'; a.style.fontSize='16px';
     L.DomEvent.on(a,'click',function(e){ L.DomEvent.preventDefault(e); L.DomEvent.stopPropagation(e); deactivate(); map.closePopup(); map.setZoom(Math.min(3,map.getZoom())); }); return d; };
@@ -3509,7 +3525,7 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
     {k:"wire",cat:"Live",label:"Live incidents (press-reported)",
      desc:"Built in your browser, this session, from the news wire below \u2014 reported raids, rescues, charges, convictions, deaths and named employers from the last feed window. Placed at a country or region centroid because no feed carries coordinates, so every one of these is a hollow ring. A news report is not a finding by an authority: open the article. And the coverage is editorial \u2014 where these outlets do not report, there are no dots, which says nothing about what happens there."},
     {k:"listasuja",cat:"Enforcement outcomes",label:"Employers named by Brazil (the 'lista suja')",
-     desc:"The <b>Cadastro de Empregadores</b>: employers found by Brazilian labour inspectors to have subjected workers to conditions analogous to slavery, published by the state after the administrative process concludes. Nothing else in this field is comparable \u2014 not modelled, not a risk score, not an allegation, and it <b>names the employer and the establishment</b>. Banks and buyers use it, which gives it commercial force a report does not have. It is also contested: employers have repeatedly obtained injunctions removing names, so check the current edition. Dots are municipalities; the establishment address is in each record. Requires harvest_bulk.py --listasuja."},
+     desc:"The <b>Cadastro de Empregadores</b>: employers found by Brazilian labour inspectors to have subjected workers to conditions analogous to slavery, published by the state after the administrative process concludes. Nothing else in this field is comparable \u2014 not modelled, not a risk score, not an allegation, and it <b>names the employer and the establishment</b>. Banks and buyers use it, which gives it commercial force It is also contested: employers have repeatedly obtained injunctions removing names, so check the current edition. Dots are municipalities; the establishment address is in each record. Requires harvest_bulk.py --listasuja."},
     {k:"brazil",cat:"Enforcement outcomes",label:"Rescue operations (Brazil, by municipality)",
      desc:"People found in conditions analogous to slavery and removed by Brazil's mobile inspection group, located to the <b>municipality</b> \u2014 60,251 of them between 1995 and 2022. The best sub-national enforcement data anywhere in this field, and the only layer here that records a <b>rescue</b> rather than a risk. That Brazil dominates this layer says less about Brazil than about what a country looks like when it actually counts. Requires harvest_bulk.py --brazil."},
     {k:"glotip",cat:"Detection",label:"Detected victims (UNODC)",
@@ -4250,10 +4266,20 @@ try{ document.querySelectorAll('#helpPanel .help-body, #wirePanel .wire-body, #i
               if(!cd||!cd.projects||!cd.projects.length){ noteData(fn,false,0,'absent or empty'); return; }
               try{
                 (cd.projects||[]).forEach(function(x){
-                  if(x.source!=='gsi' || !x.iso) return;
+                  if(x.source!=='gsi') return;
+                  if(!x.iso && x.country_name && window.NAME2ISO){
+                    x.iso = window.NAME2ISO[String(x.country_name).toLowerCase()] || null;
+                  }
+                  if(!x.iso) return;
                   var m=/([\d.]+) people per 1,000/.exec(String(x.desc||''));
                   if(m) window.PREV_RATE[x.iso]=parseFloat(m[1]);
                 });
+              }catch(e){}
+              try{
+                if(Object.keys(window.PREV_RATE||{}).length && window.prevOn
+                   && window.geojsonLayer && window.baseStyle){
+                  window.geojsonLayer.setStyle(window.baseStyle);
+                }
               }catch(e){}
               var mg=_pjPlaceByISO({projects:cd.projects});
               var kept=clevelSplit(mg.projects);
