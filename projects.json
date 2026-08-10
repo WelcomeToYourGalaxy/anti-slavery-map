@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-09T12:42:31.430866+00:00",
+ "generated": "2026-08-10T01:25:57.296173+00:00",
  "note": "Determinations only: published government findings. Records without lat/lng carry an ISO3 code and are placed at a country centroid by the map at load time.",
  "projects": [
   {
@@ -3143,7 +3143,7 @@
    "date": "",
    "company": "Hoshine Silicon Industry Co. Ltd.",
    "url": "https://www.cbp.gov/newsroom/national-media-release/department-homeland-security-issues-withhold-release-order-silica",
-   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. and Subsidiaries"
+   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. Enforcement of WRO superseded by enforcement of UFLPA rebuttable presumption"
   },
   {
    "name": "Xinjiang Junggar Cotton and Linen Co., Ltd.",
@@ -3247,8 +3247,8 @@
    "name": "Imaizumi Tea Manufacturing & Trading Co., Ltd.",
    "source": "cbp",
    "type": "other",
-   "iso": "JPN",
-   "state": "jp",
+   "iso": "CHN",
+   "state": "cn",
    "impact": 3,
    "precise": false,
    "status": "Import ban in force",
@@ -3571,13 +3571,13 @@
    "type": "other",
    "iso": "CHN",
    "state": "cn",
-   "impact": 4,
+   "impact": 3,
    "precise": false,
-   "status": "Finding in force",
+   "status": "Import ban in force",
    "date": "",
    "company": "Tianjin Malleable Iron Factory",
    "url": "https://www.federalregister.gov/documents/1996/04/23/96-9875/determination-that-merchandise-imported-from-the-peoples-republic-of-china-is-produced-using-convict",
-   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. See China Finding."
+   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. Federal Register: 61 FR 17956\n\n\"U.S. Customs Service- Treasury Decisions,\" Customs Bulletin 30 (1996): 153; T.D. 96-34\n\nSee China WRO."
   },
   {
    "name": "Taepyung Salt Farm",
@@ -3633,7 +3633,7 @@
    "date": "",
    "company": "State Penitentiary",
    "url": "https://www.cbp.gov/trade/forced-labor/withhold-release-orders-and-findings",
-   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. \"Customs,\" Treasury Decisions. U.S. Treasury Department 93 (1958): 517-518; T.D. 54725"
+   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. \"Customs,\" Treasury Decisions. U.S. Treasury Department 88 (1953): 416; T.D. 53408"
   },
   {
    "name": "Agropecuarios Tom S.A. de C.V.",
