@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-12T18:57:43.705860+00:00",
+ "generated": "2026-08-13T01:43:29.716487+00:00",
  "note": "Determinations only: published government findings. Records without lat/lng carry an ISO3 code and are placed at a country centroid by the map at load time.",
  "projects": [
   {
@@ -3132,20 +3132,6 @@
    "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. Enforcement of WRO superseded by enforcement of UFLPA rebuttable presumption"
   },
   {
-   "name": "Hoshine Silicon Industry Co. Ltd.",
-   "source": "cbp",
-   "type": "other",
-   "iso": "CHN",
-   "state": "cn",
-   "impact": 3,
-   "precise": false,
-   "status": "Import ban in force",
-   "date": "",
-   "company": "Hoshine Silicon Industry Co. Ltd.",
-   "url": "https://www.cbp.gov/newsroom/national-media-release/department-homeland-security-issues-withhold-release-order-silica",
-   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. Enforcement of WRO superseded by enforcement of UFLPA rebuttable presumption"
-  },
-  {
    "name": "Xinjiang Junggar Cotton and Linen Co., Ltd.",
    "source": "cbp",
    "type": "cotton",
@@ -3193,13 +3179,13 @@
    "type": "other",
    "iso": "CHN",
    "state": "cn",
-   "impact": 4,
+   "impact": 3,
    "precise": false,
-   "status": "Finding in force",
+   "status": "Import ban in force",
    "date": "",
    "company": "Yunnan Machinery",
    "url": "https://www.cbp.gov/trade/forced-labor/withhold-release-orders-and-findings",
-   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. See China Finding."
+   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. \"U.S. Customs Service- Treasury Decisions ,\" Customs Bulletin 26 (1992): 85-86; T.D. 92-27\n\nSee China WRO."
   },
   {
    "name": "Firemount Group Ltd.",
@@ -3417,13 +3403,13 @@
    "type": "agri_other",
    "iso": "CHN",
    "state": "cn",
-   "impact": 3,
+   "impact": 4,
    "precise": false,
-   "status": "Import ban in force",
+   "status": "Finding in force",
    "date": "",
    "company": "Inner Mongolia Hengzheng Group Baoanzhao Agriculture, Industry, and Trade Co., Ltd.",
    "url": "https://www.federalregister.gov/documents/2020/10/20/2020-23123/notice-of-finding-that-certain-stevia-extracts-and-derivatives-produced-in-the-peoples-republic-of",
-   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. Federal Register:  85 FR 66574\n\nCustoms Bulletin: Vol. 54, November 4, 2020, No. 43 \n\nSee China WRO."
+   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. See China Finding."
   },
   {
    "name": "Fuchu Prison",
@@ -3543,13 +3529,13 @@
    "type": "fishing",
    "iso": "TWN",
    "state": "TWN",
-   "impact": 4,
+   "impact": 3,
    "precise": false,
-   "status": "Finding in force",
+   "status": "Import ban in force",
    "date": "",
    "company": "Da Wang",
-   "url": "https://www.cbp.gov/newsroom/national-media-release/cbp-issues-detention-order-seafood-harvested-forced-labor-0",
-   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. See Fishing Vessels Finding."
+   "url": "https://www.federalregister.gov/documents/2022/01/28/2022-01778/notice-of-finding-that-certain-seafood-harvested-by-the-taiwanese-da-wang-fishing-vessel-with-the",
+   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. Federal Register: 87 FR 4634\n\nCustoms Bulletin: Vol. 56, February 16, 2022, No. 6\n\nSee Fishing Vessels WRO."
   },
   {
    "name": "Needle Craft Ltd",
@@ -3633,7 +3619,7 @@
    "date": "",
    "company": "State Penitentiary",
    "url": "https://www.cbp.gov/trade/forced-labor/withhold-release-orders-and-findings",
-   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. \"Customs,\" Treasury Decisions. U.S. Treasury Department 88 (1953): 416; T.D. 53408"
+   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. \"Customs,\" Treasury Decisions. U.S. Treasury Department 93 (1958): 517-518; T.D. 54725"
   },
   {
    "name": "Agropecuarios Tom S.A. de C.V.",
@@ -3697,13 +3683,13 @@
    "type": "cotton",
    "iso": "CHN",
    "state": "cn",
-   "impact": 4,
+   "impact": 3,
    "precise": false,
-   "status": "Finding in force",
+   "status": "Import ban in force",
    "date": "",
    "company": "Qinghai Hide & Garment Factory",
    "url": "https://www.cbp.gov/trade/forced-labor/withhold-release-orders-and-findings",
-   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. See China Finding."
+   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. Federal Register: 58 FR 32745\n\n\"U.S. Customs Service - Treasury Decisions,\" Customs Bulletin 27 (1993): 148 - 150; T.D. 93-41\n\nSee China WRO."
   },
   {
    "name": "Shenyang New Life Rubber Factory",
