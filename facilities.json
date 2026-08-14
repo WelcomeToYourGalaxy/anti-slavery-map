@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-14T07:47:26.192454+00:00",
+ "generated": "2026-08-14T13:13:54.170717+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -13521,16 +13521,6 @@
    "lng": 6.1604403,
    "country": "TR",
    "url": "https://www.openstreetmap.org/node/1997550654",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
-   "name": "Royal Norwegian Embassy",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": 4.8421244,
-   "lng": 31.6068021,
-   "country": "NO",
-   "url": "https://www.openstreetmap.org/node/1997668426",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
@@ -198477,8 +198467,8 @@
    "name": "Granični prelaz Kusjak",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 44.2986671,
-   "lng": 22.5581496,
+   "lat": 44.298669,
+   "lng": 22.5581241,
    "country": "",
    "url": "https://www.openstreetmap.org/node/3029736919",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -257621,6 +257611,16 @@
    "lng": 114.0748497,
    "country": "",
    "url": "https://www.openstreetmap.org/node/14074843445",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Granični prelaz Kusjak",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 44.2986961,
+   "lng": 22.5580658,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14094356362",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
