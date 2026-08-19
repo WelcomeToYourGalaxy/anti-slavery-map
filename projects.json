@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-18T18:33:10.471572+00:00",
+ "generated": "2026-08-19T01:02:30.540432+00:00",
  "note": "Determinations only: published government findings. Records without lat/lng carry an ISO3 code and are placed at a country centroid by the map at load time.",
  "projects": [
   {
@@ -3233,8 +3233,8 @@
    "name": "Imaizumi Tea Manufacturing & Trading Co., Ltd.",
    "source": "cbp",
    "type": "other",
-   "iso": "JPN",
-   "state": "jp",
+   "iso": "CHN",
+   "state": "cn",
    "impact": 3,
    "precise": false,
    "status": "Import ban in force",
@@ -3403,13 +3403,13 @@
    "type": "agri_other",
    "iso": "CHN",
    "state": "cn",
-   "impact": 3,
+   "impact": 4,
    "precise": false,
-   "status": "Import ban in force",
+   "status": "Finding in force",
    "date": "",
    "company": "Inner Mongolia Hengzheng Group Baoanzhao Agriculture, Industry, and Trade Co., Ltd.",
    "url": "https://www.federalregister.gov/documents/2020/10/20/2020-23123/notice-of-finding-that-certain-stevia-extracts-and-derivatives-produced-in-the-peoples-republic-of",
-   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. Federal Register:  85 FR 66574\n\nCustoms Bulletin: Vol. 54, November 4, 2020, No. 43 \n\nSee China WRO."
+   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. See China Finding."
   },
   {
    "name": "Fuchu Prison",
@@ -3529,13 +3529,13 @@
    "type": "fishing",
    "iso": "TWN",
    "state": "TWN",
-   "impact": 4,
+   "impact": 3,
    "precise": false,
-   "status": "Finding in force",
+   "status": "Import ban in force",
    "date": "",
    "company": "Da Wang",
-   "url": "https://www.cbp.gov/newsroom/national-media-release/cbp-issues-detention-order-seafood-harvested-forced-labor-0",
-   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. See Fishing Vessels Finding."
+   "url": "https://www.federalregister.gov/documents/2022/01/28/2022-01778/notice-of-finding-that-certain-seafood-harvested-by-the-taiwanese-da-wang-fishing-vessel-with-the",
+   "desc": "Named in a US customs forced-labour action. Goods from this producer are barred from entry unless the importer rebuts the finding; a Finding additionally allows seizure rather than only detention. Source of record is US Customs and Border Protection — this entry is harvested from the OpenSanctions mirror of that list, so check the CBP page before citing it. Federal Register: 87 FR 4634\n\nCustoms Bulletin: Vol. 56, February 16, 2022, No. 6\n\nSee Fishing Vessels WRO."
   },
   {
    "name": "Needle Craft Ltd",
