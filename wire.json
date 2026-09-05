@@ -1,20 +1,85 @@
 [
  {
-  "title": "TST restabelece inclusão de empregador doméstico na “lista suja” do trabalho escravo - TST",
-  "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPZUtXbnZZaHVBOGVwUGFiU3pGZUxTTmlVT0dGRG0yUFNjdHNiYWdHS241azkyVVdSZ2g3UkVlN3BTUkRLOHR6djRRWU5vNWtQYXdWYjF3cU9pSl80TnN3UHduME9yd0FzWWRSSHdIM0NtcFAyZzlieVJQQ1lQUHQ0b3QxVVBMNlJJMzRrSEpLVHpvd3J6UDk0aXJDS3JXbVAzdkNFOUJGdnJVSkU?oc=5",
-  "snippet": "TST restabelece inclusão de empregador doméstico na “lista suja” do trabalho escravo TST",
-  "date": "2026-09-05T14:16:38+00:00",
-  "name": "Front: trabalho escravo",
-  "lang": "pt",
+  "title": "Caporalato a Castrovillari, operazione Master: non convalidati i fermi, tornano liberi dieci indagati - Gazzetta del Sud",
+  "link": "https://news.google.com/rss/articles/CBMipAJBVV95cUxPZ3pOZmQ1aTV3VDRSc2xESzJVd3lrSjFsbk5TLWR1OFJyUWRuYTFhWjZReFBQTFdlc1BwN1N3aWY3SmgyZTJDcGJqZmw5emJ5NDhLMWFEb3FsWnNXVmhxLUFKWnBZZnRpOVFKVUNTVG1FVDJZZll1UDZ3UHNGMnAzRFduWGNxbktvaDV6d2h5ZnlNc0I3aV8yeWVkcE50TVByVk53c2xHcG9Tb01qbzRydFQxbzJMMEI2LUhWdE5RaXplcjhfV3BqZjhaTEdrT0tZbVViWURrc293Tklxck5TT20wV1JxMVRqRGQ2VVloaHpkTVdJMTV2Zy1yT3B3dlVyU1BpaURsN0ItT25DQXh3Z2VUS09QUlhzVEJibUF6eUlXbG1U?oc=5",
+  "snippet": "Caporalato a Castrovillari, operazione Master: non convalidati i fermi, tornano liberi dieci indagati Gazzetta del Sud",
+  "date": "2026-09-05T19:26:24+00:00",
+  "name": "Front: caporalato",
+  "lang": "it",
+  "sig": 0
+ },
+ {
+  "title": "SVET fortalece prevención de violencia sexual y trata de personas - Diario de Centro América",
+  "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQeHMzRGNsaUpEVmZIZmtBM3otSTRUU0hOZFliMXZWVWJaZnJyTEY0SmFYb091M3JoTmpQbW1pNlI0NTVTOWFTVC1icGw2R0JvdVZXWkRaYkluNWlmNVBERG9mU0hRZm1RZUV0aENGaXp3UXBMejZEZjVHcFVqdklEOFhBczVic2FXbHBITzlBbGdGazVzUE10REV4eVJWdG1va01GVzl0a0pZb1BURnpxUTFDMXd2M3hSeWx5VGw0VlVkelJz?oc=5",
+  "snippet": "SVET fortalece prevención de violencia sexual y trata de personas Diario de Centro América",
+  "date": "2026-09-05T19:17:03+00:00",
+  "name": "Front: trabajo forzoso",
+  "lang": "es",
+  "sig": 0
+ },
+ {
+  "title": "Caporalato, la gip di Castrovillari non convalida il fermo: liberi i dieci pakistani indagati - Corriere della Calabria",
+  "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxObURkUHhVcERTZlhiN3dFcTVidmFKaExmc3FXXzdRT0hrQnZvamk4ZkVXOW5Mb2ZXZmV2SnBrdUJERjd6cm16VUgtbF9zVi1DZ0Z2dXBGaEhfUllPRnZfb1V2YTRBTHdDRkJGU0ZQS3dPMXJfbEdFZDBmSDBIdzRKcU1XaUFJT25lelJoSi1oOEFtS1U3LVBybTBMOVptR01iYjJ0QmZjNWQwX0RyYkFLbjItdXFkYmVBanF1aURHYmxuZ0RiMW4yWA?oc=5",
+  "snippet": "Caporalato, la gip di Castrovillari non convalida il fermo: liberi i dieci pakistani indagati Corriere della Calabria",
+  "date": "2026-09-05T19:11:00+00:00",
+  "name": "Front: caporalato",
+  "lang": "it",
+  "sig": 0,
+  "iso": "PAK"
+ },
+ {
+  "title": "Sonderausstellung „Cottbus: Ein Bahnhof der Erinnerung. Deportationen und Zwangsarbeit im Nationalsozialismus“ - cottbus.de",
+  "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNU2tYQ2U0cVJnRjNJd2pOTnF4cG1TaFl3N004d1k4MDNwS0FzbDYxWWFWV2YtMkI4NzVBR0xER0hpNFpzV2R0N00zMTRBR09fRlNYN21YQWVCc21xaTRtaXloZ0NtQnlFOGpXUFF1WHRwelJPaFZwQUNaYjdvYUNTd0ZjdUN5NXk5eXFjTHI4WE9BVEZZWnh1NDJvOGZ4YTlLVDFDeERhRll5bzVpQWNQeWFQN29Kb0V4Q0FISmF1SjFXTlNDLWx1ZnVqU1hJa3JGVmVQRFp1ZWtZSnJ6?oc=5",
+  "snippet": "Sonderausstellung „Cottbus: Ein Bahnhof der Erinnerung. Deportationen und Zwangsarbeit im Nationalsozialismus“ cottbus.de",
+  "date": "2026-09-05T18:08:34+00:00",
+  "name": "Front: Zwangsarbeit",
+  "lang": "de",
+  "sig": 0
+ },
+ {
+  "title": "Procesan a Mujer por Trata de Personas en Agravio de sus Dos Hijas en Puebla - N+",
+  "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQU3FJZnhFUWlXWkVoSEMtOTlCSzh5Q0tKT05NMmZoN1E0THBQeVlBY1dMbi1Bc2FoRVl5UWd2VjVZWVpUcmhmQ29ZYV8ycVpKV0s5a21oRDFvOVEwck53aWxBdmtLSklUdFBzOXZRRlRPRWhuNVRhUFRSRklLcDJ0VW9QbG5oeHdPb1hqX2xCTktFamU1bkh1U3dNN2NxejJpZUYxMDBOOEtFOE9Oa0oxRnNlTUZrTmpONjZSc0tONXI1TTNlMUVUQ3UwMlJhOEN0TV9sOQ?oc=5",
+  "snippet": "Procesan a Mujer por Trata de Personas en Agravio de sus Dos Hijas en Puebla N+",
+  "date": "2026-09-05T17:42:51+00:00",
+  "name": "Front: trabajo forzoso",
+  "lang": "es",
+  "sig": 0
+ },
+ {
+  "title": "CAPORALATO, IL GIUDICE SCARCERA 10 DEI 20 PAKISTANI FERMATI nella Sibaritide: ecco perché - Il Blog di Corigliano Calabro",
+  "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPRzlBU2hhUGxORGZreG9MY0VRM2pncUFxTjJMRUZJNmE4RDU2VnlCdDY1b09mUlV5bV81ZGM0UkxNdk5EYkdpSTdwQnp5YVk5UXdPb0E0VDdvdGltckhlNFRGUmwtSGhLeFBFbkVfSEdEYTdSY1Vqd3l2WHEwZktkeFp2TVQxSVgyRUI1VDM1cURvY0kwSmZHUXFQMjFsRUFWYnplelp6MnNZODJzc091M3JuQmEySXNEaGpLNHFxWVBFbnBKV3BJeF9IaUVscW5MQ2pXRw?oc=5",
+  "snippet": "CAPORALATO, IL GIUDICE SCARCERA 10 DEI 20 PAKISTANI FERMATI nella Sibaritide: ecco perché Il Blog di Corigliano Calabro",
+  "date": "2026-09-05T17:02:20+00:00",
+  "name": "Front: caporalato",
+  "lang": "it",
+  "sig": 0,
+  "iso": "PAK"
+ },
+ {
+  "title": "Julio Iglesias visé par une nouvelle plainte pour agression sexuelle et travail forcé - Benin Web TV",
+  "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOMUpZLU5yNmZwRWtQQ3JWV2hsb1F1MUNHWFl2NUszd19IUVFaYjFUdWFoV1V1eWl6MVpOR1pIcWdpUlVfVzhvb1JOMk5tQWlMM1V2YVJ0Y0xrcVl1MXJRQzlIeTh0eVZsbncwYm5rSXpNaXRGaWcyUFBNVjV2ZGd0bGw4VllrMGxacDRiNGlzWjVRRmZaT3d4ZmI5UjloTW9KNDk5RjRGX0pQUzFJ?oc=5",
+  "snippet": "Julio Iglesias visé par une nouvelle plainte pour agression sexuelle et travail forcé Benin Web TV",
+  "date": "2026-09-05T15:17:05+00:00",
+  "name": "Front: travail forcé",
+  "lang": "fr",
   "sig": 0
  },
  {
   "title": "Caporalato nella Sibaritide, il gip di Castrovillari non convalida il fermo per 10 indagati: tornano liberi - NOMI · LaC News24 - LaC News24",
-  "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOWGFHMFl6NjVjTk1WTVU2YlNFZXJkdVlHMG1fNkNDUEozUnJaYXphT1p5X0hlQ3p4WS00cFdnUjFzZ2ZYaGsycXFvSGlWYkhvanozczFBMWNnOGlFRzQ3aTlSb0wyZjdqTnBzcXg1YVNqTnNYLUN1dVVGaUFjUU51TWlOWDh3eG0xMFNDLUZMTk9rSDk1Mk5zMTFKZFJoVF9JNDk3VzRVb2xKV2V1M19WNzRSSXJiN01TdlpQNjZkd3ZUZnUybjdPTzY5VmM1azNVV1NDRnJaNjQ2R2J2aG9rTnF1Y1M2YjDSAewBQVVfeXFMTnJMeDJLcTlVMGlONTRoWmhoQ1ZaV1hkcmhhUmNyWDdXd1ViQmpycDVlN255Zy1KRGNKdFp0eFpBcUlmeGRJYkozb01VQmQ1aEhsQmVMUkt2aEVsRktXZmNNNE41VGtGcHR0SktJRjQ4QkFzcmVGSjFTWi1LdXFUM19tOUhKbjFhX2hRVXZvM1pQMXVWY1dGM0ZOcElwcGVjelZCaXJVNTB1U1pkM1EyTGNLdkZQNUtXNHpQQS1hVHd1cENVOV9kVFhNNFE3Z1VWSkg1VFFLbUVmdUNfTHpoV2NRQnFNcVlraEZodzc?oc=5",
+  "link": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOckx4MktxOVUwaU41NGhaaGhDVlpXWGRyaGFSY3JYN1d3VWJCanJwNWU3bnlnLUpEY0p0WnR4WkFxSWZ4ZEliSjNvTVVCZDVoSGxCZUxSS3ZoRWxGS1dmY000TjVUa0ZwdHRKS0lGNDhCQXNyZUZKMVNaLUt1cVQzX205SEpuMWFfaFFVdm8zWlAxdVZjV0YzRk5wSXBwZWN6VkJpclU1MHVTWmQzUTJMY0t2RlA1S1c0elBBLWFUd3VwQ1U5X2RUWE00UTdnVVZKSDVUUUttRWZ1Q19MemhXY1FCcU1xWWtoRmh3N9IB7AFBVV95cUxOckx4MktxOVUwaU41NGhaaGhDVlpXWGRyaGFSY3JYN1d3VWJCanJwNWU3bnlnLUpEY0p0WnR4WkFxSWZ4ZEliSjNvTVVCZDVoSGxCZUxSS3ZoRWxGS1dmY000TjVUa0ZwdHRKS0lGNDhCQXNyZUZKMVNaLUt1cVQzX205SEpuMWFfaFFVdm8zWlAxdVZjV0YzRk5wSXBwZWN6VkJpclU1MHVTWmQzUTJMY0t2RlA1S1c0elBBLWFUd3VwQ1U5X2RUWE00UTdnVVZKSDVUUUttRWZ1Q19MemhXY1FCcU1xWWtoRmh3Nw?oc=5",
   "snippet": "Caporalato nella Sibaritide, il gip di Castrovillari non convalida il fermo per 10 indagati: tornano liberi - NOMI · LaC News24 LaC News24",
-  "date": "2026-09-05T14:14:03+00:00",
+  "date": "2026-09-05T14:17:41+00:00",
   "name": "Front: caporalato",
   "lang": "it",
+  "sig": 0
+ },
+ {
+  "title": "TST restabelece inclusão de empregador doméstico na “lista suja” do trabalho escravo - TST",
+  "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPZUtXbnZZaHVBOGVwUGFiU3pGZUxTTmlVT0dGRG0yUFNjdHNiYWdHS241azkyVVdSZ2g3UkVlN3BTUkRLOHR6djRRWU5vNWtQYXdWYjF3cU9pSl80TnN3UHduME9yd0FzWWRSSHdIM0NtcFAyZzlieVJQQ1lQUHQ0b3QxVVBMNlJJMzRrSEpLVHpvd3J6UDk0aXJDS3JXbVAzdkNFOUJGdnJVSkU?oc=5",
+  "snippet": "TST restabelece inclusão de empregador doméstico na “lista suja” do trabalho escravo TST",
+  "date": "2026-09-05T14:15:10+00:00",
+  "name": "Front: trabalho escravo",
+  "lang": "pt",
   "sig": 0
  },
  {
@@ -65,13 +130,14 @@
   "iso": "COL"
  },
  {
-  "title": "Julio Iglesias dans la tourmente : le chanteur visé par une nouvelle plainte pour agression sexuelle et travail forcé - parismatch.be",
-  "link": "https://news.google.com/rss/articles/CBMipAJBVV95cUxNQ3pqS0s1amYwdi1RRnB4S092c09QQ3NnS1ZrakFCMzlXY0puSU1Xdnlici1iMFU1MW9HX1IwYmIxMXhmeEM5Z0xmUVFSUnBnbmpmV2FkQ1ZsN1BzelNacEp6N3V4X2xRaWl1RXNIQlFkRkpmZk8ybnM2dDNhU05QVC1QbmRtblJQWUc4MHVBbkUzWmNyQXg3TUR2WFQ3SUE5YUU1QXNxSm94dFdEeHBTVENHZXA2VEtMbW1vVzF3RUR4S091Q2cwRUVPN1NjUmRmZlJNLUg2UG9FbmpMYkxPVERrOVlzUHJIQjdYZFJiRXFRV2VQc19kZ1FrdmR3bl9xNmJSaFNNME9FZDdReVRzazVyVS1RaWd6RVNBRzdTXzU5WUJH?oc=5",
-  "snippet": "Julio Iglesias dans la tourmente : le chanteur visé par une nouvelle plainte pour agression sexuelle et travail forcé parismatch.be",
-  "date": "2026-09-05T10:15:00+00:00",
-  "name": "Front: travail forcé",
-  "lang": "fr",
-  "sig": 0
+  "title": "Philippines shuts down forced labor in cyberfraud compounds - dw.com",
+  "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQZnVzZmNEQmV0R1ExcWRZWk5LUndpZVBFdHJ4cG1ncjdxalZXT29xd1hkR3p3NkdMQUdpM3RBbkVWeU5yQ3RLUFpPbHlRSWhwRkdaODdaLVBtZlIxTHlnSkR2ZHhZRDNlSTNIVzExY3I2UEtDalFnWWJZWWNXenJ4Yi1vQ2VsWjBrX1I1UkRQbzcxLUM2c05Z?oc=5",
+  "snippet": "Philippines shuts down forced labor in cyberfraud compounds dw.com",
+  "date": "2026-09-05T10:45:28+00:00",
+  "name": "Feed: forced labour",
+  "lang": "en",
+  "sig": 0,
+  "iso": "PHL"
  },
  {
   "title": "Caporalato a Oristano, 2 anni senza giorno di riposo o ferie e in condizioni precarie: denunciato imprenditore agricolo - YouTG.NET",
@@ -111,9 +177,9 @@
   "sig": 0
  },
  {
-  "title": "Für Exporte in die EU gelten die Vorschriften zur Zwangsarbeit. - vietnam.vn",
+  "title": "Für Exporte in die EU gelten die Vorschriften zur Zwangsarbeit. - Vietnam.vn",
   "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOSV9QX2tRaG00Q3dwTmkxa1lISnRFamlXNzBGbTdlVXM5N28wbDF6dkh4SkZEWWpRZnJpbk54NDhJNnpmYldxS0NwdE1sRUVLNzltZGpUNkh4bWU3VmRLNWpFcDBPbFZRMUY1WVd2czMxYlhzMWM4YTJVWEVWWG1LQkVnbk5tY2d6b3BGXzVFM2xfMHNTaFQ3eg?oc=5",
-  "snippet": "Für Exporte in die EU gelten die Vorschriften zur Zwangsarbeit. vietnam.vn",
+  "snippet": "Für Exporte in die EU gelten die Vorschriften zur Zwangsarbeit. Vietnam.vn",
   "date": "2026-09-05T08:42:03+00:00",
   "name": "Front: Zwangsarbeit",
   "lang": "de",
@@ -168,15 +234,6 @@
   "sig": 0
  },
  {
-  "title": "Sonderausstellung „Cottbus: Ein Bahnhof der Erinnerung. Deportationen und Zwangsarbeit im Nationalsozialismus“ - Stadt Cottbus/Chóśebuz",
-  "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOSzBCcjI4a2RhYWloY0dlaFJZT0c2a00yUjVnNHVrdVFPVGdPLUJrM2djaHM1RFZjUEFwem5WUkZuX3hRTHdPLWF6MzlCcTJ4YWZGVWdzZjNwVDVrZEROUm0yb0FNZFBndDQ1UWdHOUM1TUFCTlBvNHVnOTZKbk92NmVkMjV6RzVNWWJMNDd6WFFWRTdhRU0yeGgtTFFreEZOTG5yZEVHUXVtR0VoaUljM2luV3J3SGxhMWpjMExNRlZUUEt1ZmxKWnZQNGRhNzFrUDNMOWNranlZQ2Q3?oc=5",
-  "snippet": "Sonderausstellung „Cottbus: Ein Bahnhof der Erinnerung. Deportationen und Zwangsarbeit im Nationalsozialismus“ Stadt Cottbus/Chóśebuz",
-  "date": "2026-09-05T02:40:33+00:00",
-  "name": "Front: Zwangsarbeit",
-  "lang": "de",
-  "sig": 0
- },
- {
   "title": "Indian gov't rescues over 3,800 children from child labor - The Peninsula Qatar",
   "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPY3o3T0IwRUlvOHFXN2hCOWR0MHJIUW1PTzNnY1J3cUJnV2gtdFNabldGdTdpdVRjT0d6eDNsVkl2c3ljWFBGa05CU3JqYUZrR0NhbjFOczd0Z1loekpGWXRWVnBnOXd5UlZ4NjdSbk8xVThoVHRndDluX0d5YXN5ZDJIS09Uay1MVk0yNS1DdHdWQWlwS1hqaDBQNmsxUktLdzU4b1BVbw?oc=5",
   "snippet": "Indian gov't rescues over 3,800 children from child labor The Peninsula Qatar",
@@ -185,15 +242,6 @@
   "lang": "en",
   "sig": 2,
   "iso": "IND"
- },
- {
-  "title": "Autoridades de Chimaltenango unen esfuerzos contra la violencia sexual, explotación y trata de personas - Diario de Centro América",
-  "link": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQRXh1Q3NPU25PS1JsUmdDRDRFUER4aTlzcWs1aFNaOTdZcTZtT3RnbGoySVVEMXRJdTFIS1dPd1g0RnN3U253d3lIdy1jdjMxTlc0cTFDTzU1S045dHdKSFhlZUVzc0JpclBpSjh2S2JyOWtIWDN1X0JxRFhfNnV1UEN2dm9JelZReXlFR0tJcUsxSTBmSDNvcVVNT3J2XzZGVU5pZnowOEpjV3g0RGlqUXp1SXV0ZFh5M3B4WGF2TTJMZFlpSUlwaUI2bGtwSkR5bjN6SVpweHZucEJVVTVkVDhGaHU2WG9fUm4zbEo4eFozUEdPRmc?oc=5",
-  "snippet": "Autoridades de Chimaltenango unen esfuerzos contra la violencia sexual, explotación y trata de personas Diario de Centro América",
-  "date": "2026-09-04T23:21:04+00:00",
-  "name": "Front: trabajo forzoso",
-  "lang": "es",
-  "sig": 0
  },
  {
   "title": "Three bonded labour victims rescued from cold storage at West Bengal’s Alipurduar - The Hindu",
@@ -214,9 +262,9 @@
   "sig": 0
  },
  {
-  "title": "Julio Iglesias visé par une nouvelle plainte : le chanteur accusé d'agression sexuelle et de travail forcé par deux ex-employées - Voici",
+  "title": "Julio Iglesias visé par une nouvelle plainte : le chanteur accusé d'agression sexuelle et de travail forcé par deux ex-employées - voici.fr",
   "link": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNTm9fTHJtdUFmeEZQSzNmUVVEYnNaQ1N3WG5HdjlxaS1McFVEcXpUZWg1N1ZPVjNkWENMTXlxay04UmxUZWRFSk9kY2pIcktHRGxKbTBlZkRSREZGcXRnNEJQcVN1UU16Z3o0eENTMGhLOGJ5Y2lxNlVraHNuSm5pb2V4LXlxdXBLbGFScTh2ZmN6N1ByY3lCcWtuaU9KNmpuX09SSUhNMlo3ekNkdjNxSmhnSDQyVWdKVE5XNXliVERpMWVjWTNUZkZ0Qm1EblJESUNIX0NwYzlveUVTbmNiOEVSbHNhbmM5UHNFMVlldUVsTFdUN3oybw?oc=5",
-  "snippet": "Julio Iglesias visé par une nouvelle plainte : le chanteur accusé d'agression sexuelle et de travail forcé par deux ex-employées Voici",
+  "snippet": "Julio Iglesias visé par une nouvelle plainte : le chanteur accusé d'agression sexuelle et de travail forcé par deux ex-employées voici.fr",
   "date": "2026-09-04T21:58:33+00:00",
   "name": "Front: travail forcé",
   "lang": "fr",
@@ -268,14 +316,13 @@
   "sig": 0
  },
  {
-  "title": "NCPCR rescues over 3800 Children from Child Labour under a special Campaign - First India",
+  "title": "NCPCR rescues over 3800 Children from Child Labour under a special Campaign - firstindia.co.in",
   "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQQjV4UkJvRDE5WWttZkRVckYwQWdQZDBjb0t5Mm9pSy11WTBBaS0tdExEbDZXQVhIY0pKMWFWNENtU05oRVpSMmEyMU9RWHZsY21HVzJHREhsY2R1UERLWHBZeV9LZFU3SjI3SVNLVTFOSmNiaHhidm1YcnNRQUpiczY0OG5aNS1INndXYTJBZzRGQTB2MGNyNXVabnVaX0d5WEtaUzRaUUlkVUNjVU9xWm5SUDBTVkwtR3RNSzhkWQ?oc=5",
-  "snippet": "NCPCR rescues over 3800 Children from Child Labour under a special Campaign First India",
+  "snippet": "NCPCR rescues over 3800 Children from Child Labour under a special Campaign firstindia.co.in",
   "date": "2026-09-04T19:40:08+00:00",
   "name": "Feed: child labour",
   "lang": "en",
-  "sig": 2,
-  "iso": "IND"
+  "sig": 2
  },
  {
   "title": "Observatório debate o enfrentamento ao trabalho escravo e a construção de política nacional - Portal CNJ",
@@ -379,24 +426,6 @@
   "sig": 0
  },
  {
-  "title": "AGU recorre ao TST para validar processo que incluiu mulher de desembargador na lista suja do trabalho escravo - 18horas.com.br",
-  "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOWExzRmRsZE1rSGZ6WEFYNV9YeWFrYk5tci16OEpNN2pfOHBrVkplaTBlRXd2UDFWNlEwaGo1Q3dUMkJoY3lueUJBTklQQ2dBdHpscjNNb2hua0pCbkNlV2hLa0M5S1RCc3RxcDFSWDdIVlBxTzdzM2FrLUE4bmZoUVZXZXhQMWJNcFVvYllnd0NvR3JjMnRJaGxGNzhpclFBSTYxMEk5ZWl1Y0NfM2YxdWEwaTJ4VlZsd25HeG5PVTc2cWhZaDVDRE9Qd1Y3QVc4ZUE3NVdLYWg?oc=5",
-  "snippet": "AGU recorre ao TST para validar processo que incluiu mulher de desembargador na lista suja do trabalho escravo 18horas.com.br",
-  "date": "2026-09-04T17:13:31+00:00",
-  "name": "Front: trabalho escravo",
-  "lang": "pt",
-  "sig": 0
- },
- {
-  "title": "Espagne. Julio Iglesias visé par une seconde plainte pour agression sexuelle et travail forcé - Le Dauphiné Libéré",
-  "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOQnVwZmFTbU5LMXJ3Qk0yWU1pWDAteXRHeHFieExGZWRESUNhSU9TLXIwS3VHdVJTZUg3RW5YSm9BUEFpLThjbUp5ampCVWh6eTZKLXlSNUItNVR2OVYyNURpSjFqNXo2UG9ZdkFubHQ1TC0zRFFialVISExRMWY2Y0J0aUd0RjlrdHRlTWh2OUtzeVdFQlhSTUNrbE1tU3hfNldaWmNYZS1jRldHek5lc2JfQm0zeHlGTXV6YktUaVFuS3NJby05MjEzTzRMempiUGtzZVFNR1RnRkE?oc=5",
-  "snippet": "Espagne. Julio Iglesias visé par une seconde plainte pour agression sexuelle et travail forcé Le Dauphiné Libéré",
-  "date": "2026-09-04T16:47:13+00:00",
-  "name": "Front: travail forcé",
-  "lang": "fr",
-  "sig": 0
- },
- {
   "title": "Imputan a influencer por trata de personas - La Querella Digital",
   "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOM2RoSWYzTWZYdnFKa2dZMjNQSE1WVUF2YjNOQnU1QTUtbzdRRWkxUnVnVE1rYjRYbkJ4Z2JaOGdKWTZldW9iWVdJZE8zc1NLNWFLVkhIc2o1UkRvckdsVFNTaC1fSHBFZFBvek1XM3dDbUMzLW5LSDg4d2pMSU1VbTFJbw?oc=5",
   "snippet": "Imputan a influencer por trata de personas La Querella Digital",
@@ -406,13 +435,23 @@
   "sig": 0
  },
  {
-  "title": "NSCDC Rescues 15 Trafficked Children, Recovers AK-47, Arrests Telecom Vandals - prnigeria.com",
+  "title": "NSCDC Rescues 15 Trafficked Children, Recovers AK-47, Arrests Telecom Vandals - PRNigeria News",
   "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1zXzlGNWhObVNTUnZsd2JNNEl1RWVXVnRJVEZKaG43cklid0dlNVA3N29yODYycVFVMkl4dDIwSWQzS1pqdnd1OVdaWjlwVEdlbTZvN0NpZ3dXcU1GaXFhY01lMTJZekxRRkE?oc=5",
-  "snippet": "NSCDC Rescues 15 Trafficked Children, Recovers AK-47, Arrests Telecom Vandals prnigeria.com",
+  "snippet": "NSCDC Rescues 15 Trafficked Children, Recovers AK-47, Arrests Telecom Vandals PRNigeria News",
   "date": "2026-09-04T16:41:13+00:00",
   "name": "Front: Africa trafficking",
   "lang": "en",
   "sig": 2
+ },
+ {
+  "title": "Deux ex-employées de Julio Iglesias déposent une nouvelle plainte pour agression sexuelle et travail forcé - Ouest-France",
+  "link": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxQQWN5cTlZRm5Eb08wbktJSnlxNF9uVUpsUFY3UWhYX3FVekI3VVVrZWJrREFRYmZrRTktOXVIOUZma0JzUnBRUEZBOWhfTXA2enhTUVpHWXpScFkyNzVHWWpEUDB4Ty1QODJpWWlaNGJFSlE3MXppZEJnYjNFWHp2MmhqQUVDUE5rempTb01FQUdINGZZNkcxRmN6R0thZzZhWlZyQ3F0R3lhbkxJRm0wOWVidk50eFNnc2tOTlhyME9jWWxWaVJ6OEprZVktdmpKa1k2X0h1akJkeFlpd1c0blVKSHVlSlNZeE50aXd1bFNnQ1NTd2pFXzdNZ21KYmxycm1NNVZ1M0haTjJyaU5rOEU3WmZGQ2ZfRHBkTWFlWWRWSFdrRnhKeGFHUQ?oc=5",
+  "snippet": "Deux ex-employées de Julio Iglesias déposent une nouvelle plainte pour agression sexuelle et travail forcé Ouest-France",
+  "date": "2026-09-04T16:32:57+00:00",
+  "name": "Front: travail forcé",
+  "lang": "fr",
+  "sig": 0,
+  "iso": "FRA"
  },
  {
   "title": "Sexual abuse and forced labour: Julio Iglesias faces new abuse complaint - RTL Today",
@@ -424,18 +463,18 @@
   "sig": 0
  },
  {
-  "title": "Los hermanos Tate, en prisión en EEUU, acusados de trata de personas y abusos en Rumanía - Yahoo",
+  "title": "Los hermanos Tate, en prisión en EEUU, acusados de trata de personas y abusos en Rumanía - es-us.noticias.yahoo.com",
   "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPbzhraFFnS0g3bFRsb1hTX20tSUktNjcxeVMyVThMQVdLV2xMd2txNldsMDdOb1lCaWx5T2xBd3EzcDJKeUU0MXcyRC1ycmR5aGk0c0lNU283bWwwVWhQWWdOZnI5TTVSNGRxMFZfRHZpbDRIZzlIQUJTa2RFTUtyZkRCVkNkVlVJUFd0S2dSZXZrZw?oc=5",
-  "snippet": "Los hermanos Tate, en prisión en EEUU, acusados de trata de personas y abusos en Rumanía Yahoo",
+  "snippet": "Los hermanos Tate, en prisión en EEUU, acusados de trata de personas y abusos en Rumanía es-us.noticias.yahoo.com",
   "date": "2026-09-04T16:04:19+00:00",
   "name": "Front: trabajo forzoso",
   "lang": "es",
   "sig": 0
  },
  {
-  "title": "Hermanos Tate son acusados de trata de personas y abusos en Rumanía; están presos en EU mientras sigue proceso para su extradición - El Universal",
+  "title": "Hermanos Tate son acusados de trata de personas y abusos en Rumanía; están presos en EU mientras sigue proceso para su extradición - eluniversal.com.mx",
   "link": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOLXFONHZ5a19EZkdVM2s5VDJ3NzhSQjhlWXplclI0RkhwX3NVWUxJamx3MkI5SWd3TDVUc2VXZ2pNRUg4OGZLdHBQLUJOdUl1Z2VyeFNiaWZBaEpKVjR0ZmR2elRVMWRqRWFmdTJuTHVfUjh0NERlVG9NTkk0bHk1OVRFN3p4cndpcnFxbWlQeEc1aUE5MWdBUUlMMXZwSlNWQUh5dktqalFTZUd1ZjA2M2swVFA0R2JEVG9wY3NHTjFIWWlHMjMwQkRTVkh2ZmlBNFRMU1RlcG1iMzlRTjJReEt0MUFuMGVtb0VuN3ExNF9uXy1mTmhZNUgwSdIBjwJBVV95cUxNaXYzR3k5VHhOSHdaZlI0emxjRXhnNHZqbG5pRWtRWGp2dFhXSHZIWU55NUcyRUdGTklhMnlOREt1Y0lIWHhrQTRxbG4wTUk0MnkwUGhJOVVpUFVfekljNU9QTXB2eXF1UkdPanhZRFFuOFFsdEU4RG9EeVV1NjhyVGR0V0RWa1ZiQkRwNkZPWFROd3VLenVibjVnRjlBa2c2c0ZKUHJaNkFnajhEalZkT2NMZDZFUmNyWGtSTTBJa2tUYl9sOFhHNENoYUtOY2lQQ2R2REI0XzdiYmMxd0VZTG5HM2JJY0tLdTlhMExjMlBzN0tPbnV0WXdFVUdjczdtQmh1OE1CeU5UVUJ2bDdv?oc=5",
-  "snippet": "Hermanos Tate son acusados de trata de personas y abusos en Rumanía; están presos en EU mientras sigue proceso para su extradición El Universal",
+  "snippet": "Hermanos Tate son acusados de trata de personas y abusos en Rumanía; están presos en EU mientras sigue proceso para su extradición eluniversal.com.mx",
   "date": "2026-09-04T15:52:40+00:00",
   "name": "Front: trabajo forzoso",
   "lang": "es",
@@ -459,15 +498,6 @@
   "lang": "en",
   "sig": 3,
   "iso": "IND"
- },
- {
-  "title": "3 bonded labourers rescued from Alipurduar unit - timesofindia.indiatimes.com",
-  "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNSGhlRVhDTjFPQWhRQzFGcWhjOEZhRHc3QkwyYXpBUGluSTU5YTlpMTNNMWVXbmE5R19Zb2Eta0V1OHhGN0JKTTRsNFBRT005ZHA4Zjg0UzBGaW9RZ09aVERvNG5fY1hFNHNnTUo3ZEVDdWl3ejZGY2pTakJkUWliQkJDQm4xeUhIbTRsdFFTbjQzVnk1cUxDM0kwanItNEJheG1oWlNDdXk1VnJDR3o2OWU5TWktNVBVYVd0RUNPa9IBxAFBVV95cUxQNzRpTXZla2gtTlNVdzdVMFZzMFRHanc0YVdiS2dZbGxRLU5wNHV6eWpkakxlblRLaGN6MDFIZDloNUk4QnZNZUh1Z1NHbFphUWdGS3hiWDdyQkdsWWNCMmw5VmJ0SkdHSjlUUGNRNE15a3BtRVIydnBvUHAtaElnaFktakNXY2NhT3R4aE8wZVRsc0JYT2JlTmtPek9UY1E5RGtNZ3FsS3R1bzdQZVk1VEo0NTFNcm83ZmlSRVltMjRrLS1W?oc=5",
-  "snippet": "3 bonded labourers rescued from Alipurduar unit timesofindia.indiatimes.com",
-  "date": "2026-09-04T15:22:00+00:00",
-  "name": "Front: fishing crew rescued",
-  "lang": "en",
-  "sig": 3
  },
  {
   "title": "32 rescued from bonded labour in sugarcane fields in Chamarajanagar - The Hindu",
@@ -545,15 +575,6 @@
   "iso": "GBR"
  },
  {
-  "title": "Trabalho escravo no Sul do Piauí: MPT resgata 40 pessoas em Floriano, Oeiras e Sussuapara - g1.globo.com",
-  "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPelhuOVMyYllac0p0WDU2S3VMZkxUTTY4RFpyNXVLMk9Sb3V1dzk5ajBRbENtNW1hWXNBc0FyZUZ2dWR0QjdDQUxZZ0N2UHpMZnR3b29qYXRDOU5XdGN2Z2hGWDZkZkQ0ekNCUUl3QTFoX283eng0WlR5MmdKZXdsbmFwMzJ0dk5hdktLZ3B2bHZnekFTRy1WeGFPUXZDZ1dHdC1DSWEzLWtGeVNYc3hlZmlpcEFOamVIbG9GaWhSQ0JoS0xQc1RFNXlqNjAtWE1XaFJWWWhKeldrQzR5WjFFN1NVT3hYbi1wZUZWMlJzYVDSAf8BQVVfeXFMT0VJRldYU2I1MXl5ZUx3STBGRDdjdUNMRDJIMWNQNlBSdUlzYzc3NERObzRVQ09kazBuQkc1TzdFVEZPd3puODNWNkQtMkt1Mms4cENpbUpheUUxbkFDMExvRU9HLWs4UVhaXzRud0h3Y01WdjFhNUw1NGJxSnJLc2NJOENvamVzUnc1UkFkdlpfdGpqRlY1ODhKekRLX3R3QjZDQmZQUUxjWTVxR0d5RXhObGFBRm4tWnV1QmVYZTY3SGNrZXhpQzlaT3BTbHJ1SzdiYW54SFlldGp4S051dEtZNGlNRFU1RFJWVkl6U3JrWjFScGxhV09Yc0JJMFhn?oc=5",
-  "snippet": "Trabalho escravo no Sul do Piauí: MPT resgata 40 pessoas em Floriano, Oeiras e Sussuapara g1.globo.com",
-  "date": "2026-09-04T13:49:52+00:00",
-  "name": "Front: trabalho escravo",
-  "lang": "pt",
-  "sig": 0
- },
- {
   "title": "NSCDC rescues 15 trafficked children, arrests officers over alleged service rifle sales - Daily Post Nigeria",
   "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOa0pFd1dVNkZUQ1ZacVl2aDgyLUlQQ3ZkbnRMaVgwZVY0R2hHa3lOWVp6a2xoTnFseGZCd01TRlNZY0xEeXc0MVpCbHNJMTdLcE5kdVZyZUtXUFlHVzNQYmhDYVRxbnlwYmh6cjZRcjBVc1FNb3hFWWNJVmN5SEd3NVloWG9XNHlCSDl4YURvclZhd0hkSGVaYVRMZVVvSkludk9VejZLV0ZBeW1ESnVsX1UtN2NFTXI5WFNN?oc=5",
   "snippet": "NSCDC rescues 15 trafficked children, arrests officers over alleged service rifle sales Daily Post Nigeria",
@@ -564,9 +585,9 @@
   "iso": "NGA"
  },
  {
-  "title": "NCPCR rescues over 3,800 children in pan-India campaign against child labour - thestatesman.com",
+  "title": "NCPCR rescues over 3,800 children in pan-India campaign against child labour - The Statesman",
   "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNUzZ2Y0duaEd0ajhLb214VGhVVENGXzFQZE5XZXB4dzRpaFV4ckVIRWk0N1YwcWZoTFY4d2liYkZYTFpMeEdzLTBuRjhBNWE4T256NVpZWFN4dzZmbUxNN0tkcENpc18wakRrckI0YzZXcmM4YUtnaU1LakZRUW1mUXhJMnh3bFJoTnZ0MFVlVzZwVlBMS1gwZElfMUlPakRGOHdfenVxbmRjU2thUTczd0xRQ2JPNmEwRG5mNXg2R2J0UEtf0gHKAUFVX3lxTFB1VjRwdl9EMmgzeDJ2SkpPamFTTzJTNXJrYUtlYVg2TnZHR25SQV83d1AxSXY2SWVLcnlaZGU5YkxUSndDU2lmcXIyM1pqWkxoaGxIY2pFUGw0NzlUa004NWR1N2t0c28zTng4N0d3c21SeWcyVGRBUWhEZWNxVVp0Ul9LdkFwbURCS2Nwa0wtb1BNb2I2LXFNZWd0c0Ita1RTaVhDZVZQOHFGZmJQZHZVZ3IydFY4S1VBQ3VFMzdGeG1NeG9TRUwwV3c?oc=5",
-  "snippet": "NCPCR rescues over 3,800 children in pan-India campaign against child labour thestatesman.com",
+  "snippet": "NCPCR rescues over 3,800 children in pan-India campaign against child labour The Statesman",
   "date": "2026-09-04T13:32:00+00:00",
   "name": "Feed: child labour",
   "lang": "en",
@@ -602,9 +623,9 @@
   "iso": "VNM"
  },
  {
-  "title": "Die EU verschärft die Vorschriften zur Zwangsarbeit; vietnamesische Unternehmen müssen ihre Lieferketten überprüfen. - vietnam.vn",
+  "title": "Die EU verschärft die Vorschriften zur Zwangsarbeit; vietnamesische Unternehmen müssen ihre Lieferketten überprüfen. - Vietnam.vn",
   "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxOcWZfLXo5bVQ4dWpudGROeG1RTUczVXFwNnl5RlZURkV6ZDFUOWdXRTNNSkMxaXFCc3RMT19abHVoSGl6WUpiWWlmQW55N2xISFlmc29wc1pHbWxMYUV1Nkx0V1I0RVJ2LUdOVzlYbmo4bDlXOHRVTWdHX2UxdWFJci14dm10NVhjSDZOQi1YREo5YmVLSDBmSDZvVDFpQQ?oc=5",
-  "snippet": "Die EU verschärft die Vorschriften zur Zwangsarbeit; vietnamesische Unternehmen müssen ihre Lieferketten überprüfen. vietnam.vn",
+  "snippet": "Die EU verschärft die Vorschriften zur Zwangsarbeit; vietnamesische Unternehmen müssen ihre Lieferketten überprüfen. Vietnam.vn",
   "date": "2026-09-04T12:50:50+00:00",
   "name": "Front: Zwangsarbeit",
   "lang": "de",
@@ -612,36 +633,36 @@
   "iso": "VNM"
  },
  {
-  "title": "US lawmakers demand UFLPA briefing - ecotextile.com",
+  "title": "US lawmakers demand UFLPA briefing - Ecotextile News",
   "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPNzY5ZHhuc1liYkdBTGFibW1nbUhPdUNmb2cyZE9fMHMzRDZHbzNpd0RFREVvMlhMNFhvTERTMlVHeG9LdjlQbDhVUFBfZ3VQb3ZVamx1dTRnU3ozMXdlN2RXa1dJbHV4eVNLMHhUbHp2X1NNRk53cDVSaFZMTWVpM3NKVG1DcDdPVU1vWGRNTHdiVmhmQjZTMw?oc=5",
-  "snippet": "US lawmakers demand UFLPA briefing ecotextile.com",
+  "snippet": "US lawmakers demand UFLPA briefing Ecotextile News",
   "date": "2026-09-04T12:44:34+00:00",
   "name": "Feed: UFLPA",
   "lang": "en",
   "sig": 0
  },
  {
-  "title": "Operação resgata 40 trabalhadores em situação análoga à de escravidão em três municípios do Piauí - fmimperial.com.br",
+  "title": "Operação resgata 40 trabalhadores em situação análoga à de escravidão em três municípios do Piauí - FM Imperial",
   "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQbkk5RllybExacEx5YVhPZV9EdndlMk9LT0ZlTTBVQlZaay1VNzlPQXhkSTBmMXJlUkNZMEVoM0VmMExZQ2VuY2VmVmd0bjVpNUdJaGg1YXlBbXRrc3QxbVlmMWpTRkVrN3l1TWlMMi1BZTVkeG1SSDhlM3ZXS2RGUEJxUkpNN1ZCNTY0azNGX1ZiV3dzQmI0ZlVobG04YzNYWnU5bmVZLWhBNUp3M1NXd081MGEtbFZoRWQ0WGtpaWRKNXVaU2E3WVRral84Z1hGUWFnVUV3?oc=5",
-  "snippet": "Operação resgata 40 trabalhadores em situação análoga à de escravidão em três municípios do Piauí fmimperial.com.br",
+  "snippet": "Operação resgata 40 trabalhadores em situação análoga à de escravidão em três municípios do Piauí FM Imperial",
   "date": "2026-09-04T11:51:00+00:00",
   "name": "Front: trabalho escravo",
   "lang": "en",
   "sig": 0
  },
  {
-  "title": "Three, including two minors, rescued from bonded labour at Alipurduar cold storage - thestatesman.com",
+  "title": "Three, including two minors, rescued from bonded labour at Alipurduar cold storage - The Statesman",
   "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNaTNJM1c2UXJPNWNqVmtSdnhNeEs1a3VLNWxYWVh0WkZNbGhSZWQ5ZUhCYk9jU3JMb3JNYWlHNGhYNmdXeVBYQU1NR1BQd2FLaDNxRXVFZVpKVlBpVUZpel9xRTdmTFFLOVl6NDdaZ1JVY0VZSWcxdjVleVVKanNEYWhvZzI2dmN3eURIN1poZDRxZ0ZpSmNXZVhuOXdsWjFzSWJFeFoyWllOZ1VvOVdONF9pQmpnUUNXems0XzhuZVJHWTNxTmdRTVlRWkk5NGRUR0tPWlNDNNIB3AFBVV95cUxPSm01LUh5TGMtTVR2bHNYT3JSenctWFBaTnd6RlpPZVJCVy1fTEd4TlhDMGVYWGE5cVQyenFsbkxGbk0xc0d5M1hfLXZXYURhTlhUYjMtOVVxRW02aUdqMXVfdjRINElzR0pLTTh2RWJPbnJnS0xnaXJZV2M1WEJ0Wk9TUkV5aDU5VjhNTVFFazRRemwwSnhTQWdkUjQ5TThsOTZrSnVnNTBQZHlDVFlEMi1tM3lpdl9xTnNhSEFIRk9rdVRucW50bWoxN2hqSEpnREdIMk81ckJhd2VX?oc=5",
-  "snippet": "Three, including two minors, rescued from bonded labour at Alipurduar cold storage thestatesman.com",
+  "snippet": "Three, including two minors, rescued from bonded labour at Alipurduar cold storage The Statesman",
   "date": "2026-09-04T11:34:00+00:00",
   "name": "Feed: debt bondage",
   "lang": "en",
   "sig": 3
  },
  {
-  "title": "NCPCR rescues over 3,800 children from child labour during special campaign - theprint.in",
+  "title": "NCPCR rescues over 3,800 children from child labour during special campaign - ThePrint",
   "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQZ1R4X0VIbTRmNDhwYVlxeVh5cmtuaUFEMDNQeGhkcjZWYkpKZy11R1VmU1dkNjV5RFNKWklnNlFtZ2RIdndWb3V2VWJCUTVHODFnYUpzakFxU01Gc1ZOMzZtVWZoNG9pdmpkT3dyTFdVejdLZE1BRFJpa1FXb3l0VXVqalVvVlFqcHlzRHF2UUZXNnRWWEFOQVZXeVJEVVZEXzV3ZHVrOFdzam1ic0HSAbMBQVVfeXFMUG9xY1hoc3JXQ0drX01zcDNnX3lqLUF3NlFrS2FJWDNtRVNBeklZZ0RvVFVqVGRBb29oMHkwYnFmbHlJcjFUXzZJZjlQOEdYam9keDZpQVFkQkt5SlB2dmtDdzNTZEdPb3p0cTRfeUxTQkM3T1BuU25kTEF0eXQ2YmRTYWhSeWRzSnMzOC1MMUpZVTlZS1kwbzVYX2Q2Ml92TU9QdlAwTnRHekkzYno4ZTBYaTQ?oc=5",
-  "snippet": "NCPCR rescues over 3,800 children from child labour during special campaign theprint.in",
+  "snippet": "NCPCR rescues over 3,800 children from child labour during special campaign ThePrint",
   "date": "2026-09-04T10:46:40+00:00",
   "name": "Feed: child labour",
   "lang": "en",
@@ -666,9 +687,9 @@
   "sig": 2
  },
  {
-  "title": "Die EU hat Leitlinien zur Umsetzung des Verbots von Produkten herausgegeben, die unter Einsatz von Zwangsarbeit hergestellt wurden. - vietnam.vn",
+  "title": "Die EU hat Leitlinien zur Umsetzung des Verbots von Produkten herausgegeben, die unter Einsatz von Zwangsarbeit hergestellt wurden. - Vietnam.vn",
   "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQMUlLQ3VxSEExcE15NklOUV96ZkVONTJtM0xrYV9VNHd0RG8zWFpjMTBfWXRWaVRUQ2UtcmVhaWo3V2ZnU1pvaHBYU2p0YXJyVlktaFZocnlWRGhTR09sMTY2RGhiczNqYkkyVlNQQzc3c1htMHhJdW5mVlRNWWFFUkd3Mldkbk80TXBjQThkY2g5Z3phc0lfdXV2bGRtSTdMZzdzTHE1UDZfMTdBeFE?oc=5",
-  "snippet": "Die EU hat Leitlinien zur Umsetzung des Verbots von Produkten herausgegeben, die unter Einsatz von Zwangsarbeit hergestellt wurden. vietnam.vn",
+  "snippet": "Die EU hat Leitlinien zur Umsetzung des Verbots von Produkten herausgegeben, die unter Einsatz von Zwangsarbeit hergestellt wurden. Vietnam.vn",
   "date": "2026-09-04T10:12:30+00:00",
   "name": "Front: Zwangsarbeit",
   "lang": "de",
@@ -761,19 +782,18 @@
   "sig": 0
  },
  {
-  "title": "Statement of changes HC 584: sponsorship rules eased for modern slavery victims and return of Erasmus+ - freemovement.org.uk",
+  "title": "Statement of changes HC 584: sponsorship rules eased for modern slavery victims and return of Erasmus+ - Free Movement",
   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5yQS1VdkZXZ3pKTG84MVJuRUZsRFNVQ2U0eW1OZHR5SGxQNXBNN0hiWnJzUUNMTnp5VDFWNTZSd1RZMDd6blJ4dWw5d3NyRGpFZXo5bXRkWTJlZTdVZE1Xby1lQmNvbWpFZnVkVFlYV2FLSnVLZFpCc256SQ?oc=5",
-  "snippet": "Statement of changes HC 584: sponsorship rules eased for modern slavery victims and return of Erasmus+ freemovement.org.uk",
+  "snippet": "Statement of changes HC 584: sponsorship rules eased for modern slavery victims and return of Erasmus+ Free Movement",
   "date": "2026-09-04T07:12:26+00:00",
   "name": "Feed: modern slavery",
   "lang": "en",
-  "sig": 0,
-  "iso": "GBR"
+  "sig": 0
  },
  {
-  "title": "Quarto minúsculo e banheiro precário: veja onde viviam idosas resgatadas de trabalho escravo em BH - g1.globo.com",
+  "title": "Quarto minúsculo e banheiro precário: veja onde viviam idosas resgatadas de trabalho escravo em BH - G1",
   "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNWV9hWjExVUVldEhUNlViaU1wYzZRMklMWE96cUk4MXVJdU53QXZpLWFraG9tTWs5NnFod3p0SWl1ZzY5X0V2Y01JaXoyWk85RDdYR3YxRm1HV2RpSlRXNmFMSDdFckdYVXlDYjJKTDd0dnJVV3c1Q3VrY3EtbGF2c3VsYm1ISGs5XzAtazF6NmNOaUhrbGJCQzVkWVhnY2RRQmUxLVUwNTdrbzk2bm5KdVNGSTJ3bTZMRXJJUnR6d2RqMHpXWnlocENhRUI5T2swa09OUFI4X1FrUUJkZTRPNEhpaUN1bEV0MVFIbXQ4SUvSAf8BQVVfeXFMTk5pWE05MHBta1JCWkpCMTY1SE9aWjJOZTZXb3U3LU5xM09Tc2VkV3lsQ2FEeFJ4MU9YNERCVUVOQWFPUElvdWhtZHN2dDlqSEhJX3hMRno1NDNGVkliUGJwQjByWVdOcnVDeE96TE5leHExZzFXZkJRRzVpektYTWZiVVhKaGZwbFlObE4yZGt0R09vaXZtY2ZzQXZGcW5NNWtZUHpuR1ZINlpNRDNBaFVPa1gxT19GVTFlMlpmWGhpcTg2V3BpZUtiajl4YVlaWWl2Sk5QbWw2UXpQcDJJWnI1VzRMWlMxNWhSR0tQdHM3RERXakNCQjNLT1R4RWU0?oc=5",
-  "snippet": "Quarto minúsculo e banheiro precário: veja onde viviam idosas resgatadas de trabalho escravo em BH g1.globo.com",
+  "snippet": "Quarto minúsculo e banheiro precário: veja onde viviam idosas resgatadas de trabalho escravo em BH G1 MPT aciona Defensorias após resgate de idosas em BH Metrópoles MG: Idosas de 90 e 65 anos são resgatadas de trabalho análogo a escravidão UOL Notícias",
   "date": "2026-09-04T07:00:00+00:00",
   "name": "Front: trabalho escravo",
   "lang": "pt",
@@ -837,18 +857,9 @@
   "iso": "IND"
  },
  {
-  "title": "13-year-old rescued from bonded labour in Ganjam's Chikiti - newindianexpress.com",
-  "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQeGFHMFpNNEg2VTFRLVliQ3NQcUN5SDdyU3JnTVlMR2huWDNnNWNxLUQxOE93RFVUbGFTVkxmQ3R0bzhDOGRfWXpWOWRIWWZnS0p3ZG0wRHVTaFRzaGpyeTdKREJUVHFzVDY5SUw2QUpwVTZVaHNNVXdBdkljTENOWnJZRlNfZk9WM1RXVUItOGluWjN3ZTZzMUJzeVZJWS0yMmVxQlppNkNlWlhHcFBWZXZRM204bGQ5Z1HSAboBQVVfeXFMUHhhRzBaTTRINlUxUS1ZYkNzUHFDeUg3clNyZ01ZTEdoblgzZzVjcS1EMThPd0RVVGxhU1ZMZkN0dG84QzhkX1l6VjlkSFlmZ0tKd2RtMER1U2hUc2hqcnk3SkRCVFRxc1Q2OUlMNkFKcFU2VWhzTVV3QXZJY0xDTlpyWUZTX2ZPVjNUV1VCLThpblozd2U2czFCc3lWSVktMjJlcUJaaTZDZVpYR3BQVmV2UTNtOGxkOWdR?oc=5",
-  "snippet": "13-year-old rescued from bonded labour in Ganjam's Chikiti newindianexpress.com",
-  "date": "2026-09-04T03:52:00+00:00",
-  "name": "Front: India bonded labour",
-  "lang": "en",
-  "sig": 3
- },
- {
-  "title": "Reclutava i lavoratori con un furgone: 55enne condannato per caporalato - Il Resto del Carlino",
+  "title": "Reclutava i lavoratori con un furgone: 55enne condannato per caporalato - ilrestodelcarlino.it",
   "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOOFcxNU4xNll6Z0hvVkFtX2ZiTHl2aXdmbVFYNzk0TFlrQldaY3Q3ZXhDY2Fyd3RfQURoaGhseFppR0VWcTYxbkllVEZFZldyNzhnblRlQ2kycFlnQ3daQTJxbHRYYmt0NFJoQndFSVZ3ZnhnRTB3LV9FQzVnUk5tZHVLMGZsQVNpUDd1bmVB?oc=5",
-  "snippet": "Reclutava i lavoratori con un furgone: 55enne condannato per caporalato Il Resto del Carlino",
+  "snippet": "Reclutava i lavoratori con un furgone: 55enne condannato per caporalato ilrestodelcarlino.it",
   "date": "2026-09-04T03:07:28+00:00",
   "name": "Front: caporalato",
   "lang": "it",
@@ -892,9 +903,9 @@
   "sig": 0
  },
  {
-  "title": "Detienen en Guadalajara a Óscar Adrián, presunto influencer, por trata de personas y pornografía infantil - sdpnoticias.com",
+  "title": "Detienen en Guadalajara a Óscar Adrián, presunto influencer, por trata de personas y pornografía infantil - sdpnoticias",
   "link": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNTlRfTnRuM0Y5OHVQeE92UmhvX1I5WjNzeXhmLVlnd0dCTGY5andqYnlZT3poT0hpMTRNNFJqMS1FQUhuV2RuZlJSOVJGdEpRbHcyclBySTFYU1AzOGJCOVJHMDU2Tk5NZzF1MThwNml0cW5YOGFtb2tHMFUtUXo0Z2pjN3A5b2QxT1FDSGxualNrczNBTFJCakUycXMzQWM2LXlBeWlVbXlXTk1oMmtrbjV6T0hCSHFCTUhPazhDOWFPR3N0SG8yMTU1TUxnNFNaekUxZzFHdUZBWVI1b0FESHlB?oc=5",
-  "snippet": "Detienen en Guadalajara a Óscar Adrián, presunto influencer, por trata de personas y pornografía infantil sdpnoticias.com",
+  "snippet": "Detienen en Guadalajara a Óscar Adrián, presunto influencer, por trata de personas y pornografía infantil sdpnoticias",
   "date": "2026-09-03T23:51:49+00:00",
   "name": "Front: trabajo forzoso",
   "lang": "es",
@@ -965,21 +976,12 @@
   "iso": "BRA"
  },
  {
-  "title": "Operação resgata 40 trabalhadores em condições análogas à escravidão no Piauí - portalr10.com",
+  "title": "Operação resgata 40 trabalhadores em condições análogas à escravidão no Piauí - Portal R10",
   "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQN0hZV2w2bGhZbjJSeUc5YlBGVHhjOVRJOEFQMFQ3ZlBXMlFDTDlLejg2TE1NQVc1dW56OVlIMVBSTVVaUWFQMXNfck5GUVQ5a0FpSk91OFYyVFZoZmlBUWxNLXJVY3dyY1FuOHZ5ejVHVlAzWkd1NGFIMzBWb2JsNzdNLVZIXy10UVlXTjdHTkpKd3ZlTmlGOXpwbS12OEo0dHVrM0VSckEyOXFvSVVBZDdjbDRvN2ZnUkV1WVphNUZhRjVmU0HSAcsBQVVfeXFMTVFwN1ZOaUo0alA4WjJKWHVpaTVwam1zTG5iM2FFZkFZaktlT055eVJyNW0tMmREX1J1ZklYV2ozbWJ3MlMwM0JnRUFCQklQQTlJSmhCQ0lSLVBKQzNhZjYxbkxlMGwxNnp4TFhack1CRlp1YTh4U2RfWHA5d3l3NHhpSFFBR0czdFFxRmJMQkpNYUhVM1FZNVd5YXN4c2hIZENsNV82N1NDUzJqUC1oc1FSSVRMMzRKLW8xU3RULXRGNnFLdjJJQUF0N3M?oc=5",
-  "snippet": "Operação resgata 40 trabalhadores em condições análogas à escravidão no Piauí portalr10.com",
+  "snippet": "Operação resgata 40 trabalhadores em condições análogas à escravidão no Piauí Portal R10",
   "date": "2026-09-03T20:12:00+00:00",
   "name": "Front: trabalho escravo",
   "lang": "en",
-  "sig": 0
- },
- {
-  "title": "Trata de personas en CDMX: Cuauhtémoc supera a ocho alcaldías en carpetas de investigación - Infobae",
-  "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOeGk0bVVQMjZEQjBuX3dGbVMzU3RNLXVpa29wdGktOHpLajI4U3N3eFpKR0RYU1YtOU5CR1c2Y09qdkNfbzBMcE1TcUFEaG9Uc2FaZTVYZzZMN0pqOS1EY2tGeDBqck9YOGRmUzhvVEZYVGxxRVY4YXJkRVZYaG00RUtRMEVTblBpOEhuMzBuRHBDeG9zX2hMVmpJSGZZUDI2Z1ZtV053V3R4dkFRcDc2VDhXSlhEVU9lSnppTk1ITDI0WkRhQldadnRSdGTSAecBQVVfeXFMTVhqZnl5V1dNWHBhT0E1V1V0YmN5MmlLNVYzWlBlWjNvMGtPa093SG90Z1JoT2dScnBFaTZFdG1VcWRpbTc2X1N5dVhXQkJodHEzRGc4V1Y3UUp6djg2cXNpenVibXpZSjlQSmw0Q3JuZXBUVU9fVnhYamFKNVJObm9VdFUxMW1VSWc0S1pkSEdFaV9xa0NXS3V2SVlVTFlGa1FNMXpDM0dYNlpNM0FZVDhZN2RZNlVzWEotRzdUQS0yQ0VDMnNkTnVlRmpiT3VVUDRFeng4ZGhfekhkS1NhZXl1cGZnUXpz?oc=5",
-  "snippet": "Trata de personas en CDMX: Cuauhtémoc supera a ocho alcaldías en carpetas de investigación Infobae",
-  "date": "2026-09-03T20:11:26+00:00",
-  "name": "Front: trabajo forzoso",
-  "lang": "es",
   "sig": 0
  },
  {
@@ -1105,9 +1107,9 @@
   "sig": 0
  },
  {
-  "title": "Operação resgata 40 trabalhadores em condições análogas à escravidão no Piauí - cidadeverde.com",
+  "title": "Operação resgata 40 trabalhadores em condições análogas à escravidão no Piauí - CidadeVerde.com",
   "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQOFE1SHpvTmNURUpPdjNrLTdvRzU0aVFTdVlvajhfWTQ2eXZ4d1RtVU9lMmtJTTUxX3RpTVczRUd2ZGhERWFUTkEzLWM0ZWRUdWF0WlRxYjJ3ZkNQNVA2S3Y4X0JVZ3JrdE5UTk0wcVJIZ3lHZDBuVDZ3Mk8tbW5rT25WLVlrZXpPbzR1bTd4cTJJOXpLSWN3S2JQaGlyLV9yZUtKYVB3c2hYSngxUW5rWWNNWDE?oc=5",
-  "snippet": "Operação resgata 40 trabalhadores em condições análogas à escravidão no Piauí cidadeverde.com",
+  "snippet": "Operação resgata 40 trabalhadores em condições análogas à escravidão no Piauí CidadeVerde.com",
   "date": "2026-09-03T18:00:00+00:00",
   "name": "Front: trabalho escravo",
   "lang": "en",
@@ -1129,6 +1131,15 @@
   "date": "2026-09-03T17:56:03+00:00",
   "name": "Front: trabajo forzoso",
   "lang": "es",
+  "sig": 0
+ },
+ {
+  "title": "Dez trabalhadores são resgatados de condições análogas à escravidão em Oeiras - DEU NO MURAL",
+  "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPZlhVZG5fYUFsendDNmtrUnI3SXJtVUF5NlBGV0hZbDc1MElkeTNGbkg1V0ppcm9QTy1YY1N4UV9nRm1FZXpKUUlHVE1FQXZ2VDdsQkU3ZUt6ZHh2OFZTLWJBRWRKNFR3MDZOX0FpSy1xZjNhYWRPMm9iTDdsUnB6YU1iZUxYNm1paFFIRGZwMHFia3RENjh4eEdqTE0yazM0dERjQXZ6SEJNX1YtWTdIR0V2QzFua28?oc=5",
+  "snippet": "Dez trabalhadores são resgatados de condições análogas à escravidão em Oeiras DEU NO MURAL",
+  "date": "2026-09-03T17:38:00+00:00",
+  "name": "Front: trabalho escravo",
+  "lang": "en",
   "sig": 0
  },
  {
@@ -1178,14 +1189,13 @@
   "sig": 0
  },
  {
-  "title": "​Barra boat caught up in modern slavery operation - stornowaygazette.co.uk",
+  "title": "​Barra boat caught up in modern slavery operation - Stornoway Gazette",
   "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNczRLRTBHcHAwdHpCYUhaT19EZGgtLWtkSjdpZDZDazhCSkM1OVNpeTVLWkU1Ql95Y1kxSGRUSlNBQmpFMW43b3FZeTEtNmhEX0JZMHJlTjRBcFViMDQ2VWtqbkxxTjQtZHRmSGZheURmSm1rVzdwOWFOUmRWV09uLVVDN3FIdkVhRjlNd2pLNk9tSzFDbkhnajRJMFRjR0FONGc?oc=5",
-  "snippet": "​Barra boat caught up in modern slavery operation stornowaygazette.co.uk",
+  "snippet": "​Barra boat caught up in modern slavery operation Stornoway Gazette",
   "date": "2026-09-03T16:17:00+00:00",
   "name": "Feed: modern slavery",
   "lang": "en",
-  "sig": 0,
-  "iso": "GBR"
+  "sig": 0
  },
  {
   "title": "Campagna “ALT Caporalato T.R.E.”: 18 i lavoratori irregolari, oltre 66 mila euro le sanzioni elevate - TrapaniOggi.it",
@@ -1206,9 +1216,9 @@
   "sig": 0
  },
  {
-  "title": "Caporalato, scoperti 18 lavoratori irregolari nel trapanese - Giornale di Sicilia",
+  "title": "Caporalato, scoperti 18 lavoratori irregolari nel trapanese - trapani.gds.it",
   "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQMUZrWko2VWZIS1UweHFLT0wxR3VHMDhoTFVZY3RlSjdxbUs2RUlMUW5XWUw4Zk84ZzhyTzVJMW8taWRESzZDbUZmUmJyc29YTlJ6c2hzVE5CSXRaSHpfUkloMzVUS2NSMDZwcVcwVjhnZHp1ckl2X3ExQXBvU2xYYTBDcHhrMW9VVmdVc3RLQ05GWDh2RE9JbG9RX2x0enF2Z2xCTFlpTURrVUdvaFpqVVBGMDBTRGxBZG1QUlpTSXVsaENKN3VCN0h6cXFJWTJxaEIwUzc3NXpZX2E0dU5iQg?oc=5",
-  "snippet": "Caporalato, scoperti 18 lavoratori irregolari nel trapanese Giornale di Sicilia",
+  "snippet": "Caporalato, scoperti 18 lavoratori irregolari nel trapanese trapani.gds.it",
   "date": "2026-09-03T15:17:19+00:00",
   "name": "Front: caporalato",
   "lang": "it",
@@ -1243,9 +1253,9 @@
   "sig": 0
  },
  {
-  "title": "UK eases immigration rules for modern slavery victims to change employers - punchng.com",
+  "title": "UK eases immigration rules for modern slavery victims to change employers - Punch Newspapers",
   "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPd0lKQUY0UDNZWDFUX0Q0N21OZlBBd2FRNElQbktkS2c2V2l5SUNFeFFwY25pbnplS3JsczZPV0JKQWNKNHpEWXNEZHRWemc2bnViTVZHVW9laW9MbEhXRm5scUFOREFNSkZxYXUydnlDMnl3YjRqNk9jbHhaaUxxS2lXX0RxT09VNzdYRjFEY0xjaTlLbk14UllB?oc=5",
-  "snippet": "UK eases immigration rules for modern slavery victims to change employers punchng.com",
+  "snippet": "UK eases immigration rules for modern slavery victims to change employers Punch Newspapers",
   "date": "2026-09-03T14:31:22+00:00",
   "name": "Feed: modern slavery",
   "lang": "en",
@@ -1317,18 +1327,18 @@
   "sig": 3
  },
  {
-  "title": "Caporalato nella Piana di Sibari, Guerrieri (Spazio Pubblico): \"Quadro allarmante, serve il coraggio di denunciare\" - cosenzapost.it",
+  "title": "Caporalato nella Piana di Sibari, Guerrieri (Spazio Pubblico): \"Quadro allarmante, serve il coraggio di denunciare\" - Cosenza Post",
   "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPRFlKYkZoSWQ3b2hXWFdnLWo2UDRfd3pkSndaVDl4ZmM4eElYWF9NaU5wbzF2TzB1dS1NUXBlU1JUTFg4TTB6RnJPVmQ0SzZDWnpMWnNhTUxkY0NSNUR2V3I5RkRSU3lyNzMxRlhJTzA0TEJHVkFTM1FkcjZjYkl4dFQybjdDM1ZyUy15alJaZDQ2ZVFFUGhKbnFVVFJGN3M0QTFpRjdnYlZoMUptcEQ4elA3Wm1aMkt5Zm52YlZPeFJtb1Z2a0lQdnhOanRzeFhZVWc?oc=5",
-  "snippet": "Caporalato nella Piana di Sibari, Guerrieri (Spazio Pubblico): \"Quadro allarmante, serve il coraggio di denunciare\" cosenzapost.it",
+  "snippet": "Caporalato nella Piana di Sibari, Guerrieri (Spazio Pubblico): \"Quadro allarmante, serve il coraggio di denunciare\" Cosenza Post",
   "date": "2026-09-03T12:21:21+00:00",
   "name": "Front: caporalato",
   "lang": "it",
   "sig": 0
  },
  {
-  "title": "Idosas são resgatadas de trabalho escravo em BH - g1.globo.com",
+  "title": "Idosas são resgatadas de trabalho escravo em BH - G1",
   "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPckYzaEQ0R3B5VTMwSmFIbDY2ZHloT0xnWC0xNWxDSVEwdzhlRWV2ZEJ1MkdJa2lhYlRVUUNZT1BYRzhDUXNnYjJVMWpmRGcxYU52ZGxpUHhiS2dDNjFVR0NyaVdXQ0JaaEFtZjd5OXNwcmlscVpocnRFdHRWVmFSRmtrQm82d2RPM3d4WkI5NDd1T2dadHM3RGtzejdNdXJUVXlxWFJFeXhhZWdhQmFyX1ByM2VsM29hNk5R0gHKAUFVX3lxTE44akVDN2x2M3psbTc1Y1J5SEZ0T1Ztd0pKemJRSEM0dERucFctZGhhUGVHRWU5a1ZyWm8tT1oybndVcV9WazNMdXV3N1Z5RlhEem9PeXc0UFotNFp6RlRINzNHR3VvVzk2VTcybFU0WGtQT0NtbXkydWRfYVEtTDIzanZ0WjJYQS1FUG0wZnJtYTZjbWtHYmF6dFJBSWNhZWxIeHFMN01TMnloaGVOMXJDc0lOc0VfYUNxSmZITkk1cjVmQzREX3VqaGc?oc=5",
-  "snippet": "Idosas são resgatadas de trabalho escravo em BH g1.globo.com",
+  "snippet": "Idosas são resgatadas de trabalho escravo em BH G1",
   "date": "2026-09-03T12:18:08+00:00",
   "name": "Front: trabalho escravo",
   "lang": "pt",
@@ -1344,9 +1354,9 @@
   "sig": 0
  },
  {
-  "title": "Blitz anti-caporalato a Sibari, Fai, Flai e Uila: \"L'inchiesta conferma un'emergenza ormai sistemica\" - cosenzapost.it",
+  "title": "Blitz anti-caporalato a Sibari, Fai, Flai e Uila: \"L'inchiesta conferma un'emergenza ormai sistemica\" - Cosenza Post",
   "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNUXhhMmhHVFhYdEljckpsNXoxS05fZUVGLXoxRGJjbW05YXFIX1htemt0aVI3eFlTa1BaSTgzMVRveVBZdjAyVUltamRlNTNONEx2WlNYS0FPYzNUbEJVZ2ZZSjlQcFlWTTB6UjBId2s4aHY0ZWI1UERDNFpBTWRjRzNWdmZQUDRMUGFUNUJIZW55SFM0M21QLWNUWHZ6NGhxc00wNTFzTGRuRHQ3aDZHLVJWcVl0b1h5X2owQnJIYw?oc=5",
-  "snippet": "Blitz anti-caporalato a Sibari, Fai, Flai e Uila: \"L'inchiesta conferma un'emergenza ormai sistemica\" cosenzapost.it",
+  "snippet": "Blitz anti-caporalato a Sibari, Fai, Flai e Uila: \"L'inchiesta conferma un'emergenza ormai sistemica\" Cosenza Post",
   "date": "2026-09-03T11:51:34+00:00",
   "name": "Front: caporalato",
   "lang": "it",
@@ -1435,9 +1445,9 @@
   "sig": 0
  },
  {
-  "title": "Khanna, Moolenaar, Merkley, McGovern, Smith, and Thompson Request Homeland Security Briefing on Uyghur Forced Labor Prevention Act (UFLPA) Implementation - House Homeland Democrats (.gov)",
+  "title": "Khanna, Moolenaar, Merkley, McGovern, Smith, and Thompson Request Homeland Security Briefing on Uyghur Forced Labor Prevention Act (UFLPA) Implementation - democrats-homeland.house.gov",
   "link": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxQc01Hb3FSZUVyNWtWMjlyb1MzVHFFOXFybFY2TTJpQWtqVXZPMWJRNEI1aFlYTmFHU05Ld25Relp5YS1RaUV0Y3NVMmRIMTk3ZHJIQ25LV0NXS09MXzIzX2lKNmZCcWFMSXVNcjZBMm1GRXVzdDlNanY5dzljR0lGbzh3dU9YdEx1ajFwbjJqakctWm9oRXphRkNrdjRmVXFvcmF1eFZySmM4Y2V2T3c5R0VZOU5UWllrM3V2VkNaUkZDbUtKMmUtMkdqQkkyVUlNd2tGQ3NKeG1QXzcyRTFFeEFBYmhKbUtqUjJ3M0NSQ3ZtTWFtTzRXbVotOWxpRlIzMzQyWGZOWjNBMk82cmVfcGVuY0oxUjlYNHdBbDFZM096bG9QYVBhTnluSQ?oc=5",
-  "snippet": "Khanna, Moolenaar, Merkley, McGovern, Smith, and Thompson Request Homeland Security Briefing on Uyghur Forced Labor Prevention Act (UFLPA) Implementation House Homeland Democrats (.gov)",
+  "snippet": "Khanna, Moolenaar, Merkley, McGovern, Smith, and Thompson Request Homeland Security Briefing on Uyghur Forced Labor Prevention Act (UFLPA) Implementation democrats-homeland.house.gov",
   "date": "2026-09-03T07:00:00+00:00",
   "name": "Feed: forced labour",
   "lang": "en",
@@ -1463,6 +1473,15 @@
   "sig": 0
  },
  {
+  "title": "Caporalato, Gallo: “Dall’inchiesta della DDA quadro preoccupante. Regione impegnata per legalità e dignità del lavoro” - IlMetropolitano.it",
+  "link": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOcjN4MS1EYVdLMzBTNHJfa1B2TGFST1VCVDN1VlJPd2tubGFsMG1TOHI3emJjejFNenlxWGx5QkFSbkhhVHFFMHh2NG9TWkl2UmJXc3U3NzlPelkyenpxZjg5UEpfckdtbXV5WFNSazUycEtEa0xzOWdndmJtTWtiN2piSHBPWXFaX2FWRmYwVVFmT2U1ZHlLc3ZjRDVldEpZa1l5elQ3ZUJYRDFuX01WM0VVRF9QVGZpT0pSblpUWkMzeGw3TUJUeVdfQnYtWVNfdS1HNlI0X2kwU0NnblZnLUdkYmpOS2l1ZHBF?oc=5",
+  "snippet": "Caporalato, Gallo: “Dall’inchiesta della DDA quadro preoccupante. Regione impegnata per legalità e dignità del lavoro” IlMetropolitano.it",
+  "date": "2026-09-03T04:06:03+00:00",
+  "name": "Front: caporalato",
+  "lang": "it",
+  "sig": 0
+ },
+ {
   "title": "Detienen en Guadalajara a hombre acusado de trata de personas - MILENIO",
   "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPdU9Ea3JSRzdXZm9PbzdBX1dPSTBHRjRvT1ZGa290amhQMzFDbEkySDVGa0diVnAybVY4YjJZemd4aVZESGhVVXk2VEoyWWV6bFFCcEJQajJaU3R5S3EtMVI1aWNLTUNHcVhhUjJ6ZFpmUlRLTkI1b1R1SjVISk9BaVpyNlNlcTlrMkZMSTN2VHo5cFAtckwwS1Z1X1B2YU3SAZ8BQVVfeXFMTzhTeXJxSEdOQy10cUxTQWFMNV9fazlzWkV3SmZuenBZd2VTUlBUUWhEZ3dCU2xPcWJwZ19veVhhNG1yTk92U29MeVlTUWpNOC1DbVNqTEF4d3BhRXRlMUdTRmIwdkU0R1dGWDhTSDFLYWFqNWFseEVDSzNIVjNOd3BIeGcyX0ZONEttRHNrY0k4ZDZEa045Y3BMeFo5MU9V?oc=5",
   "snippet": "Detienen en Guadalajara a hombre acusado de trata de personas MILENIO",
@@ -1481,17 +1500,8 @@
   "sig": 0
  },
  {
-  "title": "Caporalato, Gallo: “Dall’inchiesta della Dda quadro preoccupante. Regione impegnata per legalità e dignità del lavoro” - Regione Calabria",
-  "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPcDdhZllwUTF3YndFR1ZJWXYwVkRLRjZxQWduNDVnUW9sSGt6TVY5RGFrclBXUDFja2djTGk0MzV0MkpNVzByc3VzRklpOGN6aUs4NlZkc2NWQkFIQWgyRGREUTA4VlRDeU5UN0FxQnh4SFFlMHhIc1A1OGVaLU5CNXhIVUM4dEFtLWx5VGRTY1poNkhEY3BaeExpNDY1VU1xSlg0cHJZRGN3TEh4WEc3cUhsMHBkZFcyS25tUlFKQXZDM3BNRjZna0V6bXotVmxBUWtGd0c2eHlzNTdsLUE?oc=5",
-  "snippet": "Caporalato, Gallo: “Dall’inchiesta della Dda quadro preoccupante. Regione impegnata per legalità e dignità del lavoro” Regione Calabria",
-  "date": "2026-09-02T18:04:00+00:00",
-  "name": "Front: caporalato",
-  "lang": "it",
-  "sig": 0
- },
- {
   "title": "Radio UdeG se suma a la campaña “It’s a penalty 2026” para prevenir trata de personas - Universidad de Guadalajara",
-  "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOX2MxeHM3cWIwOWpZVkRORjFuSXlrRlB6N2VpX2hUTTJtTDBaaUh2aTRuVEhtTDhMREQzeTBJOW9fdTFuR2RoNERwNG16NFVnX0NxQ3ZBVjkwWFZBVFhodTExUVFFVjJhNnp3cVZwNVU0QVFEVWNaVUlVSVdSemRsWXdoaHFyRmdadEh1TmdUbTZFdlRVX3JYX09VdVBBZlhVR3luOVBwUlkyWkRs?oc=5",
+  "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOYnJCRXp1ZjdaVFBVdjJTd25EOUg3SzVOVktvM2hQSHVab3JJMUZJY0dYQlpLZHpwZmhya29Nd1hENk9Hc3ptRHl0QUlJR2kxRG9jcnRpNXFKemN4SnNJdkpVOEE4TC1DX0FlS3plV0JEMjV4dkZnTXpnS2pIZk4zV3JSeTdMTHNQN0xpMl9nTWhZbU5IaFptME5wVzVfQWVFSmlicDc1bFE?oc=5",
   "snippet": "Radio UdeG se suma a la campaña “It’s a penalty 2026” para prevenir trata de personas Universidad de Guadalajara",
   "date": "2026-09-02T17:44:54+00:00",
   "name": "Front: trabajo forzoso",
@@ -1505,15 +1515,6 @@
   "date": "2026-09-02T17:30:00+00:00",
   "name": "Front: caporalato",
   "lang": "it",
-  "sig": 0
- },
- {
-  "title": "Kiwifruit industry modern slavery issue offers an easy election jab - Newsroom",
-  "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNWWtDOGMxcUpmcUlBcWFQQ184UTdHXzExRUN2MG05T1c2c2hmQTRLQXJ6MElhWlJFZWNmTkVhRzR3MUFiYWhkdlMyYzJlS1hTSDNmUkdjZEExVXdxdlZUVjRpeVdFUFZ4V1k4U1RyR21UcjhlaTktZXpxYlF6NTdSN3A3Z2FzelNxRDhxTWcybWp4QlpMS2ZidTctTDc1T3VWZ2J0eg?oc=5",
-  "snippet": "Kiwifruit industry modern slavery issue offers an easy election jab Newsroom",
-  "date": "2026-09-02T17:00:00+00:00",
-  "name": "Feed: modern slavery",
-  "lang": "en",
   "sig": 0
  },
  {
@@ -1608,9 +1609,9 @@
   "iso": "ITA"
  },
  {
-  "title": "Schiavitù nei campi della Calabria: 20 fermi per caporalato - ilfattoquotidiano.it",
+  "title": "Schiavitù nei campi della Calabria: 20 fermi per caporalato - Il Fatto Quotidiano",
   "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQNWpKVURHVW9Rd195MlI1SGE5NHJQS1pKNzRWQzhqV2VlSVNyYWpfbFgwMFNlN1dhcmVOaDFpT3liQUtQSUx4SkZXYVN4ekR3aWxjZ0RpT3UxbkFpWlpwSV9hN0pSbks1V3J4RE5tNXBNa09HaUl0NVo2NmIwQ0tSY2tsSGpDVS1OQUN3R1N1bE9DcGc5dzJfcEh4aW1hWTdPVmI1YkFCUQ?oc=5",
-  "snippet": "Schiavitù nei campi della Calabria: 20 fermi per caporalato ilfattoquotidiano.it",
+  "snippet": "Schiavitù nei campi della Calabria: 20 fermi per caporalato Il Fatto Quotidiano",
   "date": "2026-09-02T14:47:52+00:00",
   "name": "Front: caporalato",
   "lang": "it",
@@ -1720,9 +1721,9 @@
  },
  {
   "title": "EU: CSOs and unions welcome forced labour regulation guidance & portal, while calling for further strengthening - Business and Human Rights Centre",
-  "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOY1Z0YkFENjNLcVpYRUVXNWwxcTJWSWRGM2pYVDNwd3Fva2V4UUNqT3NEem1QUjduRldLaEVoVm53ZzhJVEhlZE92LThic1Zwb1JudUJBa3ExNWZZOVBKRjZ0MkVrLXJycjhIOXhESzlrUmFUWnhITzFRV2lrNkpwNDFNYk9GZlE1N0FGUXNDSHIySjVuVV9PakxBa3d5SUJ6MFNNR2hHZEk?oc=5",
+  "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQd2ZPZldwbUZfd1BjTEN2OWl3SHBMQ3NIMWxlRFE0RzNRWUJWZkhCeXdabmpNNVQtdnl2ZHAza0hQVHVkYUVWQ2FuMkRWdkZyd1NSZDJjZzQ1MnJLSmNFQkxFQS1RU1VBa1BXM21WWkRJTjl5dUlDbTFiV042MmNCVWdPUjVCR3hEZjNSbHgyc0hJb29hQjNmMEF4VHNqV2VoeDl0REV1R2FYbENm?oc=5",
   "snippet": "EU: CSOs and unions welcome forced labour regulation guidance & portal, while calling for further strengthening Business and Human Rights Centre",
-  "date": "2026-09-02T09:18:08+00:00",
+  "date": "2026-09-02T09:50:36+00:00",
   "name": "Feed: EU forced labour regulation",
   "lang": "en",
   "sig": 0
@@ -1821,15 +1822,6 @@
   "iso": "IND"
  },
  {
-  "title": "Bonded labour: Five rescued in Tiruvallur - newindianexpress.com",
-  "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNNUVCWUFrdlMzUzZmUncyZGJSLXI4SWdwSmM4cWZpeHdrWnpoR1RMWHdMSmt6MzJQRENSWXpfXzJEVWJLQTZkc2tOLXVHQXBCLXpsNHQ2TE1pU195QnhxU0pLNzNlSS10YlVYNDFVRjd2SjJOWXZ3bGR4SUNMSWY3ZjBoUng1dE5tZ3Nia3hzMUxSUVo0c1R6ZFNDa0dGSDhWWGNkTTZR0gGzAUFVX3lxTE1VbU9zQ0wyWUpHdGNJYnlWdEM1ZkEyS2stRmhLTG4zTlVXZDBSRG5Ob3h1NHN4MHJUa2s5V2N4eVB6a1dmSkZXOWRONW1lUi1IVXhGMEsxdnd1dWxRZjNPbmQ5WVdVODZmSmY1U2NLb0hlVUNMcUpWV2pmQ0VjR2NSTmY1UUZMcFRfbGFvYVZjT1Vqa3haNnd6S1R3Ykt3N1lHWFFDSGd1V3RxbjRyY0FneDY0?oc=5",
-  "snippet": "Bonded labour: Five rescued in Tiruvallur newindianexpress.com",
-  "date": "2026-09-02T02:24:21+00:00",
-  "name": "Front: India bonded labour",
-  "lang": "en",
-  "sig": 3
- },
- {
   "title": "Former child star Dylan Sprouse slams early acting career as ‘child labour’ - Nine.com.au",
   "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPU2FFdk1xbmdfR3QzSmt1RVBUYVRrMi1MeWN2RzZFZ1VsbnQwZjV5bXdfY0hwX2E1eWtfcWc1Ry0yVDU5WjVwZ3Z5bVNBaUYxU1hscG9Jd1NEZkphN1UzQ1ZpRFFRTGswaE0wWjlYaDNlNWd4d3lDQzJ1ZE5sRTk5THNLNC0tMjZwQjB5ZEQ4SnI5aG5NLVJmQkl3enp0QkpHZHFVWDlGQXZYaVBPbG16WkwzRmFVTmlRSmo5QUFScGtKMV9aRWtzeGtPUTZNTUhnNlBzajloUThfZw?oc=5",
   "snippet": "Former child star Dylan Sprouse slams early acting career as ‘child labour’ Nine.com.au",
@@ -1858,21 +1850,12 @@
   "sig": 0
  },
  {
-  "title": "Dylan Sprouse Compares His Start in Acting to ‘Child Labor’ - AOL.com",
+  "title": "Dylan Sprouse Compares His Start in Acting to ‘Child Labor’ - aol.com",
   "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPODVIU19LVjc1bjBVWFlqa0Y3QnhFVnBzTnBNbHY4ck9ROUZwSEtuYUxVMWRBU2hWMmRwLTlfZmJWNnBNcnI0UmZrOENSWnJocnNMb2dNS0p1cmNXT3g4dkduYy13cHJJOGNnY0ZQNTRFVTROd21kV0I1NzdBRkFfODRlak5aZw?oc=5",
-  "snippet": "Dylan Sprouse Compares His Start in Acting to ‘Child Labor’ AOL.com",
+  "snippet": "Dylan Sprouse Compares His Start in Acting to ‘Child Labor’ aol.com",
   "date": "2026-09-02T01:49:00+00:00",
   "name": "Feed: child labour",
   "lang": "en",
-  "sig": 0
- },
- {
-  "title": "Tamaulipas: defensa de Danna Yanina pide investigar posible trata de personas en Tampico - La Jornada",
-  "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNdkh4V0wxLUQwOFNvOXJ0cmJpdWwxWWZoLTVWUG5PNVEtdDdNX2h3TnZsZ2tjaGhRRVhZdkRNR3Fkcm5RT1lyVTVETXJwNjV3UDIwNzU1cDRoRm1VUFhsVkoyWm94ZmR5YjNuTTJfQzBLOXVLNXRmcE5XU2pRN1hNSjE5VG1aYy0tOWlCSU12V3VKbFdGa1hoVnI0R2x5aTJ2LWRMV01hWTg3OGMtaEVPZ3pDbllZUGlZdVlUQTRtU0YtVkNTeS1vNlA5WVdxc2FZSmw5d0pSamk?oc=5",
-  "snippet": "Tamaulipas: defensa de Danna Yanina pide investigar posible trata de personas en Tampico La Jornada",
-  "date": "2026-09-02T01:06:00+00:00",
-  "name": "Front: trabajo forzoso",
-  "lang": "es",
   "sig": 0
  },
  {
@@ -1912,9 +1895,9 @@
   "sig": 0
  },
  {
-  "title": "México alista programa piloto contra el trabajo forzoso ante la revisión del T-MEC - El Economista",
+  "title": "México alista programa piloto contra el trabajo forzoso ante la revisión del T-MEC - eleconomista.com.mx",
   "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNOXUxcjJjTkVxNXJnR0I2emRZTVFzdUdmT0ZPSUtoT1ZFdVpPYl9LRGE2eGpjekVlRHNYRDU4V3F0Q1JPS3BtTzBxd1N5ZmRUdWlEMEtqS05RVXZEQVVFXzM2Ynh3bDhQR3JCcmZRX0tZV1RrTFhzTHVYd0ZoeENmR19semg2ZDJaOUlaRkM4bmNOMDhPQXEwNjRIOXBtN0U3dTBxb2J2YkhUMnlhVTgwa3hkQkdEaE90V2JZY1hjSdIBxAFBVV95cUxPdllZeEx5TkRSdXA2OVE0X2xXZjB4a19GVzhrcmVPWW0tNVNmWVRROXdVNHRGTkpFTjIzTS13SE45Q2NzUUtmVHRDeHlVdFRqZ2Y5VEpyM0VGa1ZvYWdaVU5TMEcyS3JaM1MzZ0JkVnhfbnlNTW1RdkY1YjBsNzZjM3ZoSlZHTHhQUS1GR204RnRKR0wxTk5NWUJFYzZDTGZnX2E2LTNnblVkVlJib2N0YzdvdzQ3QmMzNGdGX3c4YlJ5T3Rh?oc=5",
-  "snippet": "México alista programa piloto contra el trabajo forzoso ante la revisión del T-MEC El Economista",
+  "snippet": "México alista programa piloto contra el trabajo forzoso ante la revisión del T-MEC eleconomista.com.mx",
   "date": "2026-09-01T21:59:20+00:00",
   "name": "Front: trabajo forzoso",
   "lang": "es",
@@ -1941,9 +1924,9 @@
   "sig": 0
  },
  {
-  "title": "Disney alum Dylan Sprouse slams his early acting career as ‘child labor’ - Page Six",
+  "title": "Disney alum Dylan Sprouse slams his early acting career as ‘child labor’ - pagesix.com",
   "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxORS12T3RZajBPRGY4c245SW1fYU1jS0lCMUkwMmZydTB1ajVqX0pGVVNJbHdxbzhVU2VvQjdKU1BWQWV0SEpLQ0stZXFsQ09UejFiLU1vMXRzdUVqZ1VYbzRrSW1icDdOV1dzRjF6UEtGNUpvci1XNC1RUWZTcEJGVFJMNU9jMzdoVzNuZnl5TnlLMTBjTkZpUkJ0UDhodw?oc=5",
-  "snippet": "Disney alum Dylan Sprouse slams his early acting career as ‘child labor’ Page Six",
+  "snippet": "Disney alum Dylan Sprouse slams his early acting career as ‘child labor’ pagesix.com",
   "date": "2026-09-01T20:04:00+00:00",
   "name": "Feed: child labour",
   "lang": "en",
@@ -2026,15 +2009,6 @@
   "iso": "TWN"
  },
  {
-  "title": "Orari di lavoro disumani e paga irrosoria. Imprenditore nei guai per caporalato - Il Resto del Carlino",
-  "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOOFRXaVo4RXFIb0NzeDc3dVJKS3Z6MG1UeGxKSnhFNWY2VDZpTWd3TnhrMXVzb3ZjQlhzVTdQYjBxSzI4b0Y4TjU5a1VOYW9KQ3dnZlBMVE41ZnM3TGp5SExPY2tfTWN5QXloTUVLaGhiYnV3el92MmFIOUlXeUtULUxKa3dUV3l4SGc?oc=5",
-  "snippet": "Orari di lavoro disumani e paga irrosoria. Imprenditore nei guai per caporalato Il Resto del Carlino",
-  "date": "2026-09-01T14:12:43+00:00",
-  "name": "Front: caporalato",
-  "lang": "it",
-  "sig": 0
- },
- {
   "title": "The kafala system – migrant labour rights, advocacy and institutional reform - The London School of Economics and Political Science",
   "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPQy1jUUtJaW1qNG5WdEZfWk1wRDNaVmRnMHd3WEwtbTRWbzlFd1pmVVhGZ2VVTUNhWXh5N2dHdE9LQkJYUjI1NWNrOWp1Z0ZBd0kyZGxMMEc0QzRuaGpQR3NrRUdiSDlCbTNLaXBGSmNWb2xWSTYta1hFU1ZtNzJXVEhGdENwWlh1SDg4MWJ5RHM3d2pjOHdDU2xXTGJ0LWFGTTl2SzZ0ZmJWS24zWjZLYU9CckZxR3d5MmxhVVZYS1hXQnluOGtVb09WV1htMHdyM3BXQUlQMnZ6NE5CRjhxY3E4ZV9lQ1JfNlJWbDdMZE4?oc=5",
   "snippet": "The kafala system – migrant labour rights, advocacy and institutional reform The London School of Economics and Political Science",
@@ -2044,18 +2018,18 @@
   "sig": 0
  },
  {
-  "title": "Blitz dei carabinieri: stretta sul caporalato nell’Erbese - laprovinciadicomo.it",
+  "title": "Blitz dei carabinieri: stretta sul caporalato nell’Erbese - La Provincia di Como",
   "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOMXZhQklaYjRhV0NPYmlVeXNKMU9LWjJmZzBtMEp0UnhBMDRsUTdOMklYMlRTMmFaendaa3JycXZLME04cWY4ZE12WnFRWUNFbHhQUnJtc2dfN0pad1g2aVVkR3VpdXFWcEZBUldvMFhSRmlUZENSamQwZVgtLVZybmN5QzRmTXRwUmZQNjJ0VmFZYjhrMC14YlNqVXcyajJ5SFAxdndidnZtVEp5SU04Q0lVLS1hVzg?oc=5",
-  "snippet": "Blitz dei carabinieri: stretta sul caporalato nell’Erbese laprovinciadicomo.it",
+  "snippet": "Blitz dei carabinieri: stretta sul caporalato nell’Erbese La Provincia di Como",
   "date": "2026-09-01T09:18:19+00:00",
   "name": "Front: caporalato",
   "lang": "it",
   "sig": 0
  },
  {
-  "title": "Provincia di Como, caporalato in un'azienda agricola: attività sospesa e 20mila euro di ammenda - comozero.it",
+  "title": "Provincia di Como, caporalato in un'azienda agricola: attività sospesa e 20mila euro di ammenda - ComoZero",
   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQczFWUndsSVd3YVdldk5vTDhuVUttelpMVFFTb2ozMlo1ZExzQ0pmLTFTeXBzRkJNbkJaRjZBS1dwbjctbFc1Ym51cTRSbUpiNjNOTk5pRzZ3X1ljVGNnVTJSVVRyYmhjTWVyM0FnZzNaWXdWUWdMcEpfYTRaY1F0MlZBZkxPWmRtOGlqLVcydFgzQmNRWVdHRlJFZGlpMHlxMnZmLWpFV2hibHdWZFFKR1VDRzh5cDA3cERMVlE3MFI?oc=5",
-  "snippet": "Provincia di Como, caporalato in un'azienda agricola: attività sospesa e 20mila euro di ammenda comozero.it",
+  "snippet": "Provincia di Como, caporalato in un'azienda agricola: attività sospesa e 20mila euro di ammenda ComoZero",
   "date": "2026-09-01T09:10:51+00:00",
   "name": "Front: caporalato",
   "lang": "it",
@@ -2100,9 +2074,9 @@
   "iso": "NZL"
  },
  {
-  "title": "PT promueve reformas para prohibir maternidad subrogada y tipificarla como trata de personas - tallapolitica.com.mx",
+  "title": "PT promueve reformas para prohibir maternidad subrogada y tipificarla como trata de personas - Talla Politica",
   "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQajNKRWdtaXVmRG85ME96c3pZaFFXY01JUGtSSUJaSjRtM0phLTBxbnpqWDgtYURBQ0dDWnVURVVWeThHcmRja3VGZjQ5SWhfNi1fQlNsX2VBdnFYWTlwWUZJUU5vb2l1ZjFYRVFLclpReUZPeWpMVmRUdDNTLU5MT0NVZUhXRlQ3d0EtcFA0QUtfcnljcEpmbzc5WDdLYmIzcmRYdG1QVzVIaGcwM2FFMmpISldQZDBDLXJUNDBZNzdDbklG?oc=5",
-  "snippet": "PT promueve reformas para prohibir maternidad subrogada y tipificarla como trata de personas tallapolitica.com.mx",
+  "snippet": "PT promueve reformas para prohibir maternidad subrogada y tipificarla como trata de personas Talla Politica",
   "date": "2026-09-01T07:00:00+00:00",
   "name": "Front: trabajo forzoso",
   "lang": "es",
@@ -2165,9 +2139,9 @@
   "iso": "MEX"
  },
  {
-  "title": "Aeroméxico suma esfuerzos del sector turístico en combate a trata de personas; firman declaratoria - El Economista",
+  "title": "Aeroméxico suma esfuerzos del sector turístico en combate a trata de personas; firman declaratoria - eleconomista.com.mx",
   "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNdDB6RW1KNmF6S1hpSmJ1aGF4SWptZWFJNXJ5QVdtMWphSEpqTk1QNURsZ0doa1Q1cGt6X3g4SXo0X2VWRUdvM1BETzhtV1VlNjR3Mmc2YkU1MERrZHZTMUpUNF9ZYVlMQkZlMFV0VnBiZll5QnA0NV93SklZRUhaRlh5U1lpY1l1blc1WjZaNXF1Rm1TSjBNU3VJWHF1RUxydWw1T1kyb1ZuTXZqZVJsazAtV1lYdW16aTVfRF9LVTg5c041QVBidVVmNTluLWllR0lXaEl2bWpHVTlyY3dENtIB5gFBVV95cUxNSjNNZDZFb1d2SW9sbWNQVHRUeTJqazVJUGxyOC1LNkRHUjUyVHBCZTIxQkZTbUlUUGtxOHJOMXV2SWhvdmR4ZzFUN0czdnZLYWpuUGVGcks1NE1qZ1Q2LXRTMVVHS3htZy03c1l0UHQ3ZlpPVHRWUXZUMVhPQWwyRlQyTkxGZ2JIRFlEUTFPa25tZkZiaURzWkV3TVYyX19MYW9tOS1pdlJGUGl2SzFWOVN4cVZWNEJVdXNVTEdOT3F4bmNqd0JRRmNGNjZfQkhLbUpPMUlhTnZMVFJsUElzR0l4QnI4UQ?oc=5",
-  "snippet": "Aeroméxico suma esfuerzos del sector turístico en combate a trata de personas; firman declaratoria El Economista",
+  "snippet": "Aeroméxico suma esfuerzos del sector turístico en combate a trata de personas; firman declaratoria eleconomista.com.mx",
   "date": "2026-09-01T01:14:08+00:00",
   "name": "Front: trabajo forzoso",
   "lang": "es",
@@ -2276,25 +2250,6 @@
   "iso": "MEX"
  },
  {
-  "title": "Programa Justiça e Cidadania aborda combate ao trabalho escravo com estudantes do IFMG - TRT-MG",
-  "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOYjF2SmhjM0E0M19iTHJ1aHRNdXNYVUZ1VU55Yk11Z3VYcEFUSm5lQVNfVk4zOWRpWXdOYlNwOHc5WURWd0g2RUF1VkRTNVpiYzYzakVhSWdYUEZjVkMxbU5CYzY2TGJmaEJFMnFWOFVWX2NJdWVzQ0hjZk40WGZDYUdCUWJlZjZrQnVqY0lVcElOX3BYTmpXc0I5ZnRwZXFRNFNFXzcwWGt6U2dXbTNraTJoNkRoZXdDVlE1RFE5TDVyaUVqeWxBaVZzNkh3LVU1Q2xRZjQtRVhLa0NudlZDckNiMXdFcGotb2U0bkZ3WFdGaHREc28tTUJ2QVpuOTV3ZGc?oc=5",
-  "snippet": "Programa Justiça e Cidadania aborda combate ao trabalho escravo com estudantes do IFMG TRT-MG",
-  "date": "2026-08-31T19:47:00+00:00",
-  "name": "Front: trabalho escravo",
-  "lang": "pt",
-  "sig": 0
- },
- {
-  "title": "# Interdiction d'importer des produits fabriqués par le travail forcé - Vietnam.vn",
-  "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1rUWRFd2w2aFpNT2lpbkdVYjVEcVFNY0pxb1lIUVdfWEh5TXA2OF90WWV0NUM0eTl2cHVNX1NLbXYyWjhjXzAxR1VXQWRCWHBmbzZDbURGY3FCYzBVT0tUSjVMODlRS1BwZkU2LTFzU0lndTFKbGJfM291VQ?oc=5",
-  "snippet": "# Interdiction d'importer des produits fabriqués par le travail forcé Vietnam.vn",
-  "date": "2026-08-31T19:01:04+00:00",
-  "name": "Front: travail forcé",
-  "lang": "fr",
-  "sig": 0,
-  "iso": "VNM"
- },
- {
   "title": "Select committee recommends Modern Slavery Bill be passed into law - RNZ",
   "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNamNrbmx6bXZ1WS1SbkF3ZmI2UDRlMlZJbF84cWlBdXdrSUdUSzVqWXRmWGZLYTR5ZFpCX0hnZDFySDZtTkc0R3NmMUh4c0tUMDBjcHlpZlJWX0xWZFFkTEIzZlNsdGNOZG9NOTlXNzVib1YteC1tQllKQjhhUTk4OXdNNzJzeDROcDR1dy05cWFPbTR5QWVXYmF1RXhmUzg1cjl2WlQ1a0pPZ1RXcnQ4?oc=5",
   "snippet": "Select committee recommends Modern Slavery Bill be passed into law RNZ",
@@ -2313,9 +2268,9 @@
   "sig": 0
  },
  {
-  "title": "Seccional participa do primeiro simpósio internacional do CFOAB sobre trabalho escravo e tráfico de pessoas - OABRJ",
+  "title": "Seccional participa do primeiro simpósio internacional do CFOAB sobre trabalho escravo e tráfico de pessoas - oabrj.org.br",
   "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUFF0VWpEY3VZSnJRUF8xRjJQdVBTXzh1ci03YktnOVhmWmU1MmJFMUlhUjkxT0d5d2RnVnh4YXhHNzdWd1RVb3daSklwQlIxR19OMC1Lem9MVVhJUDUwaFJpdU1JbjEtbFdXNDVLTHVzRGN0ZGdQRmtnczZkckVGNEY3Tl9POUNPd2FlWlZRYzM1R3lMZmVxYmhWeW9RRXpzenpmQ0hzYVNxSHd5dGN2aTYzd2RONUlWLVE?oc=5",
-  "snippet": "Seccional participa do primeiro simpósio internacional do CFOAB sobre trabalho escravo e tráfico de pessoas OABRJ",
+  "snippet": "Seccional participa do primeiro simpósio internacional do CFOAB sobre trabalho escravo e tráfico de pessoas oabrj.org.br",
   "date": "2026-08-31T18:03:42+00:00",
   "name": "Front: trabalho escravo",
   "lang": "pt",
@@ -2329,6 +2284,15 @@
   "name": "Front: fishing crew rescued",
   "lang": "en",
   "sig": 2
+ },
+ {
+  "title": "AGU recorre ao TST para validar processo que incluiu mulher de desembargador na lista suja do trabalho escravo - G1",
+  "link": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQYkd3eGJEN29iSWRLejVBb2dCbnltRkhvajBSWGgzUWpSalhmRkxRRjFCczV5UUhDVE9zN0tGajVoUXViM2NDOHhMQU9TSmF3VVVRdmV6YjdHOV9HZW1rd0t2bFp6OVY4R1NNX2NacU1xdWd1aDk5S3o5ckxkOHZvYmxOZ1pyZGNkRTNsV3F4eTlWQWxLcDNoVTdCenlhdDFqMjZMWkNiWnZnVWdtbU5iUHpqYWNHSm1hcEd2SlVBNlVIcnVNZ1ZSZks2UmxCb2hmT21DS25VRTNZU0VLV2RNakloMXhFMFN4ZzFnWDBiYTBwZk5Yai15X9IBhwJBVV95cUxOZlFkdUtTSzVqLUF5bXZ0MUlrcG9HOTFKc05kbGpTbVdSX1lfLXZiaENxSDhhUzU3bHRELVdLWnQxMnVtT1RCcU9mN3dacXNXaTdBT3JUTXlvTjdfU3VxVTI4QXFITERWUWdGcjZlMnl6VC1CNE94YmRjWWNaazRKZlBTMGFfWGIyMXZmWTRFRFBrUmZGYS1rQk1WOHpIa1BPTmVfRlgtNTJvWlVOb0pEd0tPQUUwQjllbFdtcFRVaWJ2dkplXzZGQlk5Znl1OTlxVUM4ejZTRjZkQU1RYVdlbmI4UHdiTHhsRGViYl9MMHUtbDZPTHpNVHdYMVZQQXZ3bVkwQ1Nidw?oc=5",
+  "snippet": "AGU recorre ao TST para validar processo que incluiu mulher de desembargador na lista suja do trabalho escravo G1",
+  "date": "2026-08-31T13:24:47+00:00",
+  "name": "Front: trabalho escravo",
+  "lang": "pt",
+  "sig": 0
  },
  {
   "title": "Worker exploitation exposé increases pressure on Australia to strengthen modern slavery laws - Walk Free",
@@ -2372,7 +2336,7 @@
   "title": "Why Michigan church leader says he should be released in forced labor, money laundering case - ClickOnDetroit | WDIV Local 4",
   "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOZWhKWWxEeXo4bjJPemRlQkljcHJTdkZZSG5yRnY1N2xUNjh0N09xZXlLTzVaSkxNcW54ekZoS1A5UzBnV1ZrM2pZOGhhZXd3dkJNeVlia1l3V01YS2Z0SXFudEVuaVB1c0c5dFhhSkwya2Mxc2xfeXV4SndKVjFJSjk2MVg0aFd0UEZ0bktRZzNTRHpsM0psa2VVVzc5MHF6UktsVEM5M2FwRHdBMUEyTDhGRkNMNVVjdkVzLUt0NjVuZ09yczJ6T05GbzA1WGJtYWFjV1hQejVsN1FER1E?oc=5",
   "snippet": "Why Michigan church leader says he should be released in forced labor, money laundering case ClickOnDetroit | WDIV Local 4",
-  "date": "2026-08-30T09:00:00+00:00",
+  "date": "2026-08-30T09:02:57+00:00",
   "name": "Feed: forced labour",
   "lang": "en",
   "sig": 0
@@ -2405,9 +2369,9 @@
   "sig": 0
  },
  {
-  "title": "Erklärung über den Menschenhandel mit versklavten Afrikanerinnen und Afrikanern und die rassistisch motivierte Besitzversklavung von Afrikanerinnen und Afrikanern als schwerstes Verbrechen gegen die Menschlichkeit | German Translation Section - Welcome to the United Nations",
+  "title": "Erklärung über den Menschenhandel mit versklavten Afrikanerinnen und Afrikanern und die rassistisch motivierte Besitzversklavung von Afrikanerinnen und Afrikanern als schwerstes Verbrechen gegen die Menschlichkeit | German Translation Section - un.org",
   "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1zZFhOTEk2UVQxbm4wbFhfaHNHUlFIRHpPUUd4QkpmTHI2dS1aa0RBVm1fbnl0MGRDb2JVVzVsRm1TM1UteDZNLUMtM010Z1hzdGc?oc=5",
-  "snippet": "Erklärung über den Menschenhandel mit versklavten Afrikanerinnen und Afrikanern und die rassistisch motivierte Besitzversklavung von Afrikanerinnen und Afrikanern als schwerstes Verbrechen gegen die Menschlichkeit | German Translation Section Welcome to the United Nations",
+  "snippet": "Erklärung über den Menschenhandel mit versklavten Afrikanerinnen und Afrikanern und die rassistisch motivierte Besitzversklavung von Afrikanerinnen und Afrikanern als schwerstes Verbrechen gegen die Menschlichkeit | German Translation Section un.org",
   "date": "2026-08-29T11:20:05+00:00",
   "name": "Front: Zwangsarbeit",
   "lang": "de",
@@ -2415,9 +2379,9 @@
   "iso": "DEU"
  },
  {
-  "title": "Datos clave: La trata de personas en el contexto de las operaciones de ciberestafa - International Organization for Migration",
+  "title": "Datos clave: La trata de personas en el contexto de las operaciones de ciberestafa - iom.int",
   "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQTktRaFd6SW1aS09BRC1EOUs4aTN3SnFENk5nYVlabnJBSkRhN1FiVjhUc2JWMnZkZlZDYWk2QUZrT3RLLTFPcVRCcXhnZTVxdUtVSDZsNmxmM21la21aMWZrVkh5WnI4YXdiUlpLYlJTc0UtdFpkUkFMQXBRVklWUUV2UGRLTk42Xy1ZRVJoZWQtZU1XWHBaNWF6S09KQnNVYU9EM0hrb25zZTRqQ2M1X2gwUlo?oc=5",
-  "snippet": "Datos clave: La trata de personas en el contexto de las operaciones de ciberestafa International Organization for Migration",
+  "snippet": "Datos clave: La trata de personas en el contexto de las operaciones de ciberestafa iom.int",
   "date": "2026-08-29T07:52:58+00:00",
   "name": "Front: trabajo forzoso",
   "lang": "es",
@@ -2463,6 +2427,16 @@
   "sig": 0
  },
  {
+  "title": "Cocoa farming, cheap chocolate and child labor - The Guardian Nigeria News",
+  "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9QVEVZdFdMbEFjamNmY05ZX2QzZndyZElGMW5JcVdvUVNGRFU4M3lxRWd0UVRydEhxZkQxeVhXakFqRG4ybTFUbmtIbWVPamxXYXc4eU5GaXg4WC1zV3hMWW5aUVczSGdLVEJCNVJWSTJNc1lCSU9VWA?oc=5",
+  "snippet": "Cocoa farming, cheap chocolate and child labor The Guardian Nigeria News",
+  "date": "2026-08-29T01:34:11+00:00",
+  "name": "Feed: cocoa child labour",
+  "lang": "en",
+  "sig": 0,
+  "iso": "NGA"
+ },
+ {
   "title": "Restaurant president calls teen fryer violations ‘honest mistake’ after $62K in child labor penalties - Chattanooga Times Free Press",
   "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNZ0pYNEIzejdwRjVNVEVaeDRacThoRnlNWl95NUpHRGVuRnB5ajk2UDV5YzlnZzEzMk44aVF3RHMtdHJ0Q3I3R2pxT3pwaFFFYmxCYl9VNjRtbmJlcnpzYkg4RmhOQXppQk92ODBVTjltZ1VvWnJJWGNNLVRHdkJKVmcxaFhLaTN5bms1b2NwNTNRQk10Tm1yRS01TUJ2dw?oc=5",
   "snippet": "Restaurant president calls teen fryer violations ‘honest mistake’ after $62K in child labor penalties Chattanooga Times Free Press",
@@ -2480,25 +2454,6 @@
   "lang": "en",
   "sig": 0,
   "iso": "DOM"
- },
- {
-  "title": "Community education to tackle child labour in cocoa-growing areas - GBC Ghana Online",
-  "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNNzcxQjhkc2o0YWJLSVNTSjdLZGVHM3VKUnJQbzRYakdUcElOY1JoeWYwQmJHbmdUZXkzYU56c0U0M0hmMVZvekRXS1RkY3RPSHlicGRTRnpxclhtMTJERHkycnlOMGFtNVE2SFZyWWkydDJHRkdRa1ZEbC14Tk80dWtGTHA0blRlYk1JbWU2M1lKWm1hUW9nTmJJODdObWtUVUM5OUVqVTYxSUlUMHhCV1dR?oc=5",
-  "snippet": "Community education to tackle child labour in cocoa-growing areas GBC Ghana Online",
-  "date": "2026-08-28T15:57:26+00:00",
-  "name": "Feed: cocoa child labour",
-  "lang": "en",
-  "sig": 0,
-  "iso": "GHA"
- },
- {
-  "title": "Zwangsprostitution und Menschenhandel: 30-Jähriger aus dem Landkreis Roth muss vor Gericht - nn.de",
-  "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPRWxxTy1SNW5PZnU2Q1U4X0JNclcyQ1hJVGFET3NPaGVhM2NvTXdBYVU0NEw3Wms1aFhpRnU4YmdtWjBIN3JWNDVjNUh1cEdjVUJ4dmtUX1FjeHlGQ2c1WDlhYzI2aGdBWGgwd09mRHBfSWxsNzh1V1pMR0h0dm9IaWRkcE1XaDEwS3lfNXBzMjR1VjM1OUw3ckt2aWJFUE5hV2lrcEdNdm1EbTBkOTBfQVFDNWljTDRZRV8yb043N3EwZ1U?oc=5",
-  "snippet": "Zwangsprostitution und Menschenhandel: 30-Jähriger aus dem Landkreis Roth muss vor Gericht nn.de",
-  "date": "2026-08-28T15:43:54+00:00",
-  "name": "Front: Zwangsarbeit",
-  "lang": "de",
-  "sig": 0
  },
  {
   "title": "Ivory Coast combats child labor for chocolate - The Guardian Nigeria News",
@@ -2520,9 +2475,19 @@
   "sig": 0
  },
  {
-  "title": "Customs intercept trafficked wildlife, arrests three in Kano - punchng.com",
+  "title": "Community education to tackle child labour in cocoa-growing areas - GBC Ghana Online",
+  "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQM1I4UEd1R29lbElBSTRTd19VNE5Hcm5YOEl2ZjY1RkwyMTN3NkhTcVdTakV1MFE2U2RCSHd0Sm5NTEZrY3BzSnZNbjFoeUpTNl9vaEQtSkM1ck02VHVldV9hSDlXT1doUXU3aFVQWUdjcUFGNXByT2lEcU5obVBIWENrODhTQ2YtZDBSVVN5b2owLVZOQzcyUDRUX2wyZVR4LUUtbHNrdlN5NzhzQmVJ?oc=5",
+  "snippet": "Community education to tackle child labour in cocoa-growing areas GBC Ghana Online",
+  "date": "2026-08-28T13:48:54+00:00",
+  "name": "Feed: cocoa child labour",
+  "lang": "en",
+  "sig": 0,
+  "iso": "GHA"
+ },
+ {
+  "title": "Customs intercept trafficked wildlife, arrests three in Kano - Punch Newspapers",
   "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNNmlrNXdVQ25zUEZSMWJuaHhIbTdrbGxFY0RDSmY4amVRXzdEMFRHaFNueHI4T3VHQUFMRVlWczRDR1o2MkhsaTd0TXROdUxjMWFkdlI2Zml3Y1hDYTZ0djU5LVJwVURqR0J2cnFkR0JGRk0yZGpNSklWdklfVnk3eng4VUk5ZU0?oc=5",
-  "snippet": "Customs intercept trafficked wildlife, arrests three in Kano punchng.com",
+  "snippet": "Customs intercept trafficked wildlife, arrests three in Kano Punch Newspapers",
   "date": "2026-08-28T08:24:54+00:00",
   "name": "Front: Africa trafficking",
   "lang": "en",
@@ -2541,6 +2506,15 @@
   "title": "Rumänien deckt Menschenhandel-Ring mit Schengen-Zugang auf - euractiv.com",
   "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPaEdVdjV5SVJlaUJub0dIcWtxbzJleHlkbnNqMVRyTE1ocGNrRkNvdW41TjFRNE0yRlUwcjNUQzBQX3hLLTBqVmhhZE9vVlg0WXVwLVFld056YkV0TS1lNS10NGxKYmZFV0pHUnR2SldpaklBRTBya2pjLWQ2QXB5cy14V2RUeWFZMHFvUF9UZHhSVzg?oc=5",
   "snippet": "Rumänien deckt Menschenhandel-Ring mit Schengen-Zugang auf euractiv.com",
+  "date": "2026-08-28T07:00:00+00:00",
+  "name": "Front: Zwangsarbeit",
+  "lang": "de",
+  "sig": 0
+ },
+ {
+  "title": "Zwangsprostitution und Menschenhandel: 30-Jähriger aus dem Landkreis Roth muss vor Gericht - NN.de",
+  "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPRWxxTy1SNW5PZnU2Q1U4X0JNclcyQ1hJVGFET3NPaGVhM2NvTXdBYVU0NEw3Wms1aFhpRnU4YmdtWjBIN3JWNDVjNUh1cEdjVUJ4dmtUX1FjeHlGQ2c1WDlhYzI2aGdBWGgwd09mRHBfSWxsNzh1V1pMR0h0dm9IaWRkcE1XaDEwS3lfNXBzMjR1VjM1OUw3ckt2aWJFUE5hV2lrcEdNdm1EbTBkOTBfQVFDNWljTDRZRV8yb043N3EwZ1U?oc=5",
+  "snippet": "Zwangsprostitution und Menschenhandel: 30-Jähriger aus dem Landkreis Roth muss vor Gericht NN.de",
   "date": "2026-08-28T07:00:00+00:00",
   "name": "Front: Zwangsarbeit",
   "lang": "de",
@@ -2611,21 +2585,12 @@
   "sig": 0
  },
  {
-  "title": "Ferrero welcomes key progress from sector-wide cocoa initiative tackling child labour - confectioneryproduction.com",
+  "title": "Ferrero welcomes key progress from sector-wide cocoa initiative tackling child labour - Confectionery Production",
   "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNZEFMZG9RTjliR1Rpa3BHVDdjME9DQTFaWE1NM1p2SmtfVTMxdmp0TkJEbFkwbWVKSVZEUFh6QnJsaXFRc04yMVhyX2JVVVh0VXZwWG56ay1oMTlvdlJpMDRVWnBEZlpuYkptZmxhdXAtN2FOMlN2QzFLcHlxRF9vaEN2d0JsdHpvUVlRUW92Q2ZtNTdraWhvOW96XzlQazd0eC1BMTk3NjBXNDJoaDR3ZFNGT01sMEphVnB1d2hnNmc3eGpFMG1PdFg4TGRLSENtenUw?oc=5",
-  "snippet": "Ferrero welcomes key progress from sector-wide cocoa initiative tackling child labour confectioneryproduction.com",
+  "snippet": "Ferrero welcomes key progress from sector-wide cocoa initiative tackling child labour Confectionery Production",
   "date": "2026-08-27T15:25:24+00:00",
   "name": "Feed: cocoa child labour",
   "lang": "en",
-  "sig": 0
- },
- {
-  "title": "Inscrições para encontro sobre trabalho escravo e tráfico de pessoas vão até 1º/9 - Portal CNJ",
-  "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPcnhaNzhZMVZTYXdudHNvY2htclZUcUxoTzl6SlVTa1JQMnFMZkJxc0NHanh2Y0pxNjJXeG1DdENhNmVISEFINEtuWlFGSjhja08yWkNDZFBkcWNtVmVSUllnR0dFYVBWa2VKMGlKWThNbm0xcl9HM09icjJqWmhEZkw0bU9NVFNkNENyMUREUFRMV0Ixc0thMGExNWNEeENOblhZUnVpcTg?oc=5",
-  "snippet": "Inscrições para encontro sobre trabalho escravo e tráfico de pessoas vão até 1º/9 Portal CNJ",
-  "date": "2026-08-27T14:42:32+00:00",
-  "name": "Front: trabalho escravo",
-  "lang": "pt",
   "sig": 0
  },
  {
@@ -2638,9 +2603,9 @@
   "sig": 0
  },
  {
-  "title": "David Taylor forced labor case: Where things stand 1 year later - Arc XP",
+  "title": "David Taylor forced labor case: Where things stand 1 year later - ClickOnDetroit | WDIV Local 4",
   "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPWWJlQ1J0dDJzVUg0VkltblI1djRRYllrT3BSWXhyTUhwSXlrVmxuX2JUYVl5YTJJV2J6blA4S1ZOOFZPdzAxMlAxRDM1Ml9TV0hncGtTQkNvUy1fR3NYUXpsYXp0ZklBUkFHQW1sMUxiOFp4Nm8tN0YtSGhCbF8xcVg2M3QwekFUZkhobEwteklkSEhaUE9VazdzUmx0dTN6ZmlHYVAwc1d1S01WU0lFejBNeWNCWWE4MlFkX3c1czRwRWhWQnlDZw?oc=5",
-  "snippet": "David Taylor forced labor case: Where things stand 1 year later Arc XP",
+  "snippet": "David Taylor forced labor case: Where things stand 1 year later ClickOnDetroit | WDIV Local 4",
   "date": "2026-08-27T07:00:00+00:00",
   "name": "Feed: forced labour",
   "lang": "en",
@@ -2683,23 +2648,32 @@
   "sig": 0
  },
  {
-  "title": "Le ministère de l’Intérieur organise une conférence internationale contre la traite des êtres humains - Taiwan Info",
-  "link": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOVjJLRnZtOF92SlVjVGxJLXFpb01xaHk5UFg1Z1RLM01vajN3dFpFNU1nblg4dzU2WUlhSUVGdzhQS0g3REVtdDNGWUZGN2c1MHBMX2lUeWd6ZXNZOGYxWnV1WjExaUFsYWhjc203XzhydEMyVlVVTWUxMUgwWVFPMXFjTThucDdlbldfa3czYkN6RUVHbloyUjhTN04xWXdUWUc5Sm8xVy0wenZVWFFvV3daWEFndFZEbDhsZUJUbUx6SS14YkVaTXU5VWxROXZzTV9JM05YandBQTJINWFnNHRSQWZnNFlQcFV3?oc=5",
-  "snippet": "Le ministère de l’Intérieur organise une conférence internationale contre la traite des êtres humains Taiwan Info",
-  "date": "2026-08-27T06:42:14+00:00",
-  "name": "Front: travail forcé",
-  "lang": "fr",
-  "sig": 0,
-  "iso": "TWN"
+  "title": "Inscrições para encontro sobre trabalho escravo e tráfico de pessoas vão até 1º/9 - Portal CNJ",
+  "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPcnhaNzhZMVZTYXdudHNvY2htclZUcUxoTzl6SlVTa1JQMnFMZkJxc0NHanh2Y0pxNjJXeG1DdENhNmVISEFINEtuWlFGSjhja08yWkNDZFBkcWNtVmVSUllnR0dFYVBWa2VKMGlKWThNbm0xcl9HM09icjJqWmhEZkw0bU9NVFNkNENyMUREUFRMV0Ixc0thMGExNWNEeENOblhZUnVpcTg?oc=5",
+  "snippet": "Inscrições para encontro sobre trabalho escravo e tráfico de pessoas vão até 1º/9 Portal CNJ",
+  "date": "2026-08-27T07:00:00+00:00",
+  "name": "Front: trabalho escravo",
+  "lang": "pt",
+  "sig": 0
  },
  {
-  "title": "\"Al meeting di Rimini la lotta al caporalato\" - Il Resto del Carlino",
+  "title": "\"Al meeting di Rimini la lotta al caporalato\" - ilrestodelcarlino.it",
   "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOUWptSVZHMzB2NTFQRHgwUUtaOXBIZnktYkZPYXBpa1Jha2VWbzRVUThFLTJrVFBRX0dSS3k0MS14YWtnZVViWlBDNkRtSlMxNjlZZmNpdkphQ090V1B4NnhSQ1VtVEdVMGV2NUF0NllfbVoyT09zSjg1VGw3cnladl9zTU84TGlJ?oc=5",
-  "snippet": "\"Al meeting di Rimini la lotta al caporalato\" Il Resto del Carlino",
+  "snippet": "\"Al meeting di Rimini la lotta al caporalato\" ilrestodelcarlino.it",
   "date": "2026-08-27T03:52:56+00:00",
   "name": "Front: caporalato",
   "lang": "it",
   "sig": 0
+ },
+ {
+  "title": "In Cambodia, Brazilian Human Trafficking Victims Live Behind Bars, Under Surveillance and Torture - Folha de S.Paulo",
+  "link": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQQnNVLWZBVUtHTUJNS1RBSmo0bFkzamVTLW9GS2E5aS1HdUE4TTdfVE5iSHBlb1BqRFlfcnBlZ3d6ZUpfVUNqV211R25nOEpDR0FWdzF5TklIM0RkNXNqQkhUdjlvcFBNZWpDa21fOTNZUkFRM25hOVVpSWFKV2lsZFJhWnhUa3JxcVpyM1NGTUpQZEx0YkRQcWstQWg4S1dJXzFmaFpBSzRmZ1AzYTFpMEcxYk5Ub2ltNEJmX25jWnZBcjhzRTBJYjFhMVdGaDNaZ0NJVExoMnYyZXAzSXVVRzBHdXFGYUlmSFcwRnlralVjbzlW?oc=5",
+  "snippet": "In Cambodia, Brazilian Human Trafficking Victims Live Behind Bars, Under Surveillance and Torture Folha de S.Paulo",
+  "date": "2026-08-26T15:02:00+00:00",
+  "name": "Front: Southeast Asia scam compounds",
+  "lang": "en",
+  "sig": 0,
+  "iso": "BRA"
  },
  {
   "title": "Lotta al caporalato, il sindaco porta l’esperienza di ‘Agribus’ al Meeting di Rimini - FerraraToday",
@@ -2709,16 +2683,6 @@
   "name": "Front: caporalato",
   "lang": "it",
   "sig": 0
- },
- {
-  "title": "Chinese Workers React to EU Forced Labour Regulation as Trade Tensions Rise - Global Banking & Finance Review",
-  "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQQ1JXcVBISk1WWWdQR215XzhnbHJJbzB1S3FXNWx2U18ya3dwNEhFWTRHZElTc3VvR1RLZTM3OTN5cldwWUw0Q0RRUEU0YTFhdnVzdUh5V3l0dWRjZjRGY1Y4MFJObEEyVUE0Q21ESkdUU0xnY25VZkVEZklmUTlEcGtqbjc5STBOQU9Cd19TaDlCaTY4cVl5dy1rTmZETFk?oc=5",
-  "snippet": "Chinese Workers React to EU Forced Labour Regulation as Trade Tensions Rise Global Banking & Finance Review",
-  "date": "2026-08-26T07:52:03+00:00",
-  "name": "Feed: EU forced labour regulation",
-  "lang": "en",
-  "sig": 0,
-  "iso": "GL"
  },
  {
   "title": "7 charged in forced labor scheme that brought victims to US illegally - KDVR",
@@ -2784,19 +2748,9 @@
   "sig": 0
  },
  {
-  "title": "In Cambodia, Brazilian Human Trafficking Victims Live Behind Bars, Under Surveillance and Torture - Folha de S.Paulo",
-  "link": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQQnNVLWZBVUtHTUJNS1RBSmo0bFkzamVTLW9GS2E5aS1HdUE4TTdfVE5iSHBlb1BqRFlfcnBlZ3d6ZUpfVUNqV211R25nOEpDR0FWdzF5TklIM0RkNXNqQkhUdjlvcFBNZWpDa21fOTNZUkFRM25hOVVpSWFKV2lsZFJhWnhUa3JxcVpyM1NGTUpQZEx0YkRQcWstQWg4S1dJXzFmaFpBSzRmZ1AzYTFpMEcxYk5Ub2ltNEJmX25jWnZBcjhzRTBJYjFhMVdGaDNaZ0NJVExoMnYyZXAzSXVVRzBHdXFGYUlmSFcwRnlralVjbzlW?oc=5",
-  "snippet": "In Cambodia, Brazilian Human Trafficking Victims Live Behind Bars, Under Surveillance and Torture Folha de S.Paulo",
-  "date": "2026-08-26T07:00:00+00:00",
-  "name": "Front: Southeast Asia scam compounds",
-  "lang": "en",
-  "sig": 0,
-  "iso": "BRA"
- },
- {
-  "title": "Freedom Shield: Global Forced Labor Import Prohibition Initiative - fundsforNGOs",
+  "title": "Freedom Shield: Global Forced Labor Import Prohibition Initiative - fundsforngos.org",
   "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxONEk5TE9nbG1aSE1DODZ0VlVsNmNwNVp4bmZMNFpuaWhjZ0hvYzRPRzFqTGt1TzZCRks5ZDBnR1dQMk1PcVlMUnFkRUg1bjZHU0Y3OEtwVnJSNFFuZm9neWt3ekg4akZzWi0yZ20zSUw3QWwxNDhaRlZ2aGJRMHRjZzRhejkwS01ITW9pbzNSbktBMjJqejNtcWE1cW9mQ0RyQXJBSUNoZ013VmPSAbABQVVfeXFMT212TmhIYlgyRDRlS3dTUWVLZG02QzFDa2NoRzRwcW1wTlNaTE5nOXBTNEpRRURmSldmRDN6OHpJaGtTU3pUQ0Ntd0x1N25JaVhkSjVqbG9SZTlWN01ZTTVDbEgyRzl2eDlvLUNyRFFETndUNGpvSXFybDBHYXhubVFYR1JEOXVyN0FYcmdGeWJ6NmgyNm9nUlN6dk84Rk1XZ2E0NmdDTFVLMWJUM04tM0E?oc=5",
-  "snippet": "Freedom Shield: Global Forced Labor Import Prohibition Initiative fundsforNGOs",
+  "snippet": "Freedom Shield: Global Forced Labor Import Prohibition Initiative fundsforngos.org",
   "date": "2026-08-26T06:56:19+00:00",
   "name": "Feed: forced labour",
   "lang": "en",
@@ -2823,8 +2777,18 @@
   "sig": 0
  },
  {
+  "title": "38 Katkari tribals rescued from ‘bonded labour’ in Andhra Pradesh coal site; woman delivers child named Azad - The Times of India",
+  "link": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOMXFBeFo0NGNGOHJBQzFBZGdQUmlCVEJZTHI2THg5X2YxNm9MTW9VdFFRYTkwNXEyQkNWMFBLWHF1c2JTaklGOXlsb1otZjd5UTg5NWY5b2VVcFR5M1hJNWtYTDJSY2pnS3NOMzZNWm9TSFpZSVhWTjhkQ2VuOGd4bUNYTk5hRkRYVk9KcGljVnhiR3BSMnFuNm50SjNfaEJST2xvMS1hc3U2MHFwYkdtc2JNWkJhMk10cTJEWVlzZUsyMHdkejljaXM0STk3M3U3S3JyMDBBbnZaS1owaG5UTmxpekhUaHFTZnpGOUhtYUt0LUgxTm04X2hCT2NmX2JzcW9fU3NSVUJqS2c?oc=5",
+  "snippet": "38 Katkari tribals rescued from ‘bonded labour’ in Andhra Pradesh coal site; woman delivers child named Azad The Times of India",
+  "date": "2026-08-25T07:00:00+00:00",
+  "name": "Feed: debt bondage",
+  "lang": "en",
+  "sig": 3,
+  "iso": "IND"
+ },
+ {
   "title": "Child labour: Child labour persists in cocoa-growing communities due to financial hardship. - Modern Ghana",
-  "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFAwcXpodW5YTUZSUWgybURRNW9Nd1BBbF9RMFFwampTUm5oWHE1d2xXYk9PdVM1TEtaM2tlNUt0NlRMTVFWUFFxZGdhTExlT21JRTlleWlqaFAyX1BHVFFybkRweWnSAVxBVV95cUxNYzJLaUk1dUQ2aDFkdXpLOUhpd0drLXZEanJxZE45NE92dkwweHpUSk9vZ2UySzFMYkdPZzEwMkRKd01fNGZ5a3JiUERyaGdIUGRDS05mbHVjTU8wMw?oc=5",
+  "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFA0eG9Jdzl0Tmd2UDM3SV9IUkZVRDFNbE11bG1EZU9YUlotS1ZFei1NVnljM3c2LWpuSUZzcVA3VGd6SFhrbk9Fa1p3WFJkdUZjSEYyRmhmUVppa0xOM1B0RzFrTEvSAVxBVV95cUxNYzJLaUk1dUQ2aDFkdXpLOUhpd0drLXZEanJxZE45NE92dkwweHpUSk9vZ2UySzFMYkdPZzEwMkRKd01fNGZ5a3JiUERyaGdIUGRDS05mbHVjTU8wMw?oc=5",
   "snippet": "Child labour: Child labour persists in cocoa-growing communities due to financial hardship. Modern Ghana",
   "date": "2026-08-25T07:00:00+00:00",
   "name": "Feed: cocoa child labour",
@@ -2862,18 +2826,18 @@
   "region": "São Paulo"
  },
  {
-  "title": "\"Pagava i braccianti\": la pista del caporalato dietro l'omicidio di Sadam Houssain a Borgo Mezzanone - ilfattoquotidiano.it",
+  "title": "\"Pagava i braccianti\": la pista del caporalato dietro l'omicidio di Sadam Houssain a Borgo Mezzanone - Il Fatto Quotidiano",
   "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNYUw5bzY3MzZDbUpRdDgxV3hwYWRKbUZGSkViaFB4U2pDeExqclpwbWdiU1NKTUVrZS1FRUg1MUlLZ1V4TE04R1VVNHVIb0xLbVp5dmhRQS1KemVlMElUX0hhQVNRREZnclVaNy12dVR2VTRkcmt0YXNXTUt4RkJRRnVDQm1DM3J6a1Q3MEd4YmdHNXRTNldld29JeUUtdFpKS0lxRFNFUUNwYkMyX1JHRmhjMjdCOFptbHBRbHhWQVdzME41MHpVdE5R?oc=5",
-  "snippet": "\"Pagava i braccianti\": la pista del caporalato dietro l'omicidio di Sadam Houssain a Borgo Mezzanone ilfattoquotidiano.it",
+  "snippet": "\"Pagava i braccianti\": la pista del caporalato dietro l'omicidio di Sadam Houssain a Borgo Mezzanone Il Fatto Quotidiano",
   "date": "2026-08-25T07:00:00+00:00",
   "name": "Front: caporalato",
   "lang": "it",
   "sig": 0
  },
  {
-  "title": "Caporalato: una disfunzione funzionale - Orizzonti Politici",
+  "title": "Caporalato: una disfunzione funzionale - orizzontipolitici.it",
   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9zdDVNNHlYamtBdEJabUtqdEtWY2Z5MmRFRWh4WTZfTmxveVhORGJEZ3c5d1IwYVlJa1Y5QUUwbFNMWnpWOWlzVnE3SnpaWlgyOUMzcGk0NVRrbmpSd3JRSjFWWm43NjBGNnd4WjlrX0ZCU2lTYU9qLWRwdw?oc=5",
-  "snippet": "Caporalato: una disfunzione funzionale Orizzonti Politici",
+  "snippet": "Caporalato: una disfunzione funzionale orizzontipolitici.it",
   "date": "2026-08-24T07:02:19+00:00",
   "name": "Front: caporalato",
   "lang": "it",
@@ -2899,9 +2863,9 @@
   "sig": 0
  },
  {
-  "title": "Call for Proposals: Modern Slavery Fund Programme 2026/2029 (Vietnam) - fundsforNGOs",
+  "title": "Call for Proposals: Modern Slavery Fund Programme 2026/2029 (Vietnam) - fundsforngos.org",
   "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPWDBsV0s1TTNYQlpmY2hVUFJuU2JsVkd4Z21DYnhiY05WNHJ1bUxjVVdiNUQtTHRib1FFc0JDRXVxczctdWdjMXJLTmVBT2U5X2FzQUFRM0M4QWhKOUk1MEZHOWE3TDM5UF9oYkkyZUkxM2dIUWRoRnJKanFwUEQ4RkViSnZTZkx3bnVGWVhsYmpZUE9sc3c1MG0xSENKNkV2cDhPSWgxMDBUajYxR0HSAbMBQVVfeXFMTjFKLW1JbGJrT3JKYXZxSkRYNVBoOUgwRWpneVlvWTNxbnI0dzItQ3pEMkltRG0ybGkxVlFCVFNIUkZMOWd3d3VWcExsUTBuMDUwNWUySWhobWNmUnhjSTZ6b2pXcVFIclRiRW8zQy1FeGdBQVdGWVlNSGhBYlo1MmxvbUhhLXQ3WnNpTXNacVdvYXg1U3BEUUNldG1Eejl6RW1YNmJWeTZkUWhzUy1yZmNYT1E?oc=5",
-  "snippet": "Call for Proposals: Modern Slavery Fund Programme 2026/2029 (Vietnam) fundsforNGOs",
+  "snippet": "Call for Proposals: Modern Slavery Fund Programme 2026/2029 (Vietnam) fundsforngos.org",
   "date": "2026-08-24T07:00:00+00:00",
   "name": "Feed: modern slavery",
   "lang": "en",
@@ -3004,6 +2968,16 @@
   "iso": "IND"
  },
  {
+  "title": "SEND Ghana pushes stronger child labour education to protect cocoa sector - Graphic Online",
+  "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPQjJrTVNSQ204TG1GRHZaeHd6WUsxZHFaTVVJZGxnUDRQQnR1QmFEQ3JLdS1sNWN5dUJJN0FEenpoR252NHNDejVKVFVjREZQa18tbWlHNEtJRTcwRXZPRWwwYk9WMUwtUkVGZEpLMWlxVEoyaTIwTW9uNmoxWExQV0ZGdURpcC1JckRaQTJnSV9MalFiUVIwY011RklpZGY3WVd2LVVYZzRPWms4aUFqZklwSEtKenhCTVNOYTBSd1dQUXpkRnZNMnpXbjN3Tmc?oc=5",
+  "snippet": "SEND Ghana pushes stronger child labour education to protect cocoa sector Graphic Online",
+  "date": "2026-08-22T07:00:00+00:00",
+  "name": "Feed: cocoa child labour",
+  "lang": "en",
+  "sig": 0,
+  "iso": "GHA"
+ },
+ {
   "title": "BGSU event aims to raise awareness about labor trafficking - wtol.com",
   "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNU044WUdwODI1aHczQnY5U1dGMHNDSWtJdTE2bS1QUUNBd0NwWUxnaEpNLWUydWFRU1dIanZyUVlRNlZpWFc2Z2VqVWRvV05PbnZCMnZZYjd4c1lCR3pTbHU3NlZqbzZxNkppR3g2TmlUeFJOUUp0ZVJwbmNLUkVLU1A5LVhxd3NyUDZFeHpRbUI2NTlIb3ZaUE1UaVdYRXNTcjZneDZGN1pxMkNyNzg3VmZiazdxd283RkJoLTBsSzVVc0xhVVhrN1J3RDBZUjMyOHpR?oc=5",
   "snippet": "BGSU event aims to raise awareness about labor trafficking wtol.com",
@@ -3096,13 +3070,14 @@
   "sig": 3
  },
  {
-  "title": "41 bonded labourers rescued from five worksites in Andhra's Sri Sathya Sai district - newindianexpress.com",
+  "title": "41 bonded labourers rescued from five worksites in Andhra's Sri Sathya Sai district - The New Indian Express",
   "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQeDgzRG9VUTZ0ZFhCY2hmanhiUk8zN29NM0Y2SHBsODVtQUFtcEhjejhLWDEwVjRpcVZRb21RYk15VFZ5RkZlMTBtWkw0RWV5d2ZPanJwaXBMd3BkUnQ4SVRZOTZqdGFBeDF2eFVhTHhRR3lCWEsyMk1aU0xlTjg0cTJYRV9OWXBGV0xyRVNQLS1EZjRoanUwTXNfOE1hdWFnUnhZVE5faFJkc0hpQndqU0VaRFJDbWw2QmFEazM3MXk0MHEwaVdpVGJVZ1pIYnUzQWM3NjMzT0zSAeYBQVVfeXFMT2xtMGlkYWVOY0V6SUlDaGFMeHhRMlNnSnE1a3NPU3pWd1V6anVtRVVqRGRleFpFbUo3YWVZOU5UTXhOeGJXYnktVjN6V2hQRWRCNFdHUTQyNDEwMDN3ZkdxUHJqXzZwbTY4aWtOdFpyN0IwcnZrUTYzMm9XWGhkUmlzYlpyR0MzUnlfeEFqeHpZTDFkMHNDaGpyNkZodmRONUdpdGJaano4TUJOLWlGUzJuTEhSaXJ1ejh3bm54QTRYWE9pb2x5QW95OHJaTVlKNHBmclpncXdWME44TjdrOFBpQ05VWXc?oc=5",
-  "snippet": "41 bonded labourers rescued from five worksites in Andhra's Sri Sathya Sai district newindianexpress.com",
+  "snippet": "41 bonded labourers rescued from five worksites in Andhra's Sri Sathya Sai district The New Indian Express",
   "date": "2026-08-21T07:00:00+00:00",
   "name": "Front: India bonded labour",
   "lang": "en",
-  "sig": 3
+  "sig": 3,
+  "iso": "IND"
  },
  {
   "title": "Company director behind unpaid wages case involving 407 migrant workers declared bankrupt - The Online Citizen",
@@ -3143,9 +3118,9 @@
   "iso": "DOM"
  },
  {
-  "title": "Meerut man lured to Malaysia, forced into bonded labour - timesofindia.indiatimes.com",
+  "title": "Meerut man lured to Malaysia, forced into bonded labour - The Times of India",
   "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOQUpnN203TllydHFkN0FsWVNUWWx2Tk5kSVR3SUxWY3NlVk1OVHRRTzdzU3ktTjZvWUcyb1J0WXR2NUtmMVQxa0hncU5mMk5uU0xBMG9XeWVtVFJwaDUyQ0ZmQ2VwZE4zaXk5MHA2Yk5CeFBydDhXU21PV3VuY1FQZU9OYnVyMFRSdVlSU0xxaWxhVzF1OUw5bXlVM1ptaXlrb2FXa3Q4V1VKUHJmRVMwVHZUVXY2MU9LbnZMQjdfX2QteEZWc1Br0gHMAUFVX3lxTE5Fd3VkSDF2NHR5dXIxaldTQnJvdEU3TlpCc04tQVZmYTViaFVaeF90Nk9wMmNFSWI2Sm1jWFBRYko3dmIwRmtsLVFvM01LeXVJN2k1bUg1U3FMVkc2TDR2bF9jeVlQYV9Rc2pGX2tGblo3cFZqRHhvUng3bTZYR2dHSUl1VHZEYkdkX1BsM1RiaEpUOVBZYmJZaTVKeTVkLUptVGJKUk5wNkc5UUt3U1VnZ0dLNzk3VS12b0dIdkd3b0x2S1dqYkM5YmZKUA?oc=5",
-  "snippet": "Meerut man lured to Malaysia, forced into bonded labour timesofindia.indiatimes.com",
+  "snippet": "Meerut man lured to Malaysia, forced into bonded labour The Times of India",
   "date": "2026-08-20T07:00:00+00:00",
   "name": "Feed: debt bondage",
   "lang": "en",
@@ -3153,27 +3128,37 @@
   "iso": "MYS"
  },
  {
-  "title": "Tribal Workers Rescued From Bonded Labour - deccanchronicle.com",
+  "title": "Tribal Workers Rescued From Bonded Labour - Deccan Chronicle",
   "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNZU9ycE5MWVAwR1l6ZW1zQUdNbE5qbWJpOENFbWJWRjdmUEZGY2xUbTBjRmlSZkdZY3NIZnFLcDNvRGdRX1ptWlFvRU1ERmo2dGZaR3lwazBvZDVfYXJ6VWNEX3FzaUEtRk1XNjE1VnRiOTZidmdVTjVTdEFVdGQ0Y1FMaGNhd3pFZVQ2V0tTQVFGc09VVnFROHBSdmRsWjJOT0NPV200dlBENWFNUWhuR1pB0gG3AUFVX3lxTE12Um81RjdJcFJmSGlOZG1JZkRBTGF5ZE5JOElvN2szUDlTNG5JdS1wbEQ3c2tsbWJzdzJiZmpDZHdIZ2swZXVyUWt3VnNUUVlUMWdFeGNZM19IYjV0TURjZFc2WnRGenBQS3FIWkMzeVlPNDhzTWhBQ09zckJjZm9vQlBWeUVYRU9oalVVYkdNdlpGU0tPbURaTU1qRXRVZFZiMTRhaTdSVXdoTG5faVplX3IzTkY2QQ?oc=5",
-  "snippet": "Tribal Workers Rescued From Bonded Labour deccanchronicle.com",
+  "snippet": "Tribal Workers Rescued From Bonded Labour Deccan Chronicle",
   "date": "2026-08-20T07:00:00+00:00",
   "name": "Feed: debt bondage",
   "lang": "en",
   "sig": 3
  },
  {
-  "title": "41 Maharashtra tribals rescued from bonded labour in AP’s Sri Sathya Sai district - timesofindia.indiatimes.com",
+  "title": "41 Maharashtra tribals rescued from bonded labour in AP’s Sri Sathya Sai district - The Times of India",
   "link": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOZFppLVVNQUZud1VLcy1wRjUxWVJSNEEzeW1kaEstenBmOHhjZGhuT1FzNXo5Y1U0NGhjcDRwODNOZkQ3cV91Yl85RF9QQmxwVndQdFMyQWY1RkJPUERiQkZZd3FoRnNCWm9vTlpNSG1EODJTMnNEV0lYNHRSRkN4cXYxd2xDVFJ4WFdJUUlkby03djAzZVNBRm1kcktoOG1XZTBEbU4xbGNma25mNFpLNHBnOXJ2dHl4TGpOMlZvQUN3ekhKUlFiNDJET3FTVjlQTV9WbGQ4WFgwZEFLS29GZUxMV0daU3FJY0ZHNkh3NNIB9AFBVV95cUxQZGQyZkxPM09PZWpqbUE5RkdRTFI2bWNaRFVRcnVabTFPNzFmdHNOQUNadzZvaFVBOHg1WHZSS2RqejFxVk9CNmxvcUhQdEJYemNHMWlYV0xkTklubGFudTJYeGlHX29rZDhFWXU2ZVFYcVRucnJrMTRnY0dacG16LTVQblNlRDA1NWQwZUxCckw5bGR3ZmRhQ2VoZHU3emtGdTZlSHppTXNJbldZREw5OFE1UXhlQVpMRF9uZnhEV3U1T0NlbG4wNWhYM2FqTm1pOFZacDVKeTJtQkVGZFJUODU4Njd0MnJOV2t3ZDVSd0MtdWEy?oc=5",
-  "snippet": "41 Maharashtra tribals rescued from bonded labour in AP’s Sri Sathya Sai district timesofindia.indiatimes.com",
+  "snippet": "41 Maharashtra tribals rescued from bonded labour in AP’s Sri Sathya Sai district The Times of India",
   "date": "2026-08-20T07:00:00+00:00",
   "name": "Feed: debt bondage",
   "lang": "en",
-  "sig": 3
+  "sig": 3,
+  "iso": "IND"
  },
  {
-  "title": "Child Labor Penalties Frozen as Violations Surge - Legis1",
+  "title": "Northern Star Resources Releases FY26 Modern Slavery Statement Covering Operations and Supply Chains - kalkine.com.au",
+  "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQZnNjNk0ya0ZCRHp6amdKdkxoSjVuV2hsRVJmRUVvT2JsaFVKeXJtUktGYUkteTNvbHM1S0s3VGtFNUwtb19IUVpMeFBGeHJ5NFdfcllZYmw0MDh4dzRjclE1dHc5R2toM3pnRFE1eDNRTXQ1bHdrRGthMEVZUENHbzQtMUFvVzdhWTYtdE85cXFQT1IybU9OT2h0c1NJdXFvZE1sTnNuQkJKNUhjU1h6cTVFVklpb2dFZ1JRdDZyendnWVRKVnk0RUpkZy13UlBfQzJDNGhvNXZEQQ?oc=5",
+  "snippet": "Northern Star Resources Releases FY26 Modern Slavery Statement Covering Operations and Supply Chains kalkine.com.au",
+  "date": "2026-08-20T07:00:00+00:00",
+  "name": "Feed: modern slavery statement",
+  "lang": "en",
+  "sig": 0
+ },
+ {
+  "title": "Child Labor Penalties Frozen as Violations Surge - legis1.com",
   "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBxNDZaRHh1MUgwM2hsUEl3cmRkWWtOS09FRzhHdzRtTk5nQmx2ZHpydzFvZG14NkRfaG9Wb1RWbHFNMGY1R0N5bExPWjcwWmstTU9tMXdDS0lRNEZlOU5xWVVNS0h6RzNaRWNoc2J6T0ZMQksxMWc?oc=5",
-  "snippet": "Child Labor Penalties Frozen as Violations Surge Legis1",
+  "snippet": "Child Labor Penalties Frozen as Violations Surge legis1.com",
   "date": "2026-08-20T07:00:00+00:00",
   "name": "Feed: US child labor violations",
   "lang": "en",
@@ -3199,29 +3184,9 @@
   "sig": 0
  },
  {
-  "title": "41 Maharashtra tribals rescued from bonded labour in AP’s Sri Sathya Sai district - The Times of India",
-  "link": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOZFppLVVNQUZud1VLcy1wRjUxWVJSNEEzeW1kaEstenBmOHhjZGhuT1FzNXo5Y1U0NGhjcDRwODNOZkQ3cV91Yl85RF9QQmxwVndQdFMyQWY1RkJPUERiQkZZd3FoRnNCWm9vTlpNSG1EODJTMnNEV0lYNHRSRkN4cXYxd2xDVFJ4WFdJUUlkby03djAzZVNBRm1kcktoOG1XZTBEbU4xbGNma25mNFpLNHBnOXJ2dHl4TGpOMlZvQUN3ekhKUlFiNDJET3FTVjlQTV9WbGQ4WFgwZEFLS29GZUxMV0daU3FJY0ZHNkh3NNIB9AFBVV95cUxQZGQyZkxPM09PZWpqbUE5RkdRTFI2bWNaRFVRcnVabTFPNzFmdHNOQUNadzZvaFVBOHg1WHZSS2RqejFxVk9CNmxvcUhQdEJYemNHMWlYV0xkTklubGFudTJYeGlHX29rZDhFWXU2ZVFYcVRucnJrMTRnY0dacG16LTVQblNlRDA1NWQwZUxCckw5bGR3ZmRhQ2VoZHU3emtGdTZlSHppTXNJbldZREw5OFE1UXhlQVpMRF9uZnhEV3U1T0NlbG4wNWhYM2FqTm1pOFZacDVKeTJtQkVGZFJUODU4Njd0MnJOV2t3ZDVSd0MtdWEy?oc=5",
-  "snippet": "41 Maharashtra tribals rescued from bonded labour in AP’s Sri Sathya Sai district The Times of India",
-  "date": "2026-08-20T07:00:00+00:00",
-  "name": "Front: India bonded labour",
-  "lang": "en",
-  "sig": 3,
-  "iso": "IND"
- },
- {
-  "title": "China Indicts 17 in Cross-Border Human-Trafficking Ring Linked to Myanmar Scam Centers - Caixin Global",
-  "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOUlFTREk3SjBFTXFjRTVUMUlmY3EzaGJ0SWROMU1ZSVpNTGNOSnNmZXJmRy05ODNoMFZhR2tKeHVOdk1UZHN5RlZWbURjTGtDMURUeFV3NXY3d3NfSXJnRThqbVF2YXB1T1ZONUp3MWVSX0k0SWlKTW52SjR0cW1uYzFSZmZSa014Y2dGajRNZllIMUZPLWVJTllqLXdSb3pvVmVEQjVVanpNRlV5Q1FYT1RDQ29veUFkRkF5X2hPOTR1U2NvQXEzTHRvei11UkRvaFU3VTYwd1k?oc=5",
-  "snippet": "China Indicts 17 in Cross-Border Human-Trafficking Ring Linked to Myanmar Scam Centers Caixin Global",
-  "date": "2026-08-20T07:00:00+00:00",
-  "name": "Front: Southeast Asia scam compounds",
-  "lang": "en",
-  "sig": 0,
-  "iso": "MMR"
- },
- {
-  "title": "Il caporalato non può essere escluso per il lavoratore assunto con auto e casa - Il Sole 24 ORE",
+  "title": "Il caporalato non può essere escluso per il lavoratore assunto con auto e casa - ilsole24ore.com",
   "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOVTZZTWpaem1NVXM1OWNOdlkzNElkU1BXOHhZUVRxdlU1eE0tOXVtQUtacV9hc0J5LTlBOFRKUGZQemxaQXc3TExLa0FjdjZSblZUZzZxaW9UMmE0ZUx3NjdXLXdGd05DLVZvb0Q2NUVjdlY2VjBteVRZcmxJV1hiajB3cDFEN3F6Zm9MWG1OSjhWZm9vbDhYcXB3MEU1REF6OHRzeFZ0NTdCdVNJLTk4?oc=5",
-  "snippet": "Il caporalato non può essere escluso per il lavoratore assunto con auto e casa Il Sole 24 ORE",
+  "snippet": "Il caporalato non può essere escluso per il lavoratore assunto con auto e casa ilsole24ore.com",
   "date": "2026-08-19T07:00:00+00:00",
   "name": "Front: caporalato",
   "lang": "it",
@@ -3256,6 +3221,15 @@
   "sig": 0
  },
  {
+  "title": "New report warns modern slavery policies must lead to action - King's College London",
+  "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOdTFmMkxvejV2cVVkSmRqNTY3UDdMaVRtcTFJYmNjR3laN3UtcmdnRVdacXpFTFA4TXdPMkJoNkpsdzRIcndYZ25TRnE2TkEwMFBGN3pDMXk0RHAtVGQ1Uy1hNi1FNFloSkdCRS1kTlRLUnNOV3FOSnpWanJySGxlNUdtd25FMmxJSURzZTFrQjU?oc=5",
+  "snippet": "New report warns modern slavery policies must lead to action King's College London",
+  "date": "2026-08-18T09:57:23+00:00",
+  "name": "Feed: modern slavery",
+  "lang": "en",
+  "sig": 0
+ },
+ {
   "title": "Watchdog calls for US import ban as forced labor persists in Dominican sugarcane fields - AP News",
   "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQczlnb3JxR0pCN1c0N3BJb0ZGdXc2SE1XeUs2dUloUEtDbkxrdDRsVlItS1NOLU9qZWhUc0FBMkhaVzMzMGxteUx4UGtFclZWOXgzSldWWGhoblItOEllcEZzUVAwRDB6TmE4WGJ5cEtFUTlCcDB3Tk1yMWNPa1VJdENwRUdHX2trc0xCWUNCYUNuNlRfeWtqTlhRVEdEQVhsUUMxYjN5NXpnczVIOXRN?oc=5",
   "snippet": "Watchdog calls for US import ban as forced labor persists in Dominican sugarcane fields AP News",
@@ -3265,9 +3239,9 @@
   "sig": 3
  },
  {
-  "title": "Nepal to set new migrant recruitment fees after revised law - kathmandupost.com",
+  "title": "Nepal to set new migrant recruitment fees after revised law - The Kathmandu Post",
   "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNeXF0MWFMaldtd3FFQ2pCZHZ6VzdiOFBYZVJVUjZ6eVM2aTFJS3Nvb09zeWUyQ0R6UWh3bmtNbGhWd2R2T1pfaGdTdmg5UHdRcFlTUmtPVFBlTUNsdGtyc2F5NHJkX1ZET3JucmdtNzF6SmRueFV0c05CdGpBSmYyb0FZZVpiV1loQnp1QzFydlB6NkdGekh0SWRaRkdZVHhaYVJIOWJ5b2Y?oc=5",
-  "snippet": "Nepal to set new migrant recruitment fees after revised law kathmandupost.com",
+  "snippet": "Nepal to set new migrant recruitment fees after revised law The Kathmandu Post",
   "date": "2026-08-18T07:00:00+00:00",
   "name": "Feed: recruitment fees",
   "lang": "en",
@@ -3369,13 +3343,14 @@
   "iso": "IND"
  },
  {
-  "title": "Gulf migrant workers face wage theft after returning home: Study - timesofindia.indiatimes.com",
+  "title": "Gulf migrant workers face wage theft after returning home: Study - The Times of India",
   "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQenhKVkhUZDZLbFZMUWpNbGxIVlVOeXB6RHVrc053Uy12X1VRdE4yR2VOUXhSUUN1QmRmdWtDbnRQVjI4TWwxaVhIOS1iQUhTWE12LVp5TzNLMmU0NGFDSGFDaFBJLVYzcXF6SF9fS2xkR2l0VHZVMlhBSUM1eGZjX1NzUDVVbEhsd0tPalB6M2pFUFBRNFRlcWsxX0hySDhTWDJwdkFHS0RxcWktWGtRUk9JSmtSVTBsWE5raUpadUtsS2otOGlSSTlCeUZZVzRhQ0HSAdcBQVVfeXFMUG00SmV3aWl0djd5cjdoWEh3UF9BSVJ6OHNfYXF4ZndDcm9QaXozUm9fUUlIVWtOZFRNWklxMHpIcGVEUVY5QXBJd0pGd1BYZjQtbEdWZkU4M2hJMDFNMUd1U2lMZ1hkX3FQckJtUHJvNDFJMkJRekV3VjdSN1ZYVVFkOW9EUTNrcXRwdzlXc3J5Z1JVQW9ITTQ5bC1pc1Y0cUI3M1hBck8ycmQ3RkVWTHVvb1JiWFIycmJXMmZjdFpKZnp1Vk1qdW0zbG1BdUc4SEczUjhWbW8?oc=5",
-  "snippet": "Gulf migrant workers face wage theft after returning home: Study timesofindia.indiatimes.com",
+  "snippet": "Gulf migrant workers face wage theft after returning home: Study The Times of India",
   "date": "2026-08-14T07:00:00+00:00",
   "name": "Feed: wage theft migrant workers",
   "lang": "en",
-  "sig": 0
+  "sig": 0,
+  "iso": "IND"
  },
  {
   "title": "Ta Thuy Minh: How I got involved in fighting modern slavery - FreedomUnited",
@@ -3414,9 +3389,9 @@
   "sig": 0
  },
  {
-  "title": "Resilient Seafood Supply Chains: Combating Forced Labor and Related IUU Fishing (US) - fundsforNGOs",
+  "title": "Resilient Seafood Supply Chains: Combating Forced Labor and Related IUU Fishing (US) - fundsforngos.org",
   "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxORDZiQm9RdGhack1RWW4zVmRkMm1aYVFOYWdsZlQ5YW1XQThDdlBKQm4zdWdVbml1UVhNaFBkZld3cmI0NE1uYUtxY0hzYll5cmFJX3hkSmFZUFV3ZXhfcnpEZkpMVFNOeXRPZHNPczZFVHI4TGVUVUVwdjV6bDQ1Q1dhalo0dVhDdnR5X2paR0o3eWliaW9KdHUtZ19VSkRmRk5LQk5OM2U4Rk9kRDA4MHRaeURfN0ZjR1QxZks1ajNiUdIBxwFBVV95cUxQdDFvT1l5aWxXQlJuQ0Z5cmR5NTgxVWFtbHBHU3hUQnF3enZiU2l6S0oxdFljWlJDalZvRFdtWUx1RC1ZdHdJcDBNMEpzdEVGN19VSms3Y0poZy1TamJKZU1GV3lpUHhNdHNqaV93RnhYX25Ea2xWUm1BQ1NQeFRib3pycVJRUGIzVkxDTi1yRTE5anZEeG5IYzBrTTlhY2VYVlNhODNvT3NONjFZNElGVG83Rk9CUjY4REE1VG9kQ3gwUThhQ293?oc=5",
-  "snippet": "Resilient Seafood Supply Chains: Combating Forced Labor and Related IUU Fishing (US) fundsforNGOs",
+  "snippet": "Resilient Seafood Supply Chains: Combating Forced Labor and Related IUU Fishing (US) fundsforngos.org",
   "date": "2026-08-12T17:24:37+00:00",
   "name": "Feed: forced labour",
   "lang": "en",
@@ -3451,13 +3426,14 @@
   "sig": 0
  },
  {
-  "title": "10 minors from Jharkhand rescued from ‘bonded labour’ in Bengal - timesofindia.indiatimes.com",
+  "title": "10 minors from Jharkhand rescued from ‘bonded labour’ in Bengal - The Times of India",
   "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQQ0tYWUZyb1JBcXNjdDNrMUNrczdBREpMd1lhY1hsV3lENi1OZUJFZkNJa2xMOTZtME9YMkdwcHlxcTB6UW9ZZVkyUGtURnNpVldXcUY3TmJ3bmRVR1BUelZqZzVNMFROUzJTRlVBcGNNMGkxYXBtbDhsTzRkcmVvdWpaTWRORGZ0bmc4VE0ycHJKU240bjdFXzhPUmF2aFhfekFGQVd6Q0dMai1aTzBpbmEtakRMWlJubG5mV3d2RndxZzl3NWl1ZEYtNzNZM0ow0gHWAUFVX3lxTE1uTWZNb1piYU9tLVFlQVNYeGxMdzkyRHZ2YW5IazgyekNzQ1Y5dUdwZUJhT3JqekZ4X0FYY0pQcVJfQUpBODJnZGRDNWhhRnFQQVZCaWg4elpkOXR4eUEtODRuTGVnWUhJZnd3T2R2NXpqTGJDdmMwZ0djUTNzVnlQN1pLUjRkZlVNU0NvN0NMRzZILUVCRTRqalBmc2VfSUR0N3VGSHZwazFMRTJodEVqbzZ0bjBkd3p5V2hFSmU0ZUZtNnB4a05LVGN6cFhma0FmazJmYUE?oc=5",
-  "snippet": "10 minors from Jharkhand rescued from ‘bonded labour’ in Bengal timesofindia.indiatimes.com",
+  "snippet": "10 minors from Jharkhand rescued from ‘bonded labour’ in Bengal The Times of India",
   "date": "2026-08-12T07:00:00+00:00",
   "name": "Feed: debt bondage",
   "lang": "en",
-  "sig": 3
+  "sig": 3,
+  "iso": "IND"
  },
  {
   "title": "China responds to expanded UFLPA Entity List, blacklists six US companies - Yahoo",
@@ -3488,23 +3464,13 @@
   "sig": 0
  },
  {
-  "title": "Razzia in Kreuzberg: Zwangsprostitution und Menschenhandel in Späti - bz-berlin.de",
+  "title": "Razzia in Kreuzberg: Zwangsprostitution und Menschenhandel in Späti - BZ Berlin",
   "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOS29EOG5RWHJXWG80eHR1UE43ZDlWaXR3V3lkMWhVQ1FLN294eGFodjNyYkhQcVRUZ3hLblhwTjJ1OEFnMjkxZjFfQzdRNTFxek9vZi1TVjlSVnlER3dPUUhTY0lMaVh1RUtpcjBZdjF0SnJNOFdwMDBPRHNLRnd6UzZWVE1ETEYwSlNQczk4RDZHODEzaG82MWpFQkpsbHNfRWhMc1NpZnJaMUd3NUVaYU5RQW9LMzRvWVRLUElFREZzUnM?oc=5",
-  "snippet": "Razzia in Kreuzberg: Zwangsprostitution und Menschenhandel in Späti bz-berlin.de",
+  "snippet": "Razzia in Kreuzberg: Zwangsprostitution und Menschenhandel in Späti BZ Berlin",
   "date": "2026-08-12T07:00:00+00:00",
   "name": "Front: Zwangsarbeit",
   "lang": "de",
   "sig": 0
- },
- {
-  "title": "10 minors from Jharkhand rescued from ‘bonded labour’ in Bengal - The Times of India",
-  "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQQ0tYWUZyb1JBcXNjdDNrMUNrczdBREpMd1lhY1hsV3lENi1OZUJFZkNJa2xMOTZtME9YMkdwcHlxcTB6UW9ZZVkyUGtURnNpVldXcUY3TmJ3bmRVR1BUelZqZzVNMFROUzJTRlVBcGNNMGkxYXBtbDhsTzRkcmVvdWpaTWRORGZ0bmc4VE0ycHJKU240bjdFXzhPUmF2aFhfekFGQVd6Q0dMai1aTzBpbmEtakRMWlJubG5mV3d2RndxZzl3NWl1ZEYtNzNZM0ow0gHWAUFVX3lxTE1uTWZNb1piYU9tLVFlQVNYeGxMdzkyRHZ2YW5IazgyekNzQ1Y5dUdwZUJhT3JqekZ4X0FYY0pQcVJfQUpBODJnZGRDNWhhRnFQQVZCaWg4elpkOXR4eUEtODRuTGVnWUhJZnd3T2R2NXpqTGJDdmMwZ0djUTNzVnlQN1pLUjRkZlVNU0NvN0NMRzZILUVCRTRqalBmc2VfSUR0N3VGSHZwazFMRTJodEVqbzZ0bjBkd3p5V2hFSmU0ZUZtNnB4a05LVGN6cFhma0FmazJmYUE?oc=5",
-  "snippet": "10 minors from Jharkhand rescued from ‘bonded labour’ in Bengal The Times of India",
-  "date": "2026-08-12T07:00:00+00:00",
-  "name": "Front: India bonded labour",
-  "lang": "en",
-  "sig": 3,
-  "iso": "IND"
  },
  {
   "title": "Forced labour and responsible supply chains - kpmg.com",
@@ -3516,36 +3482,36 @@
   "sig": 0
  },
  {
-  "title": "Leihmutterschaft – Nächstenliebe oder Menschenhandel? Wenn der Kinderwunsch an Grenzen stößt. - swr.de",
+  "title": "Leihmutterschaft – Nächstenliebe oder Menschenhandel? Wenn der Kinderwunsch an Grenzen stößt. - SWR",
   "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOWERaa0xqSFhSRlF1UmFZdURJSGlPcXdEUW42bFo3LTEzWk1TX2N4Y2VhZlV2WW9oRzBtNnlKOEM0VlZvRzlic1N5dGdIX29pQUF2a1JFWVpuNFZpUDg1d3hLM0hHZjFEWXE2aEhYblFaMFhKWFZUcWpXVUt0Z2xrTzJsR2hORnkxVVJkVWIyek5TS0pv?oc=5",
-  "snippet": "Leihmutterschaft – Nächstenliebe oder Menschenhandel? Wenn der Kinderwunsch an Grenzen stößt. swr.de",
+  "snippet": "Leihmutterschaft – Nächstenliebe oder Menschenhandel? Wenn der Kinderwunsch an Grenzen stößt. SWR",
   "date": "2026-08-11T09:44:22+00:00",
   "name": "Front: Zwangsarbeit",
   "lang": "de",
   "sig": 0
  },
  {
-  "title": "Maui brothers plead not guilty to labor trafficking charges - Hawaii News Now",
+  "title": "Maui brothers plead not guilty to labor trafficking charges - hawaiinewsnow.com",
   "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxORUs2Vll1YjQ5WWd0OHJkY2lteXV1RnlrSlZmYkZiYXUtUHJjSWgtYVZIZHBGYl9MemF5c1p3ZDk2QVAxNnZUNXBHZk1SSjlRbzU0emhJajVoS014UmlfWXp2QnR4M2tiVXVieGFNMHI5YTlLaC1RZS1yN1JlcnRCQnA2eExTZ0xrbmpjR3NvRkZLcEZWNFQwV2FBc2huS2lycVhQeUs1TTRuZ2PSAb8BQVVfeXFMUFpGNUN5cWxqQlZhZ3VuZEJEVkVTZ1c2NldGVDBEQjRnN0p5bUVVZjdFZUlEWEtESWxubmVZWS1yRC03akY4VW0zUEpPYWJoMlZJbnZ4M0M3NTlpVDdqNnFzZmlxMFJ5ek5fV1psVkJGM1lsOURpTGRUMWtSSmlQZWE4VnFUYzBvcjhNb1ZMSE9pRW1WQXdBR0RHNXpnaHVoMndBRXhkb2VIUzFqSlc4Y3FqMWVRRndFU3MxN21XMzQ?oc=5",
-  "snippet": "Maui brothers plead not guilty to labor trafficking charges Hawaii News Now",
+  "snippet": "Maui brothers plead not guilty to labor trafficking charges hawaiinewsnow.com",
   "date": "2026-08-11T07:00:00+00:00",
   "name": "Feed: labour trafficking",
   "lang": "en",
   "sig": 0
  },
  {
-  "title": "Two Maui men indicted on labor trafficking charges - Hawaii News Now",
+  "title": "Two Maui men indicted on labor trafficking charges - hawaiinewsnow.com",
   "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNQkFzaDQ4UjNseHRoemw5cFlSRGt2aTRyLThidjgwNFRIQy1NeUFYRTAtY0U4bnhnaktkNmliTEFsdlFWZm40c2lZXy1EZzE0d3FXM2M5SkFublE1bVdsbFE3VUg0RHBPZ0Q3Z3dheU55QXZnNkQteHFOemlXbWJnc1lfZVhleUJLc0xneFZaTDA2TXNQbTJFbF9UWQ?oc=5",
-  "snippet": "Two Maui men indicted on labor trafficking charges Hawaii News Now",
+  "snippet": "Two Maui men indicted on labor trafficking charges hawaiinewsnow.com",
   "date": "2026-08-11T07:00:00+00:00",
   "name": "Feed: labour trafficking",
   "lang": "en",
   "sig": 0
  },
  {
-  "title": "2 men arrested, indicted on suspicion of labor trafficking on Maui - KHON2",
-  "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBjdXZvdkVDQ09sX1A3OWwxc3dKNGZCVXlqTXRYeHdVS3NDWGN5R2NNTmdwVDZkOXFIbkJsc3RrZHAyeFc3endWamR1YVc5ZXlEX3JCZ21sY1l3U1BwNWx5ZW5RbEVfaTJBVjNraEpwX19xdTN1aWdSZ3YyNNIBgAFBVV95cUxPaUhha3I4V1FhV3lOYXBKVVBjWGcyVW1iY1EwZ21PbDdHXzhBYXNNT0xwRlFILXZtYVRMTFdubkpvZUlsbS11bEw3Q2V0ZTl2LUU0WkpnaURJWEswMVgtcU5ESzRFbF9HM1JkS3pYRGswSEUxV1JWZHZnTDV5UTBsLQ?oc=5",
-  "snippet": "2 men arrested, indicted on suspicion of labor trafficking on Maui KHON2",
+  "title": "2 men arrested, indicted on suspicion of labor trafficking on Maui - khon2.com",
+  "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOcmFQOGdkRi1hSnV1NjBpUWtjM0xQVnhJdlNCbEFpb24wWld5MFJKdE1STWUxUEE0QlItWHp4WDBaaHBoanoxdFo0UG5NWjR1QldMVUs0T0FESVNmTzItczJ3WVBua3ByNGZDbklKSnJVTnp3Nm9nM3ZsSHBQUEQ1Um1zaE5XNmxfTG5lektkYmg4aXJtZzVqbEl5RVVySmJpSmVRMlNB?oc=5",
+  "snippet": "2 men arrested, indicted on suspicion of labor trafficking on Maui khon2.com",
   "date": "2026-08-11T07:00:00+00:00",
   "name": "Feed: labour trafficking",
   "lang": "en",
@@ -3553,7 +3519,7 @@
  },
  {
   "title": "2 men arrested, indicted on suspicion of labor trafficking on Maui - Yahoo",
-  "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPNGRtQ1FXcF81MXd2dWM3eXRvUlRLYzhBalB4WTFubUE5SnU2Y0g4RnJSZFk1OV9PYUpGbnZ2ZnVLQ2xCZkk3c21raWxuUTN6elJrU2Fua1JYTzYtY3lTeGppQkdPWE16dHYyLXZCeWRILXdzRDFUWVh1ZGRLTlBtaHR5MHJLNDluUkE?oc=5",
+  "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNUEFZTFItZUZZMUZYVTVuUzZqSkxSVlNlZGQ5dmZHZ2N2ckVKVFZKaU1KczBaMlE3VEhDVTZsY1h3b3BUWDZ2WnJLSjh1WDQ5WXBROS1sNEx4WE1PTXFWdjR0cjZaVDBMT1E2Zmt0RDdKeldIWVgtQlZxdmFkQXg0ODhDUTdRZjc4Z282U3VrZnI?oc=5",
   "snippet": "2 men arrested, indicted on suspicion of labor trafficking on Maui Yahoo",
   "date": "2026-08-11T07:00:00+00:00",
   "name": "Feed: labour trafficking",
@@ -3561,18 +3527,18 @@
   "sig": 0
  },
  {
-  "title": "2 men arrested, indicted on suspicion of labor trafficking on Maui - AOL.com",
+  "title": "2 men arrested, indicted on suspicion of labor trafficking on Maui - aol.com",
   "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNblJJSFlmZlRrb2xfSGF3THY5YjB4TlpMb2NVYVdTaHJDMDY5OXFILWhzNXB5MkozTlgtZElNRVBiSXY0ajYyalBXWm1zWUkzVmN4R05EMzB5WlFpVnU4SGIwNnlYcG92TG5CR3luRnA1V3ZUbEVxdVVPQVk0ZmloVnBzZw?oc=5",
-  "snippet": "2 men arrested, indicted on suspicion of labor trafficking on Maui AOL.com",
+  "snippet": "2 men arrested, indicted on suspicion of labor trafficking on Maui aol.com",
   "date": "2026-08-11T07:00:00+00:00",
   "name": "Feed: labour trafficking",
   "lang": "en",
   "sig": 0
  },
  {
-  "title": "Nepal ratifies two key ILO instruments on forced labour and workplace inspection - kathmandupost.com",
+  "title": "Nepal ratifies two key ILO instruments on forced labour and workplace inspection - The Kathmandu Post",
   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQWmhsRVdmMjBHU2NsWm1OZWwzVFMtUUJ3LUtheHY4VFBWcWVlQlVqemo3a3l6NWZjdE5sUHpsWmE5Ym1LUWJjdjdGaXhrQzBwdjluX285bmxUVmk5MTNFai1ZYXRmcndTc1IwRGI2SlNybGVVZjNYdFVIdWpuaS1aRzd5eFloenF5a19WLUNqVkN0Z2pSMy1YTnY3Ti1MUC0zYmd6dHM4dERuOWdKRUR5Sk1UbkhGUFdxT3RPNzNvSkM?oc=5",
-  "snippet": "Nepal ratifies two key ILO instruments on forced labour and workplace inspection kathmandupost.com",
+  "snippet": "Nepal ratifies two key ILO instruments on forced labour and workplace inspection The Kathmandu Post",
   "date": "2026-08-11T07:00:00+00:00",
   "name": "Feed: ILO forced labour",
   "lang": "en",
@@ -3599,9 +3565,9 @@
   "sig": 0
  },
  {
-  "title": "“È così che funziona il caporalato” - collettiva.it",
+  "title": "“È così che funziona il caporalato” - Collettiva",
   "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5XYkFDTXVoZ3ljRGFYUEVoTFR3UkNUX0Jqb0IxSUVwc28wNFZ4NG5pX2NkX2ZfT0dwRVo5RmwzcWN0YzBFenJJSDVWTmNBVURISHNrc0ZnOGV3VHoweFRiUTZ5aS0zeGlMak1NR3lfOA?oc=5",
-  "snippet": "“È così che funziona il caporalato” collettiva.it",
+  "snippet": "“È così che funziona il caporalato” Collettiva",
   "date": "2026-08-11T07:00:00+00:00",
   "name": "Front: caporalato",
   "lang": "it",
@@ -3626,9 +3592,9 @@
   "sig": 0
  },
  {
-  "title": "Maui grand jury indicts brothers in labor trafficking of Guatemalan man - Hawaii News Now",
+  "title": "Maui grand jury indicts brothers in labor trafficking of Guatemalan man - hawaiinewsnow.com",
   "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPa1daTVY4Zm1oNklkX1Ezd0g1SmZNNzdtZ19jTUhMQXdKNnhnaTZUVHF6Ti15SGVjSkMxQllLdUNuUEsxcWZjMWRFYWlaSHV1b3FBeWRMN0haSGViWktFNTJSNW54dTFRcEFDbFZId3REYjhZSEdieWE1OVNjcXF1a2xJbURvNkRwQW5sOVIwbm5oTHJmTFVDTW1QSjF1cmc1UnQ4RHlxbG9sU3lTd0dXaEQ4bw?oc=5",
-  "snippet": "Maui grand jury indicts brothers in labor trafficking of Guatemalan man Hawaii News Now",
+  "snippet": "Maui grand jury indicts brothers in labor trafficking of Guatemalan man hawaiinewsnow.com",
   "date": "2026-08-10T07:00:00+00:00",
   "name": "Feed: labour trafficking",
   "lang": "en",
@@ -3655,9 +3621,9 @@
   "iso": "CHN"
  },
  {
-  "title": "Unterschleißheim: Graffiti zeigt NS-Zwangsarbeit in Flachsröste - sueddeutsche.de",
+  "title": "Unterschleißheim: Graffiti zeigt NS-Zwangsarbeit in Flachsröste - SZ.de",
   "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPQ1dvZnItQ25Rdmh6UGtfYndxQ0JSN2tVSTJpVlFzalQ1UFBnODBVQ1BVWkdGT0cxUy1aVXIwcjlJWkZEQXRtbC1wbS10VjhhZU1KNkFoVHg5bFpKMGlXS3F3djJXTnhKWWR4Si1MVEdYSjliZ0hqZTFKeC1leWVOWWc5aF9Fd3RHeFRNc2dIU3JUOUF5OVJxTTNRa1huOFdEdi1ZV1FPb1N0VzVLZmwzTlYyNzdXcS00NHI2cUNvNUgxbE1XWXJrU0d3?oc=5",
-  "snippet": "Unterschleißheim: Graffiti zeigt NS-Zwangsarbeit in Flachsröste sueddeutsche.de",
+  "snippet": "Unterschleißheim: Graffiti zeigt NS-Zwangsarbeit in Flachsröste SZ.de",
   "date": "2026-08-09T07:00:00+00:00",
   "name": "Front: Zwangsarbeit",
   "lang": "de",
@@ -3682,9 +3648,9 @@
   "sig": 0
  },
  {
-  "title": "München: Polizei stoppt illegale Prostitution – Verdacht auf Menschenhandel - sueddeutsche.de",
+  "title": "München: Polizei stoppt illegale Prostitution – Verdacht auf Menschenhandel - SZ.de",
   "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQcXR5Y192TW9yMXNJSG1HM0dybWJKem5TejlCM1N5bVZZZmxEQ29wOExxbUZoemdCYzdybk9OMnU4TVJwY09ZeW1jbDQ2a1VWX3BEVHNDWjA0R193SVhBSV9ZSlhGX3VOdVg3bEdnSlY5cTNUbVJXVXgzU1M4N0NLNkdsb21ZY2lhU2lNZTZRR1VKWkxvYkMwSERRZEN0cENPUGFjdTBxN1N5cVpybVVjbXBmMWg?oc=5",
-  "snippet": "München: Polizei stoppt illegale Prostitution – Verdacht auf Menschenhandel sueddeutsche.de",
+  "snippet": "München: Polizei stoppt illegale Prostitution – Verdacht auf Menschenhandel SZ.de",
   "date": "2026-08-07T07:00:00+00:00",
   "name": "Front: Zwangsarbeit",
   "lang": "de",
