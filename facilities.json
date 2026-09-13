@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-13T11:33:40.218762+00:00",
+ "generated": "2026-09-13T16:17:28.869023+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -235127,9 +235127,9 @@
    "name": "Tribunalul Militar București",
    "k": "ch",
    "type": "Courthouse",
-   "lat": 44.445607,
-   "lng": 26.0666627,
-   "country": "",
+   "lat": 44.4456084,
+   "lng": 26.0666543,
+   "country": "RO",
    "url": "https://www.openstreetmap.org/way/529355541",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
