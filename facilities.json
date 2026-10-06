@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-05T23:55:16.831396+00:00",
+ "generated": "2026-10-06T05:05:08.739659+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -274691,6 +274691,16 @@
    "lng": 46.3798601,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1564874066",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "จุดผ่านแดนถาวรคลองใหญ่",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 11.6513082,
+   "lng": 102.9088352,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1565355210",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   }
  ]
