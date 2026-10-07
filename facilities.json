@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-07T12:50:34.602272+00:00",
+ "generated": "2026-10-07T22:59:48.760567+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -3294,16 +3294,6 @@
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
-   "name": "Ambassade de Belgique",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": 12.6593744,
-   "lng": -7.966946,
-   "country": "BE",
-   "url": "https://www.openstreetmap.org/node/471972071",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
    "name": "ສະຖານທູດສິງກະໂປ",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -4531,16 +4521,6 @@
    "lng": 33.3228655,
    "country": "ID",
    "url": "https://www.openstreetmap.org/node/577291633",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
-   "name": "Ambassade des Pays-Bas",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": 12.6593952,
-   "lng": -7.9666007,
-   "country": "NL",
-   "url": "https://www.openstreetmap.org/node/578154804",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
@@ -11581,16 +11561,6 @@
    "lng": 28.2416949,
    "country": "AZ",
    "url": "https://www.openstreetmap.org/node/1756720440",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
-   "name": "Ambassade van België - Ambassade de Belgique - Botschaft von Belgien",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": -25.7638834,
-   "lng": 28.2040193,
-   "country": "BE",
-   "url": "https://www.openstreetmap.org/node/1757228692",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
@@ -116014,6 +115984,26 @@
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
+   "name": "Embassy / consulate",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 12.6214812,
+   "lng": -7.9822532,
+   "country": "DE",
+   "url": "https://www.openstreetmap.org/node/14260268070",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Embassy / consulate",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 12.6238058,
+   "lng": -7.9830915,
+   "country": "ES",
+   "url": "https://www.openstreetmap.org/node/14260278686",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
    "name": "باغ قلهک سفارت انگلستان",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -152774,6 +152764,16 @@
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
+   "name": "Embajada de la República de Panamá",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": -0.179273,
+   "lng": -78.4778392,
+   "country": "PA",
+   "url": "https://www.openstreetmap.org/way/465192043",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
    "name": "Embajada de Panamá",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -174961,6 +174961,16 @@
    "lng": 113.2372176,
    "country": "PL",
    "url": "https://www.openstreetmap.org/way/1565456143",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Ambassade van België - Ambassade de Belgique - Botschaft von Belgien",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": -25.7639139,
+   "lng": 28.2039217,
+   "country": "BE",
+   "url": "https://www.openstreetmap.org/way/1565831366",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
@@ -259121,6 +259131,16 @@
    "lng": 81.0285822,
    "country": "",
    "url": "https://www.openstreetmap.org/node/14257885738",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Hraniční přechod Strážný - Phillippsreut",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 48.8810171,
+   "lng": 13.7044118,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14261995805",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
