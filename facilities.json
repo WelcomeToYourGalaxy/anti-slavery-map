@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-10T17:14:15.097728+00:00",
+ "generated": "2026-10-10T21:20:49.884347+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -437657,8 +437657,8 @@
    "name": "Амбасада на Црна Гора",
    "k": "dp",
    "type": "Embassy / consulate",
-   "lat": 41.9957176,
-   "lng": 21.4172255,
+   "lat": 41.9957302,
+   "lng": 21.4172147,
    "country": "ME",
    "url": "https://www.openstreetmap.org/way/121511807",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
