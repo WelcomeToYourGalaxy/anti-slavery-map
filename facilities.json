@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-18T03:04:54.636633+00:00",
+ "generated": "2026-10-18T10:29:49.903668+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -181644,6 +181644,16 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
+   "name": "Курьинскмй районный суд",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 51.6013962,
+   "lng": 82.289554,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/208501651",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
    "name": "Tribunal du District de l'Entremont",
    "k": "ch",
    "type": "Courthouse",
@@ -312774,6 +312784,16 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
+   "name": "苍梧县人民法院",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 23.8688084,
+   "lng": 111.5458177,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1569324576",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
    "name": "Delegation of the European Commission in South Africa",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -427534,6 +427554,16 @@
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
+   "name": "القنصلية العامة لجمهورية كينيا",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 21.5238936,
+   "lng": 39.1620836,
+   "country": "KE",
+   "url": "https://www.openstreetmap.org/node/14295928591",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
    "name": "باغ قلهک سفارت انگلستان",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -503927,8 +503957,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 30.5052857,
-   "lng": 48.0269481,
+   "lat": 30.5053025,
+   "lng": 48.0266177,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2132710365",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -517707,8 +517737,8 @@
    "name": "منفذ الشلامجة",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 30.5053954,
-   "lng": 48.0266119,
+   "lat": 30.5053428,
+   "lng": 48.0265281,
    "country": "",
    "url": "https://www.openstreetmap.org/node/4359109893",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -551657,8 +551687,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 30.5055692,
-   "lng": 48.0243805,
+   "lat": 30.5055548,
+   "lng": 48.0243523,
    "country": "",
    "url": "https://www.openstreetmap.org/node/10008000946",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -580397,8 +580427,8 @@
    "name": "منفذ الشلامجة الحدودي",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 30.5054745,
-   "lng": 48.0167823,
+   "lat": 30.507013,
+   "lng": 48.0179411,
    "country": "",
    "url": "https://www.openstreetmap.org/way/997322181",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -585407,8 +585437,8 @@
    "name": "پایانه مرزی شلمچه",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 30.5024579,
-   "lng": 48.0292716,
+   "lat": 30.5024401,
+   "lng": 48.0293192,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1451074497",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
