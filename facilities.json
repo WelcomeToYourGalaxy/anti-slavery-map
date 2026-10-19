@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-19T03:18:39.446760+00:00",
+ "generated": "2026-10-19T08:47:45.173267+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -419744,6 +419744,16 @@
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
+   "name": "Instituto de los Mexicanos en el exterior",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 45.5420788,
+   "lng": -73.6159333,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/12803354726",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
    "name": "Embajada de México",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -509207,8 +509217,8 @@
    "name": "东门",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 39.9907995,
-   "lng": 116.3093076,
+   "lat": 39.9907857,
+   "lng": 116.3093092,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2748949454",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -511427,8 +511437,8 @@
    "name": "东侧门",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 39.991764,
-   "lng": 116.3092297,
+   "lat": 39.9917187,
+   "lng": 116.3092344,
    "country": "",
    "url": "https://www.openstreetmap.org/node/3087450720",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -580331,16 +580341,6 @@
    "lng": 70.1162126,
    "country": "",
    "url": "https://www.openstreetmap.org/way/984907982",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 41.5604193,
-   "lng": 70.116179,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/984913885",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
