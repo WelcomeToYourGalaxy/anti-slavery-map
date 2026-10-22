@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-22T11:16:09.255934+00:00",
+ "generated": "2026-10-22T16:45:45.048927+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -37601,16 +37601,6 @@
    "lng": 106.0208091,
    "country": "",
    "url": "https://www.openstreetmap.org/node/3414215050",
-   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
-  },
-  {
-   "name": "Whangarei High and District Courts",
-   "k": "ch",
-   "type": "Courthouse",
-   "lat": -35.7223963,
-   "lng": 174.3196599,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/3414989716",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -214184,7 +214174,7 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "Courthouse",
+   "name": "Whangarei High and District Courts",
    "k": "ch",
    "type": "Courthouse",
    "lat": -35.7225758,
@@ -312854,6 +312844,16 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
+   "name": "Арбитражный суд Тверской области",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 56.8590754,
+   "lng": 35.9189962,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1570661282",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
    "name": "Delegation of the European Commission in South Africa",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -357281,16 +357281,6 @@
    "lng": -6.2568452,
    "country": "ES",
    "url": "https://www.openstreetmap.org/node/5110142634",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
-   "name": "European Commission Representation in Ireland",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": 53.3389128,
-   "lng": -6.2449543,
-   "country": "EU",
-   "url": "https://www.openstreetmap.org/node/5110181525",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
@@ -427681,6 +427671,26 @@
    "lng": 37.2096787,
    "country": "",
    "url": "https://www.openstreetmap.org/node/14305830129",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Embassy Of The Republic Of Sierra Leone",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 53.3388755,
+   "lng": -6.2447334,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14308964678",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Embassy of the Republic of Korea",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 53.3389094,
+   "lng": -6.2502476,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14309069709",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
@@ -571741,16 +571751,6 @@
    "lng": 27.912856,
    "country": "",
    "url": "https://www.openstreetmap.org/way/120827874",
-   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
-  },
-  {
-   "name": "Border / customs post",
-   "k": "bd",
-   "type": "Border / customs post",
-   "lat": 43.6056043,
-   "lng": 39.7138388,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/120840396",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
