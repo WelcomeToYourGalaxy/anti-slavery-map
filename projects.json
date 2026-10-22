@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-21T21:13:21.604898+00:00",
+ "generated": "2026-10-22T03:10:58.289579+00:00",
  "note": "Determinations only: published government findings. Records without lat/lng carry an ISO3 code and are placed at a country centroid by the map at load time.",
  "projects": [
   {
@@ -3233,8 +3233,8 @@
    "name": "Imaizumi Tea Manufacturing & Trading Co., Ltd.",
    "source": "cbp",
    "type": "other",
-   "iso": "JPN",
-   "state": "jp",
+   "iso": "CHN",
+   "state": "cn",
    "impact": 3,
    "precise": false,
    "status": "Import ban in force",
