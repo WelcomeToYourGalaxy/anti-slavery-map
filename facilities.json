@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-22T03:20:11.774320+00:00",
+ "generated": "2026-10-22T11:16:09.255934+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -199974,16 +199974,6 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "Courthouse",
-   "k": "ch",
-   "type": "Courthouse",
-   "lat": 40.7403755,
-   "lng": 14.640582,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/300119161",
-   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
-  },
-  {
    "name": "Гражданский суд",
    "k": "ch",
    "type": "Courthouse",
@@ -253147,8 +253137,8 @@
    "name": "Bolu Adliye Sarayı",
    "k": "ch",
    "type": "Courthouse",
-   "lat": 40.7377728,
-   "lng": 31.6217706,
+   "lat": 40.737856,
+   "lng": 31.6217269,
    "country": "",
    "url": "https://www.openstreetmap.org/way/668302532",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
@@ -312841,6 +312831,26 @@
    "lng": 117.8336544,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1570277975",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "高青县人民法院",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 37.1530666,
+   "lng": 117.8379218,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1570561717",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "望埠人民法庭",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 24.2728881,
+   "lng": 113.4710268,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1570572204",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
