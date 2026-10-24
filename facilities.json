@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-24T03:19:08.853369+00:00",
+ "generated": "2026-10-24T10:24:18.188192+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -15494,7 +15494,7 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "金沢地方裁判所珠洲簡易裁判所",
+   "name": "珠洲簡易裁判所",
    "k": "ch",
    "type": "Courthouse",
    "lat": 37.434917,
@@ -15564,7 +15564,7 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "金沢家庭裁判所珠洲出張所",
+   "name": "金沢家庭裁判所 珠洲出張所",
    "k": "ch",
    "type": "Courthouse",
    "lat": 37.434962,
@@ -140207,8 +140207,8 @@
    "name": "Atlas Justice - Office de Paris",
    "k": "ch",
    "type": "Courthouse",
-   "lat": 48.8724647,
-   "lng": 2.3003708,
+   "lat": 48.8724966,
+   "lng": 2.3004032,
    "country": "FR",
    "url": "https://www.openstreetmap.org/node/13909309501",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
@@ -293911,16 +293911,6 @@
    "lng": 145.3847682,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1236597992",
-   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
-  },
-  {
-   "name": "金沢家庭裁判所　珠洲出張所",
-   "k": "ch",
-   "type": "Courthouse",
-   "lat": 37.4349441,
-   "lng": 137.2577184,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/1236622491",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -584874,7 +584864,7 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Border / customs post",
+   "name": "Сүмбэр боомт",
    "k": "bd",
    "type": "Border / customs post",
    "lat": 47.3250903,
