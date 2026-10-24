@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-24T10:24:18.188192+00:00",
+ "generated": "2026-10-24T15:30:07.115987+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -359647,9 +359647,9 @@
    "name": "Perth Consulate-General of Japan",
    "k": "dp",
    "type": "Embassy / consulate",
-   "lat": -31.9459452,
-   "lng": 115.8431304,
-   "country": "JA",
+   "lat": -31.9459325,
+   "lng": 115.8431551,
+   "country": "JP",
    "url": "https://www.openstreetmap.org/node/5348388670",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
