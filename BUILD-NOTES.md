@@ -4586,3 +4586,36 @@ coordinates read from filenames, counts read from label lists, singular and
 plural both correct.
 
 **71,900 tiles in the train split alone.** Decimation applies as before.
+
+# Seventy-third pass — globe, basemaps, and the child abuse networks layer
+
+## Globe and flat map
+The map now draws with MapLibre GL 5.24.0 instead of Leaflet. It can be shown as a globe or a flat map, on the five
+Culprits basemaps (Jurassic, Atlas, Bioluminescent, Hell, Standard). Atlas is the default because it is this map's old
+look: the painted plate, fading to satellite imagery as you zoom in. Basemap and view are chosen at the top of the Map key.
+
+None of the map's own code was rewritten for this. `engine/leaflet-on-maplibre.js` provides the part of the Leaflet API
+the map calls (`L.map`, `L.geoJSON`, `L.polyline`, `L.circleMarker`, `L.marker`, `L.popup`, `L.Layer.extend`, panes,
+controls) and draws it with MapLibre. Zoom numbers keep their Leaflet meaning (MapLibre zoom + 1), so every threshold in
+the map still means what it meant. Popups and controls are built in Leaflet's own markup, so the existing styles apply.
+Clicks go where Leaflet sent them: to a layer that listens, otherwise to the map. On the globe, points on the far side are
+skipped by the canvas layers.
+
+## Child abuse networks and child trafficking
+The full content of the child abuse networks map is now a layer here, kept in this map's colors:
+- country shading (likely scale and impunity, the indicators, cases by setting), off by choosing "No country colors";
+- 564 documented cases connected to networks, institutions or wider findings, by setting and years;
+- 207 lines (trafficking routes, travelling offenders, abusers moved by institutions, adoptions, state removals,
+  payments, abuse material hosting) and 88 networks and institutions at their headquarters;
+- 15 patterns behind the scenes, each opening its writeup in its own box;
+- charts (every place, through time, waiting for action, networks) and the about-and-sources page.
+Its controls are at the bottom of the Map key. Clicking a country opens this map's own box as before; the child abuse
+networks section is added below the services, with a link to it at the top. Case, network and pattern boxes can be dragged.
+
+The data is `child_networks.json` (built in the WelcomeToYourGalaxy/maps repo, child-networks-src, and exported with
+`export_antislavery.py`). `bundle.py` embeds it like the other layers.
+
+## Files
+`engine/` holds the four pieces (`basemaps.js`, `leaflet-on-maplibre.js`, `child.js`, `child.css`). `engine/inline.py`
+places them in `index.html` between the ENGINE markers; run it after editing anything in `engine/`, then `bundle.py`.
+The smoke test still passes: without MapLibre (as under jsdom) the engine stands aside and the test's Leaflet stub runs.

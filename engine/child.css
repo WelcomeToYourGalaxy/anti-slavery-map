@@ -1,0 +1,134 @@
+/* child.css -- the child abuse networks layer, in this map's own look: Marcellus, dark teal-black panels,
+   var(--accent) / var(--accent-hi) / var(--accent-soft) from the lens, parchment text. Everything is scoped
+   to .cnui so nothing here touches the rest of the page. */
+.cnui{--cn-ink:#deded9;--cn-mute:#a4a697;--cn-dim:#959788;--cn-line:var(--accent-soft,rgba(97,101,66,.32));--cn-line2:rgba(255,255,255,.07);--cn-head:#ebece8;--cn-card:rgba(13,22,23,.97)}
+.cnui,.cnui button,.cnui select,.cnui input{font-family:'Marcellus','Georgia',serif}
+.cnui a{color:var(--accent-hi);text-decoration:none;border-bottom:1px dotted var(--accent-soft)}
+
+/* blocks inside the Map key */
+.cn-blk{margin-top:11px;padding-top:9px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:var(--cn-mute)}
+#bmBox{margin-top:0;padding-top:0;border-top:0}
+.cn-head{font-weight:700;font-size:11px;color:#bfbebb;letter-spacing:.5px;text-transform:uppercase;margin:0 0 4px}
+.cnui .psec{margin:12px 0 4px;font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--cn-dim)}
+.cnui .psec.tg{display:flex;align-items:center;gap:6px}
+.cnui .psec.tg label{display:flex;align-items:center;gap:7px;cursor:pointer;flex:1}
+.cnui .psec.tg input{margin:0}
+.cnui .psec.tg .mute{text-transform:none;letter-spacing:0;font-weight:400}
+.cnui input[type=checkbox],.cnui input[type=radio]{accent-color:var(--accent);width:13px;height:13px;cursor:pointer;margin:0}
+.cnui select,.cnui button.btn{background:#152527;color:#e1e1dd;color-scheme:dark;border:1px solid var(--cn-line);border-radius:6px;padding:4px 8px;font-size:11px;cursor:pointer}
+.cnui select option,.cnui select optgroup{background:#152527;color:#e1e1dd}
+.cnui button.btn.on{border-color:var(--accent-hi);background:var(--accent);color:#fff}
+.cnui button.btn:hover{border-color:var(--accent-hi);color:#fff}
+.cnui #layer{flex:1;min-width:0;width:100%}
+.cnui .lrow{display:flex;align-items:center;gap:6px}
+.cnui .lrow .chk{flex:1}
+.cnui .ldesc{font-size:11px;color:#d0d0cc;margin:4px 0 5px;line-height:1.5}
+.cnui .lsrc{font-size:10.5px;color:var(--cn-dim);line-height:1.45;margin:3px 0}
+.cnui .ramp{display:flex;margin-top:7px;border-radius:2px;overflow:hidden;height:8px}
+.cnui .ramp span{flex:1}
+.cnui .rampl{display:flex;justify-content:space-between;font-size:10px;color:var(--cn-dim);margin-top:2px}
+.cnui .lg{display:flex;align-items:center;gap:7px;font-size:11px;padding:3px 0;border-top:1px solid var(--cn-line2);color:#c7c8bf}
+.cnui .lg .n{margin-left:auto;color:var(--cn-dim);font-size:10.5px}
+.cnui .sw{display:inline-block;width:11px;height:9px;border-radius:2px;flex:none}
+.cnui .sw.pt{width:8px;height:8px;border-radius:50%}
+.cnui .sw.ln{height:2px;width:15px;border-radius:0}
+.cnui .sw.dash{height:0;width:15px;border-top:2px dashed;background:none!important;border-radius:0}
+.cnui .chk{display:flex;gap:7px;align-items:center;font-size:11px;cursor:pointer;margin:4px 0;color:#c7c8bf}
+.cnui .chk input:disabled{opacity:.45}
+.cnui .ib{flex:none;width:16px;height:16px;border-radius:50%;border:1px solid var(--cn-line);background:rgba(255,255,255,.04);color:var(--accent-hi);font:11px/14px Georgia,serif;text-align:center;cursor:pointer;padding:0}
+.cnui .ib:hover,.cnui .ib.on{border-color:var(--accent-hi);color:#fff}
+.cnui .ipop{display:none;font-size:10.5px;color:#d0d0cc;background:rgba(255,255,255,.03);border:1px solid var(--cn-line2);border-radius:6px;padding:6px 8px;margin:3px 0 6px;line-height:1.5}
+.cnui .ipop.open{display:block}
+.cnui .yrs{display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:11px}
+.cnui .yrs input{width:58px;background:#152527;color:#e1e1dd;border:1px solid var(--cn-line);border-radius:5px;padding:3px 5px;font-size:11px}
+.cnui .seg{display:flex;gap:5px;margin:4px 0 2px;flex-wrap:wrap}
+.cnui .seg .era{font-size:10.5px;padding:2px 7px}
+.cnui #cnCnt{font-size:10.5px;color:var(--cn-dim);margin-top:5px}
+.cnui #find{width:100%;box-sizing:border-box;background:#152527;color:#e1e1dd;border:1px solid var(--cn-line);border-radius:6px;padding:5px 7px;font-size:11px;margin:2px 0 4px}
+.cnui #plist{max-height:240px;overflow:auto}
+.cnui .pi{display:flex;gap:7px;align-items:center;padding:3px 2px;border-top:1px solid var(--cn-line2);font-size:11px;cursor:pointer;color:#c7c8bf}
+.cnui .pi:hover{background:rgba(255,255,255,.04)}
+.cnui .pi.sel{background:rgba(255,255,255,.08)}
+.cnui .pi .v{margin-left:auto;color:var(--cn-dim);font-size:10.5px;white-space:nowrap}
+.cnui #patList .pi{white-space:normal;line-height:1.35;padding-top:4px;padding-bottom:4px}
+.cnui #patList .pi.on{background:var(--accent-soft);color:#fff}
+.cnui .bases{display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;font-size:11px;margin:4px 0 2px;color:#c7c8bf}
+.cnui .bases label{cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.cnui #dockBtns{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:4px}
+.cnui .tab{text-align:left;background:rgba(255,255,255,.03);border:1px solid var(--cn-line);color:var(--cn-mute);font-size:10.5px;padding:4px 7px;border-radius:6px;cursor:pointer;line-height:1.25}
+.cnui .tab:hover{color:#e1e1dd}
+.cnui .tab.on{color:#fff;border-color:var(--accent-hi);background:var(--accent-soft)}
+.cnui .mute{color:var(--cn-dim)}
+.cnui details.pd{margin:6px 0;border:1px solid var(--cn-line2);border-radius:6px;padding:4px 7px}
+.cnui details.pd summary{cursor:pointer;font-size:11px;color:#d0d0cc}
+
+/* boxes: a case, a network, a pattern */
+.cnbox{display:none;position:fixed;z-index:1200;left:50%;transform:translate(-50%,-50%);width:min(620px,calc(100vw - 24px));max-height:min(80vh,900px);overflow:auto;padding:0 20px 16px;box-sizing:border-box;background:var(--cn-card);border:1px solid var(--cn-line);border-radius:11px;box-shadow:0 10px 32px rgba(0,0,0,.55);backdrop-filter:blur(12px);color:var(--cn-ink);scrollbar-width:thin}
+.cnbox:not(.moved){top:50%}
+.cnbox.open{display:block}
+.cnbox.moved{transform:none}
+.cnbox .grip{position:sticky;top:0;z-index:2;height:22px;margin:0 -20px 2px;cursor:move;background:inherit;touch-action:none}
+.cnbox .grip::before{content:"";position:absolute;left:50%;top:9px;width:38px;height:4px;margin-left:-19px;border-top:1px solid rgba(255,255,255,.28);border-bottom:1px solid rgba(255,255,255,.28)}
+.cnbox .grip:hover::before{border-color:rgba(255,255,255,.55)}
+#detX,#patX{position:absolute;top:2px;right:8px;z-index:3;background:none;border:0;color:#bbb;font-size:20px;cursor:pointer;line-height:1}
+#detX:hover,#patX:hover{color:#fff}
+.cnbox h3{cursor:move}
+.cnui.hp h3,.cnui .hp h3{margin:2px 0 6px;font-size:17px;font-weight:700;color:var(--cn-head);border-bottom:1px solid var(--cn-line);padding:0 18px 8px 0;line-height:1.3}
+.cnui .hp-k{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--cn-dim);padding-right:20px}
+.cnui .hp-sub{color:var(--cn-mute);font-size:11.5px;margin:0 0 6px}
+.cnui .hp-h{font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#909374;margin:14px 0 4px;padding-bottom:3px;border-bottom:1px solid rgba(171,163,149,.32)}
+.cnui.hp p,.cnui .hp p{margin:5px 0;font-size:12px;line-height:1.55;color:#d0d0cc}
+.cnui .big{font-size:20px;color:var(--cn-head)}
+.cnui .note{font-size:11px;color:var(--cn-mute)}
+.cnui .bars{display:grid;grid-template-columns:minmax(110px,150px) 1fr 34px;gap:3px 8px;align-items:center;font-size:11px;margin:4px 0;color:#c7c8bf}
+.cnui .bars .b{height:7px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.cnui .bars .b i{display:block;height:100%;background:var(--accent-hi);border-radius:2px}
+.cnui .bars span:nth-child(3n){text-align:right;color:var(--cn-dim)}
+.cnui.hp details,.cnui .hp details{margin:6px 0;border:1px solid var(--cn-line2);border-radius:6px;padding:4px 8px}
+.cnui.hp summary,.cnui .hp summary{cursor:pointer;font-size:11.5px;color:#d0d0cc}
+.cnui table.kv{border-collapse:collapse;font-size:11.5px;width:100%}
+.cnui table.kv th{text-align:left;color:var(--cn-mute);font-weight:400;vertical-align:top;padding:2px 10px 2px 0}
+.cnui table.kv td{padding:2px 0;vertical-align:top;text-align:right;color:#d0d0cc}
+.cnui .flag{border-left:3px solid var(--accent);padding:4px 0 4px 9px;background:rgba(255,255,255,.03);font-size:11.5px;border-radius:0 6px 6px 0}
+.cnui .story{border-left:3px solid var(--accent);padding:2px 0 2px 11px;margin:4px 0 8px}
+.cnui .story p{font-size:12.4px;line-height:1.62;color:#deded9;margin:0 0 9px}
+.cnui .means{border-left:3px solid var(--accent);padding:2px 0 2px 10px;margin:4px 0 6px}
+.cnui .means p{font-size:12px;color:#deded9;margin:0 0 7px;line-height:1.55}
+.cnui .hp-src{color:var(--cn-dim);font-size:10.5px;margin-top:12px;border-top:1px solid var(--cn-line2);padding-top:6px}
+.cnui .hp-src a{word-break:break-word}
+
+/* the section in this map's country box */
+.cn-panel{margin-top:14px;padding-top:4px;border-top:2px solid var(--accent-soft)}
+.cn-panel-h{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#bfbebb;margin:10px 0 2px}
+.cn-jump{margin:-4px 0 8px;font-size:11px}
+
+/* chart windows */
+.cnwin{position:fixed;z-index:1150;display:flex;flex-direction:column;resize:both;overflow:hidden;min-width:300px;min-height:200px;background:var(--cn-card);border:1px solid var(--cn-line);border-radius:11px;box-shadow:0 18px 50px rgba(0,0,0,.65);color:var(--cn-ink)}
+.cnwin .wh{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 14px;border-bottom:1px solid var(--cn-line2);cursor:move;user-select:none;flex:none;touch-action:none}
+.cnwin .wt{font:400 15px/1.2 'Uncial Antiqua','Marcellus','Georgia',serif;color:var(--cn-head);letter-spacing:.3px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cnwin .wx,.cnwin .wm{background:none;border:0;color:#bbb;font-size:18px;line-height:1;cursor:pointer;padding:0 4px}
+.cnwin .wx:hover,.cnwin .wm:hover{color:#fff}
+.cnwin .wb{flex:1;min-height:0;position:relative;overflow:auto}
+.cnwin .wfoot{flex:none;font-size:10.5px;color:var(--cn-dim);padding:5px 14px 8px;border-top:1px solid var(--cn-line2)}
+.cnwin .wctl{padding:8px 14px 0}
+.cnwin table.all{border-collapse:collapse;font-size:11.5px;width:100%}
+.cnwin table.all th{position:sticky;top:0;background:#101819;color:var(--cn-mute);font-weight:400;text-align:right;padding:5px 6px;border-bottom:1px solid var(--cn-line);cursor:pointer;line-height:1.2;vertical-align:bottom}
+.cnwin table.all th:first-child,.cnwin table.all td:first-child{text-align:left}
+.cnwin table.all th:hover,.cnwin table.all th.on{color:#fff}
+.cnwin table.all td{padding:3px 6px;border-bottom:1px solid var(--cn-line2);text-align:right;white-space:nowrap;color:#d0d0cc}
+.cnwin table.all tr.r{cursor:pointer}
+.cnwin table.all tr.r:hover td{background:rgba(255,255,255,.04)}
+.cnwin table.all tr.sel td{background:rgba(255,255,255,.09)}
+.cnwin .lc{position:absolute;inset:0}
+.cnwin .lc svg{display:block;width:100%;height:100%}
+.cnwin .lc text,.cnwin .dsvg text{font-family:'Marcellus','Georgia',serif;fill:var(--cn-mute);font-size:10.5px}
+.cnwin .lc .gl,.cnwin .dsvg .gl{stroke:rgba(255,255,255,.07)}
+.cnwin .dsvg .dr:hover text{fill:#fff}
+.cnwin .mean{font-size:11px;color:#d0d0cc;margin:6px 0 0;line-height:1.45}
+
+#ttip.cnui{position:fixed;z-index:5000;pointer-events:none;background:rgba(10,20,21,.97);border:1px solid var(--cn-line);border-radius:9px;padding:6px 9px;font-size:11.5px;display:none;max-width:320px;box-shadow:0 6px 26px rgba(0,0,0,.55);color:#deded9}
+#ttip.cnui .m{color:var(--cn-dim);font-size:10.5px}
+.cn-about h2{font:400 16px/1.3 'Marcellus','Georgia',serif;color:#ebece8;margin:20px 0 6px}
+.cn-about h2:first-child{margin-top:0}
+.cn-about p,.cn-about li{font-size:12.5px;line-height:1.55}
+@media (max-width:640px){.cnbox{max-height:70vh}.cnui .bars{grid-template-columns:100px 1fr 30px}}
