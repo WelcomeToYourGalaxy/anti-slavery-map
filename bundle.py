@@ -43,7 +43,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LAYERS = ["projects.json", "cases.json", "prevalence.json", "points.json",
           "bulk.json", "directory.json", "wire.json", "hotlines.json",
           "routes.json", "infra.json", "facilities.json", "sites.json", "companies.json", "law.json", "suspected.json",
-          "child_networks.json"]
+          "child_networks.json",
+          "data/overlays/sez.json", "data/overlays/listed_goods.json", "data/overlays/c29_c182.json",
+          "data/overlays/corridors.json", "data/overlays/due_diligence.json"]
 
 # Layers deliberately left OUT of the bundle and fetched at runtime instead.
 # infra.json is 3,630 ports at 2.1 MB embedded -- a quarter of the file for the

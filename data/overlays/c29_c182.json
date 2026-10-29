@@ -1,0 +1,765 @@
+{
+ "k": "c29_c182",
+ "label": "Ratification of the ILO forced labour and child labour conventions",
+ "source": "ILO NORMLEX, Ratifications by Convention: C029 Forced Labour Convention 1930; P029 Protocol of 2014 to the Forced Labour Convention; C105 Abolition of Forced Labour Convention 1957; C138 Minimum Age Convention 1973; C182 Worst Forms of Child Labour Convention 1999",
+ "url": "https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:11300:0::NO::P11300_INSTRUMENT_ID:312174",
+ "instrument_urls": {
+  "C29": "https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:11300:0::NO::P11300_INSTRUMENT_ID:312174",
+  "Protocol 29": "https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:11300:0::NO::P11300_INSTRUMENT_ID:3174672",
+  "C105": "https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:11300:0::NO::P11300_INSTRUMENT_ID:312250",
+  "C138": "https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:11300:0::NO::P11300_INSTRUMENT_ID:312283",
+  "C182": "https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:11300:0::NO::P11300_INSTRUMENT_ID:312327"
+ },
+ "as_of": "NORMLEX as read on 28 October 2026",
+ "method": "For each of the 187 ILO member states, v counts how many of the five instruments (C29, Protocol 29, C105, C138, C182) it has ratified, 0 to 5, from NORMLEX's ratification list and 'countries have not ratified' list for each instrument. A ratification later denounced (Malaysia and Singapore, C105) is counted as not ratified; Protocol 29 ratifications from 2026 that enter into force in 2027 are counted as ratified.",
+ "countries": {
+  "AFG": {
+   "v": 3,
+   "text": "Not ratified: C29, Protocol 29"
+  },
+  "AGO": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "ALB": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "ARE": {
+   "v": 5,
+   "text": "All five ratified (Protocol 29 ratified in 2026; enters into force 15 Jan 2027)"
+  },
+  "ARG": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "ARM": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "ATG": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "AUS": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "AUT": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "AZE": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "BDI": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "BEL": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "BEN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "BFA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "BGD": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "BGR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "BHR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "BHS": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "BIH": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "BLR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "BLZ": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "BOL": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "BRA": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "BRB": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "BRN": {
+   "v": 3,
+   "text": "Not ratified: Protocol 29, C105"
+  },
+  "BWA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "CAF": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "CAN": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "CHE": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "CHL": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "CHN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "CIV": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "CMR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "COD": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "COG": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "COK": {
+   "v": 3,
+   "text": "Not ratified: Protocol 29, C138"
+  },
+  "COL": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "COM": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "CPV": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "CRI": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "CUB": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "CYP": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "CZE": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "DEU": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "DJI": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "DMA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "DNK": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "DOM": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "DZA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "ECU": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "EGY": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "ERI": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "ESP": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "EST": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "ETH": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "FIN": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "FJI": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "FRA": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "GAB": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "GBR": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "GEO": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "GHA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "GIN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "GMB": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "GNB": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "GNQ": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "GRC": {
+   "v": 5,
+   "text": "All five ratified (Protocol 29 ratified in 2026; enters into force 03 Mar 2027)"
+  },
+  "GRD": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "GTM": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "GUY": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "HND": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "HRV": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "HTI": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "HUN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "IDN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "IND": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "IRL": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "IRN": {
+   "v": 3,
+   "text": "Not ratified: Protocol 29, C138"
+  },
+  "IRQ": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "ISL": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "ISR": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "ITA": {
+   "v": 5,
+   "text": "All five ratified (Protocol 29 ratified in 2026; enters into force 09 Jun 2027)"
+  },
+  "JAM": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "JOR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "JPN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "KAZ": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "KEN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "KGZ": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "KHM": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "KIR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "KNA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "KOR": {
+   "v": 3,
+   "text": "Not ratified: Protocol 29, C105"
+  },
+  "KWT": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "LAO": {
+   "v": 3,
+   "text": "Not ratified: Protocol 29, C105"
+  },
+  "LBN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "LBR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "LBY": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "LCA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "LKA": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "LSO": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "LTU": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "LUX": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "LVA": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "MAR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "MDA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "MDG": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "MDV": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "MEX": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "MHL": {
+   "v": 1,
+   "text": "Not ratified: C29, Protocol 29, C105, C138"
+  },
+  "MKD": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "MLI": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "MLT": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "MMR": {
+   "v": 3,
+   "text": "Not ratified: Protocol 29, C105"
+  },
+  "MNE": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "MNG": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "MOZ": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "MRT": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "MUS": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "MWI": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "MYS": {
+   "v": 4,
+   "text": "Not ratified: C105 (ratified, then denounced on 10 Jan 1990)"
+  },
+  "NAM": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "NER": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "NGA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "NIC": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "NLD": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "NOR": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "NPL": {
+   "v": 5,
+   "text": "All five ratified (Protocol 29 ratified in 2026; enters into force 07 Aug 2027)"
+  },
+  "NZL": {
+   "v": 4,
+   "text": "Not ratified: C138"
+  },
+  "OMN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "PAK": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "PAN": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "PER": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "PHL": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "PLW": {
+   "v": 1,
+   "text": "Not ratified: C29, Protocol 29, C105, C138"
+  },
+  "PNG": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "POL": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "PRT": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "PRY": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "QAT": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "ROU": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "RUS": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "RWA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "SAU": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "SDN": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "SEN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "SGP": {
+   "v": 3,
+   "text": "Not ratified: Protocol 29, C105 (ratified, then denounced on 19 Apr 1979)"
+  },
+  "SLB": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "SLE": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "SLV": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "SMR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "SOM": {
+   "v": 3,
+   "text": "Not ratified: Protocol 29, C138"
+  },
+  "SRB": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "SSD": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "STP": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "SUR": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "SVK": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "SVN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "SWE": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "SWZ": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "SYC": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "SYR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "TCD": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "TGO": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "THA": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "TJK": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "TKM": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "TLS": {
+   "v": 2,
+   "text": "Not ratified: Protocol 29, C105, C138"
+  },
+  "TON": {
+   "v": 1,
+   "text": "Not ratified: C29, Protocol 29, C105, C138"
+  },
+  "TTO": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "TUN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "TUR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "TUV": {
+   "v": 1,
+   "text": "Not ratified: C29, Protocol 29, C105, C138"
+  },
+  "TZA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "UGA": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "UKR": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "URY": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "USA": {
+   "v": 2,
+   "text": "Not ratified: C29, Protocol 29, C138"
+  },
+  "UZB": {
+   "v": 5,
+   "text": "All five ratified"
+  },
+  "VCT": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "VEN": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "VNM": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "VUT": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "WSM": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "YEM": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "ZAF": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "ZMB": {
+   "v": 4,
+   "text": "Not ratified: Protocol 29"
+  },
+  "ZWE": {
+   "v": 5,
+   "text": "All five ratified"
+  }
+ }
+}

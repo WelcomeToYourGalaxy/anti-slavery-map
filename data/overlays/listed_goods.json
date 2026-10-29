@@ -1,0 +1,331 @@
+{
+ "k": "listed_goods",
+ "label": "Goods on the US Labor Department's child/forced labour list",
+ "source": "US Department of Labor, Bureau of International Labor Affairs (ILAB), 2024 List of Goods Produced by Child Labor or Forced Labor (TVPRA List)",
+ "url": "https://www.dol.gov/agencies/ilab/reports/child-labor/list-of-goods",
+ "as_of": "2024 edition (current as of 5 September 2024)",
+ "method": "Counted from ILAB's downloadable 2024 List of Goods spreadsheet (2024ListofGoodsExcel.xlsx, 'Goods' sheet). v is the number of distinct goods listed for the country; a good marked for both child and forced labour counts once in v and once in each of the two counts.",
+ "data_url": "https://www.dol.gov/sites/dolgov/files/ilab/child_labor_reports/tda2023/2024ListofGoodsExcel.xlsx",
+ "countries": {
+  "AFG": {
+   "v": 5,
+   "text": "5 goods: 5 child labour, 1 forced labour (1 also forced child labour) — Bricks, Carpets, Coal, Poppies, Salt"
+  },
+  "AGO": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 1 forced labour — Diamonds"
+  },
+  "ARG": {
+   "v": 10,
+   "text": "10 goods: 10 child labour, 1 forced labour (1 also forced child labour) — Bricks, Cotton, Garlic, Garments, Grapes, Olives, Strawberries, Tobacco, Tomatoes, Yerba Mate (stimulant plant)"
+  },
+  "AZE": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 0 forced labour — Cotton"
+  },
+  "BEN": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 1 forced labour (1 also forced child labour) — Cotton, Granite (crushed)"
+  },
+  "BFA": {
+   "v": 3,
+   "text": "3 goods: 3 child labour, 2 forced labour (2 also forced child labour) — Cotton, Gold, Granite"
+  },
+  "BGD": {
+   "v": 15,
+   "text": "15 goods: 15 child labour, 2 forced labour (1 also forced child labour) — Bidis (hand-rolled cigarettes), Bricks, Dried Fish, Footwear, Furniture (steel), Garments, Glass, Jute (textiles), Leather, Matches, Poultry, Salt, Shrimp, Soap, Textiles"
+  },
+  "BLR": {
+   "v": 2,
+   "text": "2 goods: 0 child labour, 2 forced labour — Furniture, Lumber"
+  },
+  "BLZ": {
+   "v": 3,
+   "text": "3 goods: 3 child labour, 0 forced labour — Bananas, Citrus Fruits, Sugarcane"
+  },
+  "BOL": {
+   "v": 12,
+   "text": "12 goods: 11 child labour, 5 forced labour (2 also forced child labour) — Brazil Nuts/Chestnuts, Bricks, Cattle, Coca (stimulant plant), Corn, Gold, Lead, Peanuts, Silver, Sugarcane, Tin, Zinc"
+  },
+  "BRA": {
+   "v": 25,
+   "text": "25 goods: 23 child labour, 6 forced labour — Açaí Berries, Bananas, Beef, Bricks, Cashews, Cattle, Ceramics, Charcoal, Cocoa, Coffee, Corn, Cotton, Fish, Footwear, Garments, Hogs, Manioc/Cassava, Pineapples, Poultry, Rice, Sheep, Sisal, Sugarcane, Timber, Tobacco"
+  },
+  "CAF": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 0 forced labour — Diamonds, Gold"
+  },
+  "CHN": {
+   "v": 24,
+   "text": "24 goods: 6 child labour, 24 forced labour (4 also forced child labour) — Aluminum, Artificial Flowers, Bricks, Caustic Soda, Christmas Decorations, Coal, Cotton, Electronics, Fireworks, Fish, Footwear, Garments, Gloves, Hair Products, Jujubes, Metallurgical Grade Silicon, Nails, Polysilicon, Polyvinyl Chloride, Squid, Textiles, Thread/Yarn, Tomato Products, Toys"
+  },
+  "CIV": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 2 forced labour (2 also forced child labour) — Cocoa, Coffee"
+  },
+  "CMR": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 0 forced labour — Cocoa, Gold"
+  },
+  "COD": {
+   "v": 7,
+   "text": "7 goods: 7 child labour, 5 forced labour (4 also forced child labour) — Cobalt Ore (heterogenite), Copper Ore, Diamonds, Gold, Tantalum Ore (coltan), Tin Ore (cassiterite), Tungsten Ore (wolframite)"
+  },
+  "COL": {
+   "v": 10,
+   "text": "10 goods: 10 child labour, 1 forced labour (1 also forced child labour) — Bricks (clay), Coal, Coca (stimulant plant), Coffee, Emeralds, Fruits (Pome and Stone), Gold, Grapes, Pornography, Sugarcane"
+  },
+  "CRI": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 0 forced labour — Cattle, Coffee"
+  },
+  "DOM": {
+   "v": 5,
+   "text": "5 goods: 5 child labour, 1 forced labour — Baked Goods, Coffee, Rice, Sugarcane, Tomatoes"
+  },
+  "ECU": {
+   "v": 8,
+   "text": "8 goods: 8 child labour, 0 forced labour — Bananas, Bovines, Bricks, Flowers, Gold, Hogs, Poultry, Rice"
+  },
+  "EGY": {
+   "v": 3,
+   "text": "3 goods: 3 child labour, 0 forced labour — Bricks, Cotton, Stones (limestone)"
+  },
+  "ETH": {
+   "v": 4,
+   "text": "4 goods: 4 child labour, 1 forced labour (1 also forced child labour) — Cattle, Gold, Khat (stimulant), Textiles (hand-woven)"
+  },
+  "GHA": {
+   "v": 7,
+   "text": "7 goods: 7 child labour, 2 forced labour (2 also forced child labour) — Bovines, Cocoa, Fish, Gold, Rice, Textiles, Tilapia (fish)"
+  },
+  "GIN": {
+   "v": 5,
+   "text": "5 goods: 5 child labour, 0 forced labour — Cashews, Cocoa, Coffee, Diamonds, Gold"
+  },
+  "GTM": {
+   "v": 6,
+   "text": "6 goods: 6 child labour, 0 forced labour — Broccoli, Coffee, Corn, Fireworks, Gravel (crushed stones), Sugarcane"
+  },
+  "HND": {
+   "v": 3,
+   "text": "3 goods: 3 child labour, 0 forced labour — Coffee, Lobsters, Melons"
+  },
+  "IDN": {
+   "v": 8,
+   "text": "8 goods: 7 child labour, 3 forced labour — Fish, Footwear (sandals), Gold, Nickel, Palm Fruit, Rubber, Tin, Tobacco"
+  },
+  "IND": {
+   "v": 28,
+   "text": "28 goods: 26 child labour, 12 forced labour (6 also forced child labour) — Bidis (hand-rolled cigarettes), Brassware, Bricks, Carpets, Cotton, Cottonseed (hybrid), Embellished Textiles, Fireworks, Footwear, Garments, Gems, Glass Bangles, Incense (agarbatti), Leather Goods/Accessories, Locks, Matches, Mica, Recovered Metals (electronic waste), Rice, Sandstone, Shrimp, Silk Fabric, Silk Thread, Soccer Balls, Stones, Sugarcane, Tea, Thread/Yarn"
+  },
+  "IRN": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 0 forced labour — Bricks, Carpets"
+  },
+  "KAZ": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 1 forced labour — Cotton"
+  },
+  "KEN": {
+   "v": 12,
+   "text": "12 goods: 12 child labour, 0 forced labour — Cattle, Coffee, Fish, Gold, Khat/Miraa (stimulant plant), Rice, Sand, Sisal, Stones, Sugarcane, Tea, Tobacco"
+  },
+  "KGZ": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 0 forced labour — Cotton, Tobacco"
+  },
+  "KHM": {
+   "v": 12,
+   "text": "12 goods: 12 child labour, 1 forced labour (1 also forced child labour) — Alcoholic Beverages, Bovines, Bricks, Fish, Manioc/Cassava, Meat, Rubber, Shrimp, Sugarcane, Textiles, Timber, Tobacco"
+  },
+  "LBN": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 0 forced labour — Potatoes, Tobacco"
+  },
+  "LBR": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 0 forced labour — Diamonds, Rubber"
+  },
+  "LSO": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 0 forced labour — Cattle"
+  },
+  "MDG": {
+   "v": 4,
+   "text": "4 goods: 4 child labour, 0 forced labour — Mica, Sapphires, Stones, Vanilla"
+  },
+  "MEX": {
+   "v": 15,
+   "text": "15 goods: 15 child labour, 2 forced labour — Beans (green beans), Cattle, Chile Peppers, Coffee, Cucumbers, Eggplants, Garments, Leather Goods/Accessories, Melons, Onions, Poppies, Pornography, Sugarcane, Tobacco, Tomatoes"
+  },
+  "MLI": {
+   "v": 3,
+   "text": "3 goods: 3 child labour, 1 forced labour (1 also forced child labour) — Cotton, Gold, Rice"
+  },
+  "MMR": {
+   "v": 15,
+   "text": "15 goods: 10 child labour, 15 forced labour (7 also forced child labour) — Bamboo, Beans (green, soy, yellow), Bricks, Fish, Garments, Jade, Palm Thatch, Rice, Rubber, Rubies, Sesame, Shrimp, Sugarcane, Sunflowers, Teak"
+  },
+  "MNG": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 0 forced labour — Coal, Gold"
+  },
+  "MOZ": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 0 forced labour — Tobacco"
+  },
+  "MRT": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 0 forced labour — Cattle, Goats"
+  },
+  "MUS": {
+   "v": 1,
+   "text": "1 good: 0 child labour, 1 forced labour — Garments"
+  },
+  "MWI": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 1 forced labour (1 also forced child labour) — Tea, Tobacco"
+  },
+  "MYS": {
+   "v": 4,
+   "text": "4 goods: 1 child labour, 4 forced labour — Electronics, Garments, Palm Fruit, Rubber Gloves"
+  },
+  "NER": {
+   "v": 5,
+   "text": "5 goods: 4 child labour, 1 forced labour — Cattle, Gold, Gypsum (mineral), Salt, Trona (mineral)"
+  },
+  "NGA": {
+   "v": 6,
+   "text": "6 goods: 6 child labour, 3 forced labour (3 also forced child labour) — Cocoa, Gold, Granite, Gravel (crushed stones), Manioc/Cassava, Sand"
+  },
+  "NIC": {
+   "v": 7,
+   "text": "7 goods: 7 child labour, 0 forced labour — Bananas, Coffee, Gold, Gravel (crushed stones), Shellfish, Stones (pumice), Tobacco"
+  },
+  "NPL": {
+   "v": 4,
+   "text": "4 goods: 4 child labour, 4 forced labour (4 also forced child labour) — Bricks, Carpets, Embellished Textiles, Stones"
+  },
+  "PAK": {
+   "v": 17,
+   "text": "17 goods: 14 child labour, 6 forced labour (3 also forced child labour) — Baked Goods, Bovines, Bricks, Carpets, Coal, Cotton, Dairy Products, Electronics, Furniture, Garments, Glass Bangles, Leather, Rice, Sugarcane, Surgical Instruments, Textiles, Wheat"
+  },
+  "PAN": {
+   "v": 2,
+   "text": "2 goods: 2 child labour, 0 forced labour — Coffee, Melons"
+  },
+  "PER": {
+   "v": 7,
+   "text": "7 goods: 5 child labour, 3 forced labour — Brazil Nuts/Chestnuts, Bricks, Coca (stimulant plant), Fireworks, Fish, Gold, Timber"
+  },
+  "PHL": {
+   "v": 13,
+   "text": "13 goods: 13 child labour, 0 forced labour — Bananas, Coconuts, Corn, Fashion Accessories, Fish, Gold, Hogs, Pornography, Pyrotechnics, Rice, Rubber, Sugarcane, Tobacco"
+  },
+  "PRK": {
+   "v": 7,
+   "text": "7 goods: 0 child labour, 7 forced labour — Bricks, Cement, Coal, Gold, Iron, Textiles, Timber"
+  },
+  "PRY": {
+   "v": 24,
+   "text": "24 goods: 24 child labour, 1 forced labour — Beans, Bricks, Cabbages, Carrots, Cattle, Corn, Fish, Goats, Hogs, Lettuce, Manioc/Cassava, Melons, Onions, Peanuts, Peppers, Pornography, Poultry, Sesame, Sheep, Stones (limestone), Sugarcane, Sweet Potatoes, Tomatoes, Yerba Mate (stimulant plant)"
+  },
+  "RUS": {
+   "v": 3,
+   "text": "3 goods: 1 child labour, 3 forced labour (1 also forced child labour) — Bricks, Pornography, Timber"
+  },
+  "RWA": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 0 forced labour — Tea"
+  },
+  "SDN": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 0 forced labour — Gold"
+  },
+  "SEN": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 0 forced labour — Gold"
+  },
+  "SLE": {
+   "v": 5,
+   "text": "5 goods: 5 child labour, 1 forced labour (1 also forced child labour) — Cocoa, Coffee, Diamonds, Granite, Palm Fruit"
+  },
+  "SLV": {
+   "v": 7,
+   "text": "7 goods: 7 child labour, 0 forced labour — Baked Goods, Cattle, Cereal Grains, Coffee, Fireworks, Shellfish, Sugarcane"
+  },
+  "SSD": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 1 forced labour (1 also forced child labour) — Cattle"
+  },
+  "SUR": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 0 forced labour — Gold"
+  },
+  "SWZ": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 0 forced labour — Bovines"
+  },
+  "TCD": {
+   "v": 2,
+   "text": "2 goods: 1 child labour, 1 forced labour — Cattle, Gold"
+  },
+  "THA": {
+   "v": 5,
+   "text": "5 goods: 3 child labour, 3 forced labour (1 also forced child labour) — Fish, Garments, Pornography, Shrimp, Sugarcane"
+  },
+  "TJK": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 1 forced labour (1 also forced child labour) — Cotton"
+  },
+  "TKM": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 1 forced labour — Cotton"
+  },
+  "TUR": {
+   "v": 10,
+   "text": "10 goods: 10 child labour, 0 forced labour — Citrus Fruits, Cotton, Cumin, Footwear, Furniture, Garments, Hazelnuts, Peanuts, Pulses (legumes), Sugar Beets"
+  },
+  "TWN": {
+   "v": 1,
+   "text": "1 good: 0 child labour, 1 forced labour — Fish"
+  },
+  "TZA": {
+   "v": 11,
+   "text": "11 goods: 11 child labour, 0 forced labour — Cattle, Cloves, Coffee, Gold, Nile Perch (fish), Rice, Sisal, Stones, Tanzanite (gems), Tea, Tobacco"
+  },
+  "UGA": {
+   "v": 13,
+   "text": "13 goods: 13 child labour, 0 forced labour — Bricks, Cattle, Charcoal, Coffee, Fish, Gold, Rice, Sand, Stones, Sugarcane, Tea, Tobacco, Vanilla"
+  },
+  "UKR": {
+   "v": 3,
+   "text": "3 goods: 3 child labour, 0 forced labour — Amber, Coal, Pornography"
+  },
+  "UZB": {
+   "v": 1,
+   "text": "1 good: 0 child labour, 1 forced labour — Silk Cocoons"
+  },
+  "VEN": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 1 forced labour — Gold"
+  },
+  "VNM": {
+   "v": 16,
+   "text": "16 goods: 16 child labour, 1 forced labour — Bricks, Cashews, Coffee, Fish, Footwear, Furniture, Garments, Leather, Pepper, Rice, Rubber, Sugarcane, Tea, Textiles, Timber, Tobacco"
+  },
+  "YEM": {
+   "v": 1,
+   "text": "1 good: 1 child labour, 0 forced labour — Fish"
+  },
+  "ZMB": {
+   "v": 7,
+   "text": "7 goods: 7 child labour, 0 forced labour — Cattle, Copper Ore, Cotton, Gems, Manganese, Stones, Tobacco"
+  },
+  "ZWE": {
+   "v": 4,
+   "text": "4 goods: 4 child labour, 0 forced labour — Gold, Lithium, Sugarcane, Tobacco"
+  }
+ }
+}

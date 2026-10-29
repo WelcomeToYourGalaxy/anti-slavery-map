@@ -24,11 +24,11 @@ def block(tag, body):
 
 html = open(P, encoding='utf-8').read()
 head = ('<!--ENGINE:head-->\n<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@%s/dist/maplibre-gl.css">\n' % ML
-        + (block('style', rd('child.css')) + '\n' if rd('child.css') else '') + '<!--/ENGINE:head-->')
+        + (block('style', rd('child.css')) + '\n' if rd('child.css') else '') + (block('style', rd('ui.css')) + '\n' if rd('ui.css') else '') + '<!--/ENGINE:head-->')
 eng = ('<!--ENGINE:js-->\n<script src="https://unpkg.com/maplibre-gl@%s/dist/maplibre-gl.js"></script>\n' % ML
        + ('<script>window.SHIM_PLATE="data:image/webp;base64,%s";</script>\n' % __import__('base64').b64encode(open(os.path.join(HERE, 'plate-antislavery.webp'), 'rb').read()).decode() if os.path.exists(os.path.join(HERE, 'plate-antislavery.webp')) else '')
        + block('script', rd('basemaps.js')) + '\n' + block('script', rd('leaflet-on-maplibre.js')) + '\n<!--/ENGINE:js-->')
-tail = ('<!--ENGINE:tail-->\n' + (block('script', rd('child.js')) if rd('child.js') else '') + '\n<!--/ENGINE:tail-->')
+tail = ('<!--ENGINE:tail-->\n' + (block('script', rd('ui.js')) + '\n' if rd('ui.js') else '') + (block('script', rd('child.js')) if rd('child.js') else '') + '\n<!--/ENGINE:tail-->')
 
 def put(html, name, new, anchor_re, where):
     pat = re.compile(r'<!--ENGINE:%s-->.*?<!--/ENGINE:%s-->' % (name, name), re.S)

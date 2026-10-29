@@ -1,0 +1,94 @@
+/* ui.css -- layout of the anti-slavery map's panels (engine/ui.js builds the new boxes). */
+
+/* The left help column is replaced by the child layer's two boxes; "How to use this map" opens as a popup. */
+#sidebar { display: none !important; }
+
+/* Global Wire: top half of the left edge. Index: bottom half, under it. */
+html body #wirePanel { top: 70px; bottom: auto !important; height: calc(50vh - 58px); max-height: calc(50vh - 58px) !important; }
+html body #indexPanel { position: fixed !important; left: 14px !important; width: 300px !important; top: calc(50vh + 20px) !important; bottom: 18px !important; max-height: none !important; min-height: 0 !important; z-index: 1000; }
+html body #indexPanel.collapsed { bottom: auto !important; }
+html body.wire-up #indexPanel { top: 122px !important; }
+@media (max-width: 900px) { html body #indexPanel { top: 70px !important; } }
+
+/* Second column: the child layer's key, then its patterns. */
+#cnCol { position: fixed; left: 322px; top: 70px; bottom: 18px; width: 270px; z-index: 1001; display: flex; flex-direction: column; gap: 9px; pointer-events: none; }
+#cnCol > .uip { pointer-events: auto; background: rgba(13,22,17,0.96); border: 1px solid var(--accent-soft); border-radius: 10px; box-shadow: 0 4px 22px rgba(0,0,0,0.45); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+#cnKeyPanel { flex: 1 1 auto; }
+#cnPatPanel { flex: 0 1 auto; max-height: 38%; }
+.uip > .uip-h { display: flex; align-items: center; gap: 6px; padding: 8px 11px; font-weight: 700; font-size: 11.5px; color: #dcdcd4; cursor: pointer; user-select: none; border-bottom: 1px solid rgba(149,171,150,0.18); }
+.uip > .uip-h > span:first-child { flex: 1; }
+.uip > .uip-h .uip-t { color: #9fa592; font-weight: 400; }
+.uip > .uip-b { overflow-y: auto; padding: 8px 11px 10px; min-height: 0; font-size: 11px; }
+.uip.collapsed > .uip-b { display: none; }
+.uip.collapsed { flex: 0 0 auto !important; }
+#cnPatHost #patList { max-height: none; }
+@media (max-width: 900px) { #cnCol { left: 14px; } }
+@media (max-width: 640px) { #cnCol { display: none; } }
+
+/* Header buttons */
+#header { display: flex; align-items: center; gap: 14px; }
+#header h1 { margin: 0; }
+#header .subtitle:empty { display: none; }
+#hdrBtns { display: flex; gap: 6px; pointer-events: auto; flex: 0 0 auto; }
+#hdrBtns button { font: 600 11px/1 inherit; font-family: inherit; color: #dcdcd4; background: rgba(29,47,37,0.92); border: 1px solid var(--accent-soft); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+#hdrBtns button:hover { background: rgba(44,66,52,0.98); }
+
+/* Basemap, view and place names: one row, left of the zoom buttons. */
+#bmBar { position: fixed; top: 16px; z-index: 1200; display: flex; align-items: center; background: rgba(13,22,17,0.94); border: 1px solid var(--accent-soft); border-radius: 9px; padding: 4px 9px; min-height: 36px; box-sizing: border-box; }
+#bmBar #bmBox { margin: 0; padding: 0; border: 0; background: none; }
+#bmBar #bmBody { display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; white-space: nowrap; }
+#bmBar #bmBody .psec { margin: 0 !important; padding: 0; border: 0; font-size: 10px; text-transform: none; letter-spacing: 0; color: #9fa592; }
+#bmBar #bmBody .bases { display: flex; gap: 7px; margin: 0; }
+#bmBar #bmBody .bases label { display: flex; align-items: center; gap: 3px; margin: 0; font-size: 10.5px; }
+#bmBar #bmBody .seg { margin: 0; }
+#bmBar #bmBody .seg .btn { padding: 3px 7px; font-size: 10.5px; }
+#bmBar #bmBody label.chk { margin: 0 !important; font-size: 10.5px; }
+@media (max-width: 1100px) { #bmBar #bmBody .bases label span.bl { display: none; } }
+@media (max-width: 640px) { #bmBar { top: 60px; right: 10px !important; } }
+
+/* Centre boxes: the clicked country's summary, then its child-networks section. */
+.uibox { position: fixed; z-index: 1110; display: none; flex-direction: column; background: rgba(13,22,23,0.97); border: 1px solid var(--accent-soft); border-radius: 11px; box-shadow: 0 10px 34px rgba(0,0,0,0.55); font-size: 11.5px; color: #e6e6e1; min-height: 0; }
+.uibox.open { display: flex; }
+.uibox > .uib-h { display: flex; align-items: center; gap: 8px; padding: 7px 10px 7px 12px; cursor: move; user-select: none; border-bottom: 1px solid rgba(149,171,150,0.18); font-weight: 700; font-size: 11.5px; color: #dcdcd4; }
+.uibox > .uib-h > span { flex: 1; }
+.uibox > .uib-h > button { background: none; border: 0; color: #c9c9c0; font-size: 17px; line-height: 1; cursor: pointer; padding: 0 2px; }
+.uibox > .uib-b, .uibox > .cnc-body { overflow-y: auto; padding: 9px 12px 12px; min-height: 0; }
+#cnSummary .uib-b .chv-head { display: none; }
+#cnCountry .cnc-body h3 { margin: 2px 0 8px; font-size: 15px; }
+#cnCountry .cnc-body .hp-k { font-size: 10px; color: #9fa592; text-transform: uppercase; letter-spacing: .05em; }
+#uiHow .uib-b, #uiAbout .uib-b { font-size: 12px; line-height: 1.55; }
+#uiHow .uib-b #tourBtn { margin-bottom: 10px; }
+#uiHint .uib-b { font-size: 12.5px; line-height: 1.55; }
+#uiHint .uih-go { margin-top: 10px; color: #dcdcd4; font-weight: 600; }
+#uiHint .uih-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.uibtn { font: 600 11px/1.2 inherit; font-family: inherit; color: #e6e6e1; background: rgba(44,66,52,0.95); border: 1px solid var(--accent-soft); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+.uibtn:hover { background: rgba(58,84,66,0.98); }
+#intentHint, #angleHint, #domainDesc { display: none !important; }
+#cHover { display: none !important; }
+
+/* Region list under "Lower level" in a country's box */
+.gb-sublist { margin: 6px 0 10px; border: 1px solid rgba(149,171,150,0.22); border-radius: 8px; max-height: 260px; overflow-y: auto; }
+.gb-sublist .gbs-h { padding: 6px 9px; font-size: 10.5px; color: #9fa592; border-bottom: 1px solid rgba(149,171,150,0.15); }
+.gb-sublist .gbs-i { padding: 5px 9px; cursor: pointer; display: flex; gap: 6px; align-items: center; font-size: 11.5px; }
+.gb-sublist .gbs-i:hover { background: rgba(149,171,150,0.12); }
+.gb-sublist .gbs-i i { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #c8bf9a; flex: 0 0 auto; }
+.gb-sublist .gbs-i.has i { background: #c8bf9a; }
+
+/* Map key: no indent on the case filters */
+#legBody .proj-size, #legBody .proj-src-cap, #legBody .proj-src-box, #legBody .proj-search, #legBody .proj-time, #legBody .proj-phase { margin-left: 0 !important; }
+.ukey { margin: 3px 0 8px; font-size: 10.5px; line-height: 1.5; color: #c9c9c0; }
+.ukey .ur { display: flex; align-items: center; gap: 6px; margin: 2px 0; }
+.ukey .ramp { display: flex; gap: 0; margin: 3px 0 1px; }
+.ukey .ramp span { flex: 1; height: 9px; }
+.ukey .rl { display: flex; justify-content: space-between; font-size: 9.5px; color: #9fa592; }
+.sw-o { width: 14px; height: 10px; border-radius: 2px; flex: 0 0 auto; box-sizing: border-box; }
+.sw-d { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; border: 1px solid #06090a; }
+.sw-l { width: 16px; height: 0; border-top: 3px solid; flex: 0 0 auto; border-radius: 2px; }
+#dataStatus .ds-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+#dataStatus .ds-row .ds-sw { display: inline-flex; gap: 2px; align-items: center; min-width: 38px; }
+#dataStatus .ds-row .ds-how { flex-basis: 100%; padding-left: 44px; color: #9fa592; font-size: 9.5px; margin-top: -1px; }
+
+#bmSel { font: inherit; font-size: 10.5px; background: rgba(20,32,26,0.95); color: #e6e6e1; border: 1px solid var(--accent-soft); border-radius: 6px; padding: 3px 5px; }
+#bmBar #bmBody .psec { display: none; }
+#hdrBtns button { padding: 5px 9px; }
+#cnSummary .uib-b .chv-sec, #cnSummary .uib-b { font-size: 11px; }

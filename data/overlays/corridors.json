@@ -1,0 +1,337 @@
+{
+ "k": "corridors",
+ "label": "Contract labour migration corridors",
+ "source": "National labour-export agencies (Nepal MoLESS, SLBFE, India MEA, Pakistan BE&OE, Philippines DMW, Indonesia BP2MI, Viet Nam MOLISA, Bangladesh, Ethiopia, Kenya); recruitment costs from KNOMAD-ILO Migration Costs Surveys, ILO, national cost surveys",
+ "url": "https://thedocs.worldbank.org/en/doc/545691528740153796-0160022018/original/2PMMay9JobsMigration2018RecruitmentCostsfinal.pdf",
+ "as_of": "2018-2025 (year stated per corridor)",
+ "method": "Each line is a sending-to-receiving corridor; v is the number of workers deployed in the stated year as reported by the sending country's agency (null where no deployment count was found). Text adds the documented recruitment cost or debt finding where a survey gives one.",
+ "countries": {
+  "NPL": {
+   "v": 348867,
+   "text": "FY 2021/22: 348,867 new labour approvals (630,089 including renewals); excludes Korea EPS and India.",
+   "url": "https://ceslam.org/wp-content/uploads/2025/07/Nepal-Labour-Migration-Report_2022.pdf"
+  },
+  "LKA": {
+   "v": 311223,
+   "text": "2025: 311,223 migrant workers registered with SLBFE for foreign employment.",
+   "url": "https://www.slbfe.lk/wp-content/uploads/2026/07/ASR-2025-WEB-SITE-final.pdf"
+  },
+  "IND": {
+   "v": 449110,
+   "text": "2025: 449,110 emigration clearances for ECR-passport workers to 18 ECR countries (2023: 398,316; 2024: 387,067).",
+   "url": "https://www.mea.gov.in/images/CPV/RS-75-01-05-02-2026-en.pdf"
+  },
+  "PAK": {
+   "v": 727381,
+   "text": "2024: 727,381 workers registered for overseas employment (BE&OE and OEC).",
+   "url": "https://www.finance.gov.pk/survey/chapter_25/12_Population.pdf"
+  },
+  "BGD": {
+   "v": 1009146,
+   "text": "2024: 1,009,146 workers went abroad (2023: 1,390,811), per Ami Probashi annual report as reported by Prothom Alo.",
+   "url": "https://en.prothomalo.com/amp/story/bangladesh/v9h4atbie5"
+  },
+  "PHL": {
+   "v": 2330720,
+   "text": "2023: 2,330,720 land- and sea-based workers deployed (DMW, via Philstar). 2025 preliminary: more than 2.7 million.",
+   "url": "https://www.philstar.com/headlines/2024/04/12/2347168/historic-2023-ofw-deployment-moves-philippines-labor-migration-forward-pandemic"
+  },
+  "IDN": {
+   "v": 274965,
+   "text": "2023: 274,965 workers placed (BP2MI; Indonesiabaik gives 273,964).",
+   "url": "https://databoks.katadata.co.id/en/employment/statistics/47037e8c41a296c/this-is-a-list-of-the-top-destination-countries-for-indonesian-migrant-workers-in-2023-taiwan-is-number-one"
+  },
+  "VNM": {
+   "v": 158500,
+   "text": "2024: more than 158,500 workers sent abroad (MOLISA); Jan-Nov: 143,160.",
+   "url": "https://vietnamnews.vn/society/1690985/over-158-500-vietnamese-workers-going-abroad-in-2024.html"
+  },
+  "ETH": {
+   "v": 345000,
+   "text": "Fiscal year ending July 2024: about 345,000 placed abroad (Ministry of Labour and Skills).",
+   "url": "https://www.ena.et/web/eng/w/eng_4880443"
+  }
+ },
+ "lines": [
+  {
+   "from": "IND",
+   "to": "ARE",
+   "v": 200686,
+   "text": "Ministry of External Affairs, Rajya Sabha answer (Feb 2026), 2025: 200,686 workers (emigration clearances for ECR-passport workers only; 2023: 71,687, 2024: 111,308).",
+   "url": "https://www.mea.gov.in/images/CPV/RS-75-01-05-02-2026-en.pdf"
+  },
+  {
+   "from": "IND",
+   "to": "SAU",
+   "v": 136812,
+   "text": "Ministry of External Affairs, Rajya Sabha answer (Feb 2026), 2025: 136,812 workers (emigration clearances for ECR-passport workers only; 2023: 200,713, 2024: 167,598). Cost: KNOMAD-ILO survey (2016) found an average recruitment cost of $1,334, about 3.5 months of wages in Saudi Arabia (Abella and Sasikumar, 2020); 4th-quintile cost $1,507 (World Bank).",
+   "url": "https://www.mea.gov.in/images/CPV/RS-75-01-05-02-2026-en.pdf"
+  },
+  {
+   "from": "IND",
+   "to": "KWT",
+   "v": 47087,
+   "text": "Ministry of External Affairs, Rajya Sabha answer (Feb 2026), 2025: 47,087 workers (emigration clearances for ECR-passport workers only; 2023: 48,212, 2024: 39,862).",
+   "url": "https://www.mea.gov.in/images/CPV/RS-75-01-05-02-2026-en.pdf"
+  },
+  {
+   "from": "IND",
+   "to": "QAT",
+   "v": 21907,
+   "text": "Ministry of External Affairs, Rajya Sabha answer (Feb 2026), 2025: 21,907 workers (emigration clearances for ECR-passport workers only; 2023: 30,683, 2024: 23,785). India-Qatar was one of the 2015 KNOMAD-ILO cost survey corridors.",
+   "url": "https://www.mea.gov.in/images/CPV/RS-75-01-05-02-2026-en.pdf"
+  },
+  {
+   "from": "PAK",
+   "to": "SAU",
+   "v": 452562,
+   "text": "Pakistan Economic Survey 2024-25 (BE&OE data), 2024: 452,562 workers (62% of all registered). Cost: ILO 2016 survey found Saudi-bound workers needed around 9 months of earnings to break even; average outlay across Saudi Arabia and UAE $3,489, against official fees of $201-$463. World Bank: 4th-quintile costs about 11 months of wages for construction workers; KNOMAD 4th-quintile cost $5,637.",
+   "url": "https://www.ilo.org/resource/article/pakistans-migrant-workers-pay-punishing-rates-chance-work"
+  },
+  {
+   "from": "PAK",
+   "to": "ARE",
+   "v": 64130,
+   "text": "Pakistan Economic Survey 2024-25 (BE&OE data), 2024: 64,130 workers (9%). Cost: ILO 2016 survey found UAE-bound workers needed around 6 months of earnings to break even; lowest district average $1,863 (Gujrat).",
+   "url": "https://www.ilo.org/resource/article/pakistans-migrant-workers-pay-punishing-rates-chance-work"
+  },
+  {
+   "from": "BGD",
+   "to": "SAU",
+   "v": 627000,
+   "text": "Ami Probashi annual report, as reported by Prothom Alo, 2024: about 627,000 workers (62.17% of 1,009,146). Cost: BBS Cost of Migration Survey (2020) found Saudi-bound workers paid 2.6 times the government-fixed amount; average cost Tk 4.17 lakh, 17.6 months to recoup (all destinations).",
+   "url": "https://www.tbsnews.net/bangladesh/migration/it-takes-expats-176-months-recoup-recruitment-cost-bbs-159871"
+  },
+  {
+   "from": "BGD",
+   "to": "MYS",
+   "v": 93000,
+   "text": "Ami Probashi annual report, as reported by Prothom Alo, 2024: about 93,000 workers. Cost: BBS (2020) found Malaysia-bound workers paid 2.5 times the government-fixed amount; UN experts (2025, cited by HRW) reported fees up to five times the official rate and 'deepening debt bondage'.",
+   "url": "https://www.tbsnews.net/bangladesh/migration/it-takes-expats-176-months-recoup-recruitment-cost-bbs-159871"
+  },
+  {
+   "from": "BGD",
+   "to": "SGP",
+   "v": null,
+   "text": "No annual deployment figure found in an opened source. Cost: BBS Cost of Migration Survey (2020) found Singapore the costliest destination, average Tk 5.74 lakh, 15.1 months to recover (government-fixed cost Tk 2.62 lakh).",
+   "url": "https://www.tbsnews.net/bangladesh/migration/it-takes-expats-176-months-recoup-recruitment-cost-bbs-159871"
+  },
+  {
+   "from": "NPL",
+   "to": "SAU",
+   "v": 125368,
+   "text": "Nepal Labour Migration Report 2022 (Ministry of Labour), FY 2021/22: 125,368 new labour approvals (188,691 new and renewed). KNOMAD-ILO 2016 surveyed this corridor. Cost (Nepal-wide, all destinations): Nepal's 2023 Recruitment Cost Survey (ILO) found migrants needed on average 3.3 months of earnings to recover recruitment costs, about 4.5 months for women; about two-thirds paid recruitment-related costs.",
+   "url": "https://ceslam.org/wp-content/uploads/2025/07/Nepal-Labour-Migration-Report_2022.pdf"
+  },
+  {
+   "from": "NPL",
+   "to": "QAT",
+   "v": 76823,
+   "text": "Nepal Labour Migration Report 2022 (Ministry of Labour), FY 2021/22: 76,823 new labour approvals (184,926 new and renewed). Cost (Nepal-wide, all destinations): Nepal's 2023 Recruitment Cost Survey (ILO) found migrants needed on average 3.3 months of earnings to recover recruitment costs, about 4.5 months for women; about two-thirds paid recruitment-related costs.",
+   "url": "https://ceslam.org/wp-content/uploads/2025/07/Nepal-Labour-Migration-Report_2022.pdf"
+  },
+  {
+   "from": "NPL",
+   "to": "ARE",
+   "v": 53844,
+   "text": "Nepal Labour Migration Report 2022 (Ministry of Labour), FY 2021/22: 53,844 new labour approvals (122,635 new and renewed). Cost (Nepal-wide, all destinations): Nepal's 2023 Recruitment Cost Survey (ILO) found migrants needed on average 3.3 months of earnings to recover recruitment costs, about 4.5 months for women; about two-thirds paid recruitment-related costs.",
+   "url": "https://ceslam.org/wp-content/uploads/2025/07/Nepal-Labour-Migration-Report_2022.pdf"
+  },
+  {
+   "from": "NPL",
+   "to": "MYS",
+   "v": 26091,
+   "text": "Nepal Labour Migration Report 2022 (Ministry of Labour), FY 2021/22: 26,091 new labour approvals (104,209 in 2017/18). Cost (Nepal-wide, all destinations): Nepal's 2023 Recruitment Cost Survey (ILO) found migrants needed on average 3.3 months of earnings to recover recruitment costs, about 4.5 months for women; about two-thirds paid recruitment-related costs.",
+   "url": "https://ceslam.org/wp-content/uploads/2025/07/Nepal-Labour-Migration-Report_2022.pdf"
+  },
+  {
+   "from": "NPL",
+   "to": "ROU",
+   "v": 6418,
+   "text": "Nepal Labour Migration Report 2022 (Ministry of Labour), FY 2021/22: 6,418 new labour approvals (316 in 2017/18); Croatia 5,206. Cost (Nepal-wide, all destinations): Nepal's 2023 Recruitment Cost Survey (ILO) found migrants needed on average 3.3 months of earnings to recover recruitment costs, about 4.5 months for women; about two-thirds paid recruitment-related costs.",
+   "url": "https://ceslam.org/wp-content/uploads/2025/07/Nepal-Labour-Migration-Report_2022.pdf"
+  },
+  {
+   "from": "LKA",
+   "to": "KWT",
+   "v": 77657,
+   "text": "SLBFE Annual Statistical Report 2025: 77,657 registered departures.",
+   "url": "https://www.slbfe.lk/wp-content/uploads/2026/07/ASR-2025-WEB-SITE-final.pdf"
+  },
+  {
+   "from": "LKA",
+   "to": "ARE",
+   "v": 59611,
+   "text": "SLBFE Annual Statistical Report 2025: 59,611 registered departures.",
+   "url": "https://www.slbfe.lk/wp-content/uploads/2026/07/ASR-2025-WEB-SITE-final.pdf"
+  },
+  {
+   "from": "LKA",
+   "to": "QAT",
+   "v": 44914,
+   "text": "SLBFE Annual Statistical Report 2025: 44,914 registered departures.",
+   "url": "https://www.slbfe.lk/wp-content/uploads/2026/07/ASR-2025-WEB-SITE-final.pdf"
+  },
+  {
+   "from": "LKA",
+   "to": "ISR",
+   "v": 13252,
+   "text": "SLBFE Annual Statistical Report 2025: 13,252 registered departures.",
+   "url": "https://www.slbfe.lk/wp-content/uploads/2026/07/ASR-2025-WEB-SITE-final.pdf"
+  },
+  {
+   "from": "PHL",
+   "to": "ARE",
+   "v": 397892,
+   "text": "DMW preliminary 2025 data, as reported by The Global Filipino Magazine (5 Feb 2026): 397,892 land-based deployments.",
+   "url": "https://theglobalfilipinomagazine.com/?p=60428"
+  },
+  {
+   "from": "PHL",
+   "to": "SAU",
+   "v": 386699,
+   "text": "DMW preliminary 2025 data, as reported by The Global Filipino Magazine (5 Feb 2026): 386,699 land-based deployments (2023: 419,776). Cost: KNOMAD-ILO survey (2016) 4th-quintile cost $372, the lowest of the Saudi corridors surveyed.",
+   "url": "https://theglobalfilipinomagazine.com/?p=60428"
+  },
+  {
+   "from": "PHL",
+   "to": "SGP",
+   "v": 221492,
+   "text": "DMW preliminary 2025 data, as reported by The Global Filipino Magazine (5 Feb 2026): 221,492 land-based deployments.",
+   "url": "https://theglobalfilipinomagazine.com/?p=60428"
+  },
+  {
+   "from": "PHL",
+   "to": "HKG",
+   "v": 202415,
+   "text": "DMW preliminary 2025 data, as reported by The Global Filipino Magazine (5 Feb 2026): 202,415 land-based deployments. Hong Kong Immigration Dept: 205,764 Filipino domestic helpers in Hong Kong at end-2025.",
+   "url": "https://theglobalfilipinomagazine.com/?p=60428"
+  },
+  {
+   "from": "PHL",
+   "to": "QAT",
+   "v": 160890,
+   "text": "DMW preliminary 2025 data, as reported by The Global Filipino Magazine (5 Feb 2026): 160,890 land-based deployments. Philippines-Qatar was a 2015 KNOMAD-ILO cost survey corridor.",
+   "url": "https://theglobalfilipinomagazine.com/?p=60428"
+  },
+  {
+   "from": "PHL",
+   "to": "TWN",
+   "v": 134363,
+   "text": "DMW preliminary 2025 data, as reported by The Global Filipino Magazine (5 Feb 2026): 134,363 land-based deployments.",
+   "url": "https://theglobalfilipinomagazine.com/?p=60428"
+  },
+  {
+   "from": "PHL",
+   "to": "KWT",
+   "v": 106394,
+   "text": "DMW preliminary 2025 data, as reported by The Global Filipino Magazine (5 Feb 2026): 106,394 land-based deployments.",
+   "url": "https://theglobalfilipinomagazine.com/?p=60428"
+  },
+  {
+   "from": "IDN",
+   "to": "TWN",
+   "v": 83216,
+   "text": "BP2MI placement data, 2023: 83,216 workers placed.",
+   "url": "https://indonesiabaik.id/infografis/pekerja-indonesia-di-luar-negeri-ada-di-mana-saja-ya"
+  },
+  {
+   "from": "IDN",
+   "to": "MYS",
+   "v": 72260,
+   "text": "BP2MI placement data, 2023: 72,260 workers placed.",
+   "url": "https://indonesiabaik.id/infografis/pekerja-indonesia-di-luar-negeri-ada-di-mana-saja-ya"
+  },
+  {
+   "from": "IDN",
+   "to": "HKG",
+   "v": 65916,
+   "text": "BP2MI placement data, 2023: 65,916 workers placed. Hong Kong Immigration Dept: 163,718 Indonesian domestic helpers in Hong Kong at end-2025.",
+   "url": "https://indonesiabaik.id/infografis/pekerja-indonesia-di-luar-negeri-ada-di-mana-saja-ya"
+  },
+  {
+   "from": "IDN",
+   "to": "KOR",
+   "v": 12580,
+   "text": "BP2MI placement data, 2023: 12,580 workers placed (12,579 per Indonesiabaik). Cost: KNOMAD-ILO pilot survey of migrants in Korea (from Viet Nam, Thailand, Indonesia) found costs of about one month of foreign earnings; World Bank notes costs fell from about $3,700 under the old trainee system to about $1,100 under the EPS.",
+   "url": "https://databoks.katadata.co.id/en/employment/statistics/47037e8c41a296c/this-is-a-list-of-the-top-destination-countries-for-indonesian-migrant-workers-in-2023-taiwan-is-number-one"
+  },
+  {
+   "from": "VNM",
+   "to": "JPN",
+   "v": 69188,
+   "text": "MOLISA via the government news portal, Jan-Nov 2024: 69,188 workers (28,665 women). Cost (all nationalities): Japan's Immigration Services Agency survey (July 2022) found technical intern trainees paid an average 542,311 yen before arrival; about 55% borrowed money, average loan 547,788 yen.",
+   "url": "https://en.baochinhphu.vn/over-143000-workers-sent-abroad-in-11-months-111241216164640949.htm"
+  },
+  {
+   "from": "VNM",
+   "to": "TWN",
+   "v": 53271,
+   "text": "MOLISA via the government news portal, Jan-Nov 2024: 53,271 workers.",
+   "url": "https://en.baochinhphu.vn/over-143000-workers-sent-abroad-in-11-months-111241216164640949.htm"
+  },
+  {
+   "from": "VNM",
+   "to": "KOR",
+   "v": 11273,
+   "text": "MOLISA via the government news portal, Jan-Nov 2024: 11,273 workers. Cost: KNOMAD-ILO pilot survey of migrants in Korea (from Viet Nam, Thailand, Indonesia) found costs of about one month of foreign earnings; World Bank notes costs fell from about $3,700 under the old trainee system to about $1,100 under the EPS.",
+   "url": "https://en.baochinhphu.vn/over-143000-workers-sent-abroad-in-11-months-111241216164640949.htm"
+  },
+  {
+   "from": "MMR",
+   "to": "THA",
+   "v": null,
+   "text": "ILO 2020 (KNOMAD method), survey July-Sept 2018: mean recruitment cost $394, about 1.4 months of earnings. As of 2019 about 65% of Thailand's 2,877,000 documented workers from Myanmar, Cambodia and Lao PDR were from Myanmar. No annual deployment figure in the source.",
+   "url": "https://researchrepository.ilo.org/esploro/outputs/book/Recruitment-fees-and-related-costs-what/995218816802676"
+  },
+  {
+   "from": "KHM",
+   "to": "THA",
+   "v": null,
+   "text": "ILO 2020 (KNOMAD method), survey July-Sept 2018: mean recruitment cost $517, about 2.5 months of earnings (highest of the three). About 25% of the 2,877,000 documented workers (2019). Borrowers from moneylenders paid a median 20% interest per month (all three origins).",
+   "url": "https://researchrepository.ilo.org/esploro/outputs/book/Recruitment-fees-and-related-costs-what/995218816802676"
+  },
+  {
+   "from": "LAO",
+   "to": "THA",
+   "v": null,
+   "text": "ILO 2020 (KNOMAD method), survey July-Sept 2018: mean recruitment cost $503, about 2.3 months of earnings. About 9% of the 2,877,000 documented workers (2019).",
+   "url": "https://researchrepository.ilo.org/esploro/outputs/book/Recruitment-fees-and-related-costs-what/995218816802676"
+  },
+  {
+   "from": "MEX",
+   "to": "USA",
+   "v": null,
+   "text": "FY2023: 310,676 H-2A visas issued in total, about 92% to Mexicans (State Dept data summarized by UC Davis Rural Migration News; GAO-25-106389 gives almost 310,000). Recruiters in Mexico charge workers to learn about jobs; a 2021 federal indictment in Georgia (Operation Blooming Onion) charged 24 defendants with forcing H-2A workers from Mexico, Guatemala and Honduras to pay unlawful fees and freed more than 100 workers.",
+   "url": "https://migration.ucdavis.edu/rmn/blog/post/?id=2974"
+  },
+  {
+   "from": "ETH",
+   "to": "SAU",
+   "v": null,
+   "text": "Ethiopia Ministry of Labour and Skills: about 345,000 citizens placed abroad in the fiscal year ending July 2024, to Saudi Arabia, UAE, Jordan and Qatar (no per-country split given). Cost: KNOMAD-ILO survey (2015) 4th-quintile cost $1,068.",
+   "url": "https://thedocs.worldbank.org/en/doc/545691528740153796-0160022018/original/2PMMay9JobsMigration2018RecruitmentCostsfinal.pdf"
+  },
+  {
+   "from": "KEN",
+   "to": "SAU",
+   "v": null,
+   "text": "National Employment Authority, 'Foreign Job Placements for Kenyan Workers' (2022/23-2023/24, two years combined), as reported by The Standard: 194,320 placements in Saudi Arabia, the top destination.",
+   "url": "https://www.standardmedia.co.ke/article/2001513492/report-s-arabia-top-employer-of-kenyans"
+  },
+  {
+   "from": "UZB",
+   "to": "RUS",
+   "v": null,
+   "text": "Russian Interior Ministry (via Kommersant interview, Sept 2024): over 1.88 million Uzbek citizens travelled to Russia in Jan-Aug 2024; about 1.792 million working there. KNOMAD-ILO 2016 surveyed this corridor (non-recruited workers). Entries, not deployments.",
+   "url": "https://kun.uz/en/news/2024/09/21/uzbekistan-leads-as-the-top-source-of-labor-migrants-in-russia-followed-by-tajikistan"
+  },
+  {
+   "from": "TJK",
+   "to": "RUS",
+   "v": null,
+   "text": "Russian Interior Ministry (via Kommersant interview, Sept 2024): over 1.2 million Tajik labour migrants in Russia (stock). KNOMAD-ILO 2016 surveyed this corridor (non-recruited workers).",
+   "url": "https://kun.uz/en/news/2024/09/21/uzbekistan-leads-as-the-top-source-of-labor-migrants-in-russia-followed-by-tajikistan"
+  }
+ ]
+}

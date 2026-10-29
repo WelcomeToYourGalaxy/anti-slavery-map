@@ -765,7 +765,16 @@ function stars() {
 function update() { computeDoc(); drawLegend(); drawSwatches(); paint(); drawList(); drawCharts(); if (S.sel) detail(S.sel); }
 function init() {
   window.__cnAbout = openAbout;
+  if (document.getElementById("cnKeyHost")) S.layer = "none";
   buildKey(); buildTr(); buildDock(); stars(); computeDoc(); drawSwatches(); drawCoverage();
+  // the patterns list gets its own panel
+  const pb = document.getElementById("cnPatHost"), pl = $("#patList");
+  if (pb && pl) { const ip = $("#patI"), hd = ip && ip.previousElementSibling; [hd, ip, pl].forEach((x) => { if (x) pb.appendChild(x); }); if (hd) hd.style.marginTop = "0"; }
+  // clear and restore this layer, for the host's goal and lens choices
+  let saved = null;
+  window.cnHide = () => { if (saved) return; saved = { pts: S.pts, linesOn: S.linesOn, nets: S.nets, layer: S.layer }; S.pts = false; S.linesOn = false; S.nets = false; S.layer = "none"; syncToggles(); update(); };
+  window.cnRestore = () => { if (!saved) return; Object.assign(S, saved); saved = null; syncToggles(); update(); };
+  function syncToggles() { const t = (id, v) => { const e = $("#" + id); if (e) e.checked = v; }; t("ptsOn", S.pts); t("linesOn", S.linesOn); t("netOn", S.nets); const l = $("#layer"); if (l && !/^pat_/.test(S.layer)) l.value = S.layer; }
   fetch(BOUND_URL).then((r) => r.json()).then((geo) => { addLayers(geo); ready = true; update(); }).catch((e) => { console.warn("boundaries", e); });
   $("#detX").addEventListener("click", deselect);
   $("#patX").addEventListener("click", closePat);
@@ -789,7 +798,7 @@ function hookInfo() {
   const w = function (html) { const r = orig.apply(this, arguments); try { addPanel(String(html || "")); } catch (e) { console.warn("[child networks] panel", e); } return r; };
   w.__cn = true; window.showInfoPanel = w;
   const oh = window.hideInfoPanel;
-  if (typeof oh === "function" && !oh.__cn) { const wh = function () { const r = oh.apply(this, arguments); if (S.sel) { S.sel = null; paint(); } return r; }; wh.__cn = true; window.hideInfoPanel = wh; }
+  if (typeof oh === "function" && !oh.__cn) { const wh = function () { const r = oh.apply(this, arguments); const cb = document.getElementById("cnCountry"); if (cb) cb.classList.remove("open"); if (S.sel) { S.sel = null; paint(); } return r; }; wh.__cn = true; window.hideInfoPanel = wh; }
 }
 function addPanel(html) {
   const m = html.match(/<div class="popup-country">([^<]*)/); if (!m) return;
@@ -797,14 +806,18 @@ function addPanel(html) {
   if (/fed-badge|High Seas|>International</.test(head.split("</div>")[0])) return;
   NAMEISO = null;
   const k = nameIso()[m[1].trim().toLowerCase()]; if (!k) return;
-  const body = $("#infoBody"); if (!body) return;
-  const d = document.createElement("div"); d.className = "cnui cn-panel hp"; d.id = "cnPanel";
-  d.innerHTML = '<div class="cn-panel-h">Child abuse networks and child trafficking</div>' + countryHTML(k, true);
-  const old = document.getElementById("cnPanel"); if (old) old.remove();
-  body.appendChild(d); wireIn(d);
-  const jump = document.createElement("div"); jump.className = "cnui cn-jump"; jump.innerHTML = '<a href="#">\u2193 Child abuse networks here</a>';
-  jump.querySelector("a").addEventListener("click", (e) => { e.preventDefault(); d.scrollIntoView({ behavior: "smooth", block: "start" }); });
-  const first = body.querySelector(".popup-country"); if (first && first.parentNode) first.parentNode.insertBefore(jump, first.nextSibling);
+  const box = document.getElementById("cnCountry");
+  if (box) {
+    const b = box.querySelector(".cnc-body");
+    b.innerHTML = '<div class="hp-k">Child abuse networks and child trafficking</div><h3>' + esc(P[k].n) + '</h3>' + countryHTML(k, true);
+    wireIn(b); box.classList.add("open"); box.scrollTop = 0; if (window.__uiPlace) window.__uiPlace();
+  } else {
+    const body = $("#infoBody"); if (!body) return;
+    const d = document.createElement("div"); d.className = "cnui cn-panel hp"; d.id = "cnPanel";
+    d.innerHTML = '<div class="cn-panel-h">Child abuse networks and child trafficking</div>' + countryHTML(k, true);
+    const old = document.getElementById("cnPanel"); if (old) old.remove();
+    body.appendChild(d); wireIn(d);
+  }
   S.sel = k; paint();
 }
 
@@ -861,14 +874,15 @@ init();
 }
 /* ---------- the page furniture this layer adds to the host map ---------- */
 function mountUI() {
-  const lb = document.getElementById("legBody");
+  const lb = document.getElementById("legBody"), keyHost = document.getElementById("cnKeyHost"), bmHost = document.getElementById("bmBar");
   const bm = document.createElement("div"); bm.id = "bmBox"; bm.className = "cnui cn-blk"; bm.innerHTML = '<div id="bmBody"></div>';
   const sec = document.createElement("div"); sec.id = "cnSec"; sec.className = "cnui cn-blk";
   sec.innerHTML = '<div class="cn-head">Child abuse networks and child trafficking</div>' +
-    '<p class="lsrc" style="margin:2px 0 6px">Organised abuse, sale and trafficking of children, the institutions that shielded it, and the patterns that repeat across countries. Click a dot or a diamond for its record; a country\'s box below its services has this layer\'s section.</p>' +
+    '<p class="lsrc" style="margin:2px 0 6px">Organised abuse, sale and trafficking of children, the institutions that shielded it, and the patterns that repeat across countries. Click a dot or a diamond for its record; click a country for this layer\'s section on it.</p>' +
     '<div id="cnCov"></div><div id="cnKeyBody"></div><div class="psec">Charts</div><div id="dockBtns"></div>' +
     '<p class="lsrc" style="margin-top:8px"><a href="#" id="cnAbout">About this layer and its sources</a></p>';
-  if (lb) { lb.insertBefore(bm, lb.firstChild); lb.appendChild(sec); } else { document.body.appendChild(bm); document.body.appendChild(sec); }
+  if (bmHost) bmHost.appendChild(bm); else if (lb) lb.insertBefore(bm, lb.firstChild); else document.body.appendChild(bm);
+  if (keyHost) { sec.querySelector(".cn-head").remove(); keyHost.appendChild(sec); } else if (lb) lb.appendChild(sec); else document.body.appendChild(sec);
   const add = (html) => { const d = document.createElement("div"); d.innerHTML = html; const el = d.firstChild; document.body.appendChild(el); return el; };
   add('<div id="det" class="cnui cnbox scroll hp mbox" role="dialog" aria-label="Details"><div class="grip" title="Drag to move"></div><button id="detX" type="button" title="Close">×</button><div id="detBody"></div></div>');
   add('<div id="patBox" class="cnui cnbox scroll hp mbox" role="dialog" aria-label="Pattern behind the scenes"><div class="grip" title="Drag to move"></div><button id="patX" type="button" title="Close">×</button><div id="patBody"></div></div>');

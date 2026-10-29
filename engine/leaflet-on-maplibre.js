@@ -330,9 +330,15 @@ LMap.prototype._mlPane = function (pane) {
   var m = this._ml, sid = "v-" + pane, vp = this._vpanes[pane];
   if (m.getSource(sid)) return;
   m.addSource(sid, { type: "geojson", data: { type: "FeatureCollection", features: [] }, promoteId: "pid", tolerance: 0.25 });
+  var self = this;
+  m.on("sourcedata", function (e) {
+    if (e.sourceId !== sid || !vp.reapply || !m.isSourceLoaded(sid)) return;
+    vp.reapply--; clearTimeout(vp._rt);
+    vp._rt = setTimeout(function () { for (var q in vp.paths) vp.paths[q]._stateDirty = true; self._schedule(); }, 30);
+  });
   var fs = function (k, d) { return ["coalesce", ["feature-state", k], d]; };
   var before = m.getLayer("anchor-top") ? "anchor-top" : undefined;
-  m.addLayer({ id: sid + "-fill", type: "fill", source: sid, filter: ["==", ["get", "g"], "poly"], paint: { "fill-color": fs("fc", "#000000"), "fill-opacity": fs("fo", 0) } }, before);
+  m.addLayer({ id: sid + "-fill", type: "fill", source: sid, filter: ["==", ["get", "g"], "poly"], paint: { "fill-color": fs("fa", "rgba(0,0,0,0)") } }, before);  // opacity is folded into "fa": a feature-state fill-opacity is not drawn by MapLibre here
   m.addLayer({ id: sid + "-line", type: "line", source: sid, filter: ["all", ["!=", ["get", "g"], "pt"], ["!=", ["get", "dash"], 1]], layout: { "line-cap": "round", "line-join": "round" }, paint: { "line-color": fs("c", "#3388ff"), "line-width": fs("w", 1), "line-opacity": fs("o", 1) } }, before);
   m.addLayer({ id: sid + "-dash", type: "line", source: sid, filter: ["all", ["!=", ["get", "g"], "pt"], ["==", ["get", "dash"], 1]], paint: { "line-color": fs("c", "#3388ff"), "line-width": fs("w", 1), "line-opacity": fs("o", 1), "line-dasharray": [2, 2] } }, before);
   m.addLayer({ id: sid + "-circle", type: "circle", source: sid, filter: ["==", ["get", "g"], "pt"], paint: {
@@ -358,8 +364,14 @@ LMap.prototype._flush = function () {
       src.setData({ type: "FeatureCollection", features: feats });
       P.dirty = false;
       for (var id2 in P.paths) P.paths[id2]._stateDirty = true;
+      // States set while new data is still being tiled can be dropped from what is drawn (the query still sees them).
+      // Set them again once the map has finished loading the new data.
+      P.reapply = 3;
     }
-    for (var id3 in P.paths) { var pa = P.paths[id3]; if (pa._stateDirty) { pa._stateDirty = false; try { m.setFeatureState({ source: "v-" + pane, id: pa._pid }, pa._state()); } catch (e) {} } }
+    var fillChanged = false;
+    for (var id3 in P.paths) { var pa = P.paths[id3]; if (pa._stateDirty) { pa._stateDirty = false; try { var ns = pa._state(); if (ns.fa !== pa._lastFa) { fillChanged = true; pa._lastFa = ns.fa; } m.setFeatureState({ source: "v-" + pane, id: pa._pid }, ns); } catch (e) {} } }
+    // A changed fill colour in feature state is not redrawn until the layer's paint is evaluated again, so nudge it.
+    if (fillChanged && m.getLayer("v-" + pane + "-fill")) { P._nudge = !P._nudge; try { m.setPaintProperty("v-" + pane + "-fill", "fill-color", ["coalesce", ["feature-state", "fa"], P._nudge ? "rgba(0,0,0,0)" : "rgba(0,0,0,0.0)"]); } catch (e) {} }
   }
 };
 var PATH_DEF = { stroke: true, color: "#3388ff", weight: 3, opacity: 1, fill: false, fillColor: null, fillOpacity: 0.2, interactive: true };
@@ -372,10 +384,20 @@ Path.prototype._initPath = function (opts, fillDefault) {
   this._parents = [];
 };
 Path.prototype._paneName = function () { var p = this.options.pane; if (!p && this.options.renderer && this.options.renderer.options && this.options.renderer.options.pane) p = this.options.renderer.options.pane; return p || "overlayPane"; };
+var RGBA_CACHE = {}, RGBA_CTX = null;
+function rgbaOf(col, a) {
+  var k = col + "|" + a; if (RGBA_CACHE[k]) return RGBA_CACHE[k];
+  var r = 0, g = 0, b = 0, a0 = 1, m;
+  if ((m = /^#([0-9a-f]{3,8})$/i.exec(col))) { var h = m[1]; if (h.length < 6) h = h.split("").map(function (x) { return x + x; }).join(""); r = parseInt(h.slice(0, 2), 16); g = parseInt(h.slice(2, 4), 16); b = parseInt(h.slice(4, 6), 16); if (h.length === 8) a0 = parseInt(h.slice(6, 8), 16) / 255; }
+  else if ((m = /^rgba?\(([^)]+)\)$/i.exec(col))) { var p = m[1].split(",").map(parseFloat); r = p[0]; g = p[1]; b = p[2]; if (p.length > 3) a0 = p[3]; }
+  else { try { RGBA_CTX = RGBA_CTX || document.createElement("canvas").getContext("2d"); RGBA_CTX.fillStyle = "#000"; RGBA_CTX.fillStyle = col; return rgbaOf(RGBA_CTX.fillStyle, a); } catch (e) {} }
+  return (RGBA_CACHE[k] = "rgba(" + r + "," + g + "," + b + "," + Math.max(0, Math.min(1, a * a0)).toFixed(3) + ")");
+}
 Path.prototype._state = function () {
   var o = this.options, st = o.stroke !== false;
+  var fc = o.fillColor || o.color || "#3388ff", fo = o.fill ? (o.fillOpacity == null ? 0.2 : o.fillOpacity) : 0;
   return { c: o.color || "#3388ff", w: st ? (o.weight == null ? 3 : o.weight) : 0, o: st ? (o.opacity == null ? 1 : o.opacity) : 0,
-    fc: o.fillColor || o.color || "#3388ff", fo: o.fill ? (o.fillOpacity == null ? 0.2 : o.fillOpacity) : 0, r: this._radius != null ? this._radius : 5 };
+    fc: fc, fo: fo, fa: rgbaOf(String(fc), fo), r: this._radius != null ? this._radius : 5 };
 };
 Path.prototype._touch = function (geom) { var m = this._map; if (!m) return; var P = m._vp(this._paneName()); if (geom) P.dirty = true; this._stateDirty = true; m._schedule(); };
 Path.prototype._onAddTo = function (map) { this._map = map; var P = map._vp(this._paneName()); P.paths[this._pid] = this; P.dirty = true; map._schedule(); };

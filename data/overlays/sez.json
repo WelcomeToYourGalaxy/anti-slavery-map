@@ -1,0 +1,723 @@
+{
+ "k": "sez",
+ "label": "Special economic zones",
+ "source": "UNCTAD, World Investment Report 2019: Special Economic Zones (chapter IV, tables IV.2-IV.3, and web annex table 21 'The universe of SEZs')",
+ "url": "https://unctad.org/system/files/official-document/wir2019_annex_table_21.xlsx",
+ "report_url": "https://digitallibrary.un.org/record/3827210",
+ "as_of": "2019",
+ "method": "Number of special economic zones per economy from UNCTAD's World Investment Report 2019 inventory (5,383 zones in 147 economies), counted by establishment under law and excluding 8,368 single-enterprise 'free points'; UNCTAD compiled the data from public sources and national institutions and verified them with governments where possible, so counts are as reported by governments. Economies shown as 0 were examined and had no counted zone; economies marked '..' (no information) in the source are left out. Abbreviations as in the source: EZ economic zone, EPZ export processing zone, FTZ free trade zone, FZ free zone. Kosovo uses the code XKX.",
+ "countries": {
+  "AUT": {
+   "v": 0,
+   "text": "Austria: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "BEL": {
+   "v": 0,
+   "text": "Belgium: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "BGR": {
+   "v": 9,
+   "text": "Bulgaria: 9 zones (UNCTAD inventory, 2019); type: industrial zone (5), FZ (4)"
+  },
+  "CAN": {
+   "v": 0,
+   "text": "Canada: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "HRV": {
+   "v": 11,
+   "text": "Croatia: 11 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "CYP": {
+   "v": 0,
+   "text": "Cyprus: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "CZE": {
+   "v": 7,
+   "text": "Czechia: 7 zones (UNCTAD inventory, 2019); type: FZ (4), SEZ (3)"
+  },
+  "DNK": {
+   "v": 1,
+   "text": "Denmark: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "EST": {
+   "v": 3,
+   "text": "Estonia: 3 zones (UNCTAD inventory, 2019); type: FZ (2), SEZ (1)"
+  },
+  "FIN": {
+   "v": 2,
+   "text": "Finland: 2 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "FRA": {
+   "v": 2,
+   "text": "France: 2 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "DEU": {
+   "v": 2,
+   "text": "Germany: 2 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "GRC": {
+   "v": 4,
+   "text": "Greece: 4 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "HUN": {
+   "v": 1,
+   "text": "Hungary: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "IRL": {
+   "v": 0,
+   "text": "Ireland: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "ISR": {
+   "v": 1,
+   "text": "Israel: 1 zone (UNCTAD inventory, 2019); type: FTZ"
+  },
+  "ITA": {
+   "v": 2,
+   "text": "Italy: 2 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "JPN": {
+   "v": 6,
+   "text": "Japan: 6 zones (UNCTAD inventory, 2019); type: international logistics hub, industry development zone and other special regions"
+  },
+  "LVA": {
+   "v": 4,
+   "text": "Latvia: 4 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "LTU": {
+   "v": 16,
+   "text": "Lithuania: 16 zones (UNCTAD inventory, 2019); type: FZ (10), free EZ (6)"
+  },
+  "LUX": {
+   "v": 1,
+   "text": "Luxembourg: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "MLT": {
+   "v": 1,
+   "text": "Malta: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "MCO": {
+   "v": 1,
+   "text": "Monaco: 1 zone (UNCTAD inventory, 2019); type: freeport"
+  },
+  "NLD": {
+   "v": 0,
+   "text": "Netherlands: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "POL": {
+   "v": 21,
+   "text": "Poland: 21 zones (UNCTAD inventory, 2019); type: FZ (7), SEZ (14)"
+  },
+  "PRT": {
+   "v": 1,
+   "text": "Portugal: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "ROU": {
+   "v": 6,
+   "text": "Romania: 6 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "SVK": {
+   "v": 0,
+   "text": "Slovakia: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "SVN": {
+   "v": 1,
+   "text": "Slovenia: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "ESP": {
+   "v": 7,
+   "text": "Spain: 7 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "SWE": {
+   "v": 0,
+   "text": "Sweden: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "CHE": {
+   "v": 1,
+   "text": "Switzerland: 1 zone (UNCTAD inventory, 2019); type: freeport"
+  },
+  "GBR": {
+   "v": 1,
+   "text": "United Kingdom: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "USA": {
+   "v": 262,
+   "text": "United States: 262 zones (UNCTAD inventory, 2019); type: foreign-trade zone"
+  },
+  "DZA": {
+   "v": 1,
+   "text": "Algeria: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "AGO": {
+   "v": 1,
+   "text": "Angola: 1 zone (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "BEN": {
+   "v": 0,
+   "text": "Benin: 0 zones counted in UNCTAD's 2019 inventory (law provides for: SEZ)"
+  },
+  "BWA": {
+   "v": 8,
+   "text": "Botswana: 8 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "BFA": {
+   "v": 2,
+   "text": "Burkina Faso: 2 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "BDI": {
+   "v": 0,
+   "text": "Burundi: 0 zones counted in UNCTAD's 2019 inventory (law provides for: FZ)"
+  },
+  "CPV": {
+   "v": 1,
+   "text": "Cabo Verde: 1 zone (UNCTAD inventory, 2019); type: international business centre"
+  },
+  "CMR": {
+   "v": 9,
+   "text": "Cameroon: 9 zones (UNCTAD inventory, 2019); type: industrial zone"
+  },
+  "COG": {
+   "v": 4,
+   "text": "Congo: 4 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "CIV": {
+   "v": 1,
+   "text": "Côte d'Ivoire: 1 zone (UNCTAD inventory, 2019); type: technology village"
+  },
+  "DJI": {
+   "v": 3,
+   "text": "Djibouti: 3 zones (UNCTAD inventory, 2019); type: FZ (2), international development FZ (1)"
+  },
+  "COD": {
+   "v": 1,
+   "text": "DR Congo: 1 zone (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "EGY": {
+   "v": 10,
+   "text": "Egypt: 10 zones (UNCTAD inventory, 2019); type: free zone (9), SEZ (1)"
+  },
+  "GNQ": {
+   "v": 2,
+   "text": "Equatorial Guinea: 2 zones (UNCTAD inventory, 2019); type: freeport (1), SEZ (1)"
+  },
+  "ERI": {
+   "v": 2,
+   "text": "Eritrea: 2 zones (UNCTAD inventory, 2019); type: FZ (1), freeport (1)"
+  },
+  "SWZ": {
+   "v": 2,
+   "text": "Eswatini: 2 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "ETH": {
+   "v": 18,
+   "text": "Ethiopia: 18 zones (UNCTAD inventory, 2019); type: industrial park"
+  },
+  "GAB": {
+   "v": 2,
+   "text": "Gabon: 2 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "GMB": {
+   "v": 1,
+   "text": "Gambia: 1 zone (UNCTAD inventory, 2019); type: business park (1)"
+  },
+  "GHA": {
+   "v": 4,
+   "text": "Ghana: 4 zones (UNCTAD inventory, 2019); type: EPZ"
+  },
+  "GIN": {
+   "v": 1,
+   "text": "Guinea: 1 zone (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "KEN": {
+   "v": 61,
+   "text": "Kenya: 61 zones (UNCTAD inventory, 2019); type: EPZ"
+  },
+  "LSO": {
+   "v": 0,
+   "text": "Lesotho: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "LBR": {
+   "v": 1,
+   "text": "Liberia: 1 zone (UNCTAD inventory, 2019); type: industrial park"
+  },
+  "MDG": {
+   "v": 4,
+   "text": "Madagascar: 4 zones (UNCTAD inventory, 2019); type: EPZ (2), SEZ (2)"
+  },
+  "MWI": {
+   "v": 0,
+   "text": "Malawi: 0 zones counted in UNCTAD's 2019 inventory (law provides for: EPZ)"
+  },
+  "MLI": {
+   "v": 0,
+   "text": "Mali: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "MRT": {
+   "v": 1,
+   "text": "Mauritania: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "MUS": {
+   "v": 1,
+   "text": "Mauritius: 1 zone (UNCTAD inventory, 2019); type: freeport"
+  },
+  "MAR": {
+   "v": 6,
+   "text": "Morocco: 6 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "MOZ": {
+   "v": 2,
+   "text": "Mozambique: 2 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "NAM": {
+   "v": 0,
+   "text": "Namibia: 0 zones counted in UNCTAD's 2019 inventory (law provides for: EPZ)"
+  },
+  "NGA": {
+   "v": 38,
+   "text": "Nigeria: 38 zones (UNCTAD inventory, 2019); type: FZ (29), EPZ (2), industrial park (3), economic city (3), gas park (1)"
+  },
+  "RWA": {
+   "v": 2,
+   "text": "Rwanda: 2 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "STP": {
+   "v": 0,
+   "text": "Sao Tome and Principe: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "SEN": {
+   "v": 3,
+   "text": "Senegal: 3 zones (UNCTAD inventory, 2019); type: industrial park"
+  },
+  "SYC": {
+   "v": 0,
+   "text": "Seychelles: 0 zones counted in UNCTAD's 2019 inventory (law provides for: international trade zone)"
+  },
+  "SLE": {
+   "v": 1,
+   "text": "Sierra Leone: 1 zone (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "ZAF": {
+   "v": 8,
+   "text": "South Africa: 8 zones (UNCTAD inventory, 2019); type: industrial development zone (4), SEZ (3), tradeport (1)"
+  },
+  "SDN": {
+   "v": 4,
+   "text": "Sudan: 4 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "TZA": {
+   "v": 8,
+   "text": "Tanzania: 8 zones (UNCTAD inventory, 2019); type: EPZ (4), SEZ (3), industrial park (1)"
+  },
+  "TGO": {
+   "v": 2,
+   "text": "Togo: 2 zones (UNCTAD inventory, 2019); type: EPZ (1), SEZ (1)"
+  },
+  "TUN": {
+   "v": 0,
+   "text": "Tunisia: 0 zones counted in UNCTAD's 2019 inventory (law provides for: FTZ)"
+  },
+  "UGA": {
+   "v": 8,
+   "text": "Uganda: 8 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "ZMB": {
+   "v": 6,
+   "text": "Zambia: 6 zones (UNCTAD inventory, 2019); type: multi-facility economic zone (4), industrial park (2)"
+  },
+  "ZWE": {
+   "v": 8,
+   "text": "Zimbabwe: 8 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "AFG": {
+   "v": 0,
+   "text": "Afghanistan: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "BHR": {
+   "v": 1,
+   "text": "Bahrain: 1 zone (UNCTAD inventory, 2019); type: international investment park"
+  },
+  "BGD": {
+   "v": 39,
+   "text": "Bangladesh: 39 zones (UNCTAD inventory, 2019); type: EZ (30) and EPZ"
+  },
+  "BTN": {
+   "v": 0,
+   "text": "Bhutan: 0 zones counted in UNCTAD's 2019 inventory (law provides for: industrial estate/park, SEZ)"
+  },
+  "BRN": {
+   "v": 1,
+   "text": "Brunei Darussalam: 1 zone (UNCTAD inventory, 2019); type: industrial zone"
+  },
+  "KHM": {
+   "v": 31,
+   "text": "Cambodia: 31 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "CHN": {
+   "v": 2543,
+   "text": "China: 2,543 zones (UNCTAD inventory, 2019); type: economic and technological development zones (219) and other zone types"
+  },
+  "HKG": {
+   "v": 0,
+   "text": "Hong Kong, China: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "IND": {
+   "v": 373,
+   "text": "India: 373 zones (UNCTAD inventory, 2019); type: sector-specific SEZ (326), multi-sector/services SEZ (25) and others"
+  },
+  "IDN": {
+   "v": 13,
+   "text": "Indonesia: 13 zones (UNCTAD inventory, 2019); type: SEZ (12), FTZ (1)"
+  },
+  "IRN": {
+   "v": 23,
+   "text": "Iran: 23 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "IRQ": {
+   "v": 4,
+   "text": "Iraq: 4 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "JOR": {
+   "v": 16,
+   "text": "Jordan: 16 zones (UNCTAD inventory, 2019); type: qualifying industrial zone (10), FZ/development zone (5), SEZ (1)"
+  },
+  "PRK": {
+   "v": 25,
+   "text": "North Korea: 25 zones (UNCTAD inventory, 2019); type: special administrative region (1), economic (trade) zone (7) and others"
+  },
+  "KOR": {
+   "v": 47,
+   "text": "Republic of Korea: 47 zones (UNCTAD inventory, 2019); type: foreign investment zone (26), FTZ (13), free EZ (8)"
+  },
+  "KWT": {
+   "v": 4,
+   "text": "Kuwait: 4 zones (UNCTAD inventory, 2019); type: FTZ"
+  },
+  "LAO": {
+   "v": 12,
+   "text": "Lao PDR: 12 zones (UNCTAD inventory, 2019); type: SEZ (10), industrial trade area (1), development zone (1)"
+  },
+  "LBN": {
+   "v": 1,
+   "text": "Lebanon: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "MAC": {
+   "v": 0,
+   "text": "Macao, China: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "MYS": {
+   "v": 45,
+   "text": "Malaysia: 45 zones (UNCTAD inventory, 2019); type: free industrial zone (22), free commercial zone (18), regional economic corridor (5)"
+  },
+  "MDV": {
+   "v": 0,
+   "text": "Maldives: 0 zones counted in UNCTAD's 2019 inventory (law provides for: SEZ framework (no zones counted))"
+  },
+  "MNG": {
+   "v": 3,
+   "text": "Mongolia: 3 zones (UNCTAD inventory, 2019); type: FTZ"
+  },
+  "MMR": {
+   "v": 3,
+   "text": "Myanmar: 3 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "NPL": {
+   "v": 2,
+   "text": "Nepal: 2 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "OMN": {
+   "v": 4,
+   "text": "Oman: 4 zones (UNCTAD inventory, 2019); type: FZ (3), SEZ (1)"
+  },
+  "PAK": {
+   "v": 7,
+   "text": "Pakistan: 7 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "PHL": {
+   "v": 528,
+   "text": "Philippines: 528 zones (UNCTAD inventory, 2019); type: ecozones: IT centre (294), manufacturing EZ (102), IT park (76) and others"
+  },
+  "QAT": {
+   "v": 2,
+   "text": "Qatar: 2 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "SAU": {
+   "v": 10,
+   "text": "Saudi Arabia: 10 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "SGP": {
+   "v": 10,
+   "text": "Singapore: 10 zones (UNCTAD inventory, 2019); type: FTZ"
+  },
+  "LKA": {
+   "v": 12,
+   "text": "Sri Lanka: 12 zones (UNCTAD inventory, 2019); type: EPZ (11), industrial park (1)"
+  },
+  "PSE": {
+   "v": 4,
+   "text": "State of Palestine: 4 zones (UNCTAD inventory, 2019); type: industrial park/estate (3), FZ (1)"
+  },
+  "SYR": {
+   "v": 12,
+   "text": "Syria: 12 zones (UNCTAD inventory, 2019); type: FZ (9), industrial zone (3)"
+  },
+  "TWN": {
+   "v": 27,
+   "text": "Taiwan Province of China: 27 zones (UNCTAD inventory, 2019); type: EPZ (10) and others"
+  },
+  "THA": {
+   "v": 74,
+   "text": "Thailand: 74 zones (UNCTAD inventory, 2019); type: general industrial zone (54), EPZ (10), SEZ (10)"
+  },
+  "TLS": {
+   "v": 1,
+   "text": "Timor-Leste: 1 zone (UNCTAD inventory, 2019); type: special social market economy zone"
+  },
+  "TUR": {
+   "v": 102,
+   "text": "Türkiye: 102 zones (UNCTAD inventory, 2019); type: technology development zone (83), FZ (19)"
+  },
+  "ARE": {
+   "v": 47,
+   "text": "United Arab Emirates: 47 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "VNM": {
+   "v": 19,
+   "text": "Viet Nam: 19 zones (UNCTAD inventory, 2019); type: EZ (15), EPZ (3), high-tech park (1)"
+  },
+  "YEM": {
+   "v": 1,
+   "text": "Yemen: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "FJI": {
+   "v": 1,
+   "text": "Fiji: 1 zone (UNCTAD inventory, 2019); type: tax FZ (1)"
+  },
+  "KIR": {
+   "v": 0,
+   "text": "Kiribati: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "PLW": {
+   "v": 2,
+   "text": "Palau: 2 zones (UNCTAD inventory, 2019); type: FTZ (1), tax FZ (1)"
+  },
+  "PNG": {
+   "v": 0,
+   "text": "Papua New Guinea: 0 zones counted in UNCTAD's 2019 inventory (law provides for: FTZ / free commercial / free industrial zone framework)"
+  },
+  "WSM": {
+   "v": 0,
+   "text": "Samoa: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "SLB": {
+   "v": 0,
+   "text": "Solomon Islands: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "VUT": {
+   "v": 0,
+   "text": "Vanuatu: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "ATG": {
+   "v": 2,
+   "text": "Antigua and Barbuda: 2 zones (UNCTAD inventory, 2019); type: free trade processing zone (1), SEZ (1)"
+  },
+  "ARG": {
+   "v": 14,
+   "text": "Argentina: 14 zones (UNCTAD inventory, 2019); type: FZ (12), customs area (1), technology park (1)"
+  },
+  "ABW": {
+   "v": 2,
+   "text": "Aruba: 2 zones (UNCTAD inventory, 2019); type: FZ (1), green zone/park (1)"
+  },
+  "BHS": {
+   "v": 6,
+   "text": "Bahamas: 6 zones (UNCTAD inventory, 2019); type: agro-industrial park (5), freeport (1)"
+  },
+  "BRB": {
+   "v": 0,
+   "text": "Barbados: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "BLZ": {
+   "v": 4,
+   "text": "Belize: 4 zones (UNCTAD inventory, 2019); type: EPZ (3), commercial FZ (1)"
+  },
+  "BOL": {
+   "v": 7,
+   "text": "Bolivia: 7 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "BRA": {
+   "v": 32,
+   "text": "Brazil: 32 zones (UNCTAD inventory, 2019); type: EPZ (25), free trade area (6), FTZ (1)"
+  },
+  "CYM": {
+   "v": 6,
+   "text": "Cayman Islands: 6 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "CHL": {
+   "v": 4,
+   "text": "Chile: 4 zones (UNCTAD inventory, 2019); type: FTZ (2), business park (1), industrial park (1)"
+  },
+  "COL": {
+   "v": 39,
+   "text": "Colombia: 39 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "CRI": {
+   "v": 49,
+   "text": "Costa Rica: 49 zones (UNCTAD inventory, 2019); type: FZ/industrial park"
+  },
+  "CUB": {
+   "v": 1,
+   "text": "Cuba: 1 zone (UNCTAD inventory, 2019); type: special development zone"
+  },
+  "CUW": {
+   "v": 2,
+   "text": "Curaçao: 2 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "DOM": {
+   "v": 73,
+   "text": "Dominican Republic: 73 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "ECU": {
+   "v": 12,
+   "text": "Ecuador: 12 zones (UNCTAD inventory, 2019); type: FZ (6), special development zone (6)"
+  },
+  "SLV": {
+   "v": 17,
+   "text": "El Salvador: 17 zones (UNCTAD inventory, 2019); type: FZ (12), services park/centre (5)"
+  },
+  "GRD": {
+   "v": 0,
+   "text": "Grenada: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "GTM": {
+   "v": 18,
+   "text": "Guatemala: 18 zones (UNCTAD inventory, 2019); type: FZ/SEZ"
+  },
+  "GUY": {
+   "v": 0,
+   "text": "Guyana: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "HTI": {
+   "v": 13,
+   "text": "Haiti: 13 zones (UNCTAD inventory, 2019); type: FZ (8), industrial park (5)"
+  },
+  "HND": {
+   "v": 39,
+   "text": "Honduras: 39 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "JAM": {
+   "v": 17,
+   "text": "Jamaica: 17 zones (UNCTAD inventory, 2019); type: FZ (11), SEZ (6)"
+  },
+  "MEX": {
+   "v": 17,
+   "text": "Mexico: 17 zones (UNCTAD inventory, 2019); type: recinto fiscalizado estratégico (12), SEZ (5)"
+  },
+  "NIC": {
+   "v": 52,
+   "text": "Nicaragua: 52 zones (UNCTAD inventory, 2019); type: industrial export FZ"
+  },
+  "PAN": {
+   "v": 15,
+   "text": "Panama: 15 zones (UNCTAD inventory, 2019); type: FZ (13), SEZ (1), City of Knowledge (1)"
+  },
+  "PRY": {
+   "v": 2,
+   "text": "Paraguay: 2 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "PER": {
+   "v": 4,
+   "text": "Peru: 4 zones (UNCTAD inventory, 2019); type: special economic development zone (3), FTZ (1)"
+  },
+  "LCA": {
+   "v": 1,
+   "text": "Saint Lucia: 1 zone (UNCTAD inventory, 2019); type: FTZ"
+  },
+  "VCT": {
+   "v": 0,
+   "text": "Saint Vincent and the Grenadines: 0 zones counted in UNCTAD's 2019 inventory"
+  },
+  "TTO": {
+   "v": 1,
+   "text": "Trinidad and Tobago: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "URY": {
+   "v": 23,
+   "text": "Uruguay: 23 zones (UNCTAD inventory, 2019); type: FTZ (11), freeport (8), industrial park (4)"
+  },
+  "VEN": {
+   "v": 14,
+   "text": "Venezuela: 14 zones (UNCTAD inventory, 2019); type: SEZ (6), national strategic development zone (3), free port (2), FTZ (2), FZ (1)"
+  },
+  "ALB": {
+   "v": 2,
+   "text": "Albania: 2 zones (UNCTAD inventory, 2019); type: technical economic development area"
+  },
+  "ARM": {
+   "v": 4,
+   "text": "Armenia: 4 zones (UNCTAD inventory, 2019); type: free economic zone"
+  },
+  "AZE": {
+   "v": 6,
+   "text": "Azerbaijan: 6 zones (UNCTAD inventory, 2019); type: industrial park (5), FTZ (1)"
+  },
+  "BLR": {
+   "v": 7,
+   "text": "Belarus: 7 zones (UNCTAD inventory, 2019); type: free EZ (6), industrial park (1)"
+  },
+  "BIH": {
+   "v": 4,
+   "text": "Bosnia and Herzegovina: 4 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "GEO": {
+   "v": 4,
+   "text": "Georgia: 4 zones (UNCTAD inventory, 2019); type: free industrial zone"
+  },
+  "KAZ": {
+   "v": 10,
+   "text": "Kazakhstan: 10 zones (UNCTAD inventory, 2019); type: SEZ"
+  },
+  "XKX": {
+   "v": 9,
+   "text": "Kosovo: 9 zones (UNCTAD inventory, 2019); type: EZ"
+  },
+  "KGZ": {
+   "v": 5,
+   "text": "Kyrgyzstan: 5 zones (UNCTAD inventory, 2019); type: free EZ"
+  },
+  "MDA": {
+   "v": 8,
+   "text": "Moldova: 8 zones (UNCTAD inventory, 2019); type: free EZ/area"
+  },
+  "MNE": {
+   "v": 1,
+   "text": "Montenegro: 1 zone (UNCTAD inventory, 2019); type: FZ"
+  },
+  "MKD": {
+   "v": 15,
+   "text": "North Macedonia: 15 zones (UNCTAD inventory, 2019); type: FZ / technological industrial development zone"
+  },
+  "RUS": {
+   "v": 130,
+   "text": "Russian Federation: 130 zones (UNCTAD inventory, 2019); type: territory of advanced development (100), industrial production SEZ (10), tourism SEZ (9) and others"
+  },
+  "SRB": {
+   "v": 14,
+   "text": "Serbia: 14 zones (UNCTAD inventory, 2019); type: FZ"
+  },
+  "TJK": {
+   "v": 4,
+   "text": "Tajikistan: 4 zones (UNCTAD inventory, 2019); type: free EZ"
+  },
+  "TKM": {
+   "v": 7,
+   "text": "Turkmenistan: 7 zones (UNCTAD inventory, 2019); type: free EZ"
+  },
+  "UKR": {
+   "v": 0,
+   "text": "Ukraine: 0 zones counted in UNCTAD's 2019 inventory (law provides for: SEZ / free EZ framework)"
+  },
+  "UZB": {
+   "v": 7,
+   "text": "Uzbekistan: 7 zones (UNCTAD inventory, 2019); type: free industrial EZ"
+  }
+ }
+}
