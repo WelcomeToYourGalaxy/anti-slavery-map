@@ -7,6 +7,35 @@
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var mk = function (html) { var d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstChild; };
 
+  /* ---------- palettes: one per basemap, the same sets as the secret society infiltration map ---------- */
+  var PAL = window.SS_PAL = {
+    night: { b: ["#a4c3df", "#62bcda", "#3859c7", "#cedfe9", "#85d7e0", "#2d39a9", "#5782c7", "#b8d3e0"],
+      t: { covert: "#c6e4e7", statenet: "#2f38b1" },
+      r: ["#8bb6e4", "#689dcf", "#4b88b9", "#457292", "#405c6d"], p: ["#6cb2e5", "#b9e1e9", "#546dd4", "#a7a9dd", "#1ca7e3", "#dbe3f0", "#78dee3", "#293aae", "#b4c7da"], ln: "#cfe2f0",
+      card: "rgba(8,16,26,.94)", edge: "#1d3147", ui: ["#326c9f", "#95c6e4", "#06101c"] },
+    outlines: { b: ["#d0605e", "#a07cc4", "#6a9fd4", "#4fb0a8", "#7fae6a", "#a8806a", "#d487a8", "#9aa3ad"],
+      t: { covert: "#4fb0a8", statenet: "#d0605e" },
+      r: ["#c8464f", "#d98482", "#b9a6c2", "#7ea3c9", "#5b7fa6"], p: ["#d0605e", "#6a9fd4", "#a07cc4", "#4fb0a8", "#a8806a", "#b5577f", "#e09ab8", "#7fae6a", "#9aa3ad"], ln: "#e2e5e8",
+      card: "rgba(14,18,20,.94)", edge: "#2c3640", ui: ["#4f6f8f", "#a9c4dc", "#0c1012"] },
+    satellite: { b: ["#a9c48f", "#7fae7a", "#5e8a5a", "#c9d9b4", "#8fbfa2", "#4f7a52", "#9aaa72", "#b7cfa9"],
+      t: { covert: "#cfe0c0", statenet: "#4d7448" },
+      r: ["#c2d8a8", "#9fbf86", "#7ea36a", "#617f52", "#4a5f42"], p: ["#8fbf7a", "#cfe0b8", "#5f8f5a", "#a9b88a", "#6fae92", "#e0ead6", "#b3d39a", "#3f6a40", "#bccaa8"], ln: "#e3ecd8",
+      card: "rgba(10,18,12,.94)", edge: "#2a3d2c", ui: ["#4f7a52", "#b3d39a", "#0a120c"] },
+    atlas: { b: ["#4f7a4a", "#2f5d3a", "#1f3a2a", "#7c9a5e", "#3f7262", "#26402f", "#5a6b3c", "#8aa57a"],
+      t: { covert: "#8fae86", statenet: "#1f3526" },
+      r: ["#2c4a2a", "#3f6338", "#5c7d4c", "#7e9a6a", "#a2b694"], p: ["#3a6b3a", "#7fa06a", "#2c4d3e", "#5c7a52", "#1f5a4a", "#9db58a", "#4f8a6a", "#24361f", "#6f8a72"], ln: "#24361f", light: true,
+      card: "rgba(12,20,14,.94)", edge: "#2f4632", ui: ["#3f6b45", "#a9c79a", "#0c140e"] },
+    hell: { b: ["#e0a8a0", "#c46a62", "#8e2f34", "#efcfc8", "#d4868a", "#6e2228", "#a8484a", "#e8bdb4"],
+      t: { covert: "#f0d4cd", statenet: "#7a2a30" },
+      r: ["#e8a49a", "#cc7a72", "#a85a56", "#7f4644", "#5e3a3a"], p: ["#d9827a", "#f0c7bf", "#a63a3c", "#c99a94", "#d0565e", "#f7e1dc", "#e8a89e", "#7a2228", "#d4b0aa"], ln: "#f2dcd6",
+      card: "rgba(22,9,11,.94)", edge: "#4a2226", ui: ["#8e3a3e", "#e8aaa4", "#14080a"] }
+  };
+  var P = PAL.atlas;
+  function bmKey() { try { return (window.__BM && window.__BM.current()) || "atlas"; } catch (e) { return "atlas"; } }
+  function ramp5() { return [P.r[4], P.r[3], P.r[2], P.r[1], P.r[0]]; }   // lowest to highest; the strongest colour means most
+  function hexA(h, a) { var x = h.replace("#", ""); return "rgba(" + parseInt(x.slice(0, 2), 16) + "," + parseInt(x.slice(2, 4), 16) + "," + parseInt(x.slice(4, 6), 16) + "," + a + ")"; }
+  function HAS() { return P.ui[1]; } function SELC() { return P.ln; } function LINKC() { return P.light ? P.t.covert : P.b[2]; }
+
   /* ---------- draggable boxes ---------- */
   function drag(box, handle) {
     var sx, sy, sl, st, on = false;
@@ -59,7 +88,9 @@
     col = mk('<div id="cnCol"></div>');
     keyPanel = mk('<div id="cnKeyPanel" class="uip"><div class="uip-h"><span>Child abuse networks and child trafficking</span><span class="uip-t">−</span></div><div class="uip-b cnui" id="cnKeyHost"></div></div>');
     patPanel = mk('<div id="cnPatPanel" class="uip"><div class="uip-h"><span>Patterns behind the scenes</span><span class="uip-t">−</span></div><div class="uip-b cnui" id="cnPatHost"></div></div>');
-    col.appendChild(keyPanel); col.appendChild(patPanel); document.body.appendChild(col);
+    var rb = $("#rightbar");
+    if (rb) rb.insertBefore(keyPanel, rb.firstChild); else col.appendChild(keyPanel);
+    col.appendChild(patPanel); document.body.appendChild(col);
     [keyPanel, patPanel].forEach(function (p) {
       var h = p.querySelector(".uip-h");
       h.addEventListener("click", function (e) { if (e.target.closest(".ib")) return; p.classList.toggle("collapsed"); h.querySelector(".uip-t").textContent = p.classList.contains("collapsed") ? "+" : "−"; reflowInfo(); });
@@ -127,18 +158,18 @@
 
   /* ---------- country selection (click, not hover) ---------- */
   var SEL = null, LINKED = null, origStyle = null;
-  var RAMP = ["#c9cda3", "#a6ad78", "#8a8653", "#93673f", "#77392b"], CUTS = [2, 4, 6, 9];
+  var CUTS = [2, 4, 6, 9];
   function prevClass(rate) { for (var i = 0; i < CUTS.length; i++) if (rate < CUTS[i]) return i; return 4; }
-  window.prevColour = function (rate) { if (!rate) return null; return { fill: RAMP[prevClass(rate)], op: 0.55 }; };
+  window.prevColour = function (rate) { if (!rate) return null; return { fill: ramp5()[prevClass(rate)], op: 0.55 }; };
   function style(f) {
     var a3 = NUM2A3[f.id] || "", s = origStyle(f) || {};
     var has = s.color === "#ffd24a" || s.color === "#9fd0e6";
-    var o = has ? { color: "#c8bf9a", weight: 1.3, opacity: 0.8 } : { color: "rgba(210,215,200,0.26)", weight: 0.5, opacity: 0.22 };
+    var o = has ? { color: HAS(), weight: 1.2, opacity: 0.75 } : { color: P.edge, weight: 0.5, opacity: 0.35 };
     var rate = window.prevOn && window.PREV_RATE && window.PREV_RATE[a3];
-    o.fillColor = rate ? RAMP[prevClass(rate)] : "#c8bf9a"; o.fillOpacity = rate ? 0.55 : 0;
-    if (OVON) { rate = 0; var oc = ovColour(OVON, a3); o.fillColor = oc || "#c8bf9a"; o.fillOpacity = oc ? 0.62 : 0; if (oc) rate = 1; }
-    if (LINKED && LINKED[a3]) { o.color = "#8fc1dc"; o.weight = 2.6; o.opacity = 0.95; if (!rate) { o.fillColor = "#8fc1dc"; o.fillOpacity = 0.2; } }
-    if (SEL === a3) { o.color = "#f4f1e4"; o.weight = 3.4; o.opacity = 1; if (!rate) { o.fillColor = "#f4f1e4"; o.fillOpacity = 0.12; } }
+    o.fillColor = rate ? ramp5()[prevClass(rate)] : HAS(); o.fillOpacity = rate ? 0.55 : 0;
+    if (OVON) { rate = 0; var oc = ovColour(OVON, a3); o.fillColor = oc || HAS(); o.fillOpacity = oc ? 0.62 : 0; if (oc) rate = 1; }
+    if (LINKED && LINKED[a3]) { o.color = LINKC(); o.weight = 2.8; o.opacity = 1; if (!rate) { o.fillColor = LINKC(); o.fillOpacity = 0.22; } }
+    if (SEL === a3) { o.color = SELC(); o.weight = 3.6; o.opacity = 1; if (!rate) { o.fillColor = SELC(); o.fillOpacity = 0.14; } }
     return o;
   }
   function restyle() { try { geojsonLayer.setStyle(style); } catch (e) {} }
@@ -259,62 +290,129 @@
     hint._onClose = function () {};
   }
 
-  /* ---------- map key ---------- */
-  var SEVC = { 2: "#a8e06a", 3: "#ffd24a", 4: "#ffa53d", 5: "#ff6b4a" };
-  function dots(list) { return list.map(function (k) { return '<span class="sw-d" style="background:' + SEVC[k] + '"></span>'; }).join(""); }
+  /* ---------- map key: one list, the same row for every layer ---------- */
   var HOW = {
-    "projects.json": ["dots", "markers"], "points.json": ["dots", "markers"], "infra.json": ["dots", "markers"], "vessels.json": ["dots", "markers"],
-    "suspected.json": ["dots", "markers, mostly dashed rings for a region"], "sites.json": ["dots", "markers"], "wire.json": ["dots", "markers for news reports"],
-    "bulk.json": ["dots", "markers, plus country figures in the clicked country's summary"], "companies.json": ["box", "the clicked country's summary"],
-    "cases.json": ["box", "the clicked country's summary"], "law.json": ["box", "the clicked country's summary"],
-    "directory.json": ["list", "the clicked country's list of resources"], "prevalence.json": ["ramp", "country shading"], "routes.json": ["lines", "corridor lines"]
+    "projects.json": "markers", "points.json": "markers", "infra.json": "markers", "vessels.json": "markers", "suspected.json": "markers",
+    "sites.json": "markers", "wire.json": "markers", "bulk.json": "markers", "companies.json": "box", "cases.json": "box", "law.json": "box",
+    "directory.json": "list", "prevalence.json": "shade", "routes.json": "lines"
   };
+  function sevC(k) { return { 1: P.r[4], 2: P.r[3], 3: P.r[2], 4: P.r[1], 5: P.r[0] }[k]; }
+  function dot(c) { return '<span class="sw-d" style="background:' + c + '"></span>'; }
   function swatch(kind) {
-    if (kind === "dots") return dots([2, 3, 4, 5]);
-    if (kind === "ramp") return RAMP.map(function (c) { return '<span class="sw-o" style="background:' + c + ';width:7px;border-radius:0"></span>'; }).join("");
-    if (kind === "lines") return '<span class="sw-l" style="border-color:#7fb3d0;width:9px"></span><span class="sw-l" style="border-color:#c98ac0;width:9px"></span><span class="sw-l" style="border-color:#c0a86a;width:9px"></span>';
-    if (kind === "list") return '<span class="sw-o" style="border:1px solid #c8bf9a;background:repeating-linear-gradient(180deg,#c8bf9a 0 1px,transparent 1px 3px)"></span>';
-    return '<span class="sw-o" style="border:2px solid #f4f1e4"></span>';
+    if (kind === "markers") return dot(sevC(2)) + dot(sevC(3)) + dot(sevC(4)) + dot(sevC(5));
+    if (kind === "shade") return ramp5().map(function (c) { return '<span class="sw-o" style="background:' + c + ';width:6px;border-radius:0"></span>'; }).join("");
+    if (kind === "lines") return [0, 2, 4].map(function (i) { return '<span class="sw-l" style="border-color:' + P.b[i] + ';width:8px"></span>'; }).join("");
+    if (kind === "facilities") return dot(P.p[0]) + dot(P.p[1]) + dot(P.p[2]) + dot(P.p[3]);
+    if (kind === "list") return '<span class="sw-o" style="border:1px solid ' + HAS() + ';background:repeating-linear-gradient(180deg,' + HAS() + ' 0 1px,transparent 1px 3px)"></span>';
+    return '<span class="sw-o" style="border:2px solid ' + SELC() + '"></span>';
   }
-  function hookDataStatus() {
-    window.renderDataStatus = function () {
-      var el = document.getElementById("dataStatus"); if (!el) return;
-      var rows = "", missing = 0, loaded = 0, total = 0;
-      DATA_LAYERS.forEach(function (L) {
-        var s = window.DATA_STATUS[L.f], how = HOW[L.f] || ["box", ""];
-        if (s && s.ok) { loaded++; total += s.n; rows += '<div class="ds-row ds-ok"><span class="ds-sw">' + swatch(how[0]) + '</span>' + esc(L.label) + ' <span class="ds-n">' + s.n.toLocaleString() + '</span><span class="ds-how">Shown as ' + esc(how[1]) + '</span></div>'; }
-        else if (s) { missing++; rows += '<div class="ds-row ds-no"><span class="ds-sw" style="opacity:.35">' + swatch(how[0]) + '</span>' + esc(L.label) + ' <span class="ds-n">not loaded</span></div>'; }
-      });
-      el.innerHTML = '<div class="ds-head">Data layers: ' + loaded + ' loaded, ' + missing + ' not loaded' + (total ? ' · ' + total.toLocaleString() + ' records' : '') + '</div>' + rows +
-        (missing ? '<div class="ds-note">A layer that is not loaded has not been collected yet. It does not mean there is nothing to find.</div>' : '');
-    };
-    try { renderDataStatus(); } catch (e) {}
-  }
-  function keyText() {
-    /* the prevalence note becomes a legend for the ramp and the country outlines */
-    var pc = $("#prevChk"), hintEl = pc && pc.closest("label") && pc.closest("label").nextElementSibling;
-    if (hintEl && hintEl.classList.contains("facf-hint")) {
-      hintEl.outerHTML = '<div class="ukey">Walk Free’s estimate of people in modern slavery per 1,000 people (2023), so large countries do not dominate.' +
-        '<div class="ramp">' + RAMP.map(function (c) { return '<span style="background:' + c + '"></span>'; }).join("") + '</div>' +
-        '<div class="rl"><span>under 2</span><span>2–4</span><span>4–6</span><span>6–9</span><span>9 or more</span></div>' +
-        '<div class="ur" style="margin-top:6px"><span class="sw-o" style="border:1.5px solid #c8bf9a"></span>Outlined: has resources for your current filters</div>' +
-        '<div class="ur"><span class="sw-o" style="border:2.5px solid #f4f1e4"></span>White: the country you clicked</div>' +
-        '<div class="ur"><span class="sw-o" style="border:2.5px solid #8fc1dc"></span>Blue: the other end of its corridors, or both ends of a clicked corridor</div></div>';
-    }
-    /* the marker colour note says what it is about */
-    document.querySelectorAll("#legBody .proj-size > .facf-hint").forEach(function (h) {
-      if (!/Marker colours/.test(h.textContent)) return;
-      h.outerHTML = '<div class="ukey"><b>Case and site markers</b> are coloured by severity:' +
-        '<div class="ur">' + dots([2]) + 'a news report, before any raid, rescue or charge</div>' +
-        '<div class="ur">' + dots([3]) + 'Documented: in a named public source, or a raid, rescue or charge</div>' +
-        '<div class="ur">' + dots([4]) + 'Systemic: across a sector or region, or involving children</div>' +
-        '<div class="ur">' + dots([5]) + 'Gravest: state-imposed, a whole national industry, or deaths</div>' +
-        'A pin is a known site. A dashed ring stands for a country or region, with no exact site in the source.</div>';
+  var HOWTXT = { markers: "markers on the map", box: "figures in a clicked country's summary", list: "a clicked country's list of resources", shade: "country shading", lines: "lines between countries" };
+  window.renderDataStatus = function () {
+    var el = document.getElementById("ukData"); if (!el || typeof DATA_LAYERS === "undefined") return;
+    var rows = "";
+    DATA_LAYERS.forEach(function (L) {
+      var s = window.DATA_STATUS[L.f], how = HOW[L.f] || "box"; if (!s) return;
+      rows += '<div class="uk-row' + (s.ok ? "" : " off") + '"><span class="uk-sw" data-k="' + how + '">' + swatch(how) + '</span><span class="uk-l">' + esc(L.label) +
+        '<span class="uk-d">' + (s.ok ? "Shown as " + HOWTXT[how] : "Not collected yet") + '</span></span><span class="uk-n">' + (s.ok ? s.n.toLocaleString() : "–") + '</span></div>';
     });
+    el.innerHTML = rows;
+  };
+  function row(id, kind, label, count, info, checked) {
+    return '<div class="uk-row"><label class="uk-c"><input type="checkbox" data-uk="' + id + '"' + (checked ? " checked" : "") + '></label><span class="uk-sw" data-k="' + kind + '">' + swatch(kind) + '</span>' +
+      '<span class="uk-l">' + label + '</span><span class="uk-n">' + (count == null ? "" : count) + '</span>' + (info ? '<button type="button" class="uk-i" data-uki="' + id + '" title="What is this?">i</button>' : '') + '</div>' +
+      (info ? '<div class="uk-info" data-ukinfo="' + id + '">' + info + '</div>' : '');
+  }
+  var SHADES = [["none", "No shading"], ["prev", "Estimated modern slavery per 1,000 people"]];
+  function sec(id, title, body, open) {
+    return '<div class="uk-sec' + (open ? "" : " shut") + '" data-uks="' + id + '"><div class="uk-h"><span>' + title + '</span><span class="uk-t">' + (open ? "−" : "+") + '</span></div><div class="uk-b">' + body + '</div></div>';
+  }
+  var keyBuilt = false;
+  function buildKey() {
+    var lb = $("#legBody"); if (!lb || keyBuilt) return;
+    var chk = function (id) { var e = document.getElementById(id); return !!(e && e.checked); };
+    var keep = { sev: $("#legBody .proj-size:not(.proj-phase)"), phase: $("#legBody .proj-phase"), search: $("#legBody .proj-search"), time: $("#legBody .proj-time"),
+      src: $("#projSrcBox"), type: $("#projTypeBox"), fac: $("#facFilter"), detail: $("#legBody .lp-detail"), inc: $("#incCount"), bg: $("#bgStatus") };
+    var hold = mk('<div id="ukHold" style="display:none"></div>');
+    while (lb.firstChild) hold.appendChild(lb.firstChild);
+    lbInfo = function () {}; var sevInfo = 'Each marker is a place or sector where forced labour or child labour is on record. Colour shows how serious the record is:' +
+      [[2, "a news report, before any raid, rescue or charge"], [3, "documented in a named public source, or a raid, rescue or charge"], [4, "systemic: across a sector or region, or involving children"], [5, "gravest: state-imposed, a whole national industry, or deaths"]]
+        .map(function (x) { return '<div class="ur">' + dot(sevC(x[0])) + x[1] + '</div>'; }).join("") + 'A pin is a known site. A dashed ring stands for a country or region, with no exact site in the source.';
+    var rtInfo = 'Origin to destination, from identified-victim records (CTDC). ' + '<span style="color:' + P.b[0] + '">●</span> labour, <span style="color:' + P.b[2] + '">●</span> sexual, <span style="color:' + P.b[4] + '">●</span> mixed or unknown. Thicker means more people. A dashed ring is trafficking within one country. Click a line to light up both of its countries.';
+    var facInfo = 'Police stations, courthouses, town halls, government offices, agency headquarters and embassies, from OpenStreetMap: where reports are made and records are kept. Choose the types under "Government building types".';
+    var shadeRows = SHADES.concat(OVS.map(function (m) { return [m.k, m.label]; })).map(function (x) {
+      return '<label class="uk-row uk-radio"><input type="radio" name="ukShade" value="' + x[0] + '"' + ((x[0] === "prev" && window.prevOn) || (x[0] === "none" && !window.prevOn && !OVON) || x[0] === OVON ? " checked" : "") + '><span class="uk-l">' + esc(x[1]) + '</span><span class="uk-st" data-ukst="' + x[0] + '"></span></label>';
+    }).join("");
+    var outl = '<div class="uk-out" id="ukOut"><div class="ur"><span class="sw-o" style="border:1.5px solid ' + HAS() + '"></span>Outlined: has resources for your filters</div>' +
+      '<div class="ur"><span class="sw-o" style="border:3px solid ' + SELC() + '"></span>The country you clicked</div>' +
+      '<div class="ur"><span class="sw-o" style="border:3px solid ' + LINKC() + '"></span>Linked by a corridor to the clicked country, or both ends of a clicked corridor</div></div>';
+    lb.innerHTML =
+      sec("on", "On the map", row("proj", "markers", "Cases and sites", null, sevInfo, chk("projChk")) + row("route", "lines", "Trafficking corridors", null, rtInfo, chk("routeChk")) +
+        row("fac", "facilities", "Government buildings", null, facInfo, chk("facToggle")), true) +
+      sec("shade", "Shade the countries by", shadeRows + '<div id="ukLeg" class="ukey"></div>' + outl, true) +
+      sec("filt", "Filter the cases and sites", '<div id="ukFilt"></div>', false) +
+      sec("facs", "Government building types", '<div id="ukFac"></div>', false) +
+      sec("data", "Where the data comes from", '<div id="ukData"></div><div id="ukMore"></div>', false);
+    lb.appendChild(hold);
+    var f = $("#ukFilt"); ["sev", "phase", "search", "time", "src", "type"].forEach(function (k) { if (keep[k]) f.appendChild(keep[k]); });
+    if (keep.fac) $("#ukFac").appendChild(keep.fac);
+    ["inc", "bg", "detail"].forEach(function (k) { if (keep[k]) $("#ukMore").appendChild(keep[k]); });
+    /* severity pills get their colour */
+    f.querySelectorAll(".ps-pill[data-ms]").forEach(function (pl) { var k = +pl.dataset.ms; if (k && !pl.querySelector(".sw-d")) pl.insertAdjacentHTML("afterbegin", dot(sevC(k))); });
+    lb.querySelectorAll(".uk-h").forEach(function (h) { h.addEventListener("click", function () { var s0 = h.parentNode; s0.classList.toggle("shut"); h.querySelector(".uk-t").textContent = s0.classList.contains("shut") ? "+" : "−"; }); });
+    lb.querySelectorAll(".uk-i").forEach(function (b0) { b0.addEventListener("click", function (e) { e.preventDefault(); var i = lb.querySelector('[data-ukinfo="' + b0.dataset.uki + '"]'); if (i) i.classList.toggle("open"); }); });
+    var map0 = { proj: "projChk", route: "routeChk", fac: "facToggle" };
+    lb.querySelectorAll("input[data-uk]").forEach(function (cb) {
+      var orig = document.getElementById(map0[cb.dataset.uk]);
+      cb.addEventListener("change", function () { setChk(map0[cb.dataset.uk], cb.checked); });
+      if (orig) orig.addEventListener("change", function () { cb.checked = orig.checked; });
+    });
+    lb.querySelectorAll("input[name=ukShade]").forEach(function (r) { r.addEventListener("change", function () { if (r.checked) setShade(r.value); }); });
+    keyBuilt = true; renderDataStatus(); shadeLegend();
+    // the host sets these switches in code without a change event, so keep the copies in step
+    setInterval(function () { lb.querySelectorAll("input[data-uk]").forEach(function (cb) { var o = document.getElementById(map0[cb.dataset.uk]); if (o && cb.checked !== o.checked) cb.checked = o.checked; }); }, 800);
+  }
+  var lbInfo = null;
+  function theme(k) {
+    P = PAL[k] || PAL.atlas;
+    var rs = document.documentElement.style;
+    rs.setProperty("--accent", P.ui[0]); rs.setProperty("--accent-hi", P.ui[1]); rs.setProperty("--accent-soft", hexA(P.ui[0], 0.4));
+    rs.setProperty("--card", P.card); rs.setProperty("--line", P.edge); rs.setProperty("--uiln", P.ln);
+    try { if (window.PJ_PC) { [1, 2, 3, 4, 5].forEach(function (i) { window.PJ_PC[i] = sevC(i); }); if (window.pjRender) window.pjRender(); } } catch (e) {}
+    window.routeColour = function (kind) { return kind === "sexual exploitation" ? P.b[2] : kind === "labour exploitation" ? P.b[0] : P.b[4]; };
+    try { drawRoutes(); } catch (e) {}
+    try { if (window.FACCOL) { ["po", "ch", "th", "go", "mi", "dp", "fs", "bd", "pr"].forEach(function (x, i) { window.FACCOL[x] = P.p[i]; });
+      var ft = document.getElementById("facToggle"); if (ft && ft.checked) { setChk("facToggle", false); setChk("facToggle", true); } } } catch (e) {}
+    restyle(); if (ovLines) ovDrawLines(OVD.corridors);
+    if (keyBuilt) {
+      document.querySelectorAll(".uk-sw[data-k]").forEach(function (el) { el.innerHTML = swatch(el.dataset.k); });
+      var o = $("#ukOut"); if (o) o.innerHTML = '<div class="ur"><span class="sw-o" style="border:1.5px solid ' + HAS() + '"></span>Outlined: has resources for your filters</div>' +
+        '<div class="ur"><span class="sw-o" style="border:3px solid ' + SELC() + '"></span>The country you clicked</div>' +
+        '<div class="ur"><span class="sw-o" style="border:3px solid ' + LINKC() + '"></span>Linked by a corridor to the clicked country, or both ends of a clicked corridor</div>';
+      document.querySelectorAll("#ukFilt .ps-pill[data-ms] .sw-d").forEach(function (d0) { d0.style.background = sevC(+d0.parentNode.dataset.ms); });
+      var i1 = $('[data-ukinfo="proj"]'); if (i1) i1.innerHTML = sevInfoHTML(); var i2 = $('[data-ukinfo="route"]'); if (i2) i2.innerHTML = rtInfoHTML();
+    }
+    shadeLegend();
+  }
+  function sevInfoHTML() { return 'Each marker is a place or sector where forced labour or child labour is on record. Colour shows how serious the record is:' +
+      [[2, "a news report, before any raid, rescue or charge"], [3, "documented in a named public source, or a raid, rescue or charge"], [4, "systemic: across a sector or region, or involving children"], [5, "gravest: state-imposed, a whole national industry, or deaths"]]
+        .map(function (x) { return '<div class="ur">' + dot(sevC(x[0])) + x[1] + '</div>'; }).join("") + 'A pin is a known site. A dashed ring stands for a country or region, with no exact site in the source.'; }
+  function rtInfoHTML() { return 'Origin to destination, from identified-victim records (CTDC). <span style="color:' + P.b[0] + '">\u25cf</span> labour, <span style="color:' + P.b[2] + '">\u25cf</span> sexual, <span style="color:' + P.b[4] + '">\u25cf</span> mixed or unknown. Thicker means more people. A dashed ring is trafficking within one country. Click a line to light up both of its countries.'; }
+  function setShade(k) {
+    if (k === "none") { ovSet(null); if (window.prevOn) window.togglePrevalence(false); shadeLegend(); return; }
+    if (k === "prev") { ovSet(null); if (!window.prevOn) window.togglePrevalence(true); shadeLegend(); return; }
+    var st = $('[data-ukst="' + k + '"]'); if (st) st.textContent = "loading…";
+    ovLoad(k).then(function (d) { if (st) st.textContent = d ? "" : "not available"; if (d) { ovSet(k); shadeLegend(); } });
+  }
+  function shadeLegend() {
+    var el = $("#ukLeg"); if (!el) return;
+    document.querySelectorAll("input[name=ukShade]").forEach(function (r) { r.checked = OVON ? r.value === OVON : (window.prevOn ? r.value === "prev" : r.value === "none"); });
+    if (OVON && OVD[OVON]) { var d = OVD[OVON], m = ovMeta(OVON); el.innerHTML = '<div class="uk-d" style="margin-bottom:4px">' + esc(m.note) + '</div>' + ovLegend(m) + '<div class="uk-d" style="margin-top:4px">' + esc(d.source) + ', ' + esc(d.as_of) + '. Click a country for its entry.</div>'; return; }
+    if (window.prevOn) { el.innerHTML = '<div class="ramp">' + ramp5().map(function (c) { return '<span style="background:' + c + '"></span>'; }).join("") + '</div><div class="rl"><span>under 2</span><span>2–4</span><span>4–6</span><span>6–9</span><span>9+</span></div><div class="uk-d" style="margin-top:4px">Walk Free, Global Slavery Index 2023: people in forced labour, forced marriage and forced sexual exploitation per 1,000, modelled from surveys.</div>'; return; }
+    el.innerHTML = "";
   }
 
   /* ---------- context overlays ---------- */
-  var OVR = ["#cdd8d1", "#a3bdb4", "#769d93", "#517d76", "#2f5b57"];
+  function OVR(i) { return ramp5()[i]; }
   var OVS = [
     { k: "sez", label: "Special economic zones", note: "Zones where ordinary labour, tax and customs rules are relaxed for investors. Count of zones per country.",
       bins: [[0, 0, "none counted"], [1, 5, "1–5"], [6, 20, "6–20"], [21, 100, "21–100"], [101, 1e12, "over 100"]] },
@@ -333,12 +431,12 @@
     var d = OVD[k], m = ovMeta(k); if (!d) return null;
     var c = d.countries && d.countries[a3];
     if (m.cats) {
-      if (c) { for (var i = 0; i < m.cats.length; i++) if (m.cats[i][0] === c.v) return OVR[m.cats[i][2]]; }
-      if (d.eu_note && d.eu_note.members && d.eu_note.members.indexOf(a3) >= 0) return OVR[0];
+      if (c) { for (var i = 0; i < m.cats.length; i++) if (m.cats[i][0] === c.v) return OVR(m.cats[i][2]); }
+      if (d.eu_note && d.eu_note.members && d.eu_note.members.indexOf(a3) >= 0) return OVR(0);
       return null;
     }
     if (!c || c.v == null) return null;
-    for (var j = 0; j < m.bins.length; j++) if (c.v >= m.bins[j][0] && c.v <= m.bins[j][1]) return OVR[j];
+    for (var j = 0; j < m.bins.length; j++) if (c.v >= m.bins[j][0] && c.v <= m.bins[j][1]) return OVR(j);
     return null;
   }
   function ovText(a3) {
@@ -353,9 +451,9 @@
   }
   function nm(a3) { return (trackerData[a3] && trackerData[a3].name) || (window.ISO_NAME && window.ISO_NAME[a3]) || a3; }
   function ovLegend(m) {
-    var rows = m.cats ? m.cats.map(function (c) { return '<div class="ur"><span class="sw-o" style="background:' + OVR[c[2]] + '"></span>' + esc(c[1]) + '</div>'; }).join("")
-      : '<div class="ramp">' + m.bins.map(function (b, i) { return '<span style="background:' + OVR[i] + '"></span>'; }).join("") + '</div><div class="rl">' + m.bins.map(function (b) { return '<span>' + esc(b[2]) + '</span>'; }).join("") + '</div>';
-    if (m.k === "corridors") rows += '<div class="ur" style="margin-top:4px"><span class="sw-l" style="border-color:#517d76"></span>corridor; thicker means more workers</div>';
+    var rows = m.cats ? m.cats.map(function (c) { return '<div class="ur"><span class="sw-o" style="background:' + OVR(c[2]) + '"></span>' + esc(c[1]) + '</div>'; }).join("")
+      : '<div class="ramp">' + m.bins.map(function (b, i) { return '<span style="background:' + OVR(i) + '"></span>'; }).join("") + '</div><div class="rl">' + m.bins.map(function (b) { return '<span>' + esc(b[2]) + '</span>'; }).join("") + '</div>';
+    if (m.k === "corridors") rows += '<div class="ur" style="margin-top:4px"><span class="sw-l" style="border-color:' + P.ln + '"></span>corridor; thicker means more workers</div>';
     return rows;
   }
   function ovDrawLines(d) {
@@ -370,7 +468,7 @@
       var cx = (lat1 + lat2) / 2 - (lon2 - lon1) * 0.14, cy = (lon1 + lon2) / 2 + (lat2 - lat1) * 0.14, pts = [];
       for (var t = 0; t <= 1.0001; t += 0.05) { var u = 1 - t; pts.push([u * u * lat1 + 2 * u * t * cx + t * t * lat2, u * u * lon1 + 2 * u * t * cy + t * t * lon2]); }
       var w = l.v ? 1.5 + 4.5 * Math.sqrt(l.v / max) : 1.5;
-      var pl = L.polyline(pts, { color: "#517d76", weight: w, opacity: 0.85, dashArray: l.v ? null : "4 4" });
+      var pl = L.polyline(pts, { color: P.ln, weight: w, opacity: 0.85, dashArray: l.v ? null : "4 4" });
       pl.bindPopup('<div class="popup-country">' + esc(nm(l.from)) + ' → ' + esc(nm(l.to)) + '</div><div class="tracker-desc">' + esc(l.text) + (l.url ? '<br><a href="' + esc(l.url) + '" target="_blank" rel="noopener">Source</a>' : '') + '</div>');
       g.addLayer(pl);
     });
@@ -378,12 +476,11 @@
   }
   function ovSet(k) {
     OVON = k || null;
-    document.querySelectorAll("#overlayBox input[data-uov]").forEach(function (cb) { cb.checked = cb.dataset.uov === OVON; });
-    document.querySelectorAll("#overlayBox .uov-leg").forEach(function (el) { el.style.display = el.dataset.uov === OVON ? "" : "none"; });
     if (OVON && window.prevOn) window.togglePrevalence(false);
     ovDrawLines(OVON === "corridors" ? OVD.corridors : null);
     restyle();
     if (SEL) select(SEL, nm(SEL));
+    shadeLegend();
   }
   function ovLoad(k) {
     if (OVD[k]) return Promise.resolve(OVD[k]);
@@ -391,48 +488,25 @@
       .catch(function () { return (window.__BUNDLED && window.__BUNDLED["data/overlays/" + k + ".json"]) || null; })
       .then(function (d) { if (d) OVD[k] = d; return d; });
   }
-  function hookOverlays() {
-    var box = $("#overlayBox"); if (!box || box.getAttribute("data-built") !== "1") return setTimeout(hookOverlays, 400);
-    var h = '<div class="psrc-head" onclick="this.parentNode.classList.toggle(\'open\')"><span>Context layers (shade the countries; one at a time)</span><span class="psrc-tog">▾</span></div><div class="psrc-body">';
-    OVS.forEach(function (m) {
-      h += '<label class="psrc-row"><input type="checkbox" data-uov="' + m.k + '"> <span class="psrc-l">' + esc(m.label) + '<span class="ov-status" data-uovs="' + m.k + '"></span></span><span class="psrc-d">' + esc(m.note) + '</span></label>' +
-        '<div class="uov-leg ukey" data-uov="' + m.k + '" style="display:none;margin-left:18px"></div>';
-    });
-    box.innerHTML = h + '</div>'; box.classList.add("open");
-    box.querySelectorAll("input[data-uov]").forEach(function (cb) {
-      cb.addEventListener("change", function () {
-        var k = cb.dataset.uov, st = box.querySelector('[data-uovs="' + k + '"]');
-        if (!cb.checked) { if (OVON === k) ovSet(null); return; }
-        st.textContent = " loading…";
-        ovLoad(k).then(function (d) {
-          st.textContent = d ? "" : " — not available";
-          if (!d) { cb.checked = false; return; }
-          var lg = box.querySelector('.uov-leg[data-uov="' + k + '"]'), m = ovMeta(k);
-          lg.innerHTML = ovLegend(m) + '<div class="mute" style="margin-top:3px">' + esc(d.source) + ', ' + esc(d.as_of) + '. Click a country for its entry.</div>';
-          ovSet(k);
-        });
-      });
-    });
-    var pc = $("#prevChk"); if (pc) pc.addEventListener("change", function () { if (pc.checked && OVON) ovSet(null); });
-  }
-
   /* ---------- boot ---------- */
   layout();
   var tries = 0;
   (function wait() {
     if (typeof geojsonLayer === "undefined" || !geojsonLayer || !window.baseStyle || !window.drawRoutes || !window.applyIntent) { if (tries++ < 600) return setTimeout(wait, 100); return; }
-    hookCountries(); hookRoutes(); hookDrill(); hookSelectors(); hookDataStatus(); keyText(); hookOverlays();
+    hookCountries(); hookRoutes(); hookDrill(); hookSelectors();
     window._reflowInfo = reflowInfo;
     var oh = window.hideInfoPanel;
     window.hideInfoPanel = function () { var r = oh.apply(this, arguments); unselect(); return r; };
     var os = window.showInfoPanel;
     window.showInfoPanel = function () {
       var r = os.apply(this, arguments);
-      keyPanel.classList.add("collapsed"); patPanel.classList.add("collapsed");
-      [keyPanel, patPanel].forEach(function (p) { p.querySelector(".uip-t").textContent = "+"; });
+      patPanel.classList.add("collapsed"); patPanel.querySelector(".uip-t").textContent = "+";
       reflowInfo(); return r;
     };
     if (!window.prevOn) window.togglePrevalence(true);
+    (function key() { var ob = $("#overlayBox"); if (!ob || ob.getAttribute("data-built") !== "1" || !$("#facFilter")) return setTimeout(key, 300); buildKey(); })();
+    var pc0 = $("#prevChk"); if (pc0) pc0.addEventListener("change", function () { if (pc0.checked && OVON) ovSet(null); shadeLegend(); });
+    theme(bmKey()); (window.__bmListeners = window.__bmListeners || []).push(function (k) { theme(k); });
     (function bases() {
       var bs = $("#bmBody .bases"); if (!bs) return setTimeout(bases, 300);
       var rs = [].slice.call(bs.querySelectorAll("input[name=basemap]"));

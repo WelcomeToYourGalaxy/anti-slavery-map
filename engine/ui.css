@@ -12,7 +12,7 @@ html body.wire-up #indexPanel { top: 122px !important; }
 
 /* Second column: the child layer's key, then its patterns. */
 #cnCol { position: fixed; left: 322px; top: 70px; bottom: 18px; width: 270px; z-index: 1001; display: flex; flex-direction: column; gap: 9px; pointer-events: none; }
-#cnCol > .uip { pointer-events: auto; background: rgba(13,22,17,0.96); border: 1px solid var(--accent-soft); border-radius: 10px; box-shadow: 0 4px 22px rgba(0,0,0,0.45); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+.uip { pointer-events: auto; background: rgba(13,22,17,0.96); border: 1px solid var(--accent-soft); border-radius: 10px; box-shadow: 0 4px 22px rgba(0,0,0,0.45); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
 #cnKeyPanel { flex: 1 1 auto; }
 #cnPatPanel { flex: 0 1 auto; max-height: 38%; }
 .uip > .uip-h { display: flex; align-items: center; gap: 6px; padding: 8px 11px; font-weight: 700; font-size: 11.5px; color: #dcdcd4; cursor: pointer; user-select: none; border-bottom: 1px solid rgba(149,171,150,0.18); }
@@ -92,3 +92,42 @@ html body.wire-up #indexPanel { top: 122px !important; }
 #bmBar #bmBody .psec { display: none; }
 #hdrBtns button { padding: 5px 9px; }
 #cnSummary .uib-b .chv-sec, #cnSummary .uib-b { font-size: 11px; }
+
+/* Lens & filters is gone; the child networks key takes its place at the top of the right column. */
+#controls { display: none !important; }
+#rightbar > #cnKeyPanel { flex: 1 1 50%; min-height: 0; pointer-events: auto; }
+#rightbar > #cnKeyPanel.collapsed { flex: 0 0 auto; }
+#cnPatPanel { flex: 0 1 auto; max-height: 100%; }
+
+/* Panels take the basemap's palette (set by ui.js). */
+#wirePanel, #indexPanel, #legend, .uip, .uibox, #infoPanel, #bmBar, #guidePanel, .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: var(--card, rgba(13,22,17,0.95)) !important; border-color: var(--line, var(--accent-soft)) !important; }
+#hdrBtns button, .uibtn, #bmSel { background: var(--card, rgba(20,32,26,0.95)); border-color: var(--line, var(--accent-soft)); }
+#hdrBtns button:hover, .uibtn:hover { background: var(--accent); }
+
+/* The map key: one list, one row style */
+#legBody .uk-sec { border-top: 1px solid var(--line, rgba(149,171,150,0.18)); padding: 6px 0 4px; }
+#legBody .uk-sec:first-child { border-top: 0; padding-top: 0; }
+#legBody .uk-h { display: flex; align-items: center; cursor: pointer; user-select: none; font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: #a3a1b4; margin-bottom: 4px; }
+#legBody .uk-h span:first-child { flex: 1; }
+#legBody .uk-sec.shut .uk-b { display: none; }
+#legBody .uk-row { display: flex; align-items: center; gap: 7px; padding: 3px 0; font-size: 11px; color: #dcdcd4; cursor: default; }
+#legBody .uk-row.off { opacity: .45; }
+#legBody .uk-row .uk-c { display: flex; margin: 0; }
+#legBody .uk-row .uk-c input, #legBody .uk-radio input { margin: 0; accent-color: var(--accent-hi); }
+#legBody .uk-radio { cursor: pointer; }
+#legBody .uk-sw { display: inline-flex; gap: 2px; align-items: center; width: 40px; flex: 0 0 40px; }
+#legBody .uk-l { flex: 1; min-width: 0; line-height: 1.3; }
+#legBody .uk-d { display: block; font-size: 9.5px; color: #a3a1b4; line-height: 1.35; }
+#legBody .uk-n { font-size: 10px; color: #a3a1b4; font-variant-numeric: tabular-nums; }
+#legBody .uk-st { font-size: 9.5px; color: #a3a1b4; }
+#legBody .uk-i { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--line, #556); background: none; color: #c9c9c0; font: italic 600 10px/1 Georgia, serif; cursor: pointer; padding: 0; flex: 0 0 auto; }
+#legBody .uk-info { display: none; margin: 2px 0 6px 47px; font-size: 10px; line-height: 1.45; color: #c9c9c0; }
+#legBody .uk-info.open { display: block; }
+#legBody .uk-out { margin-top: 6px; font-size: 10px; color: #c9c9c0; }
+#legBody #ukLeg:empty { display: none; }
+#legBody #ukLeg { margin: 4px 0 0 18px; }
+#legBody #ukFilt > *, #legBody #ukFac > *, #legBody #ukMore > * { margin-left: 0 !important; }
+#legBody .ps-pill .sw-d { display: inline-block; margin-right: 4px; vertical-align: -1px; width: 8px; height: 8px; }
+
+.uip-h .ib { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--line, #556); background: none; color: #c9c9c0; font: italic 600 10px/1 Georgia, serif; padding: 0; cursor: pointer; }

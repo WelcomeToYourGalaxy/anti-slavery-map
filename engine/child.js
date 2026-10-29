@@ -22,13 +22,12 @@ const avg = (a) => a.reduce((x, y) => x + y, 0) / a.length;
 const median = (a) => { if (!a.length) return null; const s = a.slice().sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
 
 /* ---------- colors ---------- */
-// One set for every basemap, from the host map's own tones: its olive, dark to pale, for the countries,
-// and muted earth colors for the eight settings (no yellow, no orange, no neon).
-const EARTH = ["#23271a", "#41472e", "#666d4c", "#989d80", "#d1d4c1"];
-const RAMPS = { night: EARTH, outlines: EARTH, satellite: EARTH, atlas: EARTH, hell: EARTH };
-const PAL8 = ["#e4d4ad", "#9fb6cc", "#b99ad0", "#c98ac0", "#7fb3d0", "#8fc1a9", "#c98f7a", "#b9bf86"];
-const SETPAL = { night: PAL8, outlines: PAL8, satellite: PAL8, atlas: PAL8, hell: PAL8 };
-const CATC = ["#d1d4c1", "#989d80", "#5f6646", "#33381f"];
+// The host map's palettes (engine/ui.js, window.SS_PAL), one per basemap: the same sets as the secret
+// society infiltration map. r is the five-step ramp (strongest = most), p the point colours.
+const SSP = window.SS_PAL || {};
+const RAMPS = {}, SETPAL = {}, CATS = {};
+Object.keys(SSP).forEach((k) => { RAMPS[k] = SSP[k].r; SETPAL[k] = SSP[k].p.slice(0, 8); CATS[k] = SSP[k].b.slice(0, 4); });
+const CATC = new Proxy([], { get: (t, i) => ((CATS[BASE] || CATS.atlas || [])[i]) });   // follows the basemap
 const OTHER = "#8b8578", NODATA = "rgba(0,0,0,0)";
 let BASE = "atlas";
 const ramp = () => (RAMPS[BASE] || RAMPS.night).slice().reverse();   // dark means more
@@ -326,7 +325,7 @@ function drawCases() {
 }
 function drawNets() {
   const src = map.getSource("nets"); if (!src) return;
-  if (!S.nets) { src.setData({ type: "FeatureCollection", features: [] }); return; }
+  if (!S.nets || patCids()) { src.setData({ type: "FeatureCollection", features: [] }); return; }
   src.setData({ type: "FeatureCollection", features: N.map((n, i) => n.ll ? { type: "Feature", properties: { i, col: setColor(n.type === "state" ? "conflict" : n.type), s: 0.42 + Math.min(0.5, (n.reach || []).length / 40), o: S.selNet == null || S.selNet === i ? 1 : 0.45 }, geometry: { type: "Point", coordinates: n.ll } } : null).filter(Boolean) });
 }
 function bearing(a, b) { return Math.atan2(b[0] - a[0], b[1] - a[1]) * 180 / Math.PI - 90; }
@@ -340,14 +339,14 @@ function drawLines() {
   };
   // flows
   F.forEach((f) => {
-    if (!S.linesOn || !S.flows.has(f.type) || !f.a || !f.b) return;
+    if (!S.linesOn || !S.flows.has(f.type) || !f.a || !f.b || patCids()) return;
     if (!(f.y1 == null && f.y0 == null) && (Math.max(f.y0 || f.y1, f.y1 || f.y0) < S.from || Math.min(f.y0 || f.y1, f.y1 || f.y0) > S.to)) return;
     const on = S.sel && (f.iso_a === S.sel || f.iso_b === S.sel), dim = S.sel && !on;
     const ft = FLOWT.find((x) => x[0] === f.type) || [];
     add(f.a, f.b, flowColor(f.type), on ? 2.4 : 1.3, dim ? 0.18 : 0.8, ft[3] || "solid", "<b>" + esc(f.n) + "</b><br><span class=m>" + esc(ft[1] || f.type) + (f.y0 ? " · " + f.y0 + (f.y1 && f.y1 !== f.y0 ? "–" + f.y1 : "") : "") + (f.size ? " · " + fmt(f.size, 0) + (f.size_note ? " (" + esc(f.size_note) + ")" : "") : "") + "</span>", true, 0.14);
   });
   // a selected network's documented reach
-  if (S.selNet != null && S.nets) {
+  if (S.selNet != null && S.nets && !patCids()) {
     const n = N[S.selNet];
     if (n.ll) (n.reach || []).forEach((k) => { const b = ptOf(k); if (b && k !== n.iso) add(n.ll, b, setColor(n.type === "state" ? "conflict" : n.type), 1, 0.7, "dot", "<b>" + esc(n.n) + "</b> → " + esc(P[k].n) + "<br><span class=m>documented presence</span>", false, 0.08); });
     if (n.ll) (n.reach_est || []).forEach((k) => { const b = ptOf(k); if (b && k !== n.iso) add(n.ll, b, "#9a98a6", 0.8, 0.5, "dot", "<b>" + esc(n.n) + "</b> → " + esc(P[k].n) + "<br><span class=m>presence likely, not documented</span>", false, 0.08); });
@@ -371,7 +370,9 @@ function paint() {
   map.setPaintProperty("c-dots", "circle-color", m);
   const plain = S.layer === "none";
   map.setPaintProperty("c-fill", "fill-opacity", plain ? 0 : FILLOP);
-  map.setPaintProperty("c-dots", "circle-opacity", plain ? 0 : 1); map.setPaintProperty("c-dots", "circle-stroke-opacity", plain ? 0 : 1);
+  // with "only this pattern", small-country dots show only for countries that have a role in it
+  const dop = plain ? 0 : (l.pat && S.patOnly ? ["match", ["get", "iso3"], ...ISOS.flatMap((k) => [k, l.get(P[k]) ? 1 : 0]), 0] : 1);
+  map.setPaintProperty("c-dots", "circle-opacity", dop); map.setPaintProperty("c-dots", "circle-stroke-opacity", dop);
   drawCases(); drawNets(); drawLines(); map.triggerRepaint();
 }
 
@@ -428,7 +429,7 @@ function drawLinesLegend() {
 function patExtra(pt) {
   const h = [];
   h.push('<p class="lsrc">' + (pt.cids || []).length + ' cases on the map belong to this pattern · ' + pt.countries.length + ' countries have a role</p>');
-  h.push('<label class="chk"><input type="checkbox" id="patOnly"' + (S.patOnly ? " checked" : "") + '> Show only this pattern\'s cases</label>');
+  h.push('<label class="chk"><input type="checkbox" id="patOnly"' + (S.patOnly ? " checked" : "") + '> Show only this pattern: its cases, the countries with a role, and its connections</label>');
   if (pt.series && pt.series.length) {
     const s = pt.series, mx = Math.max(...s.map((x) => x.value), 1), W = 300, H = 70, bw = W / s.length;
     h.push('<div class="psec">' + esc(pt.series_label || "Count per year") + '</div><svg viewBox="0 0 ' + W + ' ' + (H + 14) + '" style="width:100%;display:block">' + s.map((x, i) => '<rect x="' + (i * bw + 0.5).toFixed(1) + '" y="' + (H - H * x.value / mx).toFixed(1) + '" width="' + Math.max(1, bw - 1).toFixed(1) + '" height="' + (H * x.value / mx).toFixed(1) + '" rx="1" fill="var(--accent-hi)"><title>' + esc(x.year) + ': ' + fmt(x.value, 1) + '</title></rect>').join("") + '<text x="0" y="' + (H + 12) + '" fill="#a3a1b4" font-size="10">' + esc(s[0].year) + '</text><text x="' + W + '" y="' + (H + 12) + '" text-anchor="end" fill="#a3a1b4" font-size="10">' + esc(s[s.length - 1].year) + '</text></svg>' + (pt.series_note ? '<p class="lsrc">' + esc(pt.series_note) + '</p>' : ''));
@@ -553,7 +554,7 @@ function openPattern(id, noFit) {
   $("#patBody").innerHTML = '<div class="hp-k">Pattern behind the scenes</div><h3>' + esc(pt.title) + '</h3>' +
     '<div class="story">' + esc(pt.summary || "").split(/\n\n+/).map((x) => '<p>' + x + '</p>').join("") + '</div>' + patExtra(pt);
   $("#patBody").querySelectorAll("[data-case]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); openCase(+a.dataset.case, true); }));
-  const po = $("#patOnly"); if (po) po.addEventListener("change", (e) => { S.patOnly = e.target.checked; drawCases(); });
+  const po = $("#patOnly"); if (po) po.addEventListener("change", (e) => { S.patOnly = e.target.checked; drawCases(); drawNets(); drawLines(); paint(); });
   b.classList.add("open"); b.scrollTop = 0; raise(b);
 }
 function closePat() { $("#patBox").classList.remove("open"); }
@@ -595,7 +596,6 @@ function countryHTML(k, embed) {
   if (st || roles.length) {
     h.push('<div class="hp-h">Behind the scenes</div>');
     if (st) h.push('<div class="story">' + st.story.split(/\n\n+/).map((x) => '<p>' + esc(x) + '</p>').join("") + '</div>');
-    if (roles.length) h.push('<p class="note">Patterns this country is part of: ' + roles.map(([pt, c]) => '<a href="#" data-pat="' + pt.id + '" title="' + esc(c.role) + '">' + esc(pt.title) + '</a>').join(" · ") + '</p>');
   }
   const ncs = casesOf(k).length;
   if (ncs) h.push('<p class="note">' + ncs + ' documented case' + (ncs === 1 ? '' : 's') + ' here on the map in the chosen years; click a dot to open one.</p>');
