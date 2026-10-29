@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-28T22:18:40.851360+00:00",
+ "generated": "2026-10-29T04:25:05.432395+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -125624,7 +125624,7 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "Мировые суьи",
+   "name": "Мировые судьи",
    "k": "ch",
    "type": "Courthouse",
    "lat": 53.3633316,
@@ -184301,6 +184301,16 @@
    "lng": 66.5517209,
    "country": "",
    "url": "https://www.openstreetmap.org/way/237705824",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "San Juan County Courthouse",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 37.8148234,
+   "lng": -107.6621166,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/237723592",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -309114,6 +309124,26 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
+   "name": "Moss Justice Center",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 34.9826203,
+   "lng": -81.1992367,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1573203921",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "Complexo Judiciário da Infância e Juventude Irmã Maria Aldete do Menino Jesus",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": -7.2276411,
+   "lng": -35.8807002,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1573252867",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
    "name": "Delegation of the European Commission in South Africa",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -357967,8 +357997,8 @@
    "name": "Consulado Honorario de la República Checa",
    "k": "dp",
    "type": "Embassy / consulate",
-   "lat": 20.6738259,
-   "lng": -103.3618982,
+   "lat": 20.6737982,
+   "lng": -103.3619016,
    "country": "CZ",
    "url": "https://www.openstreetmap.org/node/5492958857",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
@@ -458567,8 +458597,8 @@
    "name": "Consulado General de los EE UU AA",
    "k": "dp",
    "type": "Embassy / consulate",
-   "lat": 20.6734626,
-   "lng": -103.3668519,
+   "lat": 20.6734573,
+   "lng": -103.3668478,
    "country": "US",
    "url": "https://www.openstreetmap.org/way/436626217",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
@@ -545297,8 +545327,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 29.3760051,
-   "lng": 34.7938609,
+   "lat": 29.3760039,
+   "lng": 34.7938555,
    "country": "",
    "url": "https://www.openstreetmap.org/node/9239598914",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -545307,8 +545337,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 29.3758677,
-   "lng": 34.7938937,
+   "lat": 29.375899,
+   "lng": 34.7938709,
    "country": "",
    "url": "https://www.openstreetmap.org/node/9239598915",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -563967,8 +563997,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 40.0305017,
-   "lng": 124.3510075,
+   "lat": 40.0304899,
+   "lng": 124.3510083,
    "country": "",
    "url": "https://www.openstreetmap.org/node/13608881791",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
