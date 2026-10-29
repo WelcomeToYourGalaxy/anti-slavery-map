@@ -274,7 +274,7 @@ function addLayers(geo) {
     const np = q(e.point, ["net-node"], 6)[0];
     if (np) { const n = N[np.properties.i]; map.getCanvas().style.cursor = "pointer"; tip("<b>" + esc(n.n) + "</b><br><span class=m>" + esc(n.hq || "") + " · documented in " + (n.reach || []).length + " countr" + ((n.reach || []).length === 1 ? "y" : "ies") + "</span>", ...xy); return true; }
     const ln = q(e.point, ["ln-solid", "ln-dash", "ln-dot"], 2)[0];
-    if (ln && ln.properties.t) { tip(ln.properties.t, ...xy); return true; }
+    if (ln && ln.properties.t) { tip(ln.properties.t, ...xy); return false; }   // a line shows its label but leaves the country under it hovered
     tip(null); return false;
   };
   map.on("mouseout", () => { tip(null); });

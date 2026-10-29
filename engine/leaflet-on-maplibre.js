@@ -119,7 +119,7 @@ function LMap(id, opts) {
   THE_MAP = this;
   var c = opts.center ? toLatLng(opts.center) : new LatLng(20, 0);
   this._bm = window.CulpritsBasemaps.create(this._container, {
-    initial: opts.basemap || window.SHIM_BASEMAP || "atlas", projection: opts.projection || "globe",
+    initial: opts.basemap || window.SHIM_BASEMAP || "atlas", projection: opts.projection || "globe", plate: window.SHIM_PLATE || undefined,
     center: [c.lng, c.lat], zoom: Math.max(0, (opts.zoom == null ? 3 : opts.zoom) - ZO),
     onApply: function (k) { self._basemap = k; (window.__bmListeners || []).forEach(function (f) { try { f(k); } catch (e) { console.error(e); } }); self._reorder(); },
     onReady: function () { self._setup(); },
@@ -140,6 +140,62 @@ function LMap(id, opts) {
   this._controls();
 }
 mix(LMap);
+/* Canvas layers (L.Layer.extend with a _draw that paints dots on a <canvas>). Leaflet slides such a canvas with the
+   map during a drag; MapLibre cannot, and redrawing by hand on every frame is too slow and wrong on a globe. So each
+   _draw is run in "record" mode: the positions it asks for are noted, the circles it paints are captured, and the
+   result is handed to MapLibre as native circles, which then move, wrap round the globe and hide behind it by
+   themselves. The layer's own click code still uses real screen positions. */
+var CV_ID = 1;
+function recorder(items) {
+  var path = [], st = { fillStyle: "#000", strokeStyle: "#000", globalAlpha: 1, lineWidth: 1 };
+  var ctx = {
+    canvas: null,
+    clearRect: function () {}, fillRect: function () {}, strokeRect: function () {}, save: function () {}, restore: function () {},
+    setLineDash: function () {}, moveTo: function () {}, lineTo: function () {}, closePath: function () {}, fillText: function () {}, strokeText: function () {},
+    measureText: function () { return { width: 0 }; }, translate: function () {}, scale: function () {}, rotate: function () {}, setTransform: function () {},
+    beginPath: function () { path = []; },
+    arc: function (x, y, r) { path.push({ i: Math.round(x), ok: y < -9e6, r: r }); },
+    fill: function () { path.forEach(function (a) { if (a.ok) items.push({ i: a.i, r: a.r, fc: String(st.fillStyle), fo: st.globalAlpha, w: 0 }); }); },
+    stroke: function () { path.forEach(function (a) { if (!a.ok) return; var last = items[items.length - 1];
+      if (last && last.i === a.i && Math.abs(last.r - a.r) < 1e-6 && !last.w) { last.sc = String(st.strokeStyle); last.w = st.lineWidth; last.so = st.globalAlpha; }
+      else items.push({ i: a.i, r: a.r, fc: "rgba(0,0,0,0)", fo: 0, sc: String(st.strokeStyle), w: st.lineWidth, so: st.globalAlpha }); }); },
+  };
+  Object.keys(st).forEach(function (k) { Object.defineProperty(ctx, k, { get: function () { return st[k]; }, set: function (v) { st[k] = v; } }); });
+  return ctx;
+}
+LMap.prototype._wrapCanvasLayer = function (l) {
+  if (l._cvWrapped || typeof l._draw !== "function") return;
+  var self = this, orig = l._draw;
+  l._cvWrapped = true; l._cvId = "cv-" + (CV_ID++);
+  l._draw = function () { return self._record(l, orig, arguments); };
+};
+LMap.prototype._record = function (l, draw, args) {
+  if (!this._loaded) { var me = this; this.whenReady(function () { me._record(l, draw, args); }); return; }
+  var self = this, pts = [], items = [], cv = l._cv;
+  var ctx = recorder(items), realGet = cv && cv.getContext, realL2C = this.latLngToContainerPoint, realB = this.getBounds;
+  if (cv) cv.getContext = function () { return ctx; };
+  this.latLngToContainerPoint = function (ll) { ll = toLatLng(ll); pts.push(ll); return new Point(pts.length - 1, -1e7); };
+  this.getBounds = function () { var b = realB.call(self), z = self.getZoom(); return z < 5 ? new LatLngBounds([-85, -180], [85, 180]) : b.pad(0.75); };
+  try { draw.apply(l, args || []); } catch (e) { console.warn("[canvas layer]", e); }
+  finally { this.latLngToContainerPoint = realL2C; this.getBounds = realB; if (cv) cv.getContext = realGet; }
+  var feats = [];
+  for (var k = 0; k < items.length; k++) { var it = items[k], ll = pts[it.i]; if (!ll) continue;
+    feats.push({ type: "Feature", properties: { k: k, r: it.r, fc: it.fc, fo: it.fo, sc: it.sc || "rgba(0,0,0,0)", w: it.w || 0, so: it.so == null ? 1 : it.so }, geometry: { type: "Point", coordinates: [ll.lng, ll.lat] } }); }
+  this._cvLayer(l, feats);
+};
+LMap.prototype._cvLayer = function (l, feats) {
+  var m = this._ml, id = l._cvId;
+  if (!m.getSource(id)) {
+    m.addSource(id, { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+    m.addLayer({ id: id, type: "circle", source: id, layout: { "circle-sort-key": ["get", "k"] }, paint: {
+      "circle-radius": ["get", "r"], "circle-color": ["get", "fc"], "circle-opacity": ["get", "fo"],
+      "circle-stroke-color": ["get", "sc"], "circle-stroke-width": ["get", "w"], "circle-stroke-opacity": ["get", "so"], "circle-pitch-alignment": "map" } }, m.getLayer("anchor-top") ? "anchor-top" : undefined);
+    (this._cvIds = this._cvIds || []).push({ id: id, pane: l._cvPane || "overlayPane" });
+    this._reorder();
+  }
+  m.getSource(id).setData({ type: "FeatureCollection", features: feats });
+};
+LMap.prototype._cvClear = function (l) { var m = this._ml; if (l._cvId && m.getSource(l._cvId)) m.getSource(l._cvId).setData({ type: "FeatureCollection", features: [] }); };
 LMap.prototype._evt = function (e) { var ll = e.lngLat ? new LatLng(e.lngLat.lat, e.lngLat.lng) : null; return { latlng: ll, containerPoint: e.point ? new Point(e.point.x, e.point.y) : null, layerPoint: e.point ? new Point(e.point.x, e.point.y) : null, originalEvent: e.originalEvent }; };
 LMap.prototype._setup = function () {
   var m = this._ml;
@@ -167,10 +223,11 @@ LMap.prototype._reorder = function () {
   var m = this._ml; if (!this._loaded || !m.getStyle()) return;
   this._ensureAnchors();
   var cn = window.__cnLayers || { bottom: [], top: [] };
-  var mine = {}; ["anchor-mid", "anchor-top"].concat(cn.bottom, cn.top, this._mlIds()).forEach(function (id) { mine[id] = 1; });
+  var mine = {}; ["anchor-mid", "anchor-top"].concat(cn.bottom, cn.top, this._mlIds(), (this._cvIds || []).map(function (x) { return x.id; })).forEach(function (id) { mine[id] = 1; });
   var st = m.getStyle().layers, first = null;
   for (var i = 0; i < st.length; i++) { var l = st[i]; if (!mine[l.id] && (l.type === "symbol" || l.id === "labels")) { first = l.id; break; } }
-  var seq = ["anchor-mid"].concat(cn.bottom, this._mlIds(), ["anchor-top"], cn.top);
+  var cvs = (this._cvIds || []).map(function (x) { return x.id; });
+  var seq = ["anchor-mid"].concat(cn.bottom, this._mlIds(), cvs, ["anchor-top"], cn.top);
   seq.forEach(function (id) { if (m.getLayer(id)) try { m.moveLayer(id, first || undefined); } catch (e) {} });
 };
 LMap.prototype._mlIds = function () { var out = []; var ps = Object.keys(this._vpanes || {}).sort(function (a, b) { return paneZ(a) - paneZ(b); }); ps.forEach(function (p) { out.push("v-" + p + "-fill", "v-" + p + "-line", "v-" + p + "-dash", "v-" + p + "-circle"); }); return out; };
@@ -253,8 +310,8 @@ LMap.prototype.getPane = function (name) { if (name && typeof name !== "string")
 LMap.prototype.getPanes = function () { return this._panes; };
 
 /* layers */
-LMap.prototype.addLayer = function (l) { if (!l) return this; if (this._layers.indexOf(l) >= 0) return this; this._layers.push(l); l._map = this; if (l._onAddTo) l._onAddTo(this); else if (l.onAdd) l.onAdd(this); if (l.fire) l.fire("add"); return this; };
-LMap.prototype.removeLayer = function (l) { var i = this._layers.indexOf(l); if (i < 0) return this; this._layers.splice(i, 1); if (l._onRemoveFrom) l._onRemoveFrom(this); else if (l.onRemove) l.onRemove(this); l._map = null; if (l.fire) l.fire("remove"); return this; };
+LMap.prototype.addLayer = function (l) { if (!l) return this; if (this._layers.indexOf(l) >= 0) return this; this._layers.push(l); l._map = this; if (l._onAddTo) l._onAddTo(this); else if (l.onAdd) { this._wrapCanvasLayer(l); l.onAdd(this); } if (l.fire) l.fire("add"); return this; };
+LMap.prototype.removeLayer = function (l) { var i = this._layers.indexOf(l); if (i < 0) return this; this._layers.splice(i, 1); if (l._onRemoveFrom) l._onRemoveFrom(this); else if (l.onRemove) { l.onRemove(this); this._cvClear(l); } l._map = null; if (l.fire) l.fire("remove"); return this; };
 LMap.prototype.hasLayer = function (l) { return !!l && this._layers.indexOf(l) >= 0; };
 LMap.prototype.eachLayer = function (fn, ctx) { this._layers.slice().forEach(function (l) { fn.call(ctx, l); }); return this; };
 LMap.prototype.openPopup = function (p, ll) { if (!(p instanceof Popup)) { p = new Popup().setContent(p); if (ll) p.setLatLng(ll); } p.openOn(this); return this; };
@@ -263,7 +320,7 @@ LMap.prototype.remove = function () { this._ml.remove(); return this; };
 LMap.prototype.stop = function () { this._ml.stop(); return this; };
 
 /* ---------- vectors ---------- */
-var PATH_ID = 1;
+var PATH_ID = 1, GROUP_STYLING = 0;
 LMap.prototype._vp = function (pane) {
   var vp = this._vpanes || (this._vpanes = {});
   if (!vp[pane]) { vp[pane] = { paths: {}, dirty: true, src: null }; if (this._loaded) this._mlPane(pane); }
@@ -325,7 +382,11 @@ Path.prototype._onAddTo = function (map) { this._map = map; var P = map._vp(this
 Path.prototype._onRemoveFrom = function (map) { var P = map._vp(this._paneName()); delete P.paths[this._pid]; P.dirty = true; map._schedule(); if (map._hover === this) map._hover = null; };
 Path.prototype.addTo = function (map) { map.addLayer(this); return this; };
 Path.prototype.remove = function () { if (this._map) this._map.removeLayer(this); return this; };
-Path.prototype.setStyle = function (s) { Object.assign(this.options, s || {}); if ("dashArray" in (s || {})) this._touch(true); else this._touch(false); return this; };
+Path.prototype.setStyle = function (s) {
+  var group = GROUP_STYLING > 0;
+  if (this._inHover && this._hoverStyle && !group) Object.assign(this._hoverStyle, s || {});
+  Object.assign(this.options, s || {});
+  if (group && this._hoverStyle && this._map && this._map._hover === this) Object.assign(this.options, this._hoverStyle); if ("dashArray" in (s || {})) this._touch(true); else this._touch(false); return this; };
 Path.prototype.bringToFront = function () { return this; };
 Path.prototype.bringToBack = function () { return this; };
 Path.prototype.redraw = function () { this._touch(true); return this; };
@@ -400,7 +461,7 @@ LayerGroup.prototype._onAddTo = function (map) { this._map = map; this._ls.forEa
 LayerGroup.prototype._onRemoveFrom = function (map) { this._ls.forEach(function (l) { map.removeLayer(l); }); this._map = null; };
 LayerGroup.prototype.addTo = function (map) { map.addLayer(this); return this; };
 LayerGroup.prototype.remove = function () { if (this._map) this._map.removeLayer(this); return this; };
-LayerGroup.prototype.setStyle = function (s) { this._ls.forEach(function (l) { if (l.setStyle) l.setStyle(typeof s === "function" ? s(l.feature) : s); }); return this; };
+LayerGroup.prototype.setStyle = function (s) { GROUP_STYLING++; try { this._ls.forEach(function (l) { if (l.setStyle) l.setStyle(typeof s === "function" ? s(l.feature) : s); }); } finally { GROUP_STYLING--; } return this; };
 LayerGroup.prototype.bringToFront = function () { return this; };
 LayerGroup.prototype.bringToBack = function () { return this; };
 LayerGroup.prototype.getBounds = function () { var b = new LatLngBounds(); this._ls.forEach(function (l) { if (l.getBounds) b.extend(l.getBounds()); else if (l.getLatLng) b.extend(l.getLatLng()); }); return b; };
@@ -434,11 +495,14 @@ GeoJSON.prototype.addData = function (data) {
   return this;
 };
 GeoJSON.prototype.resetStyle = function (l) {
-  var o = this.options, apply = function (x) { if (!x.setStyle) return; var base = Object.assign({}, x.defaultOptions || {}); var s = typeof o.style === "function" ? o.style(x.feature) : (o.style || {}); x.options = Object.assign({}, PATH_DEF, base, s); x._touch(false); };
+  var o = this.options, apply = function (x) { if (!x.setStyle) return; var base = Object.assign({}, x.defaultOptions || {}); var s = typeof o.style === "function" ? o.style(x.feature) : (o.style || {}); x.options = Object.assign({}, PATH_DEF, base, s); if (x._hoverStyle && x._map && x._map._hover === x && !l) Object.assign(x.options, x._hoverStyle); x._touch(false); };
   if (l) apply(l); else this._ls.forEach(apply);
   return this;
 };
 GeoJSON.prototype.setStyle = function (s) {
+  GROUP_STYLING++; try { this._setStyle(s); } finally { GROUP_STYLING--; } return this;
+};
+GeoJSON.prototype._setStyle = function (s) {
   if (typeof s === "function") { this._ls.forEach(function (l) { if (l.setStyle) l.setStyle(s(l.feature)); }); this.options.style = this.options.style || s; }
   else this._ls.forEach(function (l) { if (l.setStyle) l.setStyle(s); });
   return this;
@@ -489,8 +553,16 @@ LMap.prototype._setHover = function (path, e) {
   var old = this._hover;
   if (old === path) { if (path && e) path.fire("mousemove", e, true); return; }
   this._hover = path;
+  if (old) { old._hoverStyle = null; old._inHover = false; }
   if (old && e !== undefined) old.fire("mouseout", e || {}, true);
-  if (path) path.fire("mouseover", e, true);
+  if (path) {
+    // Whatever the mouseover handler styles the path with is its hover style. In Leaflet a later restyle of the
+    // whole layer would wipe it; here it is put back, so a highlighted country stays highlighted while the pointer is on it.
+    path._hoverStyle = {}; path._inHover = true;
+    path.fire("mouseover", e, true);
+    path._inHover = false;
+    if (path._hoverStyle && !Object.keys(path._hoverStyle).length) path._hoverStyle = null;
+  }
   this._ml.getCanvas().style.cursor = path && (path.listens("click") || path._popupContent) ? "pointer" : "";
 };
 LMap.prototype._onMove = function (e) {
