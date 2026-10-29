@@ -142,6 +142,10 @@
 .cn-about p,.cn-about li{font-size:12.5px;line-height:1.55}
 @media (max-width:640px){.cnbox{max-height:70vh}.cnui .bars{grid-template-columns:100px 1fr 30px}}
 
+.cnwin table.cklist th,.cnwin table.cklist td{text-align:left;white-space:normal;vertical-align:top}
+.cnwin table.cklist td:first-child{white-space:nowrap}
+.cnwin table.cklist td:last-child{white-space:nowrap}
+
 </style>
 <!--/ENGINE:head-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script><!--ENGINE:js-->
@@ -7410,7 +7414,7 @@ function stars() {
 function update() { computeDoc(); drawLegend(); drawSwatches(); paint(); drawList(); drawCharts(); if (S.sel) detail(S.sel); }
 function init() {
   window.__cnAbout = openAbout;
-  buildKey(); buildTr(); buildDock(); stars(); computeDoc(); drawSwatches();
+  buildKey(); buildTr(); buildDock(); stars(); computeDoc(); drawSwatches(); drawCoverage();
   fetch(BOUND_URL).then((r) => r.json()).then((geo) => { addLayers(geo); ready = true; update(); }).catch((e) => { console.warn("boundaries", e); });
   $("#detX").addEventListener("click", deselect);
   $("#patX").addEventListener("click", closePat);
@@ -7453,6 +7457,46 @@ function addPanel(html) {
   S.sel = k; paint();
 }
 
+/* ---------- coverage: the two checklists, so readers can see how complete this layer is ---------- */
+const CIDX = {}; C.forEach((c, i) => { CIDX[c.id] = i; });
+function covStats() {
+  const cv = D.COV || { findings: [], kinds: [] };
+  const fs = cv.findings.filter((f) => !f.ex), fOn = fs.filter((f) => f.cid);
+  const ks = cv.kinds, kOn = ks.filter((k) => k.cids.length);
+  return { fs, fOn, ks, kOn, ex: cv.findings.filter((f) => f.ex) };
+}
+function drawCoverage() {
+  const el = $("#cnCov"); if (!el) return;
+  const s = covStats(); if (!s.fs.length && !s.ks.length) { el.innerHTML = ""; return; }
+  const pc = (a, b) => b ? Math.round(100 * a / b) : 0;
+  el.innerHTML = '<div class="psec" style="margin-top:6px">How complete this is</div>' +
+    (s.ks.length ? '<div class="lg"><span>Kinds of abuse and trafficking with documented cases</span><span class="n">' + s.kOn.length + ' of ' + s.ks.length + ' (' + pc(s.kOn.length, s.ks.length) + '%)</span></div>' : '') +
+    (s.fs.length ? '<div class="lg"><span>Major official findings on the map</span><span class="n">' + s.fOn.length + ' of ' + s.fs.length + ' (' + pc(s.fOn.length, s.fs.length) + '%)</span></div>' : '') +
+    '<p class="lsrc">The kinds come from four published lists: those of the inquiries in England and Wales and in Australia, the international guidelines on terms for the sexual exploitation of children, and the UN’s report on trafficking in persons. A major official finding is a report by an inquiry, commission, grand jury, parliament, court, UN body or an institution’s own commissioned investigation that covers a whole country, state, institution or 100 or more children. ' +
+    'Everything else on the map is a small part of all the connected cases ever documented (roughly 1 to 5 percent, by this map’s estimate), and most abuse is never reported at all.</p>' +
+    '<p class="lsrc"><a href="#" id="covF">See the findings checklist</a> · <a href="#" id="covK">See the kinds</a></p>';
+  $("#covF").addEventListener("click", (e) => { e.preventDefault(); openList("Major official findings: the checklist", findingsHTML()); });
+  $("#covK").addEventListener("click", (e) => { e.preventDefault(); openList("Kinds of abuse and trafficking: the checklist", kindsHTML()); });
+}
+function caseLink(id) { const i = CIDX[id]; return i == null ? '' : '<a href="#" data-case="' + i + '">on the map</a>'; }
+function findingsHTML() {
+  const s = covStats(), rows = s.fs.slice().sort((a, b) => ((P[a.iso] || {}).n || "").localeCompare((P[b.iso] || {}).n || "") || (a.y || 0) - (b.y || 0));
+  return '<p>' + s.fOn.length + ' of ' + s.fs.length + ' major official findings on the checklist are on the map. Each row names the body, its year, how far it reached and its report.</p>' +
+    '<table class="all cklist"><thead><tr><th>Country</th><th>Finding</th><th>Year</th><th></th></tr></thead><tbody>' +
+    rows.map((f) => '<tr><td>' + esc((P[f.iso] || {}).n || f.iso || "International") + '</td><td>' + esc(f.n) + '<br><span class="note">' + esc([f.body, f.reach].filter(Boolean).join(" · ")) + '</span></td><td>' + esc(f.y || "") + '</td><td>' + (f.url ? link("report", f.url) : "") + (f.cid ? '<br>' + caseLink(f.cid) : "<br>not yet") + '</td></tr>').join("") + '</tbody></table>' +
+    (s.ex.length ? '<p class="lsrc" style="margin-top:12px">Considered and left out (' + s.ex.length + '): ' + s.ex.map((f) => esc(f.n) + (f.why ? ' (' + esc(f.why) + ')' : '')).join("; ") + '.</p>' : '');
+}
+function kindsHTML() {
+  const s = covStats();
+  return '<p>' + s.kOn.length + ' of ' + s.ks.length + ' kinds have documented cases on the map.</p>' +
+    s.ks.map((k) => '<div class="lg" style="display:block;padding:7px 0"><b>' + esc(k.label) + '</b> <span class="n">' + k.cids.length + ' case' + (k.cids.length === 1 ? '' : 's') + '</span><br><span class="note">' + esc(k.def) + (k.src ? ' Source: ' + (k.url ? link(k.src, k.url) : esc(k.src)) + '.' : '') + '</span>' +
+      (k.cids.length ? '<br><span class="note">' + k.cids.slice(0, 12).map((id) => { const i = CIDX[id]; return i == null ? '' : '<a href="#" data-case="' + i + '">' + esc(C[i].n) + '</a>'; }).filter(Boolean).join(" · ") + (k.cids.length > 12 ? ' · and ' + (k.cids.length - 12) + ' more' : '') + '</span>' : '') + '</div>').join("");
+}
+function openList(title, html) {
+  const p = $("#guidePanel"), t = $("#guideTitle"), b = $("#guideBody"); if (!p || !b) return;
+  t.textContent = title; b.innerHTML = '<div class="pb-body cnui cn-about cnwin" style="position:static;resize:none;border:0;box-shadow:none;background:none;display:block">' + html + '</div>'; b.scrollTop = 0;
+  p.classList.add("open"); p.setAttribute("aria-hidden", "false"); wireIn(b);
+}
 /* ---------- about and sources: shown in the host map's guide reader ---------- */
 function openAbout() {
   const p = $("#guidePanel"), t = $("#guideTitle"), b = $("#guideBody");
@@ -7471,7 +7515,7 @@ function mountUI() {
   const sec = document.createElement("div"); sec.id = "cnSec"; sec.className = "cnui cn-blk";
   sec.innerHTML = '<div class="cn-head">Child abuse networks and child trafficking</div>' +
     '<p class="lsrc" style="margin:2px 0 6px">Organised abuse, sale and trafficking of children, the institutions that shielded it, and the patterns that repeat across countries. Click a dot or a diamond for its record; a country\'s box below its services has this layer\'s section.</p>' +
-    '<div id="cnKeyBody"></div><div class="psec">Charts</div><div id="dockBtns"></div>' +
+    '<div id="cnCov"></div><div id="cnKeyBody"></div><div class="psec">Charts</div><div id="dockBtns"></div>' +
     '<p class="lsrc" style="margin-top:8px"><a href="#" id="cnAbout">About this layer and its sources</a></p>';
   if (lb) { lb.insertBefore(bm, lb.firstChild); lb.appendChild(sec); } else { document.body.appendChild(bm); document.body.appendChild(sec); }
   const add = (html) => { const d = document.createElement("div"); d.innerHTML = html; const el = d.firstChild; document.body.appendChild(el); return el; };
