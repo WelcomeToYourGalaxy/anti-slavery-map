@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-30T04:24:40.944488+00:00",
+ "generated": "2026-10-30T12:14:53.136824+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -201744,6 +201744,16 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
+   "name": "Diyarbakır İdare ve Vergi Mahkemeleri",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 37.9178171,
+   "lng": 40.1370731,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/331027327",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
    "name": "Fórum",
    "k": "ch",
    "type": "Courthouse",
@@ -223641,6 +223651,16 @@
    "lng": -94.9121899,
    "country": "",
    "url": "https://www.openstreetmap.org/way/470322840",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "삼척시법원",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 37.4491467,
+   "lng": 129.1768755,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/470416615",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -493904,6 +493924,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "落馬洲 Lok Ma Chau",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 22.5088451,
+   "lng": 114.073796,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/1492216223",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Zoll Kreuzlingen-Autobahn",
    "k": "bd",
    "type": "Border / customs post",
@@ -565894,6 +565924,16 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
+   "name": "落馬洲 Lok Ma Chau",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 22.5099382,
+   "lng": 114.0742901,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14074843444",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
    "name": "Granični prelaz Kusjak",
    "k": "bd",
    "type": "Border / customs post",
@@ -566791,6 +566831,16 @@
    "lng": 71.7314327,
    "country": "",
    "url": "https://www.openstreetmap.org/node/14331323518",
+   "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
+  },
+  {
+   "name": "Dar Border Checkpoint",
+   "k": "bd",
+   "type": "Border / customs post",
+   "lat": 11.7760409,
+   "lng": 106.0784249,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14333041548",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
@@ -572817,8 +572867,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 22.5100961,
-   "lng": 114.0743856,
+   "lat": 22.5100384,
+   "lng": 114.0743989,
    "country": "",
    "url": "https://www.openstreetmap.org/way/629889557",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -572827,8 +572877,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 22.5097181,
-   "lng": 114.0747443,
+   "lat": 22.5096604,
+   "lng": 114.0747576,
    "country": "",
    "url": "https://www.openstreetmap.org/way/629889558",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -572837,8 +572887,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 22.5088202,
-   "lng": 114.0736918,
+   "lat": 22.5087626,
+   "lng": 114.0737051,
    "country": "",
    "url": "https://www.openstreetmap.org/way/629889559",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -572847,8 +572897,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 22.5092093,
-   "lng": 114.0733277,
+   "lat": 22.5091516,
+   "lng": 114.073341,
    "country": "",
    "url": "https://www.openstreetmap.org/way/629889560",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
