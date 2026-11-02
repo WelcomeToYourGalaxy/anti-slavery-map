@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-02T04:26:01.467266+00:00",
+ "generated": "2026-11-02T10:54:53.871860+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -139744,7 +139744,7 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "Siwan District Court",
+   "name": "District Civil Court",
    "k": "ch",
    "type": "Courthouse",
    "lat": 26.2265202,
@@ -452941,16 +452941,6 @@
    "lng": 39.2786292,
    "country": "ZM",
    "url": "https://www.openstreetmap.org/way/362933389",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
-   "name": "Nigeria High Commissioner's Residence",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": -6.7425392,
-   "lng": 39.2845324,
-   "country": "NG",
-   "url": "https://www.openstreetmap.org/way/362935015",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
