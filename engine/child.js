@@ -743,8 +743,8 @@ function drawDelay(w) {
 }
 function drawNetWin(w) {
   const rows = N.map((n, i) => [n, i, C.filter((c) => c.net === i)]).sort((a, b) => (b[0].reach || []).length - (a[0].reach || []).length || b[2].length - a[2].length);
-  w.body.innerHTML = '<table class="all"><thead><tr><th>Network or institution</th><th>Setting</th><th>Headquarters</th><th>Years</th><th>Status</th><th>Documented in</th><th>Likely in</th><th>Cases here</th></tr></thead><tbody>' +
-    rows.map(([n, i, cs]) => '<tr class="r' + (S.selNet === i ? " sel" : "") + '" data-n="' + i + '"><td style="white-space:normal;min-width:180px;max-width:320px">' + esc(n.n) + '</td><td>' + esc(setLabel(n.type === "state" ? "conflict" : n.type)) + '</td><td style="white-space:normal">' + esc([n.hq, P[n.iso] && P[n.iso].n].filter(Boolean).join(", ")) + '</td><td>' + esc(n.y0 ? n.y0 + "–" + (n.y1 || "") : "") + '</td><td>' + esc(n.status || "") + '</td><td>' + (n.reach || []).length + '</td><td>' + (n.reach_est || []).length + '</td><td>' + cs.length + '</td></tr>').join("") + '</tbody></table>';
+  w.body.innerHTML = '<table class="all fit"><colgroup><col style="width:30%"><col style="width:15%"><col style="width:15%"><col style="width:9%"><col style="width:13%"><col style="width:6%"><col style="width:6%"><col style="width:6%"></colgroup><thead><tr><th>Network or institution</th><th>Setting</th><th>Headquarters</th><th>Years</th><th>Status</th><th title="Countries where it is documented">Docu&shy;mented in</th><th title="Countries where its presence is likely">Likely in</th><th>Cases here</th></tr></thead><tbody>' +
+    rows.map(([n, i, cs]) => '<tr class="r' + (S.selNet === i ? " sel" : "") + '" data-n="' + i + '"><td>' + esc(n.n) + '</td><td>' + esc(setLabel(n.type === "state" ? "conflict" : n.type)) + '</td><td style="white-space:normal">' + esc([n.hq, P[n.iso] && P[n.iso].n].filter(Boolean).join(", ")) + '</td><td>' + esc(n.y0 ? n.y0 + "–" + (n.y1 || "") : "") + '</td><td>' + esc(n.status || "") + '</td><td>' + (n.reach || []).length + '</td><td>' + (n.reach_est || []).length + '</td><td>' + cs.length + '</td></tr>').join("") + '</tbody></table>';
   w.body.querySelectorAll("tr.r").forEach((tr) => tr.addEventListener("click", () => openNet(+tr.dataset.n, true)));
   w.foot.textContent = "Sorted by the number of countries each is documented in. Click a row to draw its reach on the map.";
 }
@@ -833,11 +833,8 @@ function drawCoverage() {
   const el = $("#cnCov"); if (!el) return;
   const s = covStats(); if (!s.fs.length && !s.ks.length) { el.innerHTML = ""; return; }
   const pc = (a, b) => b ? Math.round(100 * a / b) : 0;
-  el.innerHTML = '<div class="psec" style="margin-top:6px">How complete this is</div>' +
-    (s.ks.length ? '<div class="lg"><span>Kinds of abuse and trafficking with documented cases</span><span class="n">' + s.kOn.length + ' of ' + s.ks.length + ' (' + pc(s.kOn.length, s.ks.length) + '%)</span></div>' : '') +
-    (s.fs.length ? '<div class="lg"><span>Major official findings on the map</span><span class="n">' + s.fOn.length + ' of ' + s.fs.length + ' (' + pc(s.fOn.length, s.fs.length) + '%)</span></div>' : '') +
-    '<p class="lsrc">The kinds come from four published lists: those of the inquiries in England and Wales and in Australia, the international guidelines on terms for the sexual exploitation of children, and the UN’s report on trafficking in persons. A major official finding is a report by an inquiry, commission, grand jury, parliament, court, UN body or an institution’s own commissioned investigation that covers a whole country, state, institution or 100 or more children. ' +
-    'Everything else on the map is a small part of all the connected cases ever documented (roughly 1 to 5 percent, by this map’s estimate), and most abuse is never reported at all.</p>' +
+  el.innerHTML = '<p class="lsrc" style="margin:2px 0 6px">Organised abuse, sale and trafficking of children, the institutions that shield it, and the patterns that repeat across countries. The map covers all major official findings (' + s.fOn.length + ' of ' + s.fs.length + '), reports by an inquiry, commission, grand jury, parliament, court, UN body or an institution’s own commissioned investigation that covers a whole country, state, institution or 100 or more children. ' +
+    'Everything else on the map is a small part of all the connected cases ever documented (roughly 1 to 5 percent, by this map’s estimate), and most abuse is never reported at all. Click a dot or a diamond for its record; click a country for a writeup on it.</p>' +
     '<p class="lsrc"><a href="#" id="covF">See the findings checklist</a> · <a href="#" id="covK">See the kinds</a></p>';
   $("#covF").addEventListener("click", (e) => { e.preventDefault(); openList("Major official findings: the checklist", findingsHTML()); });
   $("#covK").addEventListener("click", (e) => { e.preventDefault(); openList("Kinds of abuse and trafficking: the checklist", kindsHTML()); });
@@ -878,7 +875,6 @@ function mountUI() {
   const bm = document.createElement("div"); bm.id = "bmBox"; bm.className = "cnui cn-blk"; bm.innerHTML = '<div id="bmBody"></div>';
   const sec = document.createElement("div"); sec.id = "cnSec"; sec.className = "cnui cn-blk";
   sec.innerHTML = '<div class="cn-head">Child abuse networks and child trafficking</div>' +
-    '<p class="lsrc" style="margin:2px 0 6px">Organised abuse, sale and trafficking of children, the institutions that shielded it, and the patterns that repeat across countries. Click a dot or a diamond for its record; click a country for this layer\'s section on it.</p>' +
     '<div id="cnCov"></div><div id="cnKeyBody"></div><div class="psec">Charts</div><div id="dockBtns"></div>' +
     '<p class="lsrc" style="margin-top:8px"><a href="#" id="cnAbout">About this layer and its sources</a></p>';
   if (bmHost) bmHost.appendChild(bm); else if (lb) lb.insertBefore(bm, lb.firstChild); else document.body.appendChild(bm);

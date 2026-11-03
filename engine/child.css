@@ -136,3 +136,6 @@
 .cnwin table.cklist th,.cnwin table.cklist td{text-align:left;white-space:normal;vertical-align:top}
 .cnwin table.cklist td:first-child{white-space:nowrap}
 .cnwin table.cklist td:last-child{white-space:nowrap}
+.cnwin table.all.fit{table-layout:fixed;width:100%}
+.cnwin table.all.fit td,.cnwin table.all.fit th{white-space:normal;overflow-wrap:anywhere;text-align:left;vertical-align:top}
+.cnwin table.all.fit td:nth-child(n+6),.cnwin table.all.fit th:nth-child(n+6){text-align:right}

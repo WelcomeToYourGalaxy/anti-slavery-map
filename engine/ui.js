@@ -73,7 +73,7 @@
   function mid() {
     var l = 14, r = innerWidth - 14;
     var c = $("#cnCol"); if (c && c.offsetWidth) l = c.getBoundingClientRect().right + 10;
-    else { var w = $("#wirePanel"); if (w && w.offsetWidth) l = w.getBoundingClientRect().right + 10; }
+    var ip = $("#infoPanel"); if (ip && ip.classList.contains("open") && innerWidth > 640) l = Math.max(l, (c && c.offsetWidth ? c.getBoundingClientRect().right + 8 : 322) + 270 + 10);
     var rb = $("#rightbar"); if (rb && rb.offsetWidth) r = rb.getBoundingClientRect().left - 10;
     if (r - l < 340) { l = 14; r = innerWidth - 14; }
     return { l: l, r: r };
@@ -88,9 +88,12 @@
     col = mk('<div id="cnCol"></div>');
     keyPanel = mk('<div id="cnKeyPanel" class="uip"><div class="uip-h"><span>Child abuse networks and child trafficking</span><span class="uip-t">−</span></div><div class="uip-b cnui" id="cnKeyHost"></div></div>');
     patPanel = mk('<div id="cnPatPanel" class="uip"><div class="uip-h"><span>Patterns behind the scenes</span><span class="uip-t">−</span></div><div class="uip-b cnui" id="cnPatHost"></div></div>');
+    // top left: the child networks box (the Global Wire is now its own feed site); top right: the patterns, folded
+    col.appendChild(keyPanel); document.body.appendChild(col);
     var rb = $("#rightbar");
-    if (rb) rb.insertBefore(keyPanel, rb.firstChild); else col.appendChild(keyPanel);
-    col.appendChild(patPanel); document.body.appendChild(col);
+    if (rb) rb.insertBefore(patPanel, rb.firstChild); else col.appendChild(patPanel);
+    patPanel.classList.add("collapsed"); patPanel.querySelector(".uip-t").textContent = "+";
+    var wp = $("#wirePanel"); if (wp) wp.style.display = "none";
     [keyPanel, patPanel].forEach(function (p) {
       var h = p.querySelector(".uip-h");
       h.addEventListener("click", function (e) { if (e.target.closest(".ib")) return; p.classList.toggle("collapsed"); h.querySelector(".uip-t").textContent = p.classList.contains("collapsed") ? "+" : "−"; reflowInfo(); });
@@ -149,10 +152,8 @@
   function reflowInfo() {
     var p = $("#infoPanel"); if (!p || !p.classList.contains("open")) return;
     if (innerWidth <= 640) { p.style.left = p.style.width = p.style.top = p.style.bottom = p.style.maxHeight = ""; return; }
-    var c = col && col.getBoundingClientRect(), last = patPanel && patPanel.getBoundingClientRect();
-    var top = last && last.height ? Math.round(last.bottom) + 9 : 70;
-    if (top > innerHeight - 220) top = Math.max(70, innerHeight - 320);
-    p.style.right = "auto"; p.style.left = (c ? Math.round(c.left) : 322) + "px"; p.style.width = (c && c.width ? Math.round(c.width) : 270) + "px";
+    var c = col && col.getBoundingClientRect(), top = 70;
+    p.style.right = "auto"; p.style.left = (c && c.width ? Math.round(c.right) + 8 : 322) + "px"; p.style.width = "270px";
     p.style.top = top + "px"; p.style.bottom = "18px"; p.style.maxHeight = (innerHeight - top - 18) + "px"; p.style.overflowY = "auto";
   }
 
@@ -500,8 +501,7 @@
     var os = window.showInfoPanel;
     window.showInfoPanel = function () {
       var r = os.apply(this, arguments);
-      patPanel.classList.add("collapsed"); patPanel.querySelector(".uip-t").textContent = "+";
-      reflowInfo(); return r;
+      reflowInfo(); place(); return r;
     };
     if (!window.prevOn) window.togglePrevalence(true);
     (function key() { var ob = $("#overlayBox"); if (!ob || ob.getAttribute("data-built") !== "1" || !$("#facFilter")) return setTimeout(key, 300); buildKey(); })();

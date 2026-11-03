@@ -4,14 +4,13 @@
 #sidebar { display: none !important; }
 
 /* Global Wire: top half of the left edge. Index: bottom half, under it. */
-html body #wirePanel { top: 70px; bottom: auto !important; height: calc(50vh - 58px); max-height: calc(50vh - 58px) !important; }
+html body #wirePanel { display: none !important; }
 html body #indexPanel { position: fixed !important; left: 14px !important; width: 300px !important; top: calc(50vh + 20px) !important; bottom: 18px !important; max-height: none !important; min-height: 0 !important; z-index: 1000; }
 html body #indexPanel.collapsed { bottom: auto !important; }
-html body.wire-up #indexPanel { top: 122px !important; }
 @media (max-width: 900px) { html body #indexPanel { top: 70px !important; } }
 
 /* Second column: the child layer's key, then its patterns. */
-#cnCol { position: fixed; left: 322px; top: 70px; bottom: 18px; width: 270px; z-index: 1001; display: flex; flex-direction: column; gap: 9px; pointer-events: none; }
+#cnCol { position: fixed; left: 14px; top: 70px; height: calc(50vh - 58px); width: 300px; z-index: 1001; display: flex; flex-direction: column; gap: 9px; pointer-events: none; }
 .uip { pointer-events: auto; background: rgba(13,22,17,0.96); border: 1px solid var(--accent-soft); border-radius: 10px; box-shadow: 0 4px 22px rgba(0,0,0,0.45); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
 #cnKeyPanel { flex: 1 1 auto; }
 #cnPatPanel { flex: 0 1 auto; max-height: 38%; }
@@ -22,7 +21,6 @@ html body.wire-up #indexPanel { top: 122px !important; }
 .uip.collapsed > .uip-b { display: none; }
 .uip.collapsed { flex: 0 0 auto !important; }
 #cnPatHost #patList { max-height: none; }
-@media (max-width: 900px) { #cnCol { left: 14px; } }
 @media (max-width: 640px) { #cnCol { display: none; } }
 
 /* Header buttons */
@@ -97,7 +95,9 @@ html body.wire-up #indexPanel { top: 122px !important; }
 #controls { display: none !important; }
 #rightbar > #cnKeyPanel { flex: 1 1 50%; min-height: 0; pointer-events: auto; }
 #rightbar > #cnKeyPanel.collapsed { flex: 0 0 auto; }
-#cnPatPanel { flex: 0 1 auto; max-height: 100%; }
+#rightbar > #cnPatPanel { flex: 0 1 auto; max-height: 50%; min-height: 0; pointer-events: auto; }
+#rightbar > #cnPatPanel.collapsed { flex: 0 0 auto; }
+#cnCol > #cnKeyPanel { flex: 1 1 auto; }
 
 /* Panels take the basemap's palette (set by ui.js). */
 #wirePanel, #indexPanel, #legend, .uip, .uibox, #infoPanel, #bmBar, #guidePanel, .leaflet-popup-content-wrapper, .leaflet-popup-tip {
