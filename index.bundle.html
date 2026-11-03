@@ -6940,6 +6940,7 @@ function applyIntent(v){ var hint=document.getElementById('intentHint');
 
     var hb = $("#helpPanel .help-body"); if (hb) { while (hb.firstChild) how.querySelector(".uib-b").appendChild(hb.firstChild); }
     var lead = $("#wirePanel .wire-lead"); if (lead) about.querySelector(".uib-b").appendChild(lead);
+    about.querySelector(".uib-b").appendChild(mk('<p style="margin-top:12px">The news wire for this map is its own page: <a href="https://welcometoyourgalaxy.github.io/anti-slavery-feed/" target="_blank" rel="noopener">Global Wire: forced labour, trafficking and child labour</a>, collected every two hours in 24 languages.</p>'));
 
     var hdr = $("#header");
     if (hdr) {
