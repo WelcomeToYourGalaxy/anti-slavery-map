@@ -131,3 +131,18 @@ html body #indexPanel.collapsed { bottom: auto !important; }
 #legBody .ps-pill .sw-d { display: inline-block; margin-right: 4px; vertical-align: -1px; width: 8px; height: 8px; }
 
 .uip-h .ib { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--line, #556); background: none; color: #c9c9c0; font: italic 600 10px/1 Georgia, serif; padding: 0; cursor: pointer; }
+
+/* map key categories: one switch per layer; the arrow opens its legend and filters */
+#legBody .uk-cat { padding: 1px 0; }
+#legBody .uk-ch .uk-l { cursor: pointer; }
+#legBody .uk-car { background: none; border: 0; color: #a3a1b4; cursor: pointer; font-size: 11px; padding: 0 2px; width: 16px; }
+#legBody .uk-cb { display: none; margin: 2px 0 8px 22px; padding-left: 8px; border-left: 1px solid var(--line, rgba(149,171,150,0.2)); }
+#legBody .uk-cat.open .uk-cb { display: block; }
+#legBody .uk-cb .uk-info { margin-left: 0; }
+#legBody #ukChild { margin: 2px 0 6px 18px; }
+#legBody #ukChild .lrow { display: flex; gap: 6px; align-items: center; }
+#legBody #ukChild select { flex: 1; min-width: 0; }
+#legBody #ukMore { margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--line, rgba(149,171,150,0.18)); }
+/* the child networks box starts right under its title */
+#cnKeyHost > #cnSec.cn-blk { margin-top: 0; padding-top: 0; border-top: 0; }
+#cnKeyHost #cnCov > p:first-child { margin-top: 0 !important; }

@@ -285,6 +285,21 @@ html body #indexPanel.collapsed { bottom: auto !important; }
 
 .uip-h .ib { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--line, #556); background: none; color: #c9c9c0; font: italic 600 10px/1 Georgia, serif; padding: 0; cursor: pointer; }
 
+/* map key categories: one switch per layer; the arrow opens its legend and filters */
+#legBody .uk-cat { padding: 1px 0; }
+#legBody .uk-ch .uk-l { cursor: pointer; }
+#legBody .uk-car { background: none; border: 0; color: #a3a1b4; cursor: pointer; font-size: 11px; padding: 0 2px; width: 16px; }
+#legBody .uk-cb { display: none; margin: 2px 0 8px 22px; padding-left: 8px; border-left: 1px solid var(--line, rgba(149,171,150,0.2)); }
+#legBody .uk-cat.open .uk-cb { display: block; }
+#legBody .uk-cb .uk-info { margin-left: 0; }
+#legBody #ukChild { margin: 2px 0 6px 18px; }
+#legBody #ukChild .lrow { display: flex; gap: 6px; align-items: center; }
+#legBody #ukChild select { flex: 1; min-width: 0; }
+#legBody #ukMore { margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--line, rgba(149,171,150,0.18)); }
+/* the child networks box starts right under its title */
+#cnKeyHost > #cnSec.cn-blk { margin-top: 0; padding-top: 0; border-top: 0; }
+#cnKeyHost #cnCov > p:first-child { margin-top: 0 !important; }
+
 </style>
 <!--/ENGINE:head-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script><!--ENGINE:js-->
@@ -6920,7 +6935,6 @@ function applyIntent(v){ var hint=document.getElementById('intentHint');
     col.appendChild(keyPanel); document.body.appendChild(col);
     var rb = $("#rightbar");
     if (rb) rb.insertBefore(patPanel, rb.firstChild); else col.appendChild(patPanel);
-    patPanel.classList.add("collapsed"); patPanel.querySelector(".uip-t").textContent = "+";
     var wp = $("#wirePanel"); if (wp) wp.style.display = "none";
     [keyPanel, patPanel].forEach(function (p) {
       var h = p.querySelector(".uip-h");
@@ -7156,40 +7170,46 @@ function applyIntent(v){ var hint=document.getElementById('intentHint');
   function sec(id, title, body, open) {
     return '<div class="uk-sec' + (open ? "" : " shut") + '" data-uks="' + id + '"><div class="uk-h"><span>' + title + '</span><span class="uk-t">' + (open ? "−" : "+") + '</span></div><div class="uk-b">' + body + '</div></div>';
   }
+  /* a category: its switch turns the whole layer on or off; the arrow opens what it shows and its filters */
+  function cat(id, kind, label, checked, body) {
+    return '<div class="uk-cat" data-ukc="' + id + '"><div class="uk-row uk-ch"><label class="uk-c"><input type="checkbox" data-uk="' + id + '"' + (checked ? " checked" : "") + '></label>' +
+      '<span class="uk-sw" data-k="' + kind + '">' + swatch(kind) + '</span><span class="uk-l">' + label + '</span><button type="button" class="uk-car" title="Show what this is and its filters">▸</button></div>' +
+      '<div class="uk-cb">' + body + '</div></div>';
+  }
+  function childSel() { return document.getElementById("layer"); }
+  function childOn() { var c = childSel(); return !!(c && c.value && c.value !== "none"); }
   var keyBuilt = false;
   function buildKey() {
     var lb = $("#legBody"); if (!lb || keyBuilt) return;
     var chk = function (id) { var e = document.getElementById(id); return !!(e && e.checked); };
     var keep = { sev: $("#legBody .proj-size:not(.proj-phase)"), phase: $("#legBody .proj-phase"), search: $("#legBody .proj-search"), time: $("#legBody .proj-time"),
-      src: $("#projSrcBox"), type: $("#projTypeBox"), fac: $("#facFilter"), detail: $("#legBody .lp-detail"), inc: $("#incCount"), bg: $("#bgStatus") };
+      src: $("#projSrcBox"), type: $("#projTypeBox"), fac: $("#facFilter"), detail: $("#legBody .lp-detail") };
     var hold = mk('<div id="ukHold" style="display:none"></div>');
     while (lb.firstChild) hold.appendChild(lb.firstChild);
-    lbInfo = function () {}; var sevInfo = 'Each marker is a place or sector where forced labour or child labour is on record. Colour shows how serious the record is:' +
-      [[2, "a news report, before any raid, rescue or charge"], [3, "documented in a named public source, or a raid, rescue or charge"], [4, "systemic: across a sector or region, or involving children"], [5, "gravest: state-imposed, a whole national industry, or deaths"]]
-        .map(function (x) { return '<div class="ur">' + dot(sevC(x[0])) + x[1] + '</div>'; }).join("") + 'A pin is a known site. A dashed ring stands for a country or region, with no exact site in the source.';
-    var rtInfo = 'Origin to destination, from identified-victim records (CTDC). ' + '<span style="color:' + P.b[0] + '">●</span> labour, <span style="color:' + P.b[2] + '">●</span> sexual, <span style="color:' + P.b[4] + '">●</span> mixed or unknown. Thicker means more people. A dashed ring is trafficking within one country. Click a line to light up both of its countries.';
-    var facInfo = 'Police stations, courthouses, town halls, government offices, agency headquarters and embassies, from OpenStreetMap: where reports are made and records are kept. Choose the types under "Government building types".';
-    var shadeRows = SHADES.concat(OVS.map(function (m) { return [m.k, m.label]; })).map(function (x) {
-      return '<label class="uk-row uk-radio"><input type="radio" name="ukShade" value="' + x[0] + '"' + ((x[0] === "prev" && window.prevOn) || (x[0] === "none" && !window.prevOn && !OVON) || x[0] === OVON ? " checked" : "") + '><span class="uk-l">' + esc(x[1]) + '</span><span class="uk-st" data-ukst="' + x[0] + '"></span></label>';
+    var facInfo = 'Police stations, courthouses, town halls, government offices, agency headquarters and embassies, from OpenStreetMap: where reports are made and records are kept. Switch each type on or off below.';
+    var shadeRows = SHADES.concat(OVS.map(function (m) { return [m.k, m.label]; })).concat([["child", "Child abuse networks and child trafficking"]]).map(function (x) {
+      return '<label class="uk-row uk-radio"><input type="radio" name="ukShade" value="' + x[0] + '"><span class="uk-l">' + esc(x[1]) + '</span><span class="uk-st" data-ukst="' + x[0] + '"></span></label>';
     }).join("");
-    var outl = '<div class="uk-out" id="ukOut"><div class="ur"><span class="sw-o" style="border:1.5px solid ' + HAS() + '"></span>Outlined: has resources for your filters</div>' +
-      '<div class="ur"><span class="sw-o" style="border:3px solid ' + SELC() + '"></span>The country you clicked</div>' +
-      '<div class="ur"><span class="sw-o" style="border:3px solid ' + LINKC() + '"></span>Linked by a corridor to the clicked country, or both ends of a clicked corridor</div></div>';
+    var outl = '<div class="uk-out" id="ukOut"></div>';
     lb.innerHTML =
-      sec("on", "On the map", row("proj", "markers", "Cases and sites", null, sevInfo, chk("projChk")) + row("route", "lines", "Trafficking corridors", null, rtInfo, chk("routeChk")) +
-        row("fac", "facilities", "Government buildings", null, facInfo, chk("facToggle")), true) +
-      sec("shade", "Shade the countries by", shadeRows + '<div id="ukLeg" class="ukey"></div>' + outl, true) +
-      sec("filt", "Filter the cases and sites", '<div id="ukFilt"></div>', false) +
-      sec("facs", "Government building types", '<div id="ukFac"></div>', false) +
-      sec("data", "Where the data comes from", '<div id="ukData"></div><div id="ukMore"></div>', false);
+      sec("on", "On the map",
+        cat("proj", "markers", "Forced labour cases and sites", chk("projChk"), '<div class="uk-info ukey open" data-ukinfo="proj"></div><div id="ukFilt"></div>') +
+        cat("route", "lines", "Trafficking corridors", chk("routeChk"), '<div class="uk-info ukey open" data-ukinfo="route"></div>') +
+        cat("fac", "facilities", "Government buildings", chk("facToggle"), '<div class="uk-info open">' + facInfo + '</div><div id="ukFac"></div>'), true) +
+      sec("shade", "Shade the countries by", shadeRows + '<div id="ukChild" class="cnui"></div><div id="ukLeg" class="ukey"></div>' + outl, true) +
+      '<div id="ukMore"></div>';
     lb.appendChild(hold);
     var f = $("#ukFilt"); ["sev", "phase", "search", "time", "src", "type"].forEach(function (k) { if (keep[k]) f.appendChild(keep[k]); });
     if (keep.fac) $("#ukFac").appendChild(keep.fac);
-    ["inc", "bg", "detail"].forEach(function (k) { if (keep[k]) $("#ukMore").appendChild(keep[k]); });
-    /* severity pills get their colour */
+    if (keep.detail) $("#ukMore").appendChild(keep.detail);
+    f.querySelectorAll(".facf-hint").forEach(function (h) { if (/Marker colours/.test(h.textContent)) h.remove(); });
     f.querySelectorAll(".ps-pill[data-ms]").forEach(function (pl) { var k = +pl.dataset.ms; if (k && !pl.querySelector(".sw-d")) pl.insertAdjacentHTML("afterbegin", dot(sevC(k))); });
     lb.querySelectorAll(".uk-h").forEach(function (h) { h.addEventListener("click", function () { var s0 = h.parentNode; s0.classList.toggle("shut"); h.querySelector(".uk-t").textContent = s0.classList.contains("shut") ? "+" : "−"; }); });
-    lb.querySelectorAll(".uk-i").forEach(function (b0) { b0.addEventListener("click", function (e) { e.preventDefault(); var i = lb.querySelector('[data-ukinfo="' + b0.dataset.uki + '"]'); if (i) i.classList.toggle("open"); }); });
+    lb.querySelectorAll(".uk-cat").forEach(function (c) {
+      var open = function () { c.classList.toggle("open"); c.querySelector(".uk-car").textContent = c.classList.contains("open") ? "▾" : "▸"; };
+      c.querySelector(".uk-car").addEventListener("click", function (e) { e.preventDefault(); open(); });
+      c.querySelector(".uk-l").addEventListener("click", open);
+    });
     var map0 = { proj: "projChk", route: "routeChk", fac: "facToggle" };
     lb.querySelectorAll("input[data-uk]").forEach(function (cb) {
       var orig = document.getElementById(map0[cb.dataset.uk]);
@@ -7197,9 +7217,25 @@ function applyIntent(v){ var hint=document.getElementById('intentHint');
       if (orig) orig.addEventListener("change", function () { cb.checked = orig.checked; });
     });
     lb.querySelectorAll("input[name=ukShade]").forEach(function (r) { r.addEventListener("change", function () { if (r.checked) setShade(r.value); }); });
-    keyBuilt = true; renderDataStatus(); shadeLegend();
-    // the host sets these switches in code without a change event, so keep the copies in step
+    keyBuilt = true; fillKey(); shadeLegend();
     setInterval(function () { lb.querySelectorAll("input[data-uk]").forEach(function (cb) { var o = document.getElementById(map0[cb.dataset.uk]); if (o && cb.checked !== o.checked) cb.checked = o.checked; }); }, 800);
+    /* the child layer's own "colour the countries by" moves here, so there is one place that shades the countries */
+    (function moveChild() {
+      var sel = childSel(); if (!sel) return setTimeout(moveChild, 300);
+      var row0 = sel.closest(".lrow"), head = row0 && row0.previousElementSibling, box = $("#ukChild");
+      if (head && head.classList.contains("psec")) head.remove();
+      [row0, $("#ldesc"), $("#cnLegend")].forEach(function (x) { if (x) box.appendChild(x); });
+      sel.addEventListener("change", function () { if (childOn()) { ovSet(null); if (window.prevOn) window.togglePrevalence(false); } shadeLegend(); });
+      var pl = $("#patList"); if (pl) pl.addEventListener("click", function () { setTimeout(function () { if (childOn()) { if (OVON) ovSet(null); if (window.prevOn) window.togglePrevalence(false); } shadeLegend(); }, 50); });
+      shadeLegend();
+    })();
+  }
+  window.renderDataStatus = function () {};
+  function fillKey() {
+    var o = $("#ukOut"); if (o) o.innerHTML = '<div class="ur"><span class="sw-o" style="border:1.5px solid ' + HAS() + '"></span>Outlined: has resources for your filters</div>' +
+      '<div class="ur"><span class="sw-o" style="border:3px solid ' + SELC() + '"></span>The country you clicked</div>' +
+      '<div class="ur"><span class="sw-o" style="border:3px solid ' + LINKC() + '"></span>Linked by a corridor to the clicked country, or both ends of a clicked corridor</div>';
+    var i1 = $('[data-ukinfo="proj"]'); if (i1) i1.innerHTML = sevInfoHTML(); var i2 = $('[data-ukinfo="route"]'); if (i2) i2.innerHTML = rtInfoHTML();
   }
   var lbInfo = null;
   function theme(k) {
@@ -7215,11 +7251,8 @@ function applyIntent(v){ var hint=document.getElementById('intentHint');
     restyle(); if (ovLines) ovDrawLines(OVD.corridors);
     if (keyBuilt) {
       document.querySelectorAll(".uk-sw[data-k]").forEach(function (el) { el.innerHTML = swatch(el.dataset.k); });
-      var o = $("#ukOut"); if (o) o.innerHTML = '<div class="ur"><span class="sw-o" style="border:1.5px solid ' + HAS() + '"></span>Outlined: has resources for your filters</div>' +
-        '<div class="ur"><span class="sw-o" style="border:3px solid ' + SELC() + '"></span>The country you clicked</div>' +
-        '<div class="ur"><span class="sw-o" style="border:3px solid ' + LINKC() + '"></span>Linked by a corridor to the clicked country, or both ends of a clicked corridor</div>';
+      fillKey();
       document.querySelectorAll("#ukFilt .ps-pill[data-ms] .sw-d").forEach(function (d0) { d0.style.background = sevC(+d0.parentNode.dataset.ms); });
-      var i1 = $('[data-ukinfo="proj"]'); if (i1) i1.innerHTML = sevInfoHTML(); var i2 = $('[data-ukinfo="route"]'); if (i2) i2.innerHTML = rtInfoHTML();
     }
     shadeLegend();
   }
@@ -7227,7 +7260,10 @@ function applyIntent(v){ var hint=document.getElementById('intentHint');
       [[2, "a news report, before any raid, rescue or charge"], [3, "documented in a named public source, or a raid, rescue or charge"], [4, "systemic: across a sector or region, or involving children"], [5, "gravest: state-imposed, a whole national industry, or deaths"]]
         .map(function (x) { return '<div class="ur">' + dot(sevC(x[0])) + x[1] + '</div>'; }).join("") + 'A pin is a known site. A dashed ring stands for a country or region, with no exact site in the source.'; }
   function rtInfoHTML() { return 'Origin to destination, from identified-victim records (CTDC). <span style="color:' + P.b[0] + '">\u25cf</span> labour, <span style="color:' + P.b[2] + '">\u25cf</span> sexual, <span style="color:' + P.b[4] + '">\u25cf</span> mixed or unknown. Thicker means more people. A dashed ring is trafficking within one country. Click a line to light up both of its countries.'; }
+  function setChild(v) { var c = childSel(); if (!c || c.value === v) return; c.value = v; c.dispatchEvent(new Event("change")); }
   function setShade(k) {
+    if (k === "child") { ovSet(null); if (window.prevOn) window.togglePrevalence(false); if (!childOn()) setChild("all"); shadeLegend(); return; }
+    setChild("none");
     if (k === "none") { ovSet(null); if (window.prevOn) window.togglePrevalence(false); shadeLegend(); return; }
     if (k === "prev") { ovSet(null); if (!window.prevOn) window.togglePrevalence(true); shadeLegend(); return; }
     var st = $('[data-ukst="' + k + '"]'); if (st) st.textContent = "loading…";
@@ -7235,7 +7271,9 @@ function applyIntent(v){ var hint=document.getElementById('intentHint');
   }
   function shadeLegend() {
     var el = $("#ukLeg"); if (!el) return;
-    document.querySelectorAll("input[name=ukShade]").forEach(function (r) { r.checked = OVON ? r.value === OVON : (window.prevOn ? r.value === "prev" : r.value === "none"); });
+    var ch = childOn() && !OVON && !window.prevOn;
+    document.querySelectorAll("input[name=ukShade]").forEach(function (r) { r.checked = OVON ? r.value === OVON : (window.prevOn ? r.value === "prev" : (ch ? r.value === "child" : r.value === "none")); });
+    var cb = $("#ukChild"); if (cb) cb.style.display = ch ? "" : "none";
     if (OVON && OVD[OVON]) { var d = OVD[OVON], m = ovMeta(OVON); el.innerHTML = '<div class="uk-d" style="margin-bottom:4px">' + esc(m.note) + '</div>' + ovLegend(m) + '<div class="uk-d" style="margin-top:4px">' + esc(d.source) + ', ' + esc(d.as_of) + '. Click a country for its entry.</div>'; return; }
     if (window.prevOn) { el.innerHTML = '<div class="ramp">' + ramp5().map(function (c) { return '<span style="background:' + c + '"></span>'; }).join("") + '</div><div class="rl"><span>under 2</span><span>2–4</span><span>4–6</span><span>6–9</span><span>9+</span></div><div class="uk-d" style="margin-top:4px">Walk Free, Global Slavery Index 2023: people in forced labour, forced marriage and forced sexual exploitation per 1,000, modelled from surveys.</div>'; return; }
     el.innerHTML = "";
