@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-08T21:48:02.367793+00:00",
+ "generated": "2026-11-09T04:41:00.849330+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -360204,7 +360204,7 @@
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
-   "name": "Consolat de la Repúblca d'Eslovènia",
+   "name": "Consolat de la República d'Eslovènia",
    "k": "dp",
    "type": "Embassy / consulate",
    "lat": 41.4013449,
