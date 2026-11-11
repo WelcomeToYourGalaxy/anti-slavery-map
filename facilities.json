@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-11T04:44:58.890428+00:00",
+ "generated": "2026-11-11T13:39:35.306959+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -152424,6 +152424,16 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
+   "name": "Amtsgericht Pößneck Haus II",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 50.693621,
+   "lng": 11.5867405,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/89554677",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
    "name": "Amtsgericht Michelstadt",
    "k": "ch",
    "type": "Courthouse",
@@ -228701,6 +228711,16 @@
    "lng": -94.5790276,
    "country": "",
    "url": "https://www.openstreetmap.org/way/506642187",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "HM Courts Service",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 53.5783948,
+   "lng": -2.4325385,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/506709533",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -308711,6 +308731,16 @@
    "lng": 32.7869763,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1577484064",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "Pengadilan Negeri Tuban Kelas I-B",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": -6.8970867,
+   "lng": 112.0653104,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1577634715",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -462157,8 +462187,8 @@
    "name": "سفارة إندونيسيا",
    "k": "dp",
    "type": "Embassy / consulate",
-   "lat": 15.5728704,
-   "lng": 32.5481767,
+   "lat": 15.572885,
+   "lng": 32.5482666,
    "country": "ID",
    "url": "https://www.openstreetmap.org/way/485719002",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
