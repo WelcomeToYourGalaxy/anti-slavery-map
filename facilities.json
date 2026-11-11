@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-10T22:57:43.664908+00:00",
+ "generated": "2026-11-11T04:44:58.890428+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -134797,8 +134797,8 @@
    "name": "Rats'oleli Local Court",
    "k": "ch",
    "type": "Courthouse",
-   "lat": -30.0726166,
-   "lng": 28.6233464,
+   "lat": -30.0726096,
+   "lng": 28.6233169,
    "country": "",
    "url": "https://www.openstreetmap.org/node/13852197329",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
@@ -305527,8 +305527,8 @@
    "name": "المحكمة الإبتدائية ببركان - قسم قضاء الأسرة",
    "k": "ch",
    "type": "Courthouse",
-   "lat": 34.9331216,
-   "lng": -2.3191675,
+   "lat": 34.9331204,
+   "lng": -2.3191656,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1518515709",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
