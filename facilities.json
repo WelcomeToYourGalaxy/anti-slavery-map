@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-18T00:37:43.180436+00:00",
+ "generated": "2026-11-18T15:12:36.787642+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -138327,8 +138327,8 @@
    "name": "Alice Springs Supreme Court of the Northern Territory",
    "k": "ch",
    "type": "Courthouse",
-   "lat": -23.6990169,
-   "lng": 133.882857,
+   "lat": -23.6989966,
+   "lng": 133.8825072,
    "country": "",
    "url": "https://www.openstreetmap.org/node/14121872201",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
@@ -139851,6 +139851,16 @@
    "lng": -118.2397355,
    "country": "",
    "url": "https://www.openstreetmap.org/node/14388502735",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "Mahkamah Rendah Syariah Pekan",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 3.5469723,
+   "lng": 103.383337,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14391208292",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -161777,8 +161787,8 @@
    "name": "Tribunal da Comarca de Albufeira",
    "k": "ch",
    "type": "Courthouse",
-   "lat": 37.0902715,
-   "lng": -8.2449655,
+   "lat": 37.0902765,
+   "lng": -8.2449682,
    "country": "",
    "url": "https://www.openstreetmap.org/way/131993287",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
@@ -249974,6 +249984,16 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
+   "name": "Kayenta Justice Court",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 36.7087981,
+   "lng": -110.234375,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/679351127",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
    "name": "Winn Parish Courthouse",
    "k": "ch",
    "type": "Courthouse",
@@ -268851,16 +268871,6 @@
    "lng": -86.5733976,
    "country": "",
    "url": "https://www.openstreetmap.org/way/938561203",
-   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
-  },
-  {
-   "name": "Kayenta Justice Court",
-   "k": "ch",
-   "type": "Courthouse",
-   "lat": 36.7088124,
-   "lng": -110.2343052,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/938614394",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -301651,6 +301661,16 @@
    "lng": 26.293131,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1433950810",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "Kayenta Judicial District",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 36.7136262,
+   "lng": -110.2519382,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1434137961",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -441604,6 +441624,16 @@
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
+   "name": "Consulate General of the Republic of Indonesia",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 41.8860818,
+   "lng": -87.6529813,
+   "country": "ID",
+   "url": "https://www.openstreetmap.org/way/210270127",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
    "name": "High Commission of the Democratic Socialist Republic of Sri Lanka",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -503644,11 +503674,11 @@
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
   },
   {
-   "name": "Border / customs post",
+   "name": "Granični prijelaz Kraj Donji",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 45.9203294,
-   "lng": 15.7043529,
+   "lat": 45.9203208,
+   "lng": 15.7043533,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2460221168",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
