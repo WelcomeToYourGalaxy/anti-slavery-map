@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-20T15:01:22.210637+00:00",
+ "generated": "2026-11-20T23:48:04.346145+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -193367,8 +193367,8 @@
    "name": "The Law Courts",
    "k": "ch",
    "type": "Courthouse",
-   "lat": 60.7215409,
-   "lng": -135.0545106,
+   "lat": 60.7215235,
+   "lng": -135.0545556,
    "country": "",
    "url": "https://www.openstreetmap.org/way/289973331",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
@@ -386787,8 +386787,8 @@
    "name": "Ambasada Franței",
    "k": "dp",
    "type": "Embassy / consulate",
-   "lat": 47.0274921,
-   "lng": 28.8196283,
+   "lat": 47.0274694,
+   "lng": 28.8196104,
    "country": "FR",
    "url": "https://www.openstreetmap.org/node/8760661321",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
