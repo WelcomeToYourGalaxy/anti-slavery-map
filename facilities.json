@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-21T14:19:03.055813+00:00",
+ "generated": "2026-11-21T22:54:45.060072+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -7401,16 +7401,6 @@
    "lng": -94.9711,
    "country": "",
    "url": "https://www.openstreetmap.org/node/368160519",
-   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
-  },
-  {
-   "name": "W Kyle Chapman Courthouse",
-   "k": "ch",
-   "type": "Courthouse",
-   "lat": 29.6632,
-   "lng": -95.1264,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/368160520",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -97544,16 +97534,6 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "Palais de Justice",
-   "k": "ch",
-   "type": "Courthouse",
-   "lat": 47.0903525,
-   "lng": 5.4917505,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/8219906408",
-   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
-  },
-  {
    "name": "دادگاه عمومی خفر",
    "k": "ch",
    "type": "Courthouse",
@@ -143351,16 +143331,6 @@
    "lng": -6.3675508,
    "country": "",
    "url": "https://www.openstreetmap.org/way/35937406",
-   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
-  },
-  {
-   "name": "Amtsgericht Eschweiler",
-   "k": "ch",
-   "type": "Courthouse",
-   "lat": 50.8156516,
-   "lng": 6.2657954,
-   "country": "DE",
-   "url": "https://www.openstreetmap.org/way/35993752",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -191157,8 +191127,8 @@
    "name": "Courthouse",
    "k": "ch",
    "type": "Courthouse",
-   "lat": 60.1585629,
-   "lng": 59.9660515,
+   "lat": 60.1586296,
+   "lng": 59.9661749,
    "country": "",
    "url": "https://www.openstreetmap.org/way/275565793",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
@@ -298534,16 +298504,6 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "Amtsgericht Eschweiler | Anbau",
-   "k": "ch",
-   "type": "Courthouse",
-   "lat": 50.8154659,
-   "lng": 6.2653098,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/1365051003",
-   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
-  },
-  {
    "name": "连云港经济技术开发区人民法院",
    "k": "ch",
    "type": "Courthouse",
@@ -309044,6 +309004,26 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
+   "name": "W. Kyle Chapman Courthouse",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 29.6619488,
+   "lng": -95.1257431,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1582904445",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "Amtsgericht Eschweiler",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 50.815478,
+   "lng": 6.2656409,
+   "country": "DE",
+   "url": "https://www.openstreetmap.org/way/1582941647",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
    "name": "Delegation of the European Commission in South Africa",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -319071,26 +319051,6 @@
    "lng": 16.3726955,
    "country": "GR",
    "url": "https://www.openstreetmap.org/node/1732434784",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
-   "name": "Ambassade du Chili",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": 33.9803136,
-   "lng": -6.843922,
-   "country": "CL",
-   "url": "https://www.openstreetmap.org/node/1732891162",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
-   "name": "سفارة اليابان",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": 33.9811164,
-   "lng": -6.8446647,
-   "country": "JP",
-   "url": "https://www.openstreetmap.org/node/1732891165",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
@@ -341691,16 +341651,6 @@
    "lng": 74.6079281,
    "country": "MN",
    "url": "https://www.openstreetmap.org/node/4253709190",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
-   "name": "Azerbaijan Embassy",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": 38.6145451,
-   "lng": 68.7811404,
-   "country": "AZ",
-   "url": "https://www.openstreetmap.org/node/4253861489",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
@@ -374864,16 +374814,6 @@
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
-   "name": "中华人民共和国大使馆",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": 33.9791695,
-   "lng": -6.8409733,
-   "country": "CN",
-   "url": "https://www.openstreetmap.org/node/7180622608",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
    "name": "السفارة المصرية",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -386361,16 +386301,6 @@
    "lng": 105.7889415,
    "country": "TW",
    "url": "https://www.openstreetmap.org/node/8716653476",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
-   "name": "British High Commission",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": 13.4756694,
-   "lng": -16.6905338,
-   "country": "GB",
-   "url": "https://www.openstreetmap.org/node/8718804417",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
@@ -413204,26 +413134,6 @@
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
-   "name": "Embassy of Pakistan",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": 33.9815172,
-   "lng": -6.8449982,
-   "country": "PK",
-   "url": "https://www.openstreetmap.org/node/12549109564",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
-   "name": "Embassy of Ethiopia",
-   "k": "dp",
-   "type": "Embassy / consulate",
-   "lat": 33.9820856,
-   "lng": -6.8436258,
-   "country": "ET",
-   "url": "https://www.openstreetmap.org/node/12549111572",
-   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
-  },
-  {
    "name": "Peru Fahri Konsolosluğu",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -424251,6 +424161,76 @@
    "lng": 14.4227886,
    "country": "",
    "url": "https://www.openstreetmap.org/node/14400892201",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Honorarkonsulat von Georgien",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 51.0585368,
+   "lng": 13.7391596,
+   "country": "GE",
+   "url": "https://www.openstreetmap.org/node/14402676311",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Honorarkonsulat der Republik Kroatien",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 51.0365217,
+   "lng": 13.7271856,
+   "country": "HR",
+   "url": "https://www.openstreetmap.org/node/14402676312",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Honorarkonsulat des Großherzogtums Luxemburg",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 51.0399957,
+   "lng": 13.7222991,
+   "country": "LU",
+   "url": "https://www.openstreetmap.org/node/14402676313",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Honorarkonsulat der Republik Panama",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 51.0676975,
+   "lng": 13.7694816,
+   "country": "PA",
+   "url": "https://www.openstreetmap.org/node/14402676314",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Honorarkonsulat der Schweizer Eidgenossenschaft",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 51.052786,
+   "lng": 13.8081614,
+   "country": "CH",
+   "url": "https://www.openstreetmap.org/node/14402676315",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Honorarkonsulat von Ungarn",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 51.1774647,
+   "lng": 13.8392921,
+   "country": "HU",
+   "url": "https://www.openstreetmap.org/node/14402676316",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Honorarkonsulat des Vereinigten Königreiches Großbritannien und Nordirland",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 51.0387652,
+   "lng": 13.8041133,
+   "country": "GB",
+   "url": "https://www.openstreetmap.org/node/14402676317",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
@@ -482127,8 +482107,8 @@
    "name": "Libyan Embassy",
    "k": "dp",
    "type": "Embassy / consulate",
-   "lat": 13.4123195,
-   "lng": -16.7339751,
+   "lat": 13.4124939,
+   "lng": -16.7338838,
    "country": "LY",
    "url": "https://www.openstreetmap.org/way/1423086350",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
@@ -483311,6 +483291,106 @@
    "lng": 68.786382,
    "country": "CN",
    "url": "https://www.openstreetmap.org/way/1581802982",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Ambassade de la République populaire de Chine",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 33.9791209,
+   "lng": -6.8404558,
+   "country": "CN",
+   "url": "https://www.openstreetmap.org/way/1582822154",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Ambassade du Chili",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 33.980251,
+   "lng": -6.8441306,
+   "country": "CL",
+   "url": "https://www.openstreetmap.org/way/1582822155",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Ambassade du Pakistan",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 33.9812782,
+   "lng": -6.8454001,
+   "country": "PK",
+   "url": "https://www.openstreetmap.org/way/1582822156",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Ambassade du Japon سفارة اليابان",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 33.9808313,
+   "lng": -6.8448472,
+   "country": "JP",
+   "url": "https://www.openstreetmap.org/way/1582822157",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Ambassade d'Ethiopie",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 33.982024,
+   "lng": -6.8435865,
+   "country": "ET",
+   "url": "https://www.openstreetmap.org/way/1582822158",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Résidence de l'ambassade de Belgique",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 33.9811444,
+   "lng": -6.8437019,
+   "country": "BE",
+   "url": "https://www.openstreetmap.org/way/1582822159",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Đại sứ quán Campuchia",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 21.0217288,
+   "lng": 105.8482695,
+   "country": "KH",
+   "url": "https://www.openstreetmap.org/way/1582903224",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Đại sứ quán Pháp",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 21.0207868,
+   "lng": 105.850824,
+   "country": "FR",
+   "url": "https://www.openstreetmap.org/way/1582903226",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "Azerbaijan Embassy",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 38.6145459,
+   "lng": 68.7811343,
+   "country": "AZ",
+   "url": "https://www.openstreetmap.org/way/1582920167",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
+   "name": "British High Commission",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 13.4756692,
+   "lng": -16.6905876,
+   "country": "GB",
+   "url": "https://www.openstreetmap.org/way/1582953810",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
