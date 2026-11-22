@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-21T22:54:45.060072+00:00",
+ "generated": "2026-11-22T05:09:53.106778+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -139904,6 +139904,16 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
+   "name": "JUZGADO V DE DISTRITO",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 20.527684,
+   "lng": -100.8512967,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14404841601",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
    "name": "Špecializovaný trestný súd",
    "k": "ch",
    "type": "Courthouse",
@@ -274221,6 +274231,16 @@
    "lng": -78.7035931,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1011965343",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "Simpson County Circuit Court Clerk's Office",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 36.7223064,
+   "lng": -86.5772172,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1012089537",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
