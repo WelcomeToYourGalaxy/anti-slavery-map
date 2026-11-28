@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-28T01:12:59.012005+00:00",
+ "generated": "2026-11-28T15:08:52.491208+00:00",
  "source": "OpenStreetMap via Overpass",
  "note": "Courthouses, consulates and border posts. Each has a function relevant to this subject at every instance, which is why all of them are plotted.",
  "facilities": [
@@ -7454,16 +7454,6 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "Del Norte County Courthouse",
-   "k": "ch",
-   "type": "Courthouse",
-   "lat": 41.7528926,
-   "lng": -124.199525,
-   "country": "",
-   "url": "https://www.openstreetmap.org/node/368167471",
-   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
-  },
-  {
    "name": "Humboldt County Courthouse",
    "k": "ch",
    "type": "Courthouse",
@@ -14824,7 +14814,7 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "東京地方裁判所武蔵野簡易裁判所",
+   "name": "武蔵野簡易裁判所",
    "k": "ch",
    "type": "Courthouse",
    "lat": 35.706627,
@@ -139994,6 +139984,36 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
+   "name": "Courthouse",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 58.6018576,
+   "lng": 49.6730959,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14426367428",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "Amtsgericht Tiergarten",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 52.5233344,
+   "lng": 13.3487265,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14426549736",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "Pengadilan Negeri Boyolali",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": -7.5401874,
+   "lng": 110.6102447,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/14426661602",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
    "name": "Špecializovaný trestný súd",
    "k": "ch",
    "type": "Courthouse",
@@ -168801,6 +168821,16 @@
    "lng": -68.0183556,
    "country": "",
    "url": "https://www.openstreetmap.org/way/168473504",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "Courthouse",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 58.6020391,
+   "lng": 49.6612313,
+   "country": "RU",
+   "url": "https://www.openstreetmap.org/way/168476756",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -244937,8 +244967,8 @@
    "name": "춘천지법 영월지원 태백시법원",
    "k": "ch",
    "type": "Courthouse",
-   "lat": 37.168133,
-   "lng": 128.9903188,
+   "lat": 37.1680974,
+   "lng": 128.990359,
    "country": "",
    "url": "https://www.openstreetmap.org/way/639077768",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
@@ -262737,8 +262767,8 @@
    "name": "Calcasieu Judicial Center",
    "k": "ch",
    "type": "Courthouse",
-   "lat": 30.2266235,
-   "lng": -93.2191299,
+   "lat": 30.2266344,
+   "lng": -93.2191318,
    "country": "",
    "url": "https://www.openstreetmap.org/way/841539656",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
@@ -286824,16 +286854,6 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "Del Norte Superior Court",
-   "k": "ch",
-   "type": "Courthouse",
-   "lat": 41.7529649,
-   "lng": -124.1992662,
-   "country": "",
-   "url": "https://www.openstreetmap.org/way/1202426781",
-   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
-  },
-  {
    "name": "Courthouse",
    "k": "ch",
    "type": "Courthouse",
@@ -300364,7 +300384,7 @@
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
-   "name": "Courthouse",
+   "name": "Del Norte County Courthouse",
    "k": "ch",
    "type": "Courthouse",
    "lat": 41.7529151,
@@ -309201,6 +309221,26 @@
    "lng": 104.9207827,
    "country": "",
    "url": "https://www.openstreetmap.org/way/1585581561",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "奉化区人民法院",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 29.6728813,
+   "lng": 121.4232085,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1585674919",
+   "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
+  },
+  {
+   "name": "中江县人民法院仓山人民法庭",
+   "k": "ch",
+   "type": "Courthouse",
+   "lat": 30.6379812,
+   "lng": 105.0495475,
+   "country": "",
+   "url": "https://www.openstreetmap.org/way/1585741228",
    "desc": "Courthouse. Where prosecutions for trafficking and forced labour are heard, where wage and damages claims are filed, and where judgments are collected — the physical venue for the courts lens. Check which court has jurisdiction before travelling: labour claims and criminal trafficking cases are often heard in different buildings."
   },
   {
@@ -401854,6 +401894,16 @@
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
   },
   {
+   "name": "Ambassade de la République de Corée, Service Consulaire",
+   "k": "dp",
+   "type": "Embassy / consulate",
+   "lat": 48.8630292,
+   "lng": 2.2926,
+   "country": "",
+   "url": "https://www.openstreetmap.org/node/11251403984",
+   "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
+  },
+  {
    "name": "Consulado General de Brasil en Rivera",
    "k": "dp",
    "type": "Embassy / consulate",
@@ -444867,8 +444917,8 @@
    "name": "Ambassade de France au Canada / Embassy of France",
    "k": "dp",
    "type": "Embassy / consulate",
-   "lat": 45.443348,
-   "lng": -75.6944061,
+   "lat": 45.4433439,
+   "lng": -75.6944129,
    "country": "FR",
    "url": "https://www.openstreetmap.org/way/241677920",
    "desc": "Embassy or consulate — the sending country's presence in the destination country. For a migrant worker whose passport is held by an employer or agent, the consulate is often the only body that can issue replacement documents or arrange repatriation, and it can do so without the employer's consent. Several also run their own welfare funds for nationals abroad."
@@ -503527,8 +503577,8 @@
    "name": "Гранични прелаз Котроман",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 43.7626994,
-   "lng": 19.4701568,
+   "lat": 43.7626627,
+   "lng": 19.4701614,
    "country": "",
    "url": "https://www.openstreetmap.org/node/2395001508",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -540537,8 +540587,8 @@
    "name": "Гранични прелаз Котроман",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 43.7627699,
-   "lng": 19.4701329,
+   "lat": 43.7627622,
+   "lng": 19.4701376,
    "country": "",
    "url": "https://www.openstreetmap.org/node/7908809679",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -548287,8 +548337,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 49.9564692,
-   "lng": 23.1165494,
+   "lat": 49.9564743,
+   "lng": 23.1165634,
    "country": "",
    "url": "https://www.openstreetmap.org/node/9835698374",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
@@ -548337,8 +548387,8 @@
    "name": "Border / customs post",
    "k": "bd",
    "type": "Border / customs post",
-   "lat": 49.9565035,
-   "lng": 23.1160103,
+   "lat": 49.9565003,
+   "lng": 23.1159963,
    "country": "",
    "url": "https://www.openstreetmap.org/node/9835698379",
    "desc": "Border or customs post. Where import bans are actually enforced and goods detained, and a named point on many documented corridors. The customs authority here is the body that acts on a withhold release order or an equivalent measure."
